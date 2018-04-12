@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bjypt.vipcard.widget.DropZoomScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/my_background"
+    android:scrollbars="none">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/my_layout_background" />
+
+        <View
+            android:id="@+id/v1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/imageView" />
+
+        <View
+            android:id="@+id/v2"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_below="@+id/v1" />
+
+        <View
+            android:id="@+id/v3"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/v2" />
+
+        <View
+            android:id="@+id/v4"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_below="@+id/v3" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/v4">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/shape_my_background">
+
+                <LinearLayout
+                    android:id="@+id/ll_login_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="45dp"
+                    android:background="@color/theme_color"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_user_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/my_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_vertical"
+                            android:text="昵称"
+                            android:textColor="@color/black_3"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/telphone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/my_account_number"
+                            android:textColor="@color/black_6"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:background="@color/theme_color">
+
+                        <LinearLayout
+                            android:id="@+id/ll_sign_in"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginBottom="13dp"
+                            android:layout_marginLeft="100dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/continue_days"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="0天"
+                                android:textColor="@color/my_signIn_text"
+                                android:textSize="17sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="8dp"
+                                android:text="签到"
+                                android:textColor="@color/black_3"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0.5dp"
+                            android:layout_height="45dp"
+                            android:layout_centerInParent="true"
+                            android:background="@color/gray_e" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_integral"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginBottom="13dp"
+                            android:layout_marginRight="100dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_my_vip_bi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="0"
+                                android:textColor="@color/my_signIn_text"
+                                android:textSize="17sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="8dp"
+                                android:text="积分"
+                                android:textColor="@color/black_3"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <com.bjypt.vipcard.view.RoundImageView
+                android:id="@+id/riv_user_photo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:scaleType="fitXY"
+                android:src="@mipmap/my_photo" />
+
+            <Button
+                android:id="@+id/btn_login_register"
+                android:layout_width="130dp"
+                android:layout_height="35dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/shape_login_register_btn_background"
+                android:gravity="center"
+                android:text="@string/login_register"
+                android:textColor="@color/theme_color"
+                android:textSize="16sp"
+                android:visibility="gone"
+
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rl_user_info"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <!--我的钱包-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/theme_color"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="我的钱包"
+                android:textColor="@color/black_3"
+                android:textSize="17sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/gray_e" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rcv_commonality_serve"
+                android:layout_width="match_parent"
+                android:layout_height="87dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/theme_color"
+                android:scrollbars="none" />
+
+            <!--更多服务-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/theme_color"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="更多服务"
+                android:textColor="@color/black_3"
+                android:textSize="17sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/gray_e" />
+
+            <GridView
+                android:id="@+id/gv_serve"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@color/theme_color"
+                android:horizontalSpacing="20dp"
+                android:numColumns="4"
+                android:padding="10dp"
+                android:scrollbars="none"
+                android:verticalSpacing="29dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/statusBarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/statusBarView"
+                >
+
+                <ImageButton
+                    android:id="@+id/ibtn_message"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:src="@mipmap/my_messages" />
+
+                <ImageButton
+                    android:id="@+id/ibtn_setting"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"
+                    android:src="@mipmap/my_setting" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</com.bjypt.vipcard.widget.DropZoomScrollView>

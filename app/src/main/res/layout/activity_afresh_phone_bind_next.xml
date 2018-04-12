@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/title_bg">
+    <RelativeLayout
+        android:id="@+id/title_rela"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+        <RelativeLayout
+            android:id="@+id/afresh_phone_back_next"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent">
+            <ImageView
+                android:id="@+id/back_iv"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/hyb_back"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="绑定新手机"
+                android:textColor="#666666"
+                android:textSize="17sp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/back_iv"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/phone_rela"
+        android:layout_below="@id/title_rela"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+        <TextView
+            android:textSize="@dimen/normal_nor"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新手机号码:"/>
+        <EditText
+            android:id="@+id/tv_old_phone_next"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/get_code_tv_next"
+          android:layout_gravity="center_vertical"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:text="获取验证码"
+            android:background="@mipmap/get_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <View
+        android:id="@+id/line_view"
+        android:layout_below="@id/phone_rela"
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back"/>
+    <LinearLayout
+        android:id="@+id/code_rela"
+        android:layout_below="@id/line_view"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+        <TextView
+
+            android:text="输入验证码:"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/code_next"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:background="@null"
+           />
+    </LinearLayout>
+
+
+  <!--  <RelativeLayout
+        android:layout_alignParentRight="true"
+        android:id="@+id/forget_phone"
+        android:layout_below="@id/code_rela"
+        android:layout_width="150dp"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/tv_wj_phone"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="忘记手机号码?"
+            android:textColor="#EC584E"/>
+    </RelativeLayout>-->
+
+<TextView
+    android:id="@+id/afresh_phone_entrue_next"
+    android:layout_centerHorizontal="true"
+    android:gravity="center"
+    android:textColor="@color/white"
+    android:layout_marginTop="30dp"
+    android:textSize="@dimen/large"
+    android:layout_below="@id/code_rela"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/issue_bg"
+    android:text="验证"/>
+
+</RelativeLayout>

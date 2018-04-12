@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/paysuccess_bg">
+
+    <ImageView
+        android:id="@+id/iv_paysuccess_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:src="@mipmap/paysuccess_back" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_paysuccess_back"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="支付成功"
+        android:textColor="#ff0000"
+        android:textSize="@dimen/high"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_paysuccess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="恭喜你支付成功！请尽快使用此订单"
+        android:textColor="#000"
+        android:textSize="@dimen/small_large"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_paysuccess_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tv_paysuccess"
+        android:text="消费有更多优惠哦"
+        android:textColor="#000"
+        android:textSize="@dimen/small_large"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_paysuccess_"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_backDD"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:background="@mipmap/paysuccess_btn_bg"
+            android:text="返回订单"
+            android:textColor="#ff0000"
+            android:textSize="@dimen/normal_nor" />
+
+        <Button
+            android:id="@+id/btn_backSY"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:background="@mipmap/paysuccess_btn_bg"
+            android:text="返回首页"
+            android:textColor="#ff0000"
+            android:textSize="@dimen/normal_nor" />
+    </LinearLayout>
+</RelativeLayout>

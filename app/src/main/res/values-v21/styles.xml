@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <!--<style name="AppTheme" parent="AppTheme.Base">-->
+        <!--&lt;!&ndash;透明状态栏&ndash;&gt;-->
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <!--&lt;!&ndash;使状态栏，导航栏可绘制&ndash;&gt;-->
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+    <!--</style>-->
+
+    <!--&lt;!&ndash;沉浸式无状态栏&ndash;&gt;-->
+    <!--<style name="AppTheme.Base.Trans" parent="AppTheme">-->
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+    <!--</style>-->
+
+    <!--<style name="MyProgressBar" parent="Base.Widget.AppCompat.ProgressBar">-->
+        <!--<item name="android:indeterminateTint">@color/colorLoading</item>-->
+        <!--<item name="android:indeterminateTintMode">src_atop</item>-->
+    <!--</style>-->
+
+</resources>

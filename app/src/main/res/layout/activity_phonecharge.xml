@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ec584e">
+
+        <RelativeLayout
+            android:id="@+id/rl_printer_back"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/back_disher" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="话费充值"
+            android:textColor="@color/white"
+            android:textSize="@dimen/normal" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/sub_costprice_bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_getPhone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:background="@mipmap/pcharge_et_bg"
+            android:focusableInTouchMode="true"
+            android:hint="请输入电话号码"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:textColor="#000"
+            android:textSize="@dimen/normal_nor"
+            android:inputType="number"
+            android:maxLength="11"/>
+
+        <ImageView
+            android:id="@+id/iv_Linkman"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@mipmap/pcharge_txl" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_Callerloc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="5dp"
+        android:text=""
+        android:textColor="@color/default_background" />
+
+    <GridView
+        android:id="@+id/gv_pcharge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:horizontalSpacing="@dimen/indicator_right_padding"
+        android:listSelector="#00000000"
+        android:numColumns="3"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/indicator_right_padding" />
+
+    <TextView
+        android:id="@+id/tv_pcharge_togo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/indicator_right_padding"
+        android:background="@mipmap/pccharge_charge_bg"
+        android:gravity="center"
+        android:text="立即充值"
+        android:textColor="@color/white"
+        android:textSize="@dimen/normal" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/indicator_right_padding"
+        android:layout_marginRight="@dimen/indicator_right_padding"
+        android:scrollbars="none">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="5dp"
+            android:text="温馨提示:\n
+        1.本服务不提供机打发票，运营商是否提供发票以当地运营商发票获取政策为准。\n
+        2.充值金额有可能拆分到账。\n
+        3.月初和月末运营商系统繁忙，话费到账时间可能会出现延迟，请拨打当地运营商客服电话确认；如果遇到未到账的情况，请及时联系客服处理。\n
+        4.充值成功后，交易无法取消，已充值话费无法退回或转存到其他号码。"
+            android:textColor="@color/default_background"
+            android:textSize="@dimen/too_small" />
+    </ScrollView>
+</LinearLayout>

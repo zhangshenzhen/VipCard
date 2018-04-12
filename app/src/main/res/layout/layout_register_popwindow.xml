@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#44000000"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/register_pop_shape"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="41.3dp"
+            android:layout_marginRight="41.3dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="您拒绝了获取到读取手机信息权限,请手动获取或重装软件"
+            android:textColor="@color/dark_black"
+            android:textSize="14sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/textview_back"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="返回"
+                android:textColor="@color/app_theme_color"
+                android:textSize="13sp"/>
+
+            <View
+                android:layout_width="0.3dp"
+                android:layout_height="match_parent"
+                android:background="@color/btn_notclick"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/textview_cancle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="@color/register_blue"
+                android:textSize="13sp"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

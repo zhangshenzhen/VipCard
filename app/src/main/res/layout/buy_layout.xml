@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#DCDCDC" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp" >
+
+        <LinearLayout
+          
+            android:id="@+id/ll1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_count1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="剩余数量：1230"
+                android:textColor="#0096FF" />
+
+            <TextView
+                android:id="@+id/tv_count2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="截止日期：16-4-19"
+                android:textColor="#0096FF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_buy"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+             >
+
+            <TextView
+                android:id="@+id/tv_price1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¥ 1"
+                android:textColor="#EB3B3B"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="20dp" >
+
+                <TextView
+                    android:id="@+id/tv_price2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="门店价：12.00"
+                    android:textColor="#aa000000"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignLeft="@+id/tv_price2"
+                    android:layout_alignRight="@+id/tv_price2"
+                    android:layout_centerVertical="true"
+                    android:background="#aa000000" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/red_btn3"
+            android:gravity="center"
+            android:text="立即抢购"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+</LinearLayout>

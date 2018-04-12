@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/enter_pay_relative"
+            android:layout_width="357dp"
+            android:layout_height="177dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+
+            <!--卡的背景图-->
+            <ImageView
+                android:id="@+id/iv_card_pic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/more" />
+
+            <View
+                android:id="@+id/view_use"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true" />
+
+            <!--点击付款-->
+            <LinearLayout
+                android:id="@+id/go_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/card_manager_go" />
+            </LinearLayout>
+
+            <!--卡名称-->
+            <TextView
+                android:id="@+id/card_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="62dp"
+                android:gravity="center"
+                android:text="我的阜阳"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <!--卡号-->
+            <TextView
+                android:id="@+id/card_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/card_name"
+                android:layout_marginBottom="19dp"
+                android:layout_marginLeft="17dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="123 456 789 012"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_below="@+id/enter_pay_relative"
+            android:background="@color/app_color"
+            android:orientation="horizontal">
+
+            <!--账户余额-->
+            <LinearLayout
+                android:id="@+id/ll_yue_change"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/account_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00元"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_zhanghu_yu_e"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="账户余额"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/tv_can_withdraw"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="(可提现)"
+                                android:textColor="@color/white"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.3dp"
+                android:layout_height="23dp"
+                android:layout_gravity="center"
+                android:background="@color/white" />
+
+            <!--积分-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/integral_card_management"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00元"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_jifen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="积分"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="(抵扣金1:1)"
+                                android:textColor="@color/white"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="0.3dp"
+                android:layout_height="23dp"
+                android:layout_gravity="center"
+                android:background="@color/white" />
+
+            <!--礼品金-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/gifts_of_gold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00元"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:text="礼品金"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.bjypt.vipcard.widget.MyGridView
+            android:id="@+id/my_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:numColumns="4"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:verticalSpacing="12dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/card_manage_line" />
+
+    <com.bjypt.vipcard.widget.PetroleumView
+        android:id="@+id/pv_poster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--广告banner-->
+    <LinearLayout
+        android:id="@+id/banner_linear"
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="8dp"
+        android:visibility="gone">
+
+        <com.recker.flybanner.FlyBanner
+            android:id="@+id/card_manager_banner"
+            android:layout_width="match_parent"
+            android:layout_height="65dp">
+
+        </com.recker.flybanner.FlyBanner>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="31.3dp"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="1.5dp"
+            android:layout_height="10dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="11dp"
+            android:background="@color/app_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4.7dp"
+            android:layout_toRightOf="@+id/view"
+            android:text="线下刷卡商家"
+            android:textColor="@color/card_manage_black"
+            android:textSize="13sp" />
+
+        <RelativeLayout
+            android:id="@+id/search_card_manage"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/manage_search" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/withdraw_gray_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="bottom"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="34.3dp"
+            android:layout_marginRight="34.3dp">
+
+            <EditText
+                android:id="@+id/search_merchant_name"
+                android:layout_width="match_parent"
+                android:layout_height="25.7dp"
+                android:background="@drawable/nav_search_bg"
+                android:hint="请输入商家名"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColorHint="#999999"
+                android:textSize="13sp" />
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/search_merchant_name"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/manage_search" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

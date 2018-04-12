@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:layout_height="70dp">
+    <ImageView
+        android:id="@+id/iv_url_log"
+    android:layout_width="55dp"
+    android:layout_height="55dp"
+        android:layout_gravity="center_vertical"
+        android:src="@mipmap/pay_record_bg"
+    />
+
+        <LinearLayout
+            android:layout_alignRight="@+id/iv_tri"
+            android:layout_width="0dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_tri_name"
+                android:layout_width="wrap_content"
+                android:textColor="@color/dark_black"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:text=""/>
+            <TextView
+                android:id="@+id/tv_tri_time"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginTop="3dp"
+                android:textSize="13sp"
+                android:layout_height="wrap_content"
+                android:text=""/>
+            <TextView
+                android:id="@+id/tv_tri_price"
+                android:layout_width="wrap_content"
+                android:textColor="@color/dark_black"
+                android:textSize="13sp"
+                android:layout_marginTop="3dp"
+                android:layout_height="wrap_content"
+                android:text=""/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_transaction_zhuantai"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/dark_black"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"
+            android:text=""/>
+    </LinearLayout>
+
+
+</LinearLayout>

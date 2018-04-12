@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_back"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/selector_back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17sp"
+            android:layout_marginLeft="25dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/dark_black"
+            android:text="优惠信息"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/black"></View>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.bjypt.vipcard.pulltorefresh.PullToRefreshListView
+            android:id="@+id/coupon_listvew"
+            android:layout_width="match_parent"
+            android:divider="#f0f0f0"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:dividerHeight="8dp"
+            android:layout_height="match_parent"></com.bjypt.vipcard.pulltorefresh.PullToRefreshListView>
+        <ImageView
+            android:id="@+id/iv_default_coupon_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:src="@mipmap/default_pic"/>
+    </RelativeLayout>
+</LinearLayout>

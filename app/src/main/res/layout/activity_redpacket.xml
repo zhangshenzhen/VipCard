@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_back"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/btn_goback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:src="@drawable/selector_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:layout_toRightOf="@+id/btn_goback"
+            android:text="商家红包"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/normal" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/black"></View>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/iv_default_redpacket_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:src="@mipmap/default_pic"/>
+
+    <com.bjypt.vipcard.pulltorefresh.PullToRefreshListView
+        android:id="@+id/lv_redpacket"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@color/img_full_opaque"
+        android:divider="@color/white"
+        android:dividerHeight="@dimen/indicator_right_padding"
+        android:listSelector="@color/img_full_opaque" />
+</RelativeLayout>
+</LinearLayout>

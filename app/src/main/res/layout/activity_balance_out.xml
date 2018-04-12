@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.bjypt.vipcard.activity.BalanceOutActivity">
+
+    <!--标题栏-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/balance_out_back"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/back_new_app" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="转出到余额"
+            android:textColor="@color/black_3"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="13dp"
+        android:background="@color/roll_out_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:gravity="center"
+            android:text="转出"
+            android:textColor="@color/fine_text_color"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_money"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="47dp"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:hint="请输入转出金额"
+            android:numeric="integer"
+            android:textColor="@color/grays_totalprice"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/confirm_tv"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="27dp"
+        android:background="@drawable/background_bindbank_confirm"
+        android:gravity="center"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="20sp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="14dp"
+        android:textSize="12sp"
+        android:textColor="@color/line_back"
+        android:text="此商家电子卡余额为0.00元，直接转出到平台余额中，实时到账，可用于提现"/>
+
+</LinearLayout>

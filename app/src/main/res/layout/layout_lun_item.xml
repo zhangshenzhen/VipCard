@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+<LinearLayout
+    android:id="@+id/iv_liao_linear"
+    android:layout_width="130dp"
+    android:layout_height="wrap_content"
+    android:padding="7dp"
+    android:background="@color/white"
+    android:layout_marginLeft="1dp"
+    android:gravity="center"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/iv_lun_pic"
+            android:layout_width="30dp"
+            android:scaleType="fitXY"
+            android:layout_height="30dp" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_lun_name"
+        android:layout_marginLeft="5dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textSize="11sp"
+        android:textColor="@color/black_color"
+        android:text="聊一聊"/>
+</LinearLayout>
+</LinearLayout>

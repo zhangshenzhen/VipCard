@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/title_bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/afresh_phone_back"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/theme_color">
+
+        <ImageButton
+            android:id="@+id/back_iv"
+            android:layout_width="44dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="手机号绑定"
+            android:textColor="@color/black_3"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/phone_rela"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/afresh_phone_back"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="旧手机号码:"
+            android:textSize="@dimen/normal_nor" />
+
+        <EditText
+            android:id="@+id/tv_old_phone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@null" />
+
+        <TextView
+            android:id="@+id/get_code_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="获取验证码"
+            android:textColor="@color/app_color" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@id/phone_rela"
+        android:background="@color/line_back" />
+
+    <LinearLayout
+        android:id="@+id/code_rela"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/line_view"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="输入验证码:" />
+
+        <EditText
+            android:id="@+id/code_afresh"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@null" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/forget_phone"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/code_rela">
+
+        <TextView
+            android:id="@+id/tv_wj_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:text="忘记手机号码?"
+            android:visibility="gone"
+            android:textColor="@color/app_color" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/afresh_phone_entrue"
+        style="@style/button_style"
+        android:layout_below="@id/forget_phone"
+        android:text="验证" />
+
+</RelativeLayout>

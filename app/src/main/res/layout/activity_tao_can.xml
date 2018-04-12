@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/layout_taocan_back"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#f9f9f9"
+      >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+          android:layout_centerVertical="true"
+            android:src="@drawable/selector_back"/>
+        <TextView
+            android:id="@+id/tv_taocan_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="特色石锅鱼（花神大道店）"
+            android:textColor="@color/dark_black"
+            android:textSize="17sp"
+            />
+
+    </RelativeLayout>
+
+    <ListView
+        android:layout_below="@id/layout_taocan_back"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/listviw1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#999999"
+        android:dividerHeight="0.3dp"
+        android:scrollbars="none"
+        />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/layout_at_once_yuding"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_ad_once_yuding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@mipmap/taocan_login"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:text="立即预订（定金50）"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

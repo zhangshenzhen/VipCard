@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/background_gradient_end">
+
+    <RelativeLayout
+        android:id="@+id/layout_back"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/btn_goback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:src="@mipmap/btn_goback_unpress" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:layout_toRightOf="@+id/btn_goback"
+            android:text="我的商家"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/normal" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+
+    <RelativeLayout
+        android:id="@+id/hyb_balance"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@mipmap/vipcenter_head_bg">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/wd_common"/>
+
+        <com.bjypt.vipcard.view.RoundImageView
+            android:id="@+id/iv_vipcenter_vipdefImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/header_footer_left_right_padding"
+            android:layout_marginLeft="@dimen/indicator_right_padding"
+            android:layout_marginTop="@dimen/header_footer_left_right_padding"
+            android:src="@mipmap/vip_logo" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_vipcenter_vipdefImg"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/indicator_right_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/indicator_right_padding"
+                android:paddingTop="@dimen/indicator_right_padding"
+                android:text="惠缘包"
+                android:textColor="@color/white"
+                android:textSize="@dimen/normal_nor" />
+
+            <TextView
+                android:id="@+id/iv_vipcenter_incomevipInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/indicator_right_padding"
+                android:text="余额：8888   昨日收益:88888"
+                android:textColor="@color/white"
+                android:textSize="@dimen/too_small" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/indicator_right_padding"
+            android:src="@mipmap/vipcenter_vipgo" />
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/wd_common"/>
+    </RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.bjypt.vipcard.pulltorefresh.PullToRefreshListView
+        android:id="@+id/vipcenter_pulllist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" />
+    <ImageView
+        android:id="@+id/iv_default_vipcenter_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/default_pic"
+        android:visibility="visible"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
+
+</LinearLayout>

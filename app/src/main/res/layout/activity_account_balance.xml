@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/line_write_gray"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_back"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/btn_goback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:src="@mipmap/btn_goback_unpress" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:layout_toRightOf="@+id/btn_goback"
+            android:text="我的钱包"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/normal" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="@dimen/indicator_right_padding"
+            android:background="@color/line_back" />
+
+        <RelativeLayout
+            android:id="@+id/relative_balance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:text="账户余额"
+                android:textColor="@color/background_gradient_start"
+                android:textSize="@dimen/normal" />
+
+            <TextView
+                android:id="@+id/system_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/indicator_right_padding"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:text="--元"
+                android:textColor="@color/red_text_dishes"
+                android:textSize="@dimen/normal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:src="@mipmap/waitpay_unpress" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/line_back" />
+            <RelativeLayout
+                android:id="@+id/rl_huiyuan_bi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:text="积分"
+                    android:textColor="@color/background_gradient_start"
+                    android:textSize="@dimen/normal" />
+
+                <TextView
+                    android:id="@+id/tv_huiyuan_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/indicator_right_padding"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:text=""
+                    android:textColor="@color/red_text_dishes"
+                    android:textSize="@dimen/normal" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:visibility="gone"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:src="@mipmap/waitpay_unpress" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/line_back" />
+        <RelativeLayout
+            android:id="@+id/relative_Pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:text="我要充值"
+                android:textColor="@color/red_text_dishes"
+                android:textSize="@dimen/normal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:src="@mipmap/waitpay_unpress" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/line_back" />
+
+        <RelativeLayout
+            android:id="@+id/relative_balanceOutMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:text="余额提现"
+                android:textColor="@color/background_gradient_start"
+                android:textSize="@dimen/normal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:src="@mipmap/waitpay_unpress" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/line_back" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:text="余额累计收益"
+                android:textColor="@color/background_gradient_start"
+                android:textSize="@dimen/normal" />
+
+            <TextView
+                android:id="@+id/tv_balanceIncome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/indicator_right_padding"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:text="--元"
+                android:textColor="@color/red_text_dishes"
+                android:textSize="@dimen/normal" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/line_back" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:text="昨日余额收益"
+                android:textColor="@color/background_gradient_start"
+                android:textSize="@dimen/normal" />
+
+            <TextView
+                android:id="@+id/tv_yesterdayIncome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/indicator_right_padding"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:text="--元"
+                android:textColor="@color/red_text_dishes"
+                android:textSize="@dimen/normal" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:visibility="gone"
+            android:background="@color/line_back" />
+
+        <RelativeLayout
+            android:id="@+id/relative_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:text="温馨提示"
+                android:textColor="@color/bt_replace_next"
+                android:textSize="@dimen/normal" />
+
+            <ImageView
+                android:id="@+id/iv_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:src="@mipmap/waitpay_unpress" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="@color/line_back" />
+
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="会员可通过信用卡、借记卡绑定微信、支付宝、网银随时向电子一卡通平台余额内充值，会员余额资金可在电子一卡通平台所有商家及民生类项目使用，并可在工作日内随时提现(每日15:00前)，可提出本金及收益，当日到账(周末、节假日顺延)"
+            android:textColor="@color/red_txt"
+            android:textSize="@dimen/normal_nor" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/title_"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/iv_paysuccess_back"
+            android:layout_width="80dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:src="@mipmap/psd_back"/>
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:text="请输入支付密码"
+            android:textColor="#000000"
+            android:textSize="@dimen/normal"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/psd_details"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title_"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/psd_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="金额"
+            android:textSize="@dimen/normal"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="大娘水饺"/>
+
+            <TextView
+                android:id="@+id/product_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="6dp"
+                android:text="¥1.00"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/psd_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@id/psd_details"
+        android:background="@color/line_back"/>
+
+    <RelativeLayout
+        android:id="@+id/rela_psd"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/psd_view"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/t1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/i1"
+                android:gravity="center"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/t2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/i1"
+                android:gravity="center"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/t3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/i1"
+                android:gravity="center"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/t4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/i1"
+                android:gravity="center"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/t5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/i1"
+                android:gravity="center"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLines="1"/>
+
+            <TextView
+                android:id="@+id/t6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/i1"
+                android:gravity="center"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLines="1"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editHide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/layout"
+            android:layout_alignLeft="@+id/layout"
+            android:layout_alignRight="@+id/layout"
+            android:layout_alignTop="@+id/layout"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="6"
+            android:password="true"
+            android:textColor="#00000000"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        android:layout_below="@id/rela_psd"
+        android:background="@color/white"/>
+
+</RelativeLayout>

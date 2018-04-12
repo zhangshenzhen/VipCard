@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative_pop"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_color"
+    android:gravity="center_horizontal"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+    <!--标题栏-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/theme_color">
+
+        <ImageButton
+            android:id="@+id/citizen_card_back"
+            android:layout_width="44dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/tv_finalcial_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="绑定手机号"
+            android:textColor="@color/black_3"
+            android:textSize="@dimen/normal" />
+
+        <ImageView
+            android:id="@+id/citizen_card_add"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/navigate_jia"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="108dp"
+        android:layout_marginTop="66dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/phone_number_cl" />
+
+            <EditText
+                android:id="@+id/login_name"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@id/phone_number"
+                android:background="@null"
+                android:hint="手机号"
+                android:singleLine="true"
+                android:textColor="#999999"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="6dp"
+            android:background="#eeeeee" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/yan_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/yan_zheng_cl" />
+
+            <EditText
+                android:id="@+id/login_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_toRightOf="@id/yan_number"
+                android:background="@null"
+                android:hint="验证码"
+                android:singleLine="true"
+                android:textColor="#999999"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/yan_zheng_number"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="22dp"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="@color/app_theme_color"
+                android:textSize="13sp" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="6dp"
+            android:background="#eeeeee" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_ok_bind"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginTop="44dp"
+        android:background="@color/app_theme_color"
+        android:text="确认绑定"
+        android:textColor="@color/theme_color" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="为确保您账户的安全及正常使用，依《网络安"
+        android:textColor="@color/black_3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="全法》相关要求，6月1日起会员账户需绑定手机"
+        android:textColor="@color/black_3" />
+</LinearLayout>

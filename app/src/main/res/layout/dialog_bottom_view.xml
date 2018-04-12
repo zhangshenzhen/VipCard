@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+        <Button
+            android:id="@+id/tv_route_one"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="拍照"
+            android:background="@drawable/shape_bottom_btn_background"
+            android:textColor="@color/black_4D"
+            android:textSize="16sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/transparent"
+            />
+        <Button
+            android:id="@+id/tv_route_two"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="相册"
+            android:background="@drawable/shape_bottom_btn_background"
+            android:textColor="@color/black_4D"
+            android:textSize="16sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/transparent"
+        />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="取消"
+        android:background="@drawable/shape_bottom_btn_background"
+        android:textColor="@color/black_4D"
+        android:textSize="16sp" />
+
+</LinearLayout>

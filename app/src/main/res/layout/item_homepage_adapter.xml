@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linear_item_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:background="@color/roll_out_line">
+
+            <TextView
+                android:id="@+id/id_year_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:text="2017"
+                android:textColor="@color/line_back"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="26dp">
+
+            <TextView
+                android:id="@+id/id_month_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="11"
+                android:textColor="@color/fine_text_color"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="17dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/roll_out_line"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/id_image1"
+                        style="@style/myhomepage_item_iv"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/circle_moren" />
+
+                    <TextView
+                        android:id="@+id/id_title_text1"
+                        style="@style/myhomepage_item_text"
+                        android:text="墨西哥位于环太平洋地震带东部，太平洋、北美洲..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/id_time1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11月11日  11:30"
+                        android:textColor="@color/dark_black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_item_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="26dp">
+
+            <TextView
+                android:id="@+id/id_month_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="11"
+                android:textColor="@color/fine_text_color"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="17dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/roll_out_line"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/id_image2"
+                        style="@style/myhomepage_item_iv"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/circle_moren" />
+
+                    <TextView
+                        android:id="@+id/id_title_text2"
+                        style="@style/myhomepage_item_text"
+                        android:text="墨西哥位于环太平洋地震带东部，太平洋、北美洲..." />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/id_time2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11月11日  11:30"
+                        android:textColor="@color/dark_black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_item_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="29dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="17dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/roll_out_line"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/id_image3"
+                    style="@style/myhomepage_item_iv"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/circle_moren" />
+
+                <TextView
+                    android:id="@+id/id_title_text3"
+                    style="@style/myhomepage_item_text"
+                    android:text="墨西哥位于环太平洋地震带东部，太平洋、北美洲..." />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/id_time3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11月11日  11:30"
+                    android:textColor="@color/dark_black"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

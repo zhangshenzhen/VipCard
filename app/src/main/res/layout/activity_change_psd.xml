@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/title_bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/change_psd_back"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/theme_color">
+
+        <ImageButton
+            android:id="@+id/back_iv"
+            android:layout_width="44dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="修改密码"
+            android:textColor="@color/black_3"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="10dp"
+        android:background="@color/title_bg"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/relative_oldPsd"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/old_psd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="原密码:"
+            android:textSize="@dimen/normal" />
+
+        <EditText
+            android:id="@+id/et_oldPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/old_psd"
+            android:background="@null"
+            android:password="true"
+            android:singleLine="true" />
+
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true">
+
+            <TextView
+                android:id="@+id/tv_gotoForgetPsd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="忘记原密码?"
+                android:textColor="@color/app_color"
+                android:textSize="@dimen/small" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/new_psd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="新密码:"
+            android:textSize="@dimen/normal" />
+
+        <EditText
+            android:id="@+id/et_newPassword"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/new_psd"
+            android:background="@null"
+            android:digits="@string/psd"
+            android:maxLength="32"
+            android:password="true"
+            android:singleLine="true" />
+
+        <ImageView
+            android:id="@+id/forget_code_strength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/psd_1" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/again_psd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="确认密码:"
+            android:textSize="@dimen/normal" />
+
+        <EditText
+            android:id="@+id/et_newPasswords"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@id/again_psd"
+            android:background="@null"
+            android:digits="@string/psd"
+            android:maxLength="32"
+            android:password="true"
+            android:singleLine="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:id="@+id/tv_tishi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="支付密码需输入6位数字，登录密码不超过32为字符"
+            android:textColor="@color/app_color"
+            android:textSize="@dimen/small" />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btn_sureUpdate"
+        style="@style/button_style"
+        android:text="确定" />
+</LinearLayout>

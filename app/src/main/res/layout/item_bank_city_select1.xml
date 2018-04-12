@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_city"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10.7dp"
+        android:layout_marginRight="10.7dp"
+        android:gravity="center_vertical"
+        android:text="江苏"
+        android:textColor="@color/dark_black"
+        android:textSize="11.6sp"/>
+</LinearLayout>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/title_bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/check_in_back"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/theme_color">
+
+        <ImageButton
+            android:id="@+id/back_iv"
+            android:layout_width="44dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:text="我想入驻"
+            android:textColor="@color/black_3"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_high"
+        android:layout_marginTop="15dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="姓名:"
+            android:textSize="@dimen/normal" />
+
+        <EditText
+            android:id="@+id/name_et"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/name_tv"
+            android:background="@null" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_high"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/phone_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="电话:"
+            android:textSize="@dimen/normal" />
+
+        <EditText
+            android:id="@+id/phone_et"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/phone_tv"
+            android:background="@null"
+            android:inputType="number" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_high"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/shop_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="门店名称:"
+            android:textSize="@dimen/normal" />
+
+        <EditText
+            android:id="@+id/shop_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/shop_name_tv"
+            android:background="@null" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="3dp"
+                android:src="@mipmap/pull_down" />
+
+            <Spinner
+                android:id="@+id/pro_sp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@null" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="0.3dp"
+            android:layout_height="fill_parent"
+            android:background="@color/line_back" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="3dp"
+                android:src="@mipmap/pull_down" />
+
+            <Spinner
+                android:id="@+id/city_sp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@null" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="0.3dp"
+            android:layout_height="fill_parent"
+            android:background="@color/line_back" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="3dp"
+                android:src="@mipmap/pull_down" />
+
+            <Spinner
+                android:id="@+id/county_sp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@null" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/title_high"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/detail_adress_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="具体地址:"
+            android:textSize="@dimen/normal" />
+
+        <EditText
+            android:id="@+id/details_adress_et"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/detail_adress_tv"
+            android:background="@null" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="我们的客服会在最短的时间给您答复"
+            android:textColor="@color/app_color"
+            android:textSize="@dimen/small" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/check_in_entrue"
+        style="@style/button_style"
+        android:text="确认提交" />
+
+</LinearLayout>

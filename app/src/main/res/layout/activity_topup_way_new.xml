@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/back_way"
+            android:layout_width="50dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/back_new_app" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            android:text="充值"
+            android:textColor="@color/black_3"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F3F3F3"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <com.bjypt.vipcard.widget.MyGridView
+                    android:id="@+id/gv_select_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:numColumns="3"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
+                    android:verticalSpacing="12dp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/ll_et_show"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/pay_edit_bg"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="充值金额"
+                        android:textColor="#7AC6E8"
+                        android:textSize="16sp" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right|center_vertical">
+
+                        <TextView
+                            android:id="@+id/tv_renminbi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center_vertical"
+                            android:layout_marginRight="10dp"
+                            android:text="¥"
+                            android:textColor="#999999"
+                            android:textSize="16sp"
+                            android:visibility="gone" />
+
+                        <EditText
+                            android:id="@+id/et_top_up_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="5dp"
+                            android:background="@null"
+                            android:gravity="right|center_vertical"
+                            android:hint="请输入充值金额"
+                            android:maxLength="10"
+                            android:numeric="integer"
+                            android:paddingRight="5dp"
+                            android:textColor="#EB584E"
+                            android:textColorHint="@color/gray"
+                            android:textSize="16sp" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/white"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="充值金额"
+                    android:textColor="@color/dark_black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_way_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:text="￥100"
+                    android:textColor="@color/red_txt"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <com.bjypt.vipcard.view.PayAwayView
+                android:id="@+id/payAwayView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:dealType="chongzhi" />
+
+            <Button
+                android:id="@+id/btn_ok_pay"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/redbtn_background"
+                android:enabled="false"
+                android:text="确认支付"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_weixintishi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:text="温馨提示：尊敬的用户您好，提现之前请先完成平台余额充值，充值的金额可全部提现(每日15:00前当天到账，节假日顺延)，也可在平台所有商家消费使用。"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

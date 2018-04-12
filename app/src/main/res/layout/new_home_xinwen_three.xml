@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_height="155dp">
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text="  "/>
+            <TextView
+                android:id="@+id/xinwen_three_title"
+                android:text="历史的选择人民的期待: 以习近平为核心党中央治国理政评述"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="80dp">
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text="  "/>
+            <ImageView
+                android:id="@+id/xinwen_three_pci_one"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/xinwen_two"
+                android:layout_height="wrap_content" />
+
+
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/xinwen_three_pci_two"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/xinwen_two"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:scaleType="centerCrop"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text="  "/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+            <TextView
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:text="  "/>
+            <TextView
+                android:id="@+id/xinwen_three_wangzhan"
+                android:textSize="11sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="头条网"/>
+            <TextView
+                android:id="@+id/xinwen_three_pinglun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:layout_marginLeft="10dp"
+                android:text="516评论"/>
+            <TextView
+                android:id="@+id/xinwen_three_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2分钟前"
+                android:layout_marginLeft="10dp"
+                android:textSize="11sp"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</RelativeLayout>

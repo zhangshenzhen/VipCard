@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_write_gray"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:descendantFocusability="blocksDescendants">
+
+    <RelativeLayout
+        android:id="@+id/layout_back"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#f0f0f0"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/btn_goback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:src="@mipmap/btn_goback_unpress" />
+
+        <TextView
+            android:id="@+id/mOrderName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:layout_toRightOf="@+id/btn_goback"
+            android:text="我的订单"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/normal" />
+
+        <TextView
+            android:id="@+id/tv_edit_lv_unpayOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="13dp"
+            android:text="编辑"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/normal" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.bjypt.vipcard.pulltorefresh.PullToRefreshListView
+        android:id="@+id/lv_unpay_order"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@color/img_full_opaque"
+        android:divider="@color/background_gradient_end"
+        android:dividerHeight="5dp"
+        android:listSelector="@color/img_full_opaque"
+        android:scrollbars="none"></com.bjypt.vipcard.pulltorefresh.PullToRefreshListView>
+    <ImageView
+        android:id="@+id/iv_default_unpay_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/default_pic"/>
+</RelativeLayout>
+
+</LinearLayout>

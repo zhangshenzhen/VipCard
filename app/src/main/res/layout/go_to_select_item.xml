@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_type1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_type1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/quxianggray"/>
+
+        <com.bjypt.vipcard.view.AutoZoomTextView
+            android:id="@+id/tv_name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/praise_item_default"
+            android:textSize="13sp"/>
+
+        <com.bjypt.vipcard.view.AutoZoomTextView
+            android:id="@+id/tv_platform_balance_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/red_txt"
+            android:textSize="10sp"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_use2"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginLeft="19dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/ll_type2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_type2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/quxianggray"/>
+
+        <com.bjypt.vipcard.view.AutoZoomTextView
+            android:id="@+id/tv_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/praise_item_default"
+            android:textSize="13sp"/>
+
+        <com.bjypt.vipcard.view.AutoZoomTextView
+            android:id="@+id/tv_buy_next_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/red_txt"
+            android:textSize="10sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/v_use3"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginLeft="21dp"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/ll_type3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_type3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/quxianggray"/>
+
+        <com.bjypt.vipcard.view.AutoZoomTextView
+            android:id="@+id/tv_name3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/praise_item_default"
+            android:textSize="13sp"/>
+
+        <com.bjypt.vipcard.view.AutoZoomTextView
+            android:id="@+id/tv_merchant_balance_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/red_txt"
+            android:textSize="10sp"/>
+    </LinearLayout>
+</LinearLayout>

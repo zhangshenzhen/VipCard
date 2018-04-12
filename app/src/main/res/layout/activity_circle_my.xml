@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context="com.bjypt.vipcard.activity.CircleMyActivity">
+
+    <com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView
+        android:id="@+id/pull_to_refresh_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/background_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="173dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/header" />
+
+                <RelativeLayout
+                    android:id="@+id/relative1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/circle_back"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true">
+
+                        <ImageView
+                            android:id="@+id/image_back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:src="@mipmap/btn_goback_unpress1" />
+
+                        <TextView
+                            android:id="@+id/tag_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/image_back"
+                            android:text="Ta"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/camera_relative"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            android:src="@drawable/camera_white" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/relative1"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center">
+
+                        <com.bjypt.vipcard.view.RoundImageView
+                            android:layout_width="59dp"
+                            android:layout_height="59dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/header_translucent" />
+
+                        <com.bjypt.vipcard.view.RoundImageView
+                            android:id="@+id/iv_icon"
+                            android:layout_width="54dp"
+                            android:layout_height="54dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/header_gray" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/userIconName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:gravity="center"
+                        android:shadowColor="@color/gallery_black"
+                        android:shadowRadius="8"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:id="@+id/qianming_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/qianming_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLength="20"
+                            android:shadowColor="@color/gallery_black"
+                            android:shadowRadius="8"
+                            android:text="还没有个性签名，快来编辑吧"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:id="@+id/qianming_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/bianji_write" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/my_tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:background="@color/white"
+                app:tabIndicatorColor="@color/indicator"
+                app:tabIndicatorHeight="2dp">
+
+            </android.support.design.widget.TabLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="@color/withdraw_gray_line" />
+
+            <com.bjypt.vipcard.view.ChildViewPager
+                android:id="@+id/my_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.bjypt.vipcard.view.ChildViewPager>
+
+        </LinearLayout>
+
+    </com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e4e4e4" />
+
+    <LinearLayout
+        android:id="@+id/add_linear"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!--android:drawableLeft="@drawable/add_attention"
+                    android:drawablePadding="8dp"-->
+        <TextView
+            android:id="@+id/add_attention"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="关注"
+            android:textColor="@color/dark_black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

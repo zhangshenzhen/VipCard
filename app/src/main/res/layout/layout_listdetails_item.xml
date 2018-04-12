@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/indicator_right_padding"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_goodsName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:padding="@dimen/indicator_right_padding"
+            android:text="牛肉水饺"
+            android:textColor="@color/background_gradient_start"
+            android:textSize="@dimen/normal" />
+
+        <TextView
+            android:id="@+id/tv_goodsNum"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="right"
+            android:padding="@dimen/indicator_right_padding"
+            android:text="1份"
+            android:textColor="@color/background_gradient_start"
+            android:textSize="@dimen/normal" />
+
+        <TextView
+            android:id="@+id/tv_goodsPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:padding="@dimen/indicator_right_padding"
+            android:text="16元"
+            android:textColor="@color/black"
+            android:textSize="@dimen/normal" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+</LinearLayout>

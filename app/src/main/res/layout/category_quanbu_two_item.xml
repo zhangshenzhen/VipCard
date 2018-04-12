@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+    <TextView
+        android:id="@+id/category_quanbu_two_name"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textColor="#999999"
+        android:textSize="14sp"
+        android:gravity="center"
+       android:layout_centerInParent="true"
+        android:text="你好啊"
+        />
+    <TextView
+        android:id="@+id/category_quanbu_two_sum"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textColor="#999999"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentRight="true"
+        android:text="168"
+        />
+
+
+</RelativeLayout>

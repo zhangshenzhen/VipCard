@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dishes_rela"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff">
+
+    <RelativeLayout
+        android:id="@+id/relative_left"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/dishes_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ad_bg" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@mipmap/sub_costprice_bg">
+
+            <TextView
+                android:id="@+id/tv_costPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="原价:18.00"
+                android:textColor="#fff"
+                android:textSize="@dimen/small" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/sub_costprice_line"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:layout_toRightOf="@+id/relative_left">
+
+        <TextView
+            android:id="@+id/left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text=""
+            android:textColor="@color/background_gradient_start"
+            android:textSize="@dimen/small" />
+
+        <TextView
+            android:id="@+id/dishes_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/left"
+            android:layout_toRightOf="@+id/left"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:text="特色炒肉"
+            android:textColor="@color/background_gradient_start"
+            android:textSize="@dimen/normal_nor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/left"
+            android:layout_toRightOf="@+id/dishes_name"
+            android:text=""
+            android:textColor="@color/background_gradient_start"
+            android:textSize="@dimen/small" />
+
+        <TextView
+            android:id="@+id/sell_num_mouth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dishes_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text=""
+            android:textSize="10sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dishes_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="会员价¥18"
+                android:textColor="#EC594D"
+                android:textSize="@dimen/small" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/relative_left"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/dishes_reduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/dishes_reduce"
+            android:button="@null"
+             />
+
+        <TextView
+            android:id="@+id/dishes_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:text="0"
+            android:textColor="#000000" />
+
+        <ImageView
+            android:id="@+id/dishes_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:background="@mipmap/dishes_add"
+            android:button="@null"
+            android:focusable="false" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@+id/relative_left"
+        android:background="@color/line_back" />
+
+    <LinearLayout
+        android:id="@+id/linear_youhui"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view">
+
+        <RelativeLayout
+            android:id="@+id/merchant_pay_linear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@mipmap/order_vipcharge" />
+
+            <TextView
+                android:id="@+id/tv_vipcharge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_left"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:text="会员充值价¥10.00"
+                android:textColor="@color/dark_black"
+                android:textSize="@dimen/too_small" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/platform_pay_linear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:src="@mipmap/order_platformyouhui" />
+
+            <TextView
+                android:id="@+id/tv_platformyouhui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_right"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:text="平台补贴价¥10.00"
+                android:textColor="@color/dark_black"
+                android:textSize="@dimen/too_small" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

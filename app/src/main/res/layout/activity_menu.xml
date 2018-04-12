@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/bt_my_myself"
+        android:layout_width="fill_parent"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/shopping_back"
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/back_new_app" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/menu_shopname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="大娘水饺"
+            android:textColor="@color/fine_text_color"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/gray_shopping" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/toolBar"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/classify_mainlist"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#F4F4F5"
+                android:cacheColorHint="#00000000"
+                android:divider="#dcdcdc"
+                android:dividerHeight="1px"
+                android:fastScrollEnabled="false"
+                android:listSelector="#00000000"
+                android:scrollbars="none"></ListView>
+
+            <com.bjypt.vipcard.linkagemenu.PinnedHeaderListView
+                android:id="@+id/classify_morelist"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:background="#fff"
+                android:cacheColorHint="#00000000"
+                android:divider="@null"
+                android:listSelector="#00000000" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/shopping_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="11.7dp"
+            android:background="@drawable/menu_hui_gray" />
+
+        <!--购物车右上角的红点-->
+        <TextView
+            android:id="@+id/shoppingNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/toolBar"
+            android:layout_alignEnd="@+id/shopping_cart"
+            android:layout_alignRight="@+id/shopping_cart"
+            android:background="@drawable/shape_shopping_cart"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="10dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/shopping"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="56dp"
+                    android:gravity="center"
+                    android:text="参考价格："
+                    android:textColor="@color/dray_bg"
+                    android:textSize="15dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/shoppingPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/shopping"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="#fbb100"
+                    android:textSize="18dp"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/settlement"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/gray_b"
+                android:gravity="center"
+                android:text="点好了"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

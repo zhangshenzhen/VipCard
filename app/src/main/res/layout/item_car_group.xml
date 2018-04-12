@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical" >
+    <View android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F8F8F8"
+        />
+    <CheckBox 
+        android:id="@+id/ck1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:button="@drawable/shop_car_check"
+        android:text="商家名称"
+        android:layout_margin="10dp"
+        android:paddingLeft="20dp"
+        />
+<View android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F8F8F8"
+        />
+</LinearLayout>

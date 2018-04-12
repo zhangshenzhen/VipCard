@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <com.bjypt.vipcard.view.categoryview.AppCategoryHomeBannerView
+            android:id="@+id/fine_discount_appCategoryHomeBannerView"
+            android:layout_height="150dp"
+            app:bannerType="fine_discount_shop"
+            android:layout_width="match_parent"
+            android:background="@color/white" />
+        <!--轮播 end-->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f3f3f3"
+            android:orientation="vertical">
+
+            <!-- 四个菜单 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_white"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:weightSum="5">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/fine_discount_money_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="五折卡："
+                        android:textColor="@color/bg_white"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_fine_mony"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="0.00 元"
+                        android:textColor="@color/bg_white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_recharge"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fine_discount_recharge"
+                    android:text="立即充值"
+                    android:textColor="@color/bg_white"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btn_pay_history"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fine_discount_order_history"
+                    android:text="使用记录"
+                    android:textColor="@color/bg_white"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btn_use_rule"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fine_discount_rule_bg"
+                    android:text="使用规则"
+                    android:textColor="@color/bg_white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <!-- 四个菜单 end -->
+
+            <!-- 五折店通知 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/bg_white"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:src="@mipmap/img_headline" />
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/gray_line" />
+
+
+                <com.brioal.adtextviewlib.view.ADTextView
+                    android:id="@+id/vsts_notice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center" />
+            </LinearLayout>
+            <!-- 五折店通知 end -->
+
+            <!-- 日期& 上下中午 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/bg_white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:weightSum="7">
+
+                    <LinearLayout
+                        android:id="@+id/linear_date_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_date_11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="二月"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_date_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="今日五折"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@mipmap/date_imaginaryline" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_date_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_date_21"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="周五"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_date_22"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="24"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@mipmap/date_imaginaryline" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_date_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_date_31"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="周五"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_date_32"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="24"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@mipmap/date_imaginaryline" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_date_4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_date_41"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="周五"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_date_42"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="24"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@mipmap/date_imaginaryline" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_date_5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.0"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_date_51"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="周五"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_date_52"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="24"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@mipmap/date_imaginaryline" />
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5">
+
+                        <LinearLayout
+                            android:id="@+id/linear_date_6"
+                            android:layout_toLeftOf="@+id/iv_61"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_date_61"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="周五"
+                                android:textSize="12sp" />
+                            <TextView
+                                android:id="@+id/tv_date_62"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="24"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:clickable="true"
+                            android:id="@+id/iv_61"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@mipmap/date_icon" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <RelativeLayout
+                        android:id="@+id/relat_zaoshang"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_zaoshang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="早上"
+                              />
+
+                        <View
+                            android:id="@+id/v_zaoshang_status_bg"
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:background="#f3f3f3"
+                            android:layout_alignParentBottom="true"
+                             />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relat_zhongwu"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_zhongwu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="中午"
+                            android:textColor="#333333" />
+
+                        <View
+                            android:id="@+id/view_zhongwu_status_bg"
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#f3f3f3" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relat_xiawu"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_xiawu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="下午"
+                            android:textColor="#333333" />
+
+                        <View
+                            android:id="@+id/view_xiawu_status_bg"
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_alignParentBottom="true"
+                            android:background="#f3f3f3" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            <!-- 日期& 上下中午 end -->
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

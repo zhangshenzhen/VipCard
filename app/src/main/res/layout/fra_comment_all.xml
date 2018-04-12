@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <!-- <com.mszx.vipcard.pulltorefresh.PullToRefreshListView
+        android:id="@+id/comment_all"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#999999"
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="0.3dp"
+        android:fadingEdge="none"
+        android:dividerPadding="0.3dp"
+        android:scrollbars="none"
+        ></com.mszx.vipcard.pulltorefresh.PullToRefreshListView>-->
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.bjypt.vipcard.pulltorefresh.PullToRefreshListView
+        android:id="@+id/comment_all"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"/>
+    <ImageView
+        android:id="@+id/iv_defalut_comment_all_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/default_pic"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
+
+</LinearLayout>

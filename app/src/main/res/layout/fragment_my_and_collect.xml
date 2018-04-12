@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/myhomepage_ivbg"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:background="@color/roll_out_line"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/no_conent" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/zhanwei_linear"
+            android:layout_width="match_parent"
+            android:layout_height="390dp"
+            android:gravity="center"
+            android:orientation="horizontal"></LinearLayout>
+
+
+        <com.bjypt.vipcard.view.MyListView
+            android:id="@+id/my_mylistview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null" />
+
+        <com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar
+            android:id="@+id/progressbar"
+            android:layout_marginTop="15dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:mlpb_progress_color="#566da9"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            app:mlpb_progress_stoke_width="2dp" />
+
+        <TextView
+            android:id="@+id/more_tv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/my_mylistview"
+            android:gravity="center"
+            android:text="点击加载更多"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

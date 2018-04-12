@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/title_rela"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+        <RelativeLayout
+            android:id="@+id/location_news_back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent">
+            <ImageView
+                android:id="@+id/back_iv"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/hyb_back"/>
+            <TextView
+                android:id="@+id/tv_info_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本地新闻"
+                android:textColor="#666666"
+                android:textSize="17sp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/back_iv"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.bjypt.vipcard.pulltorefresh.PullToRefreshListView
+        android:id="@+id/listview_location_news"
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:fadingEdge="none"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

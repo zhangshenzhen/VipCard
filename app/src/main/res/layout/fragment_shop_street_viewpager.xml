@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bjypt.vipcard.fragment.ShopStreetViewpagerFragment">
+
+    <com.bjypt.vipcard.widget.MyGridView
+        android:id="@+id/my_gridview_shopstreet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gridview_bg"
+        android:horizontalSpacing="12dp"
+        android:numColumns="4"
+        android:paddingBottom="12dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="12dp"
+        android:verticalSpacing="7dp">
+
+    </com.bjypt.vipcard.widget.MyGridView>
+
+
+    <LinearLayout
+        android:id="@+id/ll_merchantlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_data_null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/app_data_null" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"></LinearLayout>
+
+
+</LinearLayout>

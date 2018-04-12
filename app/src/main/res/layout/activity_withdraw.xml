@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/title_bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/withdraw_back"
+            android:layout_width="70dp"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/back_new_app" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="申请提现"
+            android:textColor="@color/black_3"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="78.7dp"
+                android:layout_marginTop="11.3dp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/bank_logo"
+                    android:layout_width="44.7dp"
+                    android:layout_height="44.7dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:scaleType="fitXY" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="9.7dp"
+                    android:layout_toRightOf="@id/bank_logo"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/bank_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="持卡人姓名"
+                        android:textColor="@color/withdraw_black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/bank_card_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="储蓄卡卡号"
+                        android:textColor="@color/withdraw_gray"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="67.7dp"
+                android:layout_marginTop="11dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/withdraw_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="提现金额"
+                    android:textColor="@color/withdraw_yue"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/withdraw_balance"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_toRightOf="@id/withdraw_tv"
+                    android:background="@null"
+                    android:hint=""
+                    android:inputType="number"
+                    android:maxLength="20"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="33.3dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/withdraw_blue">
+
+                    <TextView
+                        android:id="@+id/issue_withdraw"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="确认提现"
+                        android:textColor="@color/white"
+                        android:textSize="16.9sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/withdraw_red">
+
+                    <TextView
+                        android:id="@+id/withdraw_recharge"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="立即充值"
+                        android:textColor="@color/white"
+                        android:textSize="16.9sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/withdraw_blue"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/go_yu_e_bao_withdraw"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="购买理财"
+                        android:textColor="@color/white"
+                        android:textSize="16.9sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="15.3dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="温馨提示："
+                    android:textColor="@color/withdraw_blue"
+                    android:textSize="13.52sp" />
+
+                <TextView
+                    android:id="@+id/tv_withdraw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="余额购买任意一款理财产品，到期后购买理财的余额提现可(免费续费)。"
+                    android:textColor="@color/dark_black"
+                    android:textSize="13.52sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="117.7dp"
+                android:background="@drawable/withdraw_bg">
+
+                <TextView
+                    android:id="@+id/tv_tishi_width"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="17.7dp"
+                    android:layout_marginRight="17.7dp"
+                    android:text=""
+                    android:textColor="@color/dark_black"
+                    android:textSize="13.52sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

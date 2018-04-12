@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#EC584E"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/layout_back_life_hui"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/back" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_search_merchant"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/search"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/search_new_home"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/search"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="搜索商家"
+                android:textColorHint="@color/white"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/search_merchant"
+                android:layout_alignLeft="@+id/search_merchant"
+                android:layout_alignTop="@+id/search_merchant"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:padding="5dp"
+                android:src="@mipmap/nav_search" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <com.bjypt.vipcard.pulltorefresh.PullToRefreshListView
+        android:id="@+id/life_merchant_listvew"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#00000000"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+
+
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="240.3dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/corners_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dailog_info"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:paddingTop="18.7dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="15sp"
+        android:text="绑卡数量不能超过2张"/>
+
+    <TextView
+        android:id="@+id/dialog_cancle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="15.7dp"
+        android:gravity="center"
+        android:layout_marginBottom="18.7dp"
+        android:textColor="@color/red_txt"
+        android:textSize="15sp"
+        android:text="取消"/>
+
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="2dp">
+
+    <ImageView
+        android:id="@+id/tv_mFront"
+        android:layout_width="35dp"
+        android:layout_height="16dp"
+        android:src="@mipmap/hot_head"
+        android:layout_gravity="center_vertical"
+        />
+
+    <TextView
+        android:id="@+id/tv_mBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:ellipsize="end"
+        android:text=""
+        android:singleLine="true"
+        android:textColor="@color/black_3"
+        android:textSize="14sp" />
+</LinearLayout>

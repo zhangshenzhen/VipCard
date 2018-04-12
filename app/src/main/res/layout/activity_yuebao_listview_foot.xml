@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="11dp"
+            android:paddingRight="11dp"
+            android:text="例：按365天计算"
+            android:textColor="#f1727e"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv1_yuebao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:text="1.购买一万元理财10天收益为13.15元。"
+                android:textColor="#f1727e"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv2_yuebao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv1_yuebao"
+                android:layout_below="@+id/tv1_yuebao"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:text="2.购买一万元理财20天收益为32.88元。"
+                android:textColor="#f1727e"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv3_yuebao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv2_yuebao"
+                android:layout_below="@+id/tv2_yuebao"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:text="3.购买一万元理财30天收益为69.04元。"
+                android:textColor="#f1727e"
+                android:textSize="12sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv3_yuebao"
+                android:layout_below="@+id/tv3_yuebao"
+                android:paddingLeft="11dp"
+                android:paddingRight="11dp"
+                android:text="4.购买一万元理财90天收益为236.71元。"
+                android:textColor="#f1727e"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

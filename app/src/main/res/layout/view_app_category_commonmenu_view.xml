@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <com.bjypt.vipcard.view.InnerGridView
+        android:id="@+id/Igv_new_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="7dp"
+        android:horizontalSpacing="1dp"
+        android:numColumns="4"
+        android:verticalSpacing="1dp" />
+
+</RelativeLayout>

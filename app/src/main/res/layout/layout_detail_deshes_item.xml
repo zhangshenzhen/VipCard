@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+<TextView
+    android:id="@+id/tv_bt"
+    android:layout_width="60dp"
+    android:layout_height="25dp"
+    android:text="大份"
+    android:layout_marginLeft="35dp"
+    android:gravity="center"
+    android:textSize="13sp"
+    android:textColor="@color/red_txt"
+    android:background="@mipmap/round_bt_false"/>
+</LinearLayout>

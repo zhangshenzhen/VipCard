@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/statusBarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/theme_color">
+    </View>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_finalcial_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="有料"
+            android:textColor="@color/fine_text_color"
+            android:textSize="@dimen/normal" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/withdraw_gray_line" />
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/stl_news"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        app:tl_indicator_color="@color/app_color"
+        app:tl_indicator_corner_radius="5dp"
+        app:tl_indicator_height="2dp"
+        app:tl_indicator_margin_left="5dp"
+        app:tl_indicator_margin_right="5dp"
+        app:tl_indicator_style="NORMAL"
+        app:tl_textSelectColor="@color/app_color"
+        app:tl_textUnselectColor="@color/gray_news"
+        app:tl_textsize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/withdraw_gray_line" />
+
+    <ScrollView
+        android:id="@+id/ptrs_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.bjypt.vipcard.view.NewsViewpager
+                android:id="@+id/vp_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </com.bjypt.vipcard.view.NewsViewpager>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

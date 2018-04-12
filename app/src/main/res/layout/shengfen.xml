@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#eeeeee"
+    android:paddingBottom="10dp">
+
+<RelativeLayout
+    android:id="@+id/city_back"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/selector_back"/>
+    <TextView
+        android:id="@+id/tv_city_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:layout_centerInParent="true"
+        android:textSize="17sp"
+        android:textColor="@color/dark_black"/>
+</RelativeLayout>
+   <RelativeLayout
+       android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+
+         android:paddingLeft="15dp"
+         android:paddingRight="15dp"
+         android:gravity="center_vertical"
+         android:focusable="true"
+         android:focusableInTouchMode="true"
+         >
+         <EditText 
+             android:id="@+id/city_search"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@drawable/edt_search"
+             android:drawableLeft="@mipmap/icon_search_flag"
+             android:drawablePadding="15dp"
+             android:hint="城市首字母、名称"
+             android:textSize="15sp"
+             android:textColor="#808080"
+             />
+     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/gray_line"/>
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/background_gradient_start"
+            android:text="当前:"/>
+        <TextView
+            android:id="@+id/city_now"
+            android:textColor="@color/background_gradient_start"
+            android:layout_marginLeft="3dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="南京"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/refrush_ing"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="未定位到城市,请选择"/>
+    <RelativeLayout
+        android:id="@+id/dingwei_ing_rela"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/city_change_refrush"
+            android:gravity="center"
+            android:text="重新定位"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/refresh_dingwei"/>
+        <ImageView
+            android:id="@+id/city_change_refrushing"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/dingwei_refrush"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/transparent" >
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp" >
+                
+            <TextView
+                android:id="@+id/city_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="热门城市"
+                android:textSize="18sp"
+                />
+
+            <GridView
+                android:id="@+id/hot_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="4dp"
+                android:numColumns="4"
+                android:verticalSpacing="10dp" >
+            </GridView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="全部城市"
+                android:textSize="18sp"
+                />
+        <ListView
+            android:id="@+id/country_lvcountry"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scrollbars="none"
+            android:divider="@null" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/dialog"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#808080"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="invisible" />
+
+        <com.bjypt.vipcard.view.SideBar
+            android:id="@+id/sidrbar"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center"/> 
+    </FrameLayout>
+
+</LinearLayout>

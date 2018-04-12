@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/ly_news_back"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/red_txt"
+        android:gravity="center">
+        <!--<ImageView-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:src="@drawable/selector_back"/>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="11.7dp"
+            android:text="足迹"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_write_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.bjypt.vipcard.pulltorefresh.PullToRefreshExpandableListView
+            android:id="@+id/listview_vip_train"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:fadingEdge="none"
+            android:scrollbars="none" />
+
+        <ImageView
+            android:id="@+id/iv_default_vip_train_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/default_pic"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+
+</LinearLayout>

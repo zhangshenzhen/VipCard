@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/title_bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/change_name_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@null"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/back_iv"
+            android:text="修改昵称"
+            android:textColor="#666666"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="8dp"
+
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/old_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="用户名:"
+            android:textSize="@dimen/normal" />
+
+        <EditText
+            android:id="@+id/old_name"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/old_name_tv"
+            android:background="@null"
+            android:textColor="@color/line_back"
+            android:textSize="@dimen/normal" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+    <!--<RelativeLayout-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="55dp"-->
+    <!--android:background="@color/white">-->
+    <!--<TextView-->
+    <!--android:id="@+id/new_name_tv"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:textSize="@dimen/normal"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="新用户名:"/>-->
+
+    <!--<EditText-->
+    <!--android:layout_toRightOf="@id/new_name_tv"-->
+    <!--android:id="@+id/new_name"-->
+    <!--android:layout_marginLeft="3dp"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:textColor="@color/line_back"-->
+    <!--android:background="@null"/>-->
+    <!--</RelativeLayout>-->
+
+
+    <Button
+        android:id="@+id/change_name_entrue"
+        android:layout_marginTop="18dp"
+        android:text="确认"
+        style="@style/button_style" />
+
+
+</LinearLayout>

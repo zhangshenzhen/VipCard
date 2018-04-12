@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:id="@+id/rl1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="5dp" >
+
+                <ImageView
+                    android:scaleType="fitXY"
+                    android:id="@+id/iv_good"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/default_img" />
+
+                <TextView
+                    android:id="@+id/tv_people_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="#aa000000"
+                    android:gravity="center"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:text=""
+                    android:textColor="#fff"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/rl1"
+                android:text="旺旺 Mr.HOT辣人休闲零食组合包200g 辣味" />
+
+            <TextView
+                android:id="@+id/tv_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/rl2"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@+id/rl1"
+                android:text="¥ 1"
+                android:textColor="#C81623"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/rl2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/rl1"
+                android:layout_toRightOf="@+id/rl1" >
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_alignLeft="@+id/tv_before_money"
+                    android:layout_alignRight="@+id/tv_before_money"
+                    android:layout_centerVertical="true"
+                    android:background="#CECECE" />
+
+                <TextView
+                    android:id="@+id/tv_before_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¥ 15.00"
+                    android:textColor="#666"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/rl1"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/shape_red2"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="8dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="立即抢购"
+                    android:textColor="#fff" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_shop_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/shop"
+            android:drawablePadding="10dp"
+            android:singleLine="true"
+            android:text="好又多超市"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/locat"
+            android:drawablePadding="10dp"
+            android:text="南京市栖霞区 仙林街道 金鹰国际购物中心(仙林店)"
+            android:textColor="#666"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_write_gray"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_back"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/btn_goback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:src="@mipmap/btn_goback_unpress" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:layout_toRightOf="@+id/btn_goback"
+            android:text="余额提现"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/normal" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="@dimen/indicator_right_padding"
+        android:background="@color/line_back" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_bankLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/indicator_right_padding"
+            android:src="@mipmap/logo" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_bankLogo"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/tv_bankName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="农业银行"
+                android:textColor="@color/background_gradient_start"
+                android:textSize="@dimen/normal" />
+
+            <TextView
+                android:id="@+id/tv_bankNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="尾号6174存蓄卡"
+                android:textColor="@color/line_back"
+                android:textSize="@dimen/normal" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/header_footer_left_right_padding"
+            android:src="@drawable/select_go_unpay_order" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="@dimen/indicator_right_padding"
+        android:background="@color/line_back" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/indicator_right_padding">
+
+        <TextView
+            android:id="@+id/tv_outMoenyNum_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="提现金额    "
+            android:textColor="@color/background_gradient_start"
+            android:textSize="@dimen/normal" />
+
+        <EditText
+            android:id="@+id/et_outMoenyNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/iv_right"
+            android:layout_toRightOf="@+id/tv_outMoenyNum_left"
+            android:background="@null"
+            android:focusable="true"
+            android:hint="可提现金额:20.00元"
+            android:textColor="@color/background_gradient_start"
+            android:textSize="@dimen/normal" />
+
+        <ImageView
+            android:id="@+id/iv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/header_footer_left_right_padding"
+            android:src="@drawable/select_go_unpay_order" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/indicator_right_padding"
+        android:paddingLeft="@dimen/indicator_right_padding"
+        android:paddingTop="@dimen/indicator_internal_padding"
+        android:text="预计24小时到账,请耐心等待"
+        android:textColor="@color/line_back"
+        android:textSize="@dimen/small" />
+
+    <Button
+        android:id="@+id/btn_sureOutMoney"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/indicator_right_padding"
+        android:layout_marginRight="@dimen/indicator_right_padding"
+        android:background="@drawable/selector_balance_outmoney_btn_bg"
+        android:text="确认提现"
+        android:textColor="@color/white"
+        android:textSize="@dimen/large" />
+</LinearLayout>

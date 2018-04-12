@@ -1,0 +1,186 @@
+<resources>
+
+    <!--app主题色-->
+    <color name="app_color">#52b8b8</color>
+
+    <color name="background_gradient_start">#000000</color>
+    <color name="background_gradient_end">#DDDDDD</color>
+    <color name="img_full_opaque">#00000000</color>
+    <color name="black_opaque">#AA000000</color>
+    <color name="black">#59000000</color>
+    <color name="black_2">#20000000</color>
+    <color name="black_1">#11000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="default_background">#3d3d3d</color>
+    <color name="line_back">#999999</color>
+    <color name="gray_line">#D4D4D4</color>
+    <color name="title_bg">#efefef</color>
+    <color name="wd_common">#ECEAEA</color>
+    <color name="dark_black">#666666</color>
+    <color name="red_text_dishes_select">#ce4137</color>
+    <color name="red_text_dishes">#ec584d</color>
+    <color name="red_text_dishes2">#ec584e</color>
+    <color name="orient_yellow">#fd9d0b</color>
+    <color name="line_write_gray">#F0F0F0</color>
+    <color name="dray_bg">#999999</color>
+    <color name="hehe_bg">#222222</color>
+    <color name="red_txt">#EB584E</color>
+    <color name="red_orange">#1fff9d04</color>
+    <color name="bt_replace_next">#FBBF67</color>
+    <color name="blue">#97E0F6</color>
+    <color name="godbule">#07698d</color>
+    <color name="transparent">#00000000</color>
+    <color name="gray">#9A9A9A</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="bg_white">#FFFFFF</color>
+    <color name="bg_gray">#C5C9CC</color>
+    <color name="fine_red_bg">#F5565A</color>
+    <color name="fine_text_color">#333333</color>
+    <color name="fine_gray_line">#f3f3f3</color>
+    <color name="gray_small_text">#99ffffff</color>
+
+
+    <!--              订货郎           -->
+    <color name="text_color">#7b7b7b</color>
+    <color name="home_item_press">#F7F7F7</color>
+    <color name="text_white">#ffffff</color>
+    <color name="text_gray">#e5e5e5</color>
+
+    <color name="btn_notclick">#bababa</color>
+    <color name="background_color">#f1f1f1</color>
+    <color name="black_color">#aa000000</color>
+    <color name="text_red">#C81624</color>
+    <color name="text_selected">#D13C47</color>
+    <color name="text_coupon_normal">#777</color>
+    <color name="share_text">#7a7c7b</color>
+    <color name="gray_b">#B0B0B0</color>
+    <color name="blue_b">#0074c6</color>
+
+    <color name="business_financing_bg">#e6e7e7</color>
+
+    <color name="merchant_diatance">#fb9502</color>
+    <color name="gray_shopping">#d5d2d2</color>
+    <color name="black_shopping">#575757</color>
+    <color name="red_shopping">#f94c64</color>
+    <color name="grays_shopping">#f4f5f7</color>
+    <color name="grays_totalprice">#cccccc</color>
+    <color name="red_totalprice">#f84e66</color>
+
+    <color name="yellow_item_merchant">#fdaf58</color>
+    <color name="register_blue">#6b9beb</color>
+
+    <color name="withdraw_blue">#3475b7</color>
+    <color name="withdraw_gray">#626262</color>
+    <color name="withdraw_black">#383838</color>
+    <color name="withdraw_yue">#3e3e3e</color>
+    <color name="line_cl">#e3e3e3</color>
+    <color name="withdraw_gray_line">#eeeeee</color>
+
+
+    <color name="merchant_gray_line">#f4f2f0</color>
+    <color name="go_conversion_text">#db3332</color>
+
+    <color name="success_textcolor_red">#ff4e4e</color>
+    <color name="success_textcolor_white">#f7f1df</color>
+
+    <color name="card_manage_black_word">#0a090a</color>
+    <color name="card_manage_black">#323333</color>
+    <color name="card_manage_line">#f6f6f6</color>
+
+    <color name="my_red">#da473d</color>
+    <color name="my_yellow_light">#fefcec</color>
+    <color name="my_txt_color">#595757</color>
+    <color name="my_txt_color_blue">#1a6fcc</color>
+    <color name="roll_out_line">#f8f8f8</color>
+    <color name="e6e6e6">#e6e6e6</color>
+    <color name="black_text">#ff414141</color>
+    <color name="color_8290AF">#8290AF</color>
+    <color name="color_232323">#232323</color>
+    <color name="color_aeaeae">#aeaeae</color>
+    <color name="im_social_dig_name_bg">#DDDDDD</color>
+    <color name="im_font_color_text_hint">#abb1b6</color>
+    <color name="im_line_color2">#e3e4e5</color>
+    <color name="name_selector_color">#cccccc</color>
+    <color name="bg_no_photo">#EEEEEE</color>
+    <color name="colorLoading">#232323</color>
+    <color name="video_bg">#ededed</color>
+    <!--========================-->
+    <color name="praise_item_default">#333333</color>
+    <color name="praise_item_selector_default">#cccccc</color>
+    <color name="praise_item">#8290AF</color>
+
+    <color name="indicator">#e24f4f</color>
+
+    <color name="default_clickable_color">#cccccc</color>
+    <color name="basic_color_primary">#373b3e</color>
+
+    <color name="tabselected">#333333</color>
+
+    <!--选中时的遮盖色-->
+    <color name="gallery_photo_mask">#88000000</color>
+    <!--拍摄按钮的背景色-->
+    <color name="gallery_dark_gray">#FF343535</color>
+
+    <!--背景-->
+    <!--分隔线-->
+    <color name="gallery_separation">#FFDCDCDC</color>
+    <!--灰色字体-->
+    <color name="gallery_text_gray">#FF999999</color>
+    <!--字体颜色-->
+    <color name="gallery_text_black">#FF333333</color>
+    <color name="gallery_folder_bg">#88FFFFFF</color>
+
+    <!-- 常用颜色 -->
+    <color name="gallery_white">#FFFFFFFF</color>
+    <color name="gallery_black">#000000</color>
+    <color name="gallery_blue">#0000FF</color>
+    <color name="version_red">#FF6600</color>
+
+    <color name="black_4D">#4D4D4D</color>
+    <color name="black_3">#333333</color>
+    <color name="black_6">#666666</color>
+    <color name="my_signIn_text">#52B8B8</color>
+
+    <color name="my_background">#EFF0F0</color>
+
+    <color name="gray_a">#F7F8FA</color>
+
+    <color name="gray_e">#EEEEEE</color>
+
+    <!--底部弹出Dialog item背景色-->
+    <color name="dialog_btn_background_color">#F0F0F0</color>
+
+    <color name="translucent_black_50">#7f000000</color>
+
+    <!--主题色-->
+    <color name="app_theme_color">#52B8B8</color>
+    <color name="theme_color">#FFFFFFFF</color>
+    <!--透明-->
+    <color name="transparency_color">#00000000</color>
+    <color name="transparency_B3">#B3000000</color>
+    <color name="transparency">#4D000000</color>
+
+    <!--登录注册按钮背景色-->
+    <color name="login_register_background_color">#4DB8B9</color>
+    <!--设置页面退出按钮背景色-->
+    <color name="exit_login_background_color">#52B8B8</color>
+    <!--设置页面缓存字体颜色-->
+    <color name="setting_cache_text_color">#FE4359</color>
+    <!--设置页面 背景色-->
+    <color name="setting_background_color">#F8F8F8</color>
+    <color name="gray_news">#969696</color>
+    <color name="gridview_bg">#f1f1f4</color>
+    <color name="color_text_address">#8f8f8f</color>
+    <color name="color_line_address">#f7f8fa</color>
+
+    <!--banner图指示点 颜色-->
+    <!--背景色-->
+    <color name="point_color">#00aaaa</color>
+    <color name="point_color_normal">#8AC7C7</color>
+    <color name="wenxintishi_text_color">#f1b343</color>
+    <color name="wenxintishi_bg_color">#fff9f1</color>
+
+    <!--理财中心主题色-->
+    <color name="financing_color">#EC584E</color>
+
+</resources>

@@ -1,0 +1,197 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/rechange_back"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/btn_goback_unpress" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="提现记录"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/normal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="余额提现"
+            android:textColor="@color/dark_black"
+            android:textSize="17sp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/line_back" />
+    <!--<RelativeLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:layout_marginLeft="10dp"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:background="#f0f0f0">-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/rechange_back"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:orientation="horizontal">-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/selector_back" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="20dp"-->
+    <!--android:text="惠缘包记录"-->
+    <!--android:textColor="@color/dark_black"-->
+    <!--android:textSize="17sp" />-->
+    <!--</LinearLayout>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginLeft="20dp"-->
+    <!--android:text="余额提现"-->
+    <!--android:textColor="@color/dark_black"-->
+    <!--android:textSize="17sp"-->
+    <!--android:visibility="gone" />-->
+    <!--</RelativeLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/rl_rechange_one"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_rechange_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="交易记录"
+                android:textColor="@color/dark_black"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/view_one"
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/red_txt"
+                android:visibility="gone"></View>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="0.3dp"
+            android:layout_height="20dp"
+            android:background="@color/black"></View>
+
+        <RelativeLayout
+            android:id="@+id/rl_rechange_two"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_rechange_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="充值记录"
+                android:textColor="@color/dark_black"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/view_two"
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/red_txt"
+                android:visibility="gone"></View>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="0.3dp"
+            android:layout_height="20dp"
+            android:background="@color/black"></View>
+
+        <RelativeLayout
+            android:id="@+id/rl_rechange_three"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_rechange_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="提现记录"
+                android:textColor="@color/dark_black"
+                android:textSize="15sp" />
+
+            <View
+                android:id="@+id/view_three"
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/red_txt"
+                android:visibility="gone"></View>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/black"
+        android:visibility="gone"></View>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/rechange_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#efefef"
+    android:orientation="vertical">
+
+    <com.bjypt.vipcard.view.categoryview.AppCategoryHomeBannerView
+        android:id="@+id/appCategoryHomeMerchantBannerView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:bannerType="merchant_home_banner" />
+
+    <RelativeLayout
+        android:id="@+id/type_viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/appCategoryHomeMerchantBannerView"
+        android:layout_marginTop="8dp"
+        android:background="#ffffff">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_home_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+
+        <LinearLayout
+            android:id="@+id/layout_home_gridview_point"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

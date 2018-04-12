@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="27.3dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginRight="27.3dp">
+
+        <TextView
+            android:id="@+id/menu_list_name"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/dark_black"
+            android:textSize="16sp"
+            android:text="牛肉水饺" />
+
+        <TextView
+            android:id="@+id/menu_list_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/dark_black"
+            android:textSize="16sp"
+            android:text="X1" />
+
+        <TextView
+            android:id="@+id/menu_list_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/red_totalprice"
+            android:layout_centerInParent="true"
+            android:textSize="16sp"
+            android:text="¥18" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

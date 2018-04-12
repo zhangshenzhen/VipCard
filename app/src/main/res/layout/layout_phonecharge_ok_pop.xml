@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@mipmap/phonecharge_main_bg"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/phonecharge_ok_bg"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/phonecharge_ok"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_ok"
+                android:text="支付成功"
+                android:textColor="@color/background_gradient_start"
+                android:textSize="@dimen/header_footer_left_right_padding"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_ok"
+            android:layout_gravity="center_horizontal"
+            android:text="预计十分钟内到账，充值高峰期可能会有延迟。"
+            android:textColor="@color/dark_black"
+            android:textSize="17sp"/>
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_paysuccess_"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_backMain"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:background="@mipmap/paysuccess_btn_bg"
+                android:text="返回首页"
+                android:textColor="#ff0000"
+                android:textSize="@dimen/normal_nor"/>
+
+            <Button
+                android:id="@+id/btn_backOrder"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="50dp"
+                android:background="@mipmap/paysuccess_btn_bg"
+                android:text="返回订单"
+                android:textColor="#ff0000"
+                android:textSize="@dimen/normal_nor"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

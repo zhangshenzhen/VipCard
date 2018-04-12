@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#fff" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:id="@+id/rl_head1"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00EEEEEE"
+            android:padding="10dp" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/tuoyuan3"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/back3" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_share1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/tuoyuan3"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/share3" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/rl_share1" >
+
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/tuoyuan3" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/star3" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/rl_head1"
+            android:layout_alignTop="@+id/rl_head1"
+            android:alpha="0"
+            android:visibility="gone" />
+
+        <com.sinia.orderlang.views.MyScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/view" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <com.sinia.orderlang.views.SlideShowView
+                        android:id="@+id/slideshowview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+                    </com.sinia.orderlang.views.SlideShowView>
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp"
+                        android:text="美阿玉米汁 cornjuice"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_youhui"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text="最低优惠1元可领取一杯（限量2）"
+                        android:textColor="#ccEB3B3B" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp" >
+
+                        <TextView
+                            android:id="@+id/tv_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="¥ 1"
+                            android:textColor="#EB3B3B"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tv_qiang"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/tv_price"
+                            android:layout_alignParentRight="true"
+                            android:text="已有432人抢购"
+                            android:textColor="#aa000000"
+                            android:textSize="12sp" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/tv_price"
+                            android:layout_marginLeft="20dp"
+                            android:layout_toRightOf="@+id/tv_price" >
+
+                            <TextView
+                                android:id="@+id/tv_price_door"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="门店价：12.00"
+                                android:textColor="#aa000000"
+                                android:textSize="12sp" />
+
+                            <View
+                                android:id="@+id/hengxian"
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:layout_alignLeft="@+id/tv_price_door"
+                                android:layout_alignRight="@+id/tv_price_door"
+                                android:layout_centerVertical="true"
+                                android:background="#aa000000" />
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <include
+                        android:id="@+id/buy"
+                        layout="@layout/buy_layout" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_h"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#DCDCDC" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="#F2F2F2" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:text="商家信息"
+                            android:textColor="#B0B0B0" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#DCDCDC" />
+
+                        <TextView
+                            android:id="@+id/tv_good_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:text="美阿玉米汁 cornjuice"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="15dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:text="栖霞区 仙林街道 金鹰国际购物中心(仙林店)"
+                            android:textColor="#757575" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_lianxi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:background="@drawable/shape_lianxi2"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingBottom="15dp"
+                            android:paddingTop="15dp" >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/tel" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:text="联系卖家"
+                                android:textColor="#C81623" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:background="#F2F2F2" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:text="抢购须知"
+                            android:textColor="#B0B0B0" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#DCDCDC" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingTop="15dp"
+                            android:text="定义内容"
+                            android:textColor="#B0B0B0" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="15dp"
+                            android:text="有效期"
+                            android:textColor="#aa000000" />
+
+                        <TextView
+                            android:id="@+id/tv_expiry_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="15dp"
+                            android:text="2016-01-10至2016-05-20"
+                            android:textColor="#aa000000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="15dp"
+                            android:text="使用时间"
+                            android:textColor="#aa000000" />
+
+                        <TextView
+                            android:id="@+id/tv_use_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="15dp"
+                            android:text="10:00-21:00"
+                            android:textColor="#aa000000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="15dp"
+                            android:text="使用说明"
+                            android:textColor="#aa000000" />
+
+                        <TextView
+                            android:id="@+id/tv_use_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="30dp"
+                            android:layout_marginLeft="15dp"
+                            android:text="使用说明文字"
+                            android:textColor="#aa000000" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/top_buy_layout"
+                    layout="@layout/buy_layout" />
+            </FrameLayout>
+        </com.sinia.orderlang.views.MyScrollView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00EEEEEE"
+        android:padding="10dp" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/tuoyuan3"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/back3" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp" >
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/tuoyuan3"
+                android:visibility="gone" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/share3" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/rl_share" >
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv_tuoyuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/tuoyuan3" />
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/star3" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

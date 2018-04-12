@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/adress_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="孙冬冬"
+                android:textSize="@dimen/normal" />
+
+            <TextView
+                android:id="@+id/adress_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="15356679232"
+                android:textSize="@dimen/normal_nor" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/default_adress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dp"
+            android:text="江苏省南京市雨花台区中国(南京)软件花神大道23号3栋509室民生在线华亿电子商务有限公司"
+            android:textSize="@dimen/small" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:id="@+id/tv_del"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="删除"
+            android:textSize="@dimen/small" />
+
+        <RelativeLayout
+            android:id="@+id/setting_default_adress"
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:id="@+id/default_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/adress_noclick"
+                android:textColor="@color/red_txt" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

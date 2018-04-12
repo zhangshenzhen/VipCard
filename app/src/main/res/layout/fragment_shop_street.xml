@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ly_popop"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_color">
+
+    <View
+        android:id="@+id/statusBarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        >
+
+    </View>
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_below="@+id/statusBarView"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/change_city"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/dingwei_shopstreet" />
+
+            <TextView
+                android:id="@+id/home_now_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:text="阜阳"
+                android:textColor="@color/fine_text_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/search_merchant"
+                android:layout_width="fill_parent"
+                android:layout_height="26dp"
+                android:background="@drawable/search_shopstreet"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:hint="找附近吃喝玩乐"
+                android:textColorHint="@color/dark_black"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="73dp"
+                android:src="@mipmap/search_shopstreet" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_saomiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/nav_sm" />
+
+            <ImageView
+                android:id="@+id/nav_news"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/iv_saomiao"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/nav_news"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_hone_news_red_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/news_red_point"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <com.bjypt.vipcard.view.MyScrollView
+        android:id="@+id/home_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_title"
+        android:cacheColorHint="#00000000"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.bjypt.vipcard.view.categoryview.AppCategoryHomeBannerView
+                android:id="@+id/appCategoryHomeMerchantBannerView"
+                android:layout_width="match_parent"
+                android:layout_height="102dp"
+                app:bannerType="merchant_home_banner" />
+
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/stl_store"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_below="@+id/appCategoryHomeMerchantBannerView"
+                android:background="@color/white"
+                app:tl_indicator_color="@color/app_color"
+                app:tl_indicator_corner_radius="5dp"
+                app:tl_indicator_height="2dp"
+                app:tl_indicator_margin_left="5dp"
+                app:tl_indicator_margin_right="5dp"
+                app:tl_indicator_style="NORMAL"
+                app:tl_textSelectColor="@color/app_color"
+                app:tl_textUnselectColor="@color/gray_news"
+                app:tl_textsize="13sp" />
+
+            <com.bjypt.vipcard.view.NewsViewpager
+                android:id="@+id/vp_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/stl_store">
+
+            </com.bjypt.vipcard.view.NewsViewpager>
+
+        </LinearLayout>
+
+    </com.bjypt.vipcard.view.MyScrollView>
+
+</RelativeLayout>
