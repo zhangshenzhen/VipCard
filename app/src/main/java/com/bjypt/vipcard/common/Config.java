@@ -16,7 +16,7 @@ public final class Config {
         public static final String hus_url = "http://121.196.233.207:9090/hus";   //检测服务器升级服务(正式)
 
 
-//        public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
+        //        public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
 //        public static final String base = "http://120.55.199.24:8080/hyb/ws/";      //正式服务器地址
 //        public static final String hyb_url = "http://47.93.79.174:9002/hyb/";       //预上线服务器地址
         public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //59地址
@@ -61,13 +61,13 @@ public final class Config {
         // 头条
         public static final String HEADLINE_NEWS = base + "remote/get/message";
         // 请求理财列表
-        public static final String MANAGE_MONEY_MATTERS = base+"post/balanceInvestList";
+        public static final String MANAGE_MONEY_MATTERS = base + "post/balanceInvestList";
         //校验服务端是否升级
         public static final String CHECKOUT = "http://123.57.232.188:9980/hus/api/appsetting/upgrade\n";
-        public static final String check_upgrade = hus_url +  "api/appsetting/upgrade";
+        public static final String check_upgrade = hus_url + "api/appsetting/upgrade";
 
 
-        public static final String system_proposelist = hus_url +  "post/getSystemProposeList?pkregister="; //意见反馈
+        public static final String system_proposelist = hus_url + "post/getSystemProposeList?pkregister="; //意见反馈
 
         public static final String home_service = base + "post/getHomeInfo";//首页数据获取
         public static final String calculator_finances = hyb_url + "resource/finances/index.html";//理财计算器
@@ -193,7 +193,7 @@ public final class Config {
         public static final String life_tuijian_merchant = base + "post/getRecommendMerchantList";//生活汇推荐商家
         public static final String home_life_hui_merchant_list = base + "post/v4.5.0/newMerchantList";//首页分类列表
         public static final String home_wuzhe_merchant_list = base + "post/newMerchantList";//五折分类列表
-        public static final String new_home_xinwen = hyb_url+"hyb-lifeservice/news/newsList?page=";//首页新闻列表
+        public static final String new_home_xinwen = hyb_url + "hyb-lifeservice/news/newsList?page=";//首页新闻列表
 
         public static final String fine_discount_get_banner = base + "halfstore/get/banner";  //5.8【五折店】首页banner
         public static final String fine_discount_get_notice = base + "halfstore/get/notice";  //5.7	【五折店】头条
@@ -332,7 +332,8 @@ public final class Config {
 
 
         public static final String CURRENT_CITY = "CURRENT_CITY";//当前城市
-
+        public static final String CURRENT_LATU = "CURRENT_LATU";//当前城市纬度
+        public static final String CURRENT_LNGU = "CURRENT_LNGU";//当前城市经度
 
 
         /*************
