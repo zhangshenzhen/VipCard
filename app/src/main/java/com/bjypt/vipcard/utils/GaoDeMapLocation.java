@@ -99,13 +99,13 @@ public class GaoDeMapLocation implements AMapLocationListener, PoiSearch.OnPoiSe
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
         if (null != aMapLocation) {
-            SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_CITY, aMapLocation.getCity().replace("市",""));
-            Logger.e("定位回调:"+aMapLocation.getCity().replace("市",""));
-            SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_LATU, aMapLocation.getLatitude()+"");
-            SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_LNGU, aMapLocation.getLongitude()+"");
-            Logger.e("经度 :"+aMapLocation.getLongitude()+" ; 纬度 :"+aMapLocation.getLatitude());
-
-//            ToastUtil.showToast(context,"定位成功");
+            if(null != aMapLocation.getCity()) {
+                SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_CITY, aMapLocation.getCity().replace("市", ""));
+                Logger.e("定位回调:" + aMapLocation.getCity().replace("市", ""));
+                SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_LATU, aMapLocation.getLatitude() + "");
+                SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_LNGU, aMapLocation.getLongitude() + "");
+                Logger.e("经度 :" + aMapLocation.getLongitude() + " ; 纬度 :" + aMapLocation.getLatitude());
+            }
 
             Message msg = locationHandler.obtainMessage();
             msg.obj = aMapLocation;
