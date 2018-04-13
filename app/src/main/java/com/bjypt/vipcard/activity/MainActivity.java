@@ -262,7 +262,6 @@ public class MainActivity extends BaseFraActivity {
                 } else {
                     transaction.show(shopStreetFragment);
                 }
-
                 break;
             case 2:
                 tv_main_life_sup.setTextColor(Color.parseColor("#52b8b8"));
