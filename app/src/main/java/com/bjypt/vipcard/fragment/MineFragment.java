@@ -401,7 +401,7 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
                     }
                 };
                 //弹窗让用户选择，是否允许申请权限
-                DialogUtil.showConfirm(getActivity(), "招商热线", "是否拨打招商热线4001808366(08:00-17:00)", dialogOnclicListener, dialogOnclicListener);
+                DialogUtil.showConfirm(getActivity(), "招商热线", "是否拨打招商及客服热线4001808366(08:00-17:00)", dialogOnclicListener, dialogOnclicListener);
                 break;
         }
     }

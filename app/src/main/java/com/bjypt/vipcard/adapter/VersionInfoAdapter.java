@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
+import com.orhanobut.logger.Logger;
 
 /**
  * Created by Administrator on 2017/12/12.
