@@ -96,7 +96,7 @@ public class DropZoomScrollView extends ScrollView implements View.OnTouchListen
     // 回弹动画 (使用了属性动画)
     public void replyImage() {
         float distance = dropZoomView.getMeasuredWidth() - dropZoomViewWidth;
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(distance, 0f).setDuration((long) (distance * mReplyRate));
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(distance, 0f).setDuration((long) (distance * (mReplyRate / 2)));
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -116,7 +116,7 @@ public class DropZoomScrollView extends ScrollView implements View.OnTouchListen
         ViewGroup.LayoutParams lp = dropZoomView.getLayoutParams();
         lp.width = (int) (dropZoomViewWidth + zoom);
         lp.height = (int) (dropZoomViewHeight * ((dropZoomViewWidth + zoom) / dropZoomViewWidth));
-        ((MarginLayoutParams) lp).setMargins(-(lp.width - dropZoomViewWidth) / 2, 0, 0, 0);
+        ((MarginLayoutParams) lp).setMargins(-(lp.width - dropZoomViewWidth) / 2, 0, -(lp.width - dropZoomViewWidth) / 2, 0);
         dropZoomView.setLayoutParams(lp);
     }
 }

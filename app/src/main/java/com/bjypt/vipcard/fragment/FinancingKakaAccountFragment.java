@@ -273,7 +273,7 @@ public class FinancingKakaAccountFragment extends BaseFrament implements View.On
             }
         };
         //弹窗让用户选择，是否允许申请权限
-        DialogUtil.showConfirm(getActivity(), "客服及客服热线", "是否拨打招商及客服热线4001808366(08:00-17:00)", dialogOnclicListener, dialogOnclicListener);
+        DialogUtil.showConfirm(getActivity(), "招商及客服热线", "是否拨打招商及客服热线4001808366(08:00-17:00)", dialogOnclicListener, dialogOnclicListener);
     }
 
 }

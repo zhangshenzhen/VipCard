@@ -96,7 +96,7 @@ public class MyQRCodeActivity extends BaseActivity implements VolleyCallBack, Pl
     public void afterInitView() {
 
         if (getFromSharePreference(Config.userConfig.position) == null || getFromSharePreference(Config.userConfig.position).toString().equals("")) {
-            mHeadPhoto.setImageResource(R.drawable.photo);
+
         } else {
             ImageLoader.getInstance().displayImage(getFromSharePreference(Config.userConfig.position), mHeadPhoto);
         }

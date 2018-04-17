@@ -315,6 +315,7 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
                 SignINBean signInBean = new SignINBean();
                 try {
                     JSONObject json = new JSONObject(s.toString());
+                    Logger.json(s);
                     String continueDays = json.getString("continueDays");
                     String signDaysString = json.getString("signDays");
                     signInBean.setContinueDays(continueDays);
