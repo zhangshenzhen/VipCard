@@ -1,9 +1,12 @@
 package com.bjypt.vipcard.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
@@ -93,7 +96,7 @@ public class GoPayCardManageActivity extends BaseActivity implements VolleyCallB
 
     @Override
     public void bindListener() {
-        ll_recharge.setOnClickListener(this);
+//        ll_recharge.setOnClickListener(this);
         iv_one_code.setOnClickListener(this);
         iv_two_code.setOnClickListener(this);
         ll_look_number.setOnClickListener(this);
@@ -154,6 +157,10 @@ public class GoPayCardManageActivity extends BaseActivity implements VolleyCallB
      */
     private void getDeviceId() {
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
         deviceId = tm.getDeviceId();
     }
 

@@ -6,13 +6,19 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="我的阜阳软件许可与服务协议"
+        android:text="繁城都市软件许可与服务协议"
         android:textColor="@color/black"
         android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/gray_e"
+        android:layout_below="@+id/tv_title"/>
 
     <TextView
         android:id="@+id/tv_div"
@@ -28,6 +34,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@id/tv_div"
         android:background="@drawable/bt_replace_next_shape"
+        android:textColor="@color/white"
         android:text="接受" />
 
     <Button

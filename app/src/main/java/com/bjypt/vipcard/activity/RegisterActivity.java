@@ -15,6 +15,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -73,7 +74,7 @@ public class RegisterActivity extends BaseActivity implements VolleyCallBack {
     private LinearLayout relative_pop;
     private WebView webView;
     LoadingPageDialog loadingPageDialog;
-    private ImageView iv_agreed;
+    private ImageButton iv_agreed;
 
     @Override
     public void setContentLayout() {
@@ -92,7 +93,7 @@ public class RegisterActivity extends BaseActivity implements VolleyCallBack {
 
     @Override
     public void initView() {
-        iv_agreed = (ImageView) findViewById(R.id.iv_agreed);
+        iv_agreed = (ImageButton) findViewById(R.id.iv_agreed);
         relative_pop = (LinearLayout) findViewById(R.id.relative_pop);
         mBack = (LinearLayout) findViewById(R.id.register_back);//返回键
         mGetCode = (TextView) findViewById(R.id.register_get_code_tv);//获取验证码
@@ -161,30 +162,9 @@ public class RegisterActivity extends BaseActivity implements VolleyCallBack {
         iv_agreed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isClick) {
-                    iv_agreed.setImageResource(R.mipmap.unchoose_register);
-                    isClick = false;
-                    isAgree = false;
-                } else {
-                    iv_agreed.setImageResource(R.mipmap.choose_register);
-                    isClick = true;
-                    isAgree = true;
-                }
+                iv_agreed.setSelected(!iv_agreed.isSelected());
             }
         });
-        /*cb_isAgree.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // TODO Auto-generated method stub
-                if(isChecked){
-                    isAgree = true;
-                }else{
-                    isAgree = false;
-                }
-
-            }
-        });*/
 
     }
 
@@ -221,7 +201,7 @@ public class RegisterActivity extends BaseActivity implements VolleyCallBack {
                     popWindowView("请再次输入密码");
                 } else if (!mRegisterPsd.getText().toString().equals(mRegisterPsdAgain.getText().toString())) {
                     popWindowView("您两次输入的密码不一致");
-                } else if (!isAgree) {
+                } else if (!iv_agreed.isSelected()) {
                     Toast.makeText(this, "您尚未同意注册协议", Toast.LENGTH_LONG).show();
                 } else {
                     //调用注册接口
