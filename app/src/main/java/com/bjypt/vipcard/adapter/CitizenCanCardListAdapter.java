@@ -75,7 +75,7 @@ public class CitizenCanCardListAdapter extends BaseAdapter {
         holder.bind_time.setText("绑定时间：" + cardInfoList.get(i).getBind_time());
         Picasso.with(context)
                 .load(Config.web.picUrl + cardInfoList.get(i).getList_url())
-                .error(R.drawable.citizen_card_bg)
+                .error(R.mipmap.more)
                 .into(holder.card_pic);
         holder.tv_explain.setOnClickListener(new View.OnClickListener() {
             @Override

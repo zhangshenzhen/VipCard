@@ -21,6 +21,7 @@ public class AppConfig {
     static {
         L.writeLogs(false);
     }
+
     public static final DisplayImageOptions DEFAULT_IMG_OPTIONS_WELCOME = new DisplayImageOptions.Builder()
             .cacheInMemory(true).imageScaleType(ImageScaleType.IN_SAMPLE_INT)
             .cacheOnDisk(true)
@@ -90,9 +91,9 @@ public class AppConfig {
     public static final DisplayImageOptions DEFAULT_LUNBO = new DisplayImageOptions.Builder()
             .cacheOnDisk(true)
             .cacheInMemory(true)
-            .showImageOnLoading(R.mipmap.guanggao_bg) // 设置图片下载期间显示的图片
-            .showImageForEmptyUri(R.mipmap.guanggao_bg) // 设置图片Uri为空或是错误的时候显示的图片
-            .showImageOnFail(R.mipmap.guanggao_bg) // 设置图片加载或解码过程中发生错误显示的图片
+            .showImageOnLoading(R.mipmap.ad_bg) // 设置图片下载期间显示的图片
+            .showImageForEmptyUri(R.mipmap.ad_bg) // 设置图片Uri为空或是错误的时候显示的图片
+            .showImageOnFail(R.mipmap.ad_bg) // 设置图片加载或解码过程中发生错误显示的图片
             .build();
 
     /*头像背景*/
@@ -160,9 +161,9 @@ public class AppConfig {
             .cacheInMemory(true).imageScaleType(ImageScaleType.IN_SAMPLE_INT)
             .cacheOnDisk(true)
             .bitmapConfig(android.graphics.Bitmap.Config.RGB_565)
-//            .showStubImage(R.drawable.citizen_card_bg) // 设置图片下载期间显示的图片
-//            .showImageForEmptyUri(R.drawable.citizen_card_bg) // 设置图片Uri为空或是错误的时候显示的图片
-//            .showImageOnFail(R.drawable.citizen_card_bg) // 设置图片加载或解码过程中发生错误显示的图片
+            .showStubImage(R.mipmap.more) // 设置图片下载期间显示的图片
+            .showImageForEmptyUri(R.mipmap.more) // 设置图片Uri为空或是错误的时候显示的图片
+            .showImageOnFail(R.mipmap.more) // 设置图片加载或解码过程中发生错误显示的图片
             .build();
 
     /*圈圈默认头像*/
