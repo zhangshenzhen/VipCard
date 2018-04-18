@@ -46,10 +46,6 @@ public class AppCategoryHomeBannerView extends AppCategoryContextView{
         super(context, attrs, defStyleAttr);
     }
 
-    public AppCategoryHomeBannerView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
     @Override
     public void initView(Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.view_app_category_banner, this);
@@ -91,8 +87,8 @@ public class AppCategoryHomeBannerView extends AppCategoryContextView{
                 viewpager_new_home.setImagesUrl(adv_list);
             } else {
                 List<Integer> images = new ArrayList<>();
-                images.add(R.mipmap.guanggao_bg);
-                images.add(R.mipmap.guanggao_bg);
+                images.add(R.mipmap.ad_bg);
+                images.add(R.mipmap.ad_bg);
                 viewpager_new_home.setImages(images);
             }
 
