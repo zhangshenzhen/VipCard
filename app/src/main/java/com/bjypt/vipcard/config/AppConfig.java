@@ -120,9 +120,9 @@ public class AppConfig {
             .cacheInMemory(true).imageScaleType(ImageScaleType.IN_SAMPLE_INT)
             .cacheOnDisk(true)
             .bitmapConfig(android.graphics.Bitmap.Config.RGB_565)
-//            .showStubImage(R.mipmap.type_pic) // 设置图片下载期间显示的图片
-//            .showImageForEmptyUri(R.mipmap.type_pic) // 设置图片Uri为空或是错误的时候显示的图片
-//            .showImageOnFail(R.mipmap.type_pic) // 设置图片加载或解码过程中发生错误显示的图片
+            .showStubImage(R.mipmap.menu_error) // 设置图片下载期间显示的图片
+            .showImageForEmptyUri(R.mipmap.menu_error) // 设置图片Uri为空或是错误的时候显示的图片
+            .showImageOnFail(R.mipmap.menu_error) // 设置图片加载或解码过程中发生错误显示的图片
             .build();
 
     /*商家相册缩略图*/
@@ -130,9 +130,9 @@ public class AppConfig {
             .cacheInMemory(true).imageScaleType(ImageScaleType.IN_SAMPLE_INT)
             .cacheOnDisk(true)
             .bitmapConfig(android.graphics.Bitmap.Config.RGB_565)
-            .showStubImage(R.mipmap.xiangcebg) // 设置图片下载期间显示的图片
-            .showImageForEmptyUri(R.mipmap.xiangcebg) // 设置图片Uri为空或是错误的时候显示的图片
-            .showImageOnFail(R.mipmap.xiangcebg) // 设置图片加载或解码过程中发生错误显示的图片
+            .showStubImage(R.mipmap.merchant_photo_album) // 设置图片下载期间显示的图片
+            .showImageForEmptyUri(R.mipmap.merchant_photo_album) // 设置图片Uri为空或是错误的时候显示的图片
+            .showImageOnFail(R.mipmap.merchant_photo_album) // 设置图片加载或解码过程中发生错误显示的图片
             .build();
 
 
