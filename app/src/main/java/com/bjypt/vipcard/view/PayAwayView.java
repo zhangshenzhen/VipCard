@@ -50,6 +50,7 @@ import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.utils.VirtualmoneySuccessHelper;
 import com.bjypt.vipcard.wxapi.WXHelper;
 import com.lidroid.xutils.util.LogUtils;
+import com.orhanobut.logger.Logger;
 import com.sinia.orderlang.utils.StringUtil;
 import com.tencent.mm.sdk.modelpay.PayReq;
 
@@ -154,8 +155,9 @@ public class PayAwayView extends LinearLayout implements VolleyCallBack<String> 
      * 发起支付
      */
     public void startPay() {
-        loadingShow();
+        Logger.e("开启支付");
         if (selectPayAway.getCode() == PayTypeEnum.Pingtai.getCode() || selectPayAway.getCode() == PayTypeEnum.ShangjiaYuE.getCode()) {
+            loadingShow();
             String paylable = payLable();
             Map<String, String> params = onPayListener.createOrderParams();
             String waitMoney = AES.decrypt(params.get("waitMoney").toString(), AES.key);
@@ -209,7 +211,7 @@ public class PayAwayView extends LinearLayout implements VolleyCallBack<String> 
 
     private void postPay() {
         if (!preOrder) {
-            Wethod.httpPost(this.getContext(), request_create_order, Config.web.create_new_order, onPayListener.createOrderParams(), this, View.GONE);
+            Wethod.httpPost(this.getContext(), request_create_order, Config.web.create_new_order, onPayListener.createOrderParams(), this, View.VISIBLE);
         } else {
             toPay(null, null);
         }
@@ -619,7 +621,9 @@ public class PayAwayView extends LinearLayout implements VolleyCallBack<String> 
      * 取消显示加载动画
      */
     private void loadingStop() {
-        loadingPageDialog.dismiss();
+        if(loadingPageDialog != null && loadingPageDialog.isShowing()) {
+            loadingPageDialog.dismiss();
+        }
 //        drawable.stop();
 //        rl_pay_anim_show.setVisibility(GONE);
     }

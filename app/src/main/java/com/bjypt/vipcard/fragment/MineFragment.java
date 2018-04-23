@@ -466,8 +466,7 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
         Wethod.httpPost(getActivity(), 1113, Config.web.MY_WALLET, maps, new VolleyCallBack<String>() {
             @Override
             public void onSuccess(int reqcode, String result) {
-//                Logger.e("reqcode :" + reqcode);
-                Logger.e("result :" + result);
+                Logger.json(result);
                 if (result != null) {
                     try {
                         JSONObject jsonObject = new JSONObject(result);

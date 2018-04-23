@@ -15,6 +15,7 @@ import com.bjypt.vipcard.base.BaseFrament;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.fragment.FinancingKakaAccountFragment;
 import com.bjypt.vipcard.fragment.FinancingKahuiAccountFragment;
+import com.orhanobut.logger.Logger;
 
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.TabLayout;
@@ -23,16 +24,18 @@ import android.support.v4.app.FragmentManager;
 import java.util.List;
 import java.util.ArrayList;
 
-public class FinancingAccountFragment  extends BaseFrament implements View.OnClickListener, VolleyCallBack {
+public class FinancingAccountFragment  extends BaseFrament implements View.OnClickListener, VolleyCallBack, TabLayout.OnTabSelectedListener {
     private View view;
     private ViewPager viewPager;
 
     private List<Fragment> list;
     private MyAdapter adapter;
-    private String[] titles = {"我的钱包","我的卡卡"};
+    private String[] titles = {"钱包金融","我的卡卡"};
     private TabLayout tabLayout;
     String pkmuser="";
     String appCan="0";
+    private TabClickListener tabClickListener;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,6 +57,34 @@ public class FinancingAccountFragment  extends BaseFrament implements View.OnCli
 
     }
 
+
+    public void setOnTabClick(TabClickListener listener){
+        tabClickListener = listener;
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        if(tabClickListener != null){
+            tabClickListener.showHidden(tab.getPosition());
+        }
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+    public interface TabClickListener{
+        // 0:显示  1.隐藏
+        void showHidden(int state);
+    }
+
+
     @Override
     public void beforeInitView() {
       Bundle bundle=getArguments();
@@ -73,6 +104,7 @@ public class FinancingAccountFragment  extends BaseFrament implements View.OnCli
         if(appCan.equals("1")) {
             FinancingKakaAccountFragment financingKakaAccountFragment = new FinancingKakaAccountFragment();
             Bundle bundle = new Bundle();
+            Logger.e("pkmuser："+pkmuser);
             bundle.putString("pkmuser", pkmuser);
             financingKakaAccountFragment.setArguments(bundle);
             list.add(financingKakaAccountFragment);
@@ -80,9 +112,11 @@ public class FinancingAccountFragment  extends BaseFrament implements View.OnCli
         //ViewPager的适配器
         adapter = new MyAdapter(getChildFragmentManager());
         viewPager.setAdapter(adapter);
+
         tabLayout = (TabLayout) view.findViewById(R.id.tab);
         //绑定
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setOnTabSelectedListener(this);
     }
 
     @Override

@@ -36,6 +36,7 @@ import com.bjypt.vipcard.utils.DialogUtil;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.PermissionUtils;
+import com.orhanobut.logger.Logger;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.w3c.dom.Text;
@@ -98,6 +99,7 @@ public class FinancingKakaAccountFragment extends BaseFrament implements View.On
     public void beforeInitView() {
         Bundle bundle=getArguments();
         pkmuser=bundle.getString("pkmuser");
+
     }
 
     @Override
@@ -228,19 +230,25 @@ public class FinancingKakaAccountFragment extends BaseFrament implements View.On
     }
 
     /**
-     * 跳转到理财计算器界面
+     * 跳转到我提现
      */
     private void goCalculator() {
 //        if ("Y".equals(getFromSharePreference(Config.userConfig.is_Login))) {
 //            Intent intent4 = new Intent(getActivity(), NewTopupWayActivity.class);
 //            intent4.putExtra("FLAG", 2);
 //            intent4.putExtra("pkmuser", pkmuser);
+//            Logger.e("pkmuser"+pkmuser);
 //            startActivity(intent4);
 //        }
-        Intent intent1 = new Intent(getActivity(), LifeServireH5Activity.class);
-        intent1.putExtra("life_url", Config.web.calculator_finances);
-        intent1.putExtra("isLogin", "N");
-        startActivity(intent1);
+//        Intent intent1 = new Intent(getActivity(), LifeServireH5Activity.class);
+//        intent1.putExtra("life_url", Config.web.calculator_finances);
+//        intent1.putExtra("isLogin", "N");
+//        startActivity(intent1);
+
+        if ("Y".equals(getFromSharePreference(Config.userConfig.is_Login))) {
+            Intent intent2 = new Intent(getActivity(), WithdrawActivity.class);
+            startActivity(intent2);
+        }
     }
 
     /**

@@ -226,7 +226,7 @@
                 android:id="@+id/tt_financing_calc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="计算器"
+                android:text="我提现"
                 android:textColor="@color/fine_text_color"
                 android:textSize="12sp"/>
         </LinearLayout>
