@@ -5,9 +5,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+
 import com.android.volley.VolleyError;
+import com.ashokvarma.bottomnavigation.BottomNavigationBar;
+import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.base.BaseFraActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
@@ -17,15 +25,9 @@ import com.bjypt.vipcard.fragment.FinancingAccountFragment;
 import com.bjypt.vipcard.fragment.FinancingCalcFragment;
 import com.bjypt.vipcard.fragment.FinancingProjectFragment;
 import com.bjypt.vipcard.view.ToastUtil;
-import com.ashokvarma.bottomnavigation.BottomNavigationBar;
-import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.gallerypick.utils.SystemBarTintManager;
 import com.google.gson.JsonParser;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -96,9 +98,9 @@ public class FinancingNewActivity extends BaseFraActivity implements VolleyCallB
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_DEFAULT);
         bottomNavigationBar.setBarBackgroundColor(R.color.red_txt);
         bottomNavigationBar
+                .addItem(new BottomNavigationItem(R.mipmap.banking_account_h5, "理财账户").setActiveColorResource(R.color.white).setInActiveColorResource(R.color.white).setInactiveIcon(ContextCompat.getDrawable(this, R.drawable.banking_account_h5_normal)))
                 .addItem(new BottomNavigationItem(R.mipmap.home_h5, "首页").setActiveColorResource(R.color.white).setInActiveColorResource(R.color.white).setInactiveIcon(ContextCompat.getDrawable(this, R.drawable.home_h5_normal)))
                 .addItem(new BottomNavigationItem(R.mipmap.calculator_h5, "理财计算器").setActiveColorResource(R.color.white).setInActiveColorResource(R.color.white).setInactiveIcon(ContextCompat.getDrawable(this, R.drawable.calculator_h5_normal)))
-                .addItem(new BottomNavigationItem(R.mipmap.banking_account_h5, "理财账户").setActiveColorResource(R.color.white).setInActiveColorResource(R.color.white).setInactiveIcon(ContextCompat.getDrawable(this, R.drawable.banking_account_h5_normal)))
                 .setFirstSelectedPosition(0)
                 .initialise(); //所有的设置需在调用该方法前完成
         bottomNavigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
@@ -107,20 +109,20 @@ public class FinancingNewActivity extends BaseFraActivity implements VolleyCallB
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction transaction = fm.beginTransaction();
                 switch (i) {
-                    case 0:
+                    case 1:
                         if (financingProjectFragment == null) {
                             financingProjectFragment = new FinancingProjectFragment();
                         }
                         transaction.replace(R.id.id_content, financingProjectFragment);
                         break;
-                    case 1:
+                    case 2:
                         if (financingCalcFragment == null) {
                             financingCalcFragment = new FinancingCalcFragment();
                         }
                         transaction.replace(R.id.id_content, financingCalcFragment);
 
                         break;
-                    case 2:
+                    case 0:
 
                         if (financingAccountFragment == null) {
                             financingAccountFragment = new FinancingAccountFragment();
