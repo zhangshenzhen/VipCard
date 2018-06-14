@@ -149,6 +149,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="6dp"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:background="@drawable/withdraw_red">
 
                     <TextView
@@ -212,6 +213,7 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
                 android:layout_marginTop="117.7dp"
+                android:visibility="gone"
                 android:background="@drawable/withdraw_bg">
 
                 <TextView

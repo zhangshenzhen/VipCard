@@ -36,6 +36,7 @@ import com.bjypt.vipcard.model.DownLoadBean;
 import com.bjypt.vipcard.model.DownLoadResultBean;
 import com.bjypt.vipcard.service.DownLoadService;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
+import com.orhanobut.logger.Logger;
 import com.sinia.orderlang.utils.AppInfoUtil;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -207,6 +208,7 @@ public class CheckUpdateAppVersionContext implements VolleyCallBack {
 
     @Override
     public void onSuccess(int reqcode, Object result) {
+        Logger.d(result);
         if (context instanceof Activity) {
             Activity activity = (Activity) context;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {

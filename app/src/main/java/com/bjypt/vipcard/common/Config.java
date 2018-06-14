@@ -63,7 +63,6 @@ public final class Config {
         // 请求理财列表
         public static final String MANAGE_MONEY_MATTERS = base + "post/balanceInvestList";
         //校验服务端是否升级
-        public static final String CHECKOUT = "http://123.57.232.188:9980/hus/api/appsetting/upgrade\n";
         public static final String check_upgrade = hus_url + "api/appsetting/upgrade";
 
 

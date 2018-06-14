@@ -2,7 +2,6 @@ package com.bjypt.vipcard.activity;
 
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -41,6 +41,8 @@ public class FinancingNewActivity extends BaseFraActivity implements VolleyCallB
     String pkmuser = "";
     String canApp = "0";
     private SystemBarTintManager tintManager;
+    private TextView tv_title;
+    private TextView tv;
 
     // private ShapeBadgeItem badgeItem;
     @Override
@@ -56,9 +58,9 @@ public class FinancingNewActivity extends BaseFraActivity implements VolleyCallB
         ViewGroup.LayoutParams layoutParams = statusBar.getLayoutParams();
         layoutParams.height = getStatusBarHeight();
 
-        Intent intent = getIntent();
-        pkmuser = intent.getStringExtra("pkmuser");
-        com.orhanobut.logger.Logger.e("pkmuser:"+pkmuser);
+//        Intent intent = getIntent();
+//        pkmuser = intent.getStringExtra("pkmuser");
+//        com.orhanobut.logger.Logger.e("pkmuser:"+pkmuser);
     }
 
     public void setStatusBarDarkMode(boolean darkmode, Activity activity) {
@@ -92,6 +94,8 @@ public class FinancingNewActivity extends BaseFraActivity implements VolleyCallB
 
     @Override
     public void initView() {
+        tv_title = (TextView) findViewById(R.id.tv_title);
+        tv = (TextView) findViewById(R.id.tv);
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_navigation_bar);
         //badgeItem = new BadgeItem().setBackgroundColor(Color.RED).setText("99");
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
@@ -109,20 +113,20 @@ public class FinancingNewActivity extends BaseFraActivity implements VolleyCallB
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction transaction = fm.beginTransaction();
                 switch (i) {
-                    case 1:
+                    case 0:
                         if (financingProjectFragment == null) {
                             financingProjectFragment = new FinancingProjectFragment();
                         }
                         transaction.replace(R.id.id_content, financingProjectFragment);
                         break;
-                    case 2:
+                    case 1:
                         if (financingCalcFragment == null) {
                             financingCalcFragment = new FinancingCalcFragment();
                         }
                         transaction.replace(R.id.id_content, financingCalcFragment);
 
                         break;
-                    case 0:
+                    case 2:
 
                         if (financingAccountFragment == null) {
                             financingAccountFragment = new FinancingAccountFragment();
@@ -130,6 +134,23 @@ public class FinancingNewActivity extends BaseFraActivity implements VolleyCallB
                             bundle.putString("pkmuser", pkmuser);
                             bundle.putString("appCan", canApp);
                             financingAccountFragment.setArguments(bundle);
+                            Logger.e("pkmuser："+pkmuser);
+                            financingAccountFragment.setOnTabClick(new FinancingAccountFragment.TabClickListener() {
+                                @Override
+                                public void showHidden(int state) {
+                                    // 0:显示  1.隐藏
+                                    switch (state){
+                                        case 0:
+                                            tv_title.setVisibility(View.VISIBLE);
+                                            tv.setVisibility(View.VISIBLE);
+                                            break;
+                                        case 1:
+                                            tv_title.setVisibility(View.GONE);
+                                            tv.setVisibility(View.GONE);
+                                            break;
+                                    }
+                                }
+                            });
                         }
                         transaction.replace(R.id.id_content, financingAccountFragment);
 

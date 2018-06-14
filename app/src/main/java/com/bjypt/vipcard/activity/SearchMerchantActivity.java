@@ -130,8 +130,8 @@ public class SearchMerchantActivity extends BaseActivity implements VolleyCallBa
             params.clear();
         }
         params.put("cityCode", Config.web.cityCode);
-        params.put("lng", getFromSharePreference(Config.userConfig.lngu));
-        params.put("lat", getFromSharePreference(Config.userConfig.latu));
+        params.put("lng", getFromSharePreference(Config.userConfig.CURRENT_LNGU));
+        params.put("lat", getFromSharePreference(Config.userConfig.CURRENT_LATU));
         params.put("begin", begin + "");
         params.put("pageLength", pageLength + "");
         params.put("merchantName", mSearchMerchant.getText().toString());

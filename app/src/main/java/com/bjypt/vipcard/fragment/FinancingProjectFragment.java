@@ -67,7 +67,6 @@ public class FinancingProjectFragment extends BaseFrament implements View.OnClic
     }
     @Override
     public void onSuccess(int reqcode, Object result) {
-        Logger.d(result);
             switch (reqcode) {
                 case REQUEST_BALANCE_INVEST_INFO:
                     String data = new JsonParser().parse(result.toString()).getAsJsonObject().getAsJsonPrimitive("resultData").getAsString();

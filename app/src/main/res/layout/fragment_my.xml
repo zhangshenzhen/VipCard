@@ -12,40 +12,33 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="220dp"
             android:scaleType="fitXY"
             android:src="@mipmap/my_layout_background" />
 
         <View
             android:id="@+id/v1"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_below="@+id/imageView" />
 
         <View
             android:id="@+id/v2"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_below="@+id/v1" />
-
-        <View
-            android:id="@+id/v3"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@+id/v2" />
-
+            android:layout_height="100dp"
+            android:layout_above="@+id/v1" />
         <View
             android:id="@+id/v4"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_below="@+id/v3" />
+            android:layout_height="30dp"
+            android:layout_above="@+id/v2" />
 
 
         <RelativeLayout
             android:id="@+id/rl_user_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/v4">
+            android:layout_below="@+id/v4">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -171,9 +164,9 @@
                 android:layout_height="80dp"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:clickable="true"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/my_photo" />
 
             <Button

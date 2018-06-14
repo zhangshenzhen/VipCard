@@ -217,7 +217,7 @@ public class CardManagementActivity extends BaseActivity implements VolleyCallBa
 
         Picasso.with(this)
                 .load(Config.web.picUrl + card_pic)
-                .error(R.drawable.citizen_card_bg)
+                .error(R.mipmap.more)
                 .into(iv_card_pic);
 //        ImageLoader.getInstance().displayImage(Config.web.picUrl + card_pic, iv_card_pic, AppConfig.DEFAULT_IMG_CITIZEN_CARD);
         pv_poster.setPetroleumViewCallBackListener(new PetroleumViewCallBackListener() {

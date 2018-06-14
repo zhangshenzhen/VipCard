@@ -315,6 +315,7 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
                 SignINBean signInBean = new SignINBean();
                 try {
                     JSONObject json = new JSONObject(s.toString());
+                    Logger.json(s);
                     String continueDays = json.getString("continueDays");
                     String signDaysString = json.getString("signDays");
                     signInBean.setContinueDays(continueDays);
@@ -401,7 +402,7 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
                     }
                 };
                 //弹窗让用户选择，是否允许申请权限
-                DialogUtil.showConfirm(getActivity(), "招商热线", "是否拨打招商热线4001808366(08:00-17:00)", dialogOnclicListener, dialogOnclicListener);
+                DialogUtil.showConfirm(getActivity(), "招商及客服热线", "是否拨打招商及客服热线4001808366(08:00-17:00)", dialogOnclicListener, dialogOnclicListener);
                 break;
         }
     }
@@ -465,8 +466,7 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
         Wethod.httpPost(getActivity(), 1113, Config.web.MY_WALLET, maps, new VolleyCallBack<String>() {
             @Override
             public void onSuccess(int reqcode, String result) {
-//                Logger.e("reqcode :" + reqcode);
-                Logger.e("result :" + result);
+                Logger.json(result);
                 if (result != null) {
                     try {
                         JSONObject jsonObject = new JSONObject(result);

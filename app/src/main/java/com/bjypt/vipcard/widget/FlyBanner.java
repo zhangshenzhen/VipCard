@@ -318,10 +318,12 @@ public class FlyBanner extends RelativeLayout {
                     }
                 }
             });
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             if (mIsImageUrl) {
                 Picasso.with(getContext())
                         .load(mImageUrls.get(toRealPosition(position)))
+                        .placeholder(R.mipmap.ad_bg)    //图片加载中显示的页面
+                        .error(R.mipmap.ad_bg)   //图片记载失败时显示的页面
                         .into(imageView);
             } else {
                 imageView.setImageResource(mImages.get(toRealPosition(position)));

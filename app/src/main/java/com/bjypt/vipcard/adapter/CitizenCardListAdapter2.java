@@ -74,7 +74,9 @@ public class CitizenCardListAdapter2 extends BaseAdapter {
         holder.card_num.setText(cardInfoList.get(i).getShowCardNum() );
         holder.card_name.setText(cardInfoList.get(i).getCategory_name());
         holder.bind_time.setText("绑定时间："+cardInfoList.get(i).getBind_time());
-        ImageLoader.getInstance().displayImage(Config.web.picUrl + cardInfoList.get(i).getList_url(), holder.card_pic, AppConfig.DEFAULT_IMG_CITIZEN_CARD);
+        ImageLoader.getInstance()
+                .displayImage(Config.web.picUrl + cardInfoList.get(i)
+                        .getList_url(), holder.card_pic, AppConfig.DEFAULT_IMG_CITIZEN_CARD);
         holder.tv_explain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

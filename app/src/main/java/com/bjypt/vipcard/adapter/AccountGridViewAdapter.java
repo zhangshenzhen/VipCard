@@ -52,8 +52,14 @@ public class AccountGridViewAdapter extends BaseAdapter{
         }else{
             holder = (ViewHolder) view.getTag();
         }
-        holder.iv_photo.setImageResource(images[position]);
-        holder.tv_name.setText(images_info[position]);
+        if(4 == position || 3 == position) {
+            holder.iv_photo.setVisibility(View.GONE);
+            holder.tv_name.setVisibility(View.GONE);
+            view.setVisibility(View.GONE);
+        }else {
+            holder.iv_photo.setImageResource(images[position]);
+            holder.tv_name.setText(images_info[position]);
+        }
         return view;
     }
 

@@ -757,14 +757,14 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
                                 psdDialog.show();
                             } else {
                                 //弹出选择框，去充值还是取消平台余额支付
-                                new AlertDialog.Builder(this).setTitle("充值确认").setMessage("是否去充值？")
-                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                //跳转到余额不足充值页面
-                                                startRechage(2, pksystem);
-                                            }
-                                        })
-                                        .setNegativeButton("取消", null)
+                                new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请使用在线支付或者线下支付")
+//                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                                            public void onClick(DialogInterface dialog, int which) {
+//                                                //跳转到余额不足充值页面
+//                                                startRechage(2, pksystem);
+//                                            }
+//                                        })
+                                        .setNegativeButton("确定", null)
                                         .show();
                             }
                         }
@@ -818,13 +818,13 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
                                             ToastUtil.showToast(RightAwayActivity.this, "平台余额不足，可选择其他方式支付");
                                         } else {
                                             //弹出选择框，去充值还是取消平台余额支付
-                                            new AlertDialog.Builder(this).setTitle("充值确认").setMessage("是否去充值？")
-                                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int which) {
-                                                            startRechage(2, pksystem);
-                                                        }
-                                                    })
-                                                    .setNegativeButton("取消", null)
+                                            new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请使用在线支付或者线下支付")
+//                                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+//                                                        public void onClick(DialogInterface dialog, int which) {
+//                                                            startRechage(2, pksystem);
+//                                                        }
+//                                                    })
+                                                    .setNegativeButton("确定", null)
                                                     .show();
                                         }
                                     }

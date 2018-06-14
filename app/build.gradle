@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
     dexOptions {
@@ -11,15 +12,33 @@ android {
         applicationId "com.bjypt.vipcard"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 81
-        versionName "4.7.1"
+        versionCode 82
+        versionName "4.7.2"
         multiDexEnabled true
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
+                JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "95d244d92b4d7361c20caaa6", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'bjypt'
+            keyPassword '123456'
+            storeFile file('../vipCard.keystore')
+            storePassword '123456'
+        }
+    }
+
+    // 自定义APK安装包名
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                output ->
+                    outputFileName = "繁城都市_v${defaultConfig.versionName}_${variant.buildType.name}.apk"
+            }
     }
 
     packagingOptions {
@@ -29,14 +48,13 @@ android {
         exclude 'META-INF/DEPENDENCIES'
         exclude 'assets/lineDashTexture.png'
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
-
 }
 
 ext {
@@ -46,8 +64,8 @@ ext {
 }
 
 dependencies {
-//                compile fileTree(dir: 'libs', include: ['*.jar'])
-//    compile 'com.android.support:multidex:1.0.1'
+    //                compile fileTree(dir: 'libs', include: ['*.jar'])
+    //    compile 'com.android.support:multidex:1.0.1'
     compile files('libs/Volley.jar')
     compile files('libs/gson-2.3.1.jar')
     compile files('libs/alipaySdk-20151112.jar')
@@ -113,7 +131,6 @@ dependencies {
     compile "com.orhanobut:logger:${loggerz}"
     // 滑动按钮
     compile 'ch.ielse:switchbutton:1.0.0'
-
     compile 'org.jsoup:jsoup:1.11.2'
     compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
 }

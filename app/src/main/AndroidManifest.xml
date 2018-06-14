@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bjypt.vipcard"
-    android:versionCode="81"
-    android:versionName="4.7.1">
+    android:versionCode="82"
+    android:versionName="4.7.2">
     <!--   2018-3-15 android:versionCode="80"
           android:versionName="4.7.0"-->
 
@@ -121,7 +121,9 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="b269d1e06671fcac458a5276fd109e9f" />
+            android:value="b80143ced2385289f9eb334701a7662b"
+            />
+        <!-- android:value="b269d1e06671fcac458a5276fd109e9f" -->
         <!-- wl b269d1e06671fcac458a5276fd109e9f    7d3bb27c9a7c15bfe8f389d612fbe058           8bd619b747abf7e164d18916792c0529 -->
         <!-- 定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" />

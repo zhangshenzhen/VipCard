@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/more" />
+                android:src="@mipmap/more" />
 
             <View
                 android:id="@+id/view_use"

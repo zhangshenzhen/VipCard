@@ -20,7 +20,9 @@
             android:layout_gravity="center_vertical"
             android:layout_centerVertical="true"
             android:id="@+id/infomation_head"
-            android:src="@mipmap/system_messages"/>
+            android:scaleType="fitXY"
+            android:src="@mipmap/system_messages"
+            />
 
         <LinearLayout
 

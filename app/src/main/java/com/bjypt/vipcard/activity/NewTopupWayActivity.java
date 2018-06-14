@@ -35,6 +35,7 @@ import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.view.MyDialog;
 import com.bjypt.vipcard.view.PayAwayView;
 import com.bjypt.vipcard.widget.MyGridView;
+import com.orhanobut.logger.Logger;
 import com.sinia.orderlang.utils.StringUtil;
 import com.unionpay.UPPayAssistEx;
 
@@ -193,9 +194,11 @@ public class NewTopupWayActivity extends BaseActivity implements VolleyCallBack,
                         if (payAwayView.getSelectPayCode() == null) {
                             Toast.makeText(this, "请选择充值方式", Toast.LENGTH_LONG).show();
                             return;
-                        } else if (Double.parseDouble(et_top_up_amount.getText().toString()) > Double.parseDouble(endMoney)) {
-                            Toast.makeText(this, tipEnd, Toast.LENGTH_LONG).show();
-                        } else if (Double.parseDouble(et_top_up_amount.getText().toString()) < Double.parseDouble(startMoney)) {
+                        }
+//                        else if (Double.parseDouble(et_top_up_amount.getText().toString()) > Double.parseDouble(endMoney)) {
+//                            Toast.makeText(this, tipEnd, Toast.LENGTH_LONG).show();
+//                        }
+                        else if (Double.parseDouble(et_top_up_amount.getText().toString()) < Double.parseDouble(startMoney)) {
                             Toast.makeText(this, tipStart, Toast.LENGTH_LONG).show();
                         }
 
