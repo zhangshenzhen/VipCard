@@ -172,7 +172,6 @@ public abstract class AppCategoryContextView extends LinearLayout implements Vol
             }else if(appCategoryBean.getLink_type() == AppCategoryBean.ActionTypeEnum.NoAction.getValue()){
                 ToastUtil.showToast(getContext(), "暂未开通");
             }
-
         }
     }
 

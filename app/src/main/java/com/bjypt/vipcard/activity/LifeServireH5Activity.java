@@ -20,15 +20,16 @@ import android.webkit.GeolocationPermissions;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.shangfeng.util.ShangfengUriHelper;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.h5.h5override.H5OverrideUrlFactory;
@@ -40,7 +41,6 @@ import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.PhoneCpuId;
 import com.bjypt.vipcard.view.LoadingPageDialog;
 import com.bjypt.vipcard.view.ToastUtil;
-import com.gallerypick.utils.AppUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sinia.orderlang.utils.StringUtil;
@@ -62,7 +62,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * 生活服务H5所有展示页面
  */
 
-public class LifeServireH5Activity extends BaseActivity implements EasyPermissions.PermissionCallbacks{
+public class LifeServireH5Activity extends BaseActivity implements EasyPermissions.PermissionCallbacks {
 
     private WebView h5Web;
     private int ERROR_CODE = 1;
@@ -214,6 +214,7 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 WebView.HitTestResult hitTestResult = view.getHitTestResult();
                 //hitTestResult == null 解决重定向问题
+                ShangfengUriHelper shangfengUriHelper = new ShangfengUriHelper(view.getContext());
                 if (url.startsWith("hybpay://")) {
                     Log.i("wanglei", url);
                     h5Web.goBack(); //解决重复下单问题
@@ -227,6 +228,9 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
                         ToastUtil.showToast(LifeServireH5Activity.this, "暂未开通");
                     }
                     return true;
+                } else if (shangfengUriHelper.isContains(url)) {
+                    shangfengUriHelper.startSearch(url);
+                    return true;
                 } else {
                     if (!TextUtils.isEmpty(url) && hitTestResult == null) {
                         Log.i("wanglei", "test ---" + url);
@@ -239,6 +243,38 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
                 view.loadUrl(url);
                 return true;*/
                     return super.shouldOverrideUrlLoading(view, url);
+                }
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                ShangfengUriHelper shangfengUriHelper = new ShangfengUriHelper(view.getContext());
+                String url = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    url = request.getUrl().toString();
+                }
+                if (shangfengUriHelper.isContains(url)) {
+                    shangfengUriHelper.startSearch(url);
+                    return true;
+                } else if (url.startsWith("hybpay://")) {
+                    Log.i("wanglei", url);
+                    h5Web.goBack(); //解决重复下单问题
+                    startAlipayActivity(url);
+                    return true;
+                } else if (url.startsWith("hybweb://webaction.com/")) {
+                    H5OverrideUrlListener listener = H5OverrideUrlFactory.getInstance(url);
+                    if (listener != null) {
+                        listener.process(LifeServireH5Activity.this);
+                    } else {
+                        ToastUtil.showToast(LifeServireH5Activity.this, "暂未开通");
+                    }
+                    return true;
+                } else {
+                    if (!TextUtils.isEmpty(url)) {
+                        view.loadUrl(url);
+                        return true;
+                    }
+                    return super.shouldOverrideUrlLoading(view, request);
                 }
             }
 
@@ -304,6 +340,7 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
             }
         }
         h5Web.addJavascriptInterface(new AndroidJavaScript(this), "jump");
+        h5Web.addJavascriptInterface(new AndroidJavaScript(this), "android");
 //        h5Web.addJavascriptInterface(new AndroidJavascriptExtends(this), "android");
     }
 
@@ -398,18 +435,18 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
         }
 
         @JavascriptInterface
-        public String getDeviceId(){
+        public String getDeviceId() {
             LogUtil.debugPrint(PhoneCpuId.getDeviceId(context));
             return PhoneCpuId.getDeviceId(context);
         }
 
         @JavascriptInterface
-        public void requestPermissionDeviceId(){
+        public void requestPermissionDeviceId() {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     String[] perms = {Manifest.permission.READ_PHONE_STATE};
-                    if(!EasyPermissions.hasPermissions(LifeServireH5Activity.this, perms)){
+                    if (!EasyPermissions.hasPermissions(LifeServireH5Activity.this, perms)) {
                         EasyPermissions.requestPermissions(this, "该功能需要获取系统设备号的权限",
                                 R.string.confirm,
                                 R.string.cancel,
@@ -421,16 +458,16 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
         }
 
         @JavascriptInterface
-        public String getParamsSign(String paramsStr){
+        public String getParamsSign(String paramsStr) {
             LogUtil.debugPrint(paramsStr.toString());
             try {
                 JSONObject jsonObject = new JSONObject(paramsStr);
-                Iterator<String> keys =  jsonObject.keys();
+                Iterator<String> keys = jsonObject.keys();
                 Map<String, String> params = new HashMap<>();
-                while (keys.hasNext()){
+                while (keys.hasNext()) {
                     String key = keys.next();
                     LogUtil.debugPrint("key=" + key + " value=" + jsonObject.get(key).toString());
-                    params.put(key,  jsonObject.get(key).toString());
+                    params.put(key, jsonObject.get(key).toString());
                 }
                 JSONObject json = new JSONObject();
                 json.put("sign", AES.createSign(new TreeMap<String, String>(params)));
@@ -445,15 +482,16 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
 
     }
 
-    public class AndroidJavascriptExtends extends AndroidJavaScript{
+    public class AndroidJavascriptExtends extends AndroidJavaScript {
         private Context context;
+
         public AndroidJavascriptExtends(Context context) {
             super(context);
             this.context = context;
         }
 
         @JavascriptInterface
-        public String getSign(Object paramsStr){
+        public String getSign(Object paramsStr) {
             LogUtil.debugPrint(paramsStr.toString());
             java.lang.reflect.Type type = new TypeToken<HashMap<Integer, String>>() {
             }.getType();

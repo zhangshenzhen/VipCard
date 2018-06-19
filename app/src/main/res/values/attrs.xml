@@ -85,6 +85,7 @@
             <flag name="wuzhedianchongzhi" value="0x4"/>
             <flag name="lifeservice" value="0x6"/>
             <flag name="PetroleumPay" value="0x10"/>
+            <flag name="qiangdan" value="0x15" />
         </attr>
         <attr name="preOrder" format="boolean">
         </attr>

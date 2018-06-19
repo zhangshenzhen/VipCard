@@ -22,4 +22,6 @@
     <dimen name="gudieview_heigh">6dp</dimen>
 
     <dimen name="swipe_progress_bar_height">8dp</dimen>
+    <dimen name="side_letter_bar_letter_size">12sp</dimen>
+    <dimen name="side_letter_bar_width">36dp</dimen>
 </resources>

@@ -148,4 +148,68 @@
     <string name="my_integral">积分: %1$s</string>
     <string name="my_account_number">账号: %1$s</string>
     <string name="phone_number">%1$s</string>
+
+    <string name="wait_a_moment">请稍等...</string>
+    <string name="current_address">我在</string>
+    <string name="select">选择</string>
+    <string name="my_consumption">我消费</string>
+    <string name="my_consumption_hint">请输入预计消费价格</string>
+    <string name="yuan">元</string>
+    <string name="btn_text">确定</string>
+    <string name="btn_back_text">返回首页</string>
+    <string name="btn_tobuy_text">去购买</string>
+    <string name="btn_cacal">取消</string>
+
+    <string name="main_hint">请输入有效价格</string>
+    <!--首页-->
+    <string name="business_history">交易历史</string>
+    <string name="lift_serve">生活服务</string>
+    <string name="my_coupon">我的卡劵</string>
+    <string name="my_bus">公交</string>
+    <string name="setting">设置</string>
+    <string name="qcode_scan_remark">温馨提示：\n请注意核实您需要支付的总价，核实后再付款给商家。</string>
+    <string name="qcode_scan">扫一扫</string>
+    <string name="my_order">我的订单</string>
+    <string name="scan_merchant_pay">扫码付款给商家</string>
+    <string name="purchasable_coupon">可购买的劵</string>
+
+    <!--选择城市-->
+    <string name="search_hint_text">搜索城市名</string>
+    <string name="Location_hint">定位失败</string>
+    <!--城市列表-->
+    <string name="locating">正在定位…</string>
+    <string name="located_failed">定位失败</string>
+    <string name="cp_hot_city">热门城市</string>
+    <string name="hint_search_box">请输入城市名或拼音</string>
+    <string name="hint_text">请输入关键字</string>
+
+    <string name="more_discounts_btn_text">查看更多优惠</string>
+    <string name="merchant_activity_text">商家活动</string>
+    <string name="merchant_particulars_text">商家信息</string>
+
+    <string name="to_deduction_btn_text">去抵扣</string>
+
+    <string name="booking_order">预约下单</string>
+
+    <string name="merchant_title_text">商家</string>
+    <!-- 商家列表 tabTitles-->
+    <string name="recently">离我最近</string>
+    <string name="most_preferential">优惠最多</string>
+    <string name="Intelligent_sorting">智能排序</string>
+
+    <string name="pay_info_title">支付详情</string>
+    <string name="pay_offer_desc">还需支付</string>
+    <string name="order_money">订单金额</string>
+    <string name="order_discout">本单折扣</string>
+    <string name="order_offer">优惠金额</string>
+    <string name="pay_total_money">支付总价</string>
+    <string name="connent_out">网络连接超时</string>
+    <string name="load_end">没有更多数据</string>
+    <string name="load_failed">加载失败，请点我重试</string>
+    <string name="loading">加载中...</string>
+    <string name="my_title_text">我的</string>
+    <!--系统消息-->
+    <string name="system_messages">系统消息</string>
+
+
 </resources>

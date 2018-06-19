@@ -212,8 +212,8 @@
     </style>
 
     <style name="MyProgressBar" parent="Base.Widget.AppCompat.ProgressBar">
-        <item name="android:indeterminateTint">@color/colorLoading</item>
-        <item name="android:indeterminateTintMode">src_atop</item>
+        <item name="android:indeterminateTint" tools:ignore="NewApi">@color/colorLoading</item>
+        <item name="android:indeterminateTintMode" tools:ignore="NewApi">src_atop</item>
     </style>
 
     <style name="Translucent_NoTitle" parent="android:style/Theme.Dialog">
@@ -343,6 +343,78 @@
         <item name="android:windowIsFloating">true</item>
         <!--是否模糊-->
         <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+
+    <!-- LoadingDialog使用的 -->
+    <style name="CustomProgressStyle" parent="@android:style/Widget.ProgressBar.Large">
+        <item name="android:minWidth">30px</item>
+        <item name="android:maxWidth">30px</item>
+        <item name="android:minHeight">30px</item>
+        <item name="android:maxHeight">30px</item>
+    </style>
+
+    <!--LoadingDialog样式-->
+    <style name="LoadingDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- <item name="android:background">@android:color/transparent</item> -->
+        <item name="android:windowBackground">@drawable/shape_loading_dialog_background</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="transitionX" parent="@android:style/Animation.Activity">
+        <!--b进入的动画-->
+        <item name="android:activityOpenEnterAnimation">@anim/right_in_x</item>
+        <!--a退出的动画-->
+        <item name="android:activityOpenExitAnimation">@anim/left_out_x</item>
+
+        <!--a 的恢复动画-->
+        <item name="android:activityCloseEnterAnimation">@anim/left_in_x</item>
+        <!--b的退出动画-->
+        <item name="android:activityCloseExitAnimation">@anim/right_out_x</item>
+    </style>
+
+    <!-- 主页类别 -->
+    <style name="mainRadioButtonStyle" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@drawable/select_main_type_btn_text_color</item>
+    </style>
+
+    <!-- TabLayout字体大小-->
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="MerchantMyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="MyTabLayoutTextAppearanceInverse" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="Main_AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/transparency_color</item>
+        <item name="colorPrimaryDark">@color/app_theme_color</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/transitionX</item>
+    </style>
+    <style name="Othere_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="colorPrimary">@color/white</item>-->
+        <!--<item name="colorPrimaryDark">@color/white</item>-->
+        <!--<item name="colorAccent">@color/colorAccent</item>-->
+        <item name="android:windowAnimationStyle">@style/transitionX</item>
+    </style>
+    <!--商家详情主题沉浸式无状态栏-->
+    <style name="Merchant_AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowAnimationStyle">@style/transitionX</item>
     </style>
 
 </resources>

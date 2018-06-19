@@ -32,7 +32,6 @@ import com.bjypt.vipcard.utils.BankCitySelectUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.widgets.ListViewAdaptWidth;
-import com.just.agentwebX5.IFileUploadChooser;
 import com.sinia.orderlang.utils.StringUtil;
 
 import org.codehaus.jackson.map.ObjectMapper;

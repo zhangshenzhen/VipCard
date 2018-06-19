@@ -25,7 +25,6 @@ import com.bjypt.vipcard.utils.DensityUtil;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.view.ToastUtil;
-import com.just.agentwebX5.IFileUploadChooser;
 
 import org.codehaus.jackson.map.ObjectMapper;
 

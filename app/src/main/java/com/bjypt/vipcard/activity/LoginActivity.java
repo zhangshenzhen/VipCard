@@ -1,6 +1,7 @@
 package com.bjypt.vipcard.activity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
@@ -28,6 +29,8 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.shangfeng.data.bean.BannerBean;
+import com.bjypt.vipcard.activity.shangfeng.util.ShangfengUriHelper;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.MyApplication;
 import com.bjypt.vipcard.base.RespBase;
@@ -46,6 +49,7 @@ import com.bjypt.vipcard.utils.StringUtils;
 import com.bjypt.vipcard.view.LoadingPageDialog;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.wxapi.Constants;
+import com.sinia.orderlang.utils.StringUtil;
 import com.tencent.connect.UserInfo;
 import com.tencent.connect.auth.QQToken;
 import com.tencent.mm.sdk.modelmsg.SendAuth;
@@ -109,6 +113,22 @@ public class LoginActivity extends BaseActivity implements VolleyCallBack {
     private String unionid;
     private TextView yan_zheng_number;
 
+    private String callbackData;
+    private BannerBean bannerBean;
+
+    /****************************shangfeng 登录 start*******************************************/
+    public static void callActivity(Context context) {
+        context.startActivity(new Intent(context, LoginActivity.class));
+    }
+
+    public static void callActivity(Context context, String callbackData, BannerBean bannerBean) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.putExtra("callback", callbackData);
+        intent.putExtra("bannerBean", bannerBean);
+        context.startActivity(intent);
+    }
+    /*****************************shangfeng 登录 end************************************************/
+
     @Override
     public void setContentLayout() {
         setContentView(R.layout.activity_login);
@@ -124,6 +144,9 @@ public class LoginActivity extends BaseActivity implements VolleyCallBack {
     public void beforeInitView() {
         Intent intent = getIntent();
         isLoginSubscri = intent.getStringExtra("loginsss");
+        callbackData = getIntent().getStringExtra("callback");
+        bannerBean = (BannerBean) getIntent().getSerializableExtra("bannerBean");
+
         Log.e("isLoginSubscri", "isLoginSubscri:" + isLoginSubscri);
 //        pkmuser = intent.getStringExtra("pkmuser");
 //        distance = intent.getStringExtra("distance");
@@ -348,8 +371,7 @@ public class LoginActivity extends BaseActivity implements VolleyCallBack {
             if (queue.isEmpty()) {
                 if (isLoginSubscri == null || isLoginSubscri.isEmpty()) {
 //                    startActivity(new Intent(this, MainActivity.class));
-                    startService(new Intent(LoginActivity.this, MQTTService.class));
-                    LoginActivity.this.finish();
+                    loginFinish();
                 } else if (isLoginSubscri.equals("Y")) {
                     Log.e("isLoginSubscri", "?????????????????????????");
                 }
@@ -362,8 +384,7 @@ public class LoginActivity extends BaseActivity implements VolleyCallBack {
                         if (queue.isEmpty()) {
                             if (loadingPageDialog.isShowing())
                                 loadingPageDialog.cancel();
-                            startService(new Intent(LoginActivity.this, MQTTService.class));
-                            finish();
+                            loginFinish();
                         } else {
                             LoginActivity.this.runOnUiThread(new Runnable() {
                                 @Override
@@ -379,6 +400,19 @@ public class LoginActivity extends BaseActivity implements VolleyCallBack {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    private void loginFinish(){
+        ShangfengUriHelper shangfengUriHelper = new ShangfengUriHelper(this);
+        if (bannerBean != null) {
+            shangfengUriHelper.onAppCategoryItemClick(bannerBean);
+        } else if (StringUtil.isNotEmpty(callbackData)) {
+            shangfengUriHelper.startSearch(callbackData);
+        }
+
+        startService(new Intent(LoginActivity.this, MQTTService.class));
+        finish();
     }
 
     @Override

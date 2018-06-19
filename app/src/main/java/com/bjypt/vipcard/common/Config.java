@@ -8,6 +8,12 @@ import android.os.Environment;
  * Use by 服务器地址，接口地址
  */
 public final class Config {
+
+    public static String DEFAULT_CITY = "阜阳";
+    public static String DEFAULT_CITY_CODE = "1558";
+    public static double DEFAULT_LONGITUDE = 115.809206;
+    public static double DEFAULT_LATITUDE = 32.883249;
+
     public static final class web {
 
         public static final String cityCode = "1558";
@@ -16,10 +22,13 @@ public final class Config {
         public static final String hus_url = "http://121.196.233.207:9090/hus";   //检测服务器升级服务(正式)
 
 
-        //        public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
+        public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
+        public static final String shangfengh5= "http://47.96.105.168:19094/";
+
+//        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
 //        public static final String base = "http://120.55.199.24:8080/hyb/ws/";      //正式服务器地址
 //        public static final String hyb_url = "http://47.93.79.174:9002/hyb/";       //预上线服务器地址
-        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //59地址
+//        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //59地址
 
         public static final String base = hyb_url + "ws/";
 
@@ -31,6 +40,7 @@ public final class Config {
 
         //                public static final String URL_pay = "http://120.55.199.24:8080/hyb/";//正式
         public static final String URL_pay = "http://123.57.232.188:8080/hyb/";//测试
+
 //        public static final String URL_pay = "http://47.93.79.174:9002/hyb/";//预上线
 //        public static final String URL_pay = "http://192.168.1.115:9999/hyb/";//凯旋
 //        public static final String URL_pay = "http://192.168.1.112:7778/hyb/";//杨建
@@ -299,6 +309,69 @@ public final class Config {
         public static final String yue_change = base + "get/merchantBalanceChangeH5?pkmuser=";
         public static final String yu_e_bao_can = base + "post/balanceInvestCan";
         public static final String yu_e_bao_index = base + "post/balanceInvestIndex";
+
+
+        /**********************************智慧尚峰 start*********************************************/
+        /**
+         * 首页菜单
+         */
+        public static String MENU_URL = base + "shangfeng/applicationConfig/getApplication";
+
+        /**
+         * 生活服务
+         */
+        public static String LIFE_SERVICE = base + "shangfeng/applicationConfig/findApplicationConfigByForm";
+
+        /**
+         * 城市列表
+         */
+        public static String SELECT_CITY_URL = base + "shangfeng/city/findAllCity";
+        /**
+         * 商家列表
+         */
+        public static String MERCHANTS_URL = base + "shangfeng/hybMerchant/findAllHybMerchant";
+
+        /**
+         * 商家详情
+         */
+        public static String MERCHANT_PARTICULARS_URL = base + "shangfeng/hybMerchant/getMerchantDetailsById";
+        /**
+         * 获取最近一笔未完成订单
+         */
+        public static final String LAST_ORDER_URL = base + "shangfeng/order/v1/light/last";
+        /**
+         * 预约下单
+         */
+        public static final String BOOKING_ORDER_URL = base + "shangfeng/order/v1/light/pre";
+        /**
+         * 取消订单
+         */
+        public static final String CANCEL_ORDER_URL = base + "shangfeng/order/v1/light/cancel";
+        /**
+         * 查询单个服务
+         */
+        public static String GETONEMENU = base + "shangfeng/applicationConfig/getOneMenu";
+
+        public static String OrderRecordList = shangfengh5 + "/order/index.html#/myorder?syscode=hyb";
+
+        public static String BusinessHistory = shangfengh5 + "/purchases.html?syscode=hyb";
+
+        public static String PAY_TYPE = base + "shangfeng/order/v1/paytype";
+
+        public static String SCANQCODE_DISCOUNT = base + "shangfeng/order/v1/discount";
+
+//        public static String UpdateSCANPAY = base + "shangfeng/order/v1/update/scan/status";
+
+        public static String ORDERADD = base + "shangfeng/order/v1/add";
+
+        public static String TOPAY = base + "shangfeng/order/v1/toPay";
+        /**
+         * 系统消息
+         */
+        public static String MESSAGES_URL = base + "shangfeng/hybCtPlatformJpushRecord/findAllByUserId";
+
+        /**********************************智慧尚峰 end*********************************************/
+
     }
 
 

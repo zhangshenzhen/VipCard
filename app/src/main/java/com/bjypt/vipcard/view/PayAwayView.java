@@ -28,7 +28,6 @@ import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.LifeServireH5Activity;
 import com.bjypt.vipcard.activity.NewTopupWayActivity;
-import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.PayDealTypeEnum;
@@ -95,7 +94,7 @@ public class PayAwayView extends LinearLayout implements VolleyCallBack<String> 
     private boolean preOrder = false; //是否已经预下单
     private AnimationDrawable drawable;
     private String orderId;
-    private BaseActivity activity;
+    private Activity activity;
     private LoadingPageDialog loadingPageDialog;
 
     public static int WXPAY_FLAG = 1; // 微信支付标志
@@ -567,7 +566,7 @@ public class PayAwayView extends LinearLayout implements VolleyCallBack<String> 
     }
 
 
-    public void setActivity(BaseActivity activity) {
+    public void setActivity(Activity activity) {
         this.activity = activity;
     }
 

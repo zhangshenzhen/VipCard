@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:even="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <com.even.numbermorphview.TimerView
+        android:id="@+id/numberMorphView1"
+        android:layout_width="25dp"
+        android:layout_height="45dp"
+        android:visibility="gone"
+        even:numColor="@color/black_6"
+        even:strokeCap="BUTT"
+        even:strokeJoin="MITER"
+        android:textColor="@color/black_6"
+        android:textSize="16sp"
+        even:strokeWidth="2dp"/>
+
+    <com.even.numbermorphview.TimerView
+        android:id="@+id/numberMorphView0"
+        android:layout_width="25dp"
+        android:layout_height="45dp"
+        even:numColor="@color/black_6"
+        even:strokeCap="BUTT"
+        even:strokeJoin="MITER"
+        android:textColor="@color/black_6"
+        android:textSize="16sp"
+        even:strokeWidth="2dp"
+        />
+</LinearLayout>

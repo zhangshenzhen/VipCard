@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <!--商家详情-->
+        <com.bjypt.vipcard.widget.DropZoomScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--商家大图-->
+                <ImageView
+                    android:id="@+id/iv_merchant_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/merchant_details_error" />
+
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_below="@+id/iv_merchant_photo"
+                    android:background="@color/transparency_color" />
+
+                <!--app:cardCornerRadius="4dp" 圆角弧度-->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cdv_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:layout_alignBottom="@+id/view1"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <com.amap.api.maps.MapView
+                                android:id="@+id/mapView"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="85dp" />
+
+
+                            <ImageButton
+                                android:id="@+id/ibtn_play_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right|center_vertical"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:background="@null"
+                                android:scaleType="fitCenter"
+                                android:src="@mipmap/icon_phone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:layout_alignParentTop="true"
+                            android:orientation="horizontal"
+                            android:background="@color/merchant_details_title_background"
+                            >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10dp"
+                                android:src="@mipmap/icon_location" />
+
+                            <TextView
+                                android:id="@+id/tv_location_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_merchant_title"
+                                android:layout_marginLeft="8dp"
+                                android:text="南京市雨花台"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <include
+                    layout="@layout/merchant_discounts_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cdv_head" />
+            </RelativeLayout>
+
+        </com.bjypt.vipcard.widget.DropZoomScrollView>
+
+
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginBottom="35dp"-->
+            <!--android:layout_marginRight="40dp"-->
+            <!--android:src="@mipmap/ewm_hint" />-->
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_booking_order"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="@string/booking_order"
+        android:textSize="16sp"
+        android:textColor="@color/white_text"
+        android:background="@color/app_theme_color"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        />
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:background="@mipmap/ewm_background">-->
+
+    <!--</RelativeLayout>-->
+
+    <!--&lt;!&ndash;扫码&ndash;&gt;-->
+    <!--<ImageButton-->
+        <!--android:id="@+id/ibtn_ewm"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:background="@null"-->
+        <!--android:src="@mipmap/icon_ewm" />-->
+
+    <!--标题-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/merchant_details_title_background">
+
+        <View
+            android:id="@+id/statusBarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparency_color"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_below="@+id/statusBarView">
+
+            <ImageButton
+                android:id="@+id/ibtn_back"
+                android:layout_width="44dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:src="@mipmap/icon_black_back" />
+
+            <TextView
+                android:id="@+id/tv_merchant_title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/merchant_title_text"
+                android:textColor="@color/title_text_color"
+                android:textSize="16sp" />
+
+            <!--收藏 暂时隐藏-->
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="80dp"
+                android:background="@null"
+                android:src="@drawable/select_enshrine_btn_background"
+                android:visibility="gone" />
+
+            <!--分享 暂时隐藏-->
+            <ImageButton
+                android:id="@+id/ibtn_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30dp"
+                android:background="@null"
+                android:src="@mipmap/share"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

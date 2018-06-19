@@ -2,6 +2,7 @@ package com.bjypt.vipcard.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.StrictMode;
 import android.support.multidex.MultiDex;
@@ -10,16 +11,25 @@ import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.bjypt.vipcard.activity.shangfeng.util.MapLocationUtil;
+import com.bjypt.vipcard.activity.shangfeng.util.ToastMgr;
 import com.bjypt.vipcard.utils.CustomHurlStack;
+import com.bjypt.vipcard.utils.SsX509TrustManager;
 import com.bjypt.vipcard.wxapi.Constants;
+import com.orhanobut.logger.Logger;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.tencent.smtt.sdk.QbSdk;
 import com.umeng.analytics.MobclickAgent;
+import com.zhy.http.okhttp.OkHttpUtils;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import cn.jpush.android.api.JPushInterface;
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
 
 /**
  * Created by 涂有泽 .
@@ -33,6 +43,7 @@ public class MyApplication extends MultiDexApplication {
     private static MyApplication instance;
     private static Context mContext;
 
+    private MapLocationUtil mapLocationUtil;
 
 
     private boolean is_upgrading; //true: 正在升级  false:服务正常
@@ -40,6 +51,7 @@ public class MyApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         registToWX();
         MultiDex.install(this);
 //        MyException.getInstance().init(getApplicationContext());
@@ -68,6 +80,39 @@ public class MyApplication extends MultiDexApplication {
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);  //初始化
         requestQueue = Volley.newRequestQueue(getApplicationContext(), new CustomHurlStack());
+
+        initOkHttp();
+        initToastMgr();
+    }
+
+    public  MapLocationUtil getMapLocationUtil(){
+        if(mapLocationUtil == null){
+            mapLocationUtil = MapLocationUtil.getInstance(this);
+        }
+        return mapLocationUtil;
+    }
+
+    public void initOkHttp() {
+        File sdcache = getExternalCacheDir();
+        int cacheSize = 10 * 1024 * 1024;
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .sslSocketFactory(SsX509TrustManager.getSSLSocketFactory())
+                .hostnameVerifier(SsX509TrustManager.getHostnameVerifier())
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .cache(new Cache(sdcache.getAbsoluteFile(), cacheSize))
+                .build();
+
+        OkHttpUtils.initClient(okHttpClient);
+    }
+
+    /**
+     * 初始化Toast
+     */
+    private void initToastMgr() {
+        ToastMgr.ToastEnum.builder.init(this);
     }
 
 
@@ -124,6 +169,15 @@ public class MyApplication extends MultiDexApplication {
         return mContext;
     }
 
+    public static String getResourceString(int stringId) {
+        String str = "";
+        try {
+            str = mContext.getResources().getString(stringId);
+        } catch (Resources.NotFoundException e) {
+            Logger.e(e, "找不到指定资源", stringId);
+        }
+        return str;
+    }
 
     /**
      * true: 正在升级  false:服务正常

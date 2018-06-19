@@ -52,6 +52,7 @@
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <!-- Required 自定义用来收发消息的相关权限 -->
     <permission
@@ -121,7 +122,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="b80143ced2385289f9eb334701a7662b"
+            android:value="b269d1e06671fcac458a5276fd109e9f"
             />
         <!-- android:value="b269d1e06671fcac458a5276fd109e9f" -->
         <!-- wl b269d1e06671fcac458a5276fd109e9f    7d3bb27c9a7c15bfe8f389d612fbe058           8bd619b747abf7e164d18916792c0529 -->
@@ -996,6 +997,72 @@
         <activity android:name=".activity.FinancingNewActivity"
             android:theme="@style/AppTheme.financing"
             />
+       <!-- *********************************** shangfeng ui start **********************************-->
+        <activity
+            android:name=".activity.shangfeng.primary.main.ui.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Othere_AppTheme"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+            <intent-filter>
+                <action android:name="com.bjypt.vipcard.shangfeng.action.MAIN" />
+                <category android:name="com.bjypt.vipcard" />
+            </intent-filter>
+        </activity>
+        <!-- 系统消息页面 -->
+        <activity
+            android:name=".activity.shangfeng.primary.systemmessages.ui.SystemMessagesActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Othere_AppTheme" />
+        <!--商家类别列表-->
+        <activity
+            android:name=".activity.shangfeng.primary.merchant.ui.MerchantActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Othere_AppTheme" />
+
+        <!-- 商家详情页面 -->
+        <activity
+            android:name=".activity.shangfeng.primary.merchant.ui.MerchantDetailsActivity"
+            android:launchMode="singleTask"
+
+            android:screenOrientation="portrait"
+            android:theme="@style/Merchant_AppTheme" />
+        <!-- 生活服务页面 -->
+        <activity
+            android:name=".activity.shangfeng.primary.lifeservice.ui.LifeServiceActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/Othere_AppTheme" />
+        <!-- 扫码支付页面 -->
+        <activity
+            android:name=".activity.shangfeng.primary.pay.ScanPayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Othere_AppTheme" />
+
+        <activity
+            android:name=".activity.shangfeng.primary.pay.H5PayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Othere_AppTheme" />
+
+        <activity
+            android:name=".activity.shangfeng.primary.commonweb.CommonWebActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Othere_AppTheme" />
+
+        <!-- 选择城市列表 -->
+        <activity
+            android:name=".activity.shangfeng.primary.selectCity.ui.SelectCityActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Othere_AppTheme"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity android:name=".activity.shangfeng.primary.capture.MyCaptureActivity"   android:screenOrientation="portrait"
+            android:theme="@style/Othere_AppTheme"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- *********************************** shangfeng ui end **********************************-->
     </application>
 
 </manifest>

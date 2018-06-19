@@ -27,6 +27,7 @@ import com.bjypt.vipcard.fragment.FinancingProjectFragment;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.gallerypick.utils.SystemBarTintManager;
 import com.google.gson.JsonParser;
+import com.orhanobut.logger.Logger;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -113,46 +114,22 @@ public class FinancingNewActivity extends BaseFraActivity implements VolleyCallB
                 FragmentManager fm = getSupportFragmentManager();
                 FragmentTransaction transaction = fm.beginTransaction();
                 switch (i) {
-                    case 0:
+                    case 1:
                         if (financingProjectFragment == null) {
                             financingProjectFragment = new FinancingProjectFragment();
                         }
                         transaction.replace(R.id.id_content, financingProjectFragment);
                         break;
-                    case 1:
+                    case 2:
                         if (financingCalcFragment == null) {
                             financingCalcFragment = new FinancingCalcFragment();
                         }
                         transaction.replace(R.id.id_content, financingCalcFragment);
 
                         break;
-                    case 2:
+                    case 0:
 
-                        if (financingAccountFragment == null) {
-                            financingAccountFragment = new FinancingAccountFragment();
-                            Bundle bundle = new Bundle();
-                            bundle.putString("pkmuser", pkmuser);
-                            bundle.putString("appCan", canApp);
-                            financingAccountFragment.setArguments(bundle);
-                            Logger.e("pkmuser："+pkmuser);
-                            financingAccountFragment.setOnTabClick(new FinancingAccountFragment.TabClickListener() {
-                                @Override
-                                public void showHidden(int state) {
-                                    // 0:显示  1.隐藏
-                                    switch (state){
-                                        case 0:
-                                            tv_title.setVisibility(View.VISIBLE);
-                                            tv.setVisibility(View.VISIBLE);
-                                            break;
-                                        case 1:
-                                            tv_title.setVisibility(View.GONE);
-                                            tv.setVisibility(View.GONE);
-                                            break;
-                                    }
-                                }
-                            });
-                        }
-                        transaction.replace(R.id.id_content, financingAccountFragment);
+                        gotoAccountFragment(transaction);
 
                         break;
                     default:
@@ -183,17 +160,45 @@ public class FinancingNewActivity extends BaseFraActivity implements VolleyCallB
         //setTitle("投资理财");
     }
 
+    private void gotoAccountFragment(FragmentTransaction transaction) {
+        if (financingAccountFragment == null) {
+            financingAccountFragment = new FinancingAccountFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("pkmuser", pkmuser);
+            bundle.putString("appCan", canApp);
+            financingAccountFragment.setArguments(bundle);
+            Logger.e("pkmuser："+pkmuser);
+            financingAccountFragment.setOnTabClick(new FinancingAccountFragment.TabClickListener() {
+                @Override
+                public void showHidden(int state) {
+                    // 0:显示  1.隐藏
+                    switch (state){
+                        case 0:
+                            tv_title.setVisibility(View.VISIBLE);
+                            tv.setVisibility(View.VISIBLE);
+                            break;
+                        case 1:
+                            tv_title.setVisibility(View.GONE);
+                            tv.setVisibility(View.GONE);
+                            break;
+                    }
+                }
+            });
+        }
+        transaction.replace(R.id.id_content, financingAccountFragment);
+    }
+
 
     @Override
     public void afterInitView() {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
 
-        if (financingProjectFragment == null) {
-            financingProjectFragment = new FinancingProjectFragment();
-        }
-        transaction.replace(R.id.id_content, financingProjectFragment);
-
+//        if (financingAccountFragment == null) {
+//            financingAccountFragment = new FinancingAccountFragment();
+//        }
+//        transaction.replace(R.id.id_content, financingAccountFragment);
+        gotoAccountFragment(transaction);
         // 事务提交
         transaction.commit();
         Map<String, String> params = new HashMap<>();

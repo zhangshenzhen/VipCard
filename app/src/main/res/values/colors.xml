@@ -183,4 +183,50 @@
     <!--理财中心主题色-->
     <color name="financing_color">#EC584E</color>
 
+
+    <!--加载Dialog背景图-->
+    <color name="load_background_color">#EBEBFF</color>
+    <!--Toast背景色-->
+    <color name="toast_background_color">#646464</color>
+    <color name="white_text">#FFF</color>
+    <color name="black_7">#777777</color>
+    <color name="black_8">#888888</color>
+    <color name="black_9">#999999</color>
+    <color name="black_56">#565656</color>
+    <color name="title_text_color">#333333</color>
+    <color name="black_38">#383838</color>
+    <color name="black_6c">#6C6C6C</color>
+    <color name="black_67">#676767</color>
+    <color name="main_tool_background">#99000000</color>
+    <color name="yellow_5">#FFC551</color>
+    <color name="main_hint_text_color">#A3FFFFFF</color>
+    <color name="select_city_line">#EEEEEE</color>
+    <color name="select_city_bar_text">#707070</color>
+    <color name="gray_5c">#5c5c5c</color>
+    <color name="gray_64">#CC646464</color>
+    <color name="select_city_item_background">#FBFBFB</color>
+    <color name="app_theme_text_color">#9BA2FD</color>
+    <!--商家列表搜索框内按钮背景色-->
+    <color name="search_color">#F5F6FF</color>
+    <!--商家详情Title 白色透明度20%-->
+    <color name="merchant_details_title_background">#CCFFFFFF</color>
+    <color name="white_99">#99FFFFFF</color>
+
+    <color name="merchant_line">#989899</color>
+    <color name="merchant_gray">#818182</color>
+    <color name="merchant_item_text_color">#666666</color>
+    <color name="red">#E80000</color>
+    <!-- 去抵扣 抵扣券字体颜色-->
+    <color name="deduction_discount_red">#f48481</color>
+    <color name="deduction__warm_prompt">#ffc551</color>
+    <color name="deduction__warm_prompt_bg">#faf7ef</color>
+    <color name="white_F3">#F3F3F3</color>
+    <color name="gray_abc_background">#FAFBFC</color>
+    <!--网络请求提示信息颜色-->
+    <color name="network_text_hint">#4a4a4a</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#9BA2FD</color>
+    <!--首页底部文字未选中的颜色-->
+    <color name="main_unchecked_text_color">#999999</color>
+
 </resources>

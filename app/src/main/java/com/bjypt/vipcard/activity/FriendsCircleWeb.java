@@ -9,6 +9,9 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -30,11 +33,8 @@ import com.bjypt.vipcard.utils.ShareSDKUtil;
 import com.bjypt.vipcard.view.LoadingPageDialog;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.widget.ShareSelelctPopupWindow;
-import com.just.agentwebX5.AgentWeb;
+import com.just.agentweb.AgentWeb;
 import com.sinia.orderlang.utils.StringUtil;
-import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONArray;
@@ -91,7 +91,6 @@ public class FriendsCircleWeb extends BaseActivity implements PlatformActionList
         mAgentWeb = AgentWeb.with(this)//传入Activity or Fragment
                 .setAgentWebParent(ll_my_ll, new LinearLayout.LayoutParams(-1, -1))//传入AgentWeb 的父控件 ，如果父控件为 RelativeLayout ， 那么第二参数需要传入 RelativeLayout.LayoutParams ,第一个参数和第二个参数应该对应。
                 .useDefaultIndicator()// 使用默认进度条
-                .defaultProgressBarColor() // 使用默认进度条颜色
                 .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(mWebViewClient)
                 .createAgentWeb()//
