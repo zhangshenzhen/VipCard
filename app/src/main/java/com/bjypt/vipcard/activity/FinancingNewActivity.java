@@ -191,17 +191,13 @@ public class FinancingNewActivity extends BaseFraActivity implements VolleyCallB
 
     @Override
     public void afterInitView() {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
+        Map<String, String> params = new HashMap<>();
 
 //        if (financingAccountFragment == null) {
 //            financingAccountFragment = new FinancingAccountFragment();
 //        }
 //        transaction.replace(R.id.id_content, financingAccountFragment);
-        gotoAccountFragment(transaction);
-        // 事务提交
-        transaction.commit();
-        Map<String, String> params = new HashMap<>();
+
 //        params.put("pkregister", getFromSharePreference(Config.userConfig.pkregister));
 //        params.put("pkmuser", pkmuser);
         Wethod.httpPost(this, 1120, Config.web.yu_e_bao_can, params, this);
@@ -223,6 +219,12 @@ public class FinancingNewActivity extends BaseFraActivity implements VolleyCallB
             case 1120:
                 String data = new JsonParser().parse(result.toString()).getAsJsonObject().getAsJsonPrimitive("resultData").getAsString();
                 canApp = data;
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction transaction = fm.beginTransaction();
+                gotoAccountFragment(transaction);
+                // 事务提交
+                transaction.commit();
+
                 break;
 
         }

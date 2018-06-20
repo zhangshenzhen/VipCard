@@ -278,6 +278,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, AMa
             SystemMessagesActivity.callActivity(this);
         }
 
+        initBackFinish();
+
     }
 
     @Override

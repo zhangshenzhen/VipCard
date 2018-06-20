@@ -23,10 +23,9 @@ public final class Config {
 
 
         public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
-        public static final String shangfengh5= "http://47.96.105.168:19094/";
+//        public static final String shangfengh5= "http://47.96.105.168:19094/";
 
-//        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
-//        public static final String base = "http://120.55.199.24:8080/hyb/ws/";      //正式服务器地址
+        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
 //        public static final String hyb_url = "http://47.93.79.174:9002/hyb/";       //预上线服务器地址
 //        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //59地址
 
