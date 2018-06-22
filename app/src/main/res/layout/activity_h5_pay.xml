@@ -70,12 +70,12 @@
             android:background="@mipmap/right_bg" />
     </LinearLayout>
 
-    <com.shangfeng.yiyou.widget.PayTypeView
+    <com.bjypt.vipcard.activity.shangfeng.widget.PayTypeView
         android:id="@+id/pay_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.shangfeng.yiyou.widget.PayTypeView>
+    </com.bjypt.vipcard.activity.shangfeng.widget.PayTypeView>
     <Button
         android:id="@+id/btn_ok_pay"
         style="?android:attr/borderlessButtonStyle"
