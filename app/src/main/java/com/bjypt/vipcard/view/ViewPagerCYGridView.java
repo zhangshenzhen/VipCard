@@ -18,8 +18,6 @@ import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.config.AppConfig;
 import com.bjypt.vipcard.model.HomeASCategoryBean;
 import com.bjypt.vipcard.model.HomeASCategoryBeanList;
-import com.bjypt.vipcard.model.NewCategoryBean;
-import com.bjypt.vipcard.model.NewCategoryBeanList;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -112,7 +110,7 @@ public class ViewPagerCYGridView {
 
     public View roundview(int height){
         RoundImageView view = new RoundImageView(context);
-        view.setImageResource(R.mipmap.ic_launcher);
+        view.setImageResource(R.mipmap.app_ic_launcher);
 //        View view = new View(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(height,height);
         params.setMargins(10, 0, 0, 0);//设置左边margin为10

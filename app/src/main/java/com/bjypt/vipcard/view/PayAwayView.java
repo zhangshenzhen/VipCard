@@ -526,9 +526,9 @@ public class PayAwayView extends LinearLayout implements VolleyCallBack<String> 
         } else if (code == PayTypeEnum.Wangyin.getCode()) {
             return R.mipmap.unpay_image;
         } else if (code == PayTypeEnum.ShangjiaYuE.getCode()) {
-            return R.mipmap.ic_launcher;
+            return R.mipmap.app_ic_launcher;
         } else if (code == PayTypeEnum.Pingtai.getCode()) {
-            return R.mipmap.ic_launcher;
+            return R.mipmap.app_ic_launcher;
         } else {
             return R.mipmap.bank_card_image;
         }

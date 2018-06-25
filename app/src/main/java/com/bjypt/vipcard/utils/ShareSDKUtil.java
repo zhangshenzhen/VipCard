@@ -45,7 +45,7 @@ public class ShareSDKUtil {
         sp.setTitle("繁城都市分享有礼");
         // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
         sp.setTitleUrl(mQRCodeURL);
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);
+        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.app_ic_launcher);
         sp.setImageData(bitmap);
         sp.setComment("点击下载繁城app，加油95折，分享朋友圈，你可得到朋友加油1%的收益");
         sp.setText("点击下载繁城app，加油95折，分享朋友圈，你可得到朋友加油1%的收益");
@@ -72,7 +72,7 @@ public class ShareSDKUtil {
         sp.setTitle(title);
         // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
         sp.setTitleUrl(url);
-//        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);
+//        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.app_ic_launcher);
 //        sp.setImageData(bitmap);
         if (StringUtil.isNotEmpty(picUrl)) {
             sp.setImageUrl(picUrl);
@@ -104,7 +104,7 @@ public class ShareSDKUtil {
         sp.setTitle(title);
         // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
         sp.setTitleUrl(url);
-//        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);
+//        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.app_ic_launcher);
 //        sp.setImageData(bitmap);
         if (StringUtil.isNotEmpty(picUrl)) {
             sp.setImageUrl(picUrl);
@@ -141,7 +141,7 @@ public class ShareSDKUtil {
         wxMediaMessage.title = "繁城都市分享有礼";
         wxMediaMessage.description = "点击下载繁城app，加油95折，分享朋友圈，你可得到朋友加油1%的收益";
         wxMediaMessage.thumbData =
-                Util.bmpToByteArray(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher), true);
+                Util.bmpToByteArray(BitmapFactory.decodeResource(context.getResources(), R.mipmap.app_ic_launcher), true);
         // 构造一个Req
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         req.transaction = String.valueOf(System.currentTimeMillis());
@@ -225,7 +225,7 @@ public class ShareSDKUtil {
 //        if (filepath != null) {
 //            sp.setImagePath(filepath);//确保SDcard下面存在此张图片
 //        }
-        sp.setImageData(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher));
+        sp.setImageData(BitmapFactory.decodeResource(context.getResources(), R.mipmap.app_ic_launcher));
 //        sp.setImageUrl(mQRCodeURL);
         // url仅在微信（包括好友和朋友圈）中使用
 //        sp.setUrl(mQRCodeURL);

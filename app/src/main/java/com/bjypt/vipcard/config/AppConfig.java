@@ -101,8 +101,8 @@ public class AppConfig {
             .cacheInMemory(true).imageScaleType(ImageScaleType.IN_SAMPLE_INT)
             .cacheOnDisk(true)
             .bitmapConfig(android.graphics.Bitmap.Config.RGB_565)
-            .showStubImage(R.mipmap.ic_launcher) // 设置图片下载期间显示的图片
-            .showImageForEmptyUri(R.mipmap.ic_launcher) // 设置图片Uri为空或是错误的时候显示的图片
+            .showStubImage(R.mipmap.app_ic_launcher) // 设置图片下载期间显示的图片
+            .showImageForEmptyUri(R.mipmap.app_ic_launcher) // 设置图片Uri为空或是错误的时候显示的图片
             .showImageOnFail(R.mipmap.ad_bg) // 设置图片加载或解码过程中发生错误显示的图片
             .build();
 

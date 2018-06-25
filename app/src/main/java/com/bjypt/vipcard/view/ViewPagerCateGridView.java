@@ -1,10 +1,8 @@
 package com.bjypt.vipcard.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +16,6 @@ import android.widget.TextView;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.config.AppConfig;
-import com.bjypt.vipcard.model.HomeTypeBean;
-import com.bjypt.vipcard.model.HomeTypeBeanList;
 import com.bjypt.vipcard.model.NewCategoryBean;
 import com.bjypt.vipcard.model.NewCategoryBeanList;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -125,7 +121,7 @@ public class ViewPagerCateGridView {
 
     public View roundview(int height) {
         RoundImageView view = new RoundImageView(context);
-        view.setImageResource(R.mipmap.ic_launcher);
+        view.setImageResource(R.mipmap.app_ic_launcher);
 //        View view = new View(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(height, height);
         params.setMargins(10, 0, 0, 0);//设置左边margin为10

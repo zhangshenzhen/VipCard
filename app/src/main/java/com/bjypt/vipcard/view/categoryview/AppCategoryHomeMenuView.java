@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +20,6 @@ import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.config.AppConfig;
 import com.bjypt.vipcard.model.AppCategoryBean;
 import com.bjypt.vipcard.model.AppCategroyResultDataBean;
-import com.bjypt.vipcard.model.HomeTypeBean;
-import com.bjypt.vipcard.model.LifeHuiBeanList;
-import com.bjypt.vipcard.receiver.Logger;
 import com.bjypt.vipcard.utils.DensityUtil;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
@@ -31,7 +27,6 @@ import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.view.RoundImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.recker.flybanner.FlyBanner;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -194,7 +189,7 @@ public class AppCategoryHomeMenuView extends AppCategoryContextView {
 
     public View roundview(int height) {
         RoundImageView view = new RoundImageView(getContext());
-        view.setImageResource(R.mipmap.ic_launcher);
+        view.setImageResource(R.mipmap.app_ic_launcher);
 //        View view = new View(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(height, height);
         params.setMargins(10, 0, 0, 0);//设置左边margin为10

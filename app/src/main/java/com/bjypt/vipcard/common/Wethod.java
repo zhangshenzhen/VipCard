@@ -12,7 +12,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
@@ -39,9 +38,7 @@ import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.utils.SsX509TrustManager;
 import com.bjypt.vipcard.view.LoadingPageDialog;
-import com.bjypt.vipcard.view.MyDialog;
 import com.bjypt.vipcard.view.ToastUtil;
-import com.bjypt.vipcard.widget.MyDialogAD;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -63,9 +60,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.UUID;
-
-import static com.bjypt.vipcard.config.Defaultcontent.url;
 
 /**
  * Created by 涂有泽 .

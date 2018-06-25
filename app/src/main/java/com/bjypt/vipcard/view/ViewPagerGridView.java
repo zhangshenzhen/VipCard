@@ -1,12 +1,8 @@
 package com.bjypt.vipcard.view;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,7 +109,7 @@ public class ViewPagerGridView {
 
     public View roundview(int height){
         RoundImageView view = new RoundImageView(context);
-        view.setImageResource(R.mipmap.ic_launcher);
+        view.setImageResource(R.mipmap.app_ic_launcher);
 //        View view = new View(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(height,height);
         params.setMargins(10, 0, 0, 0);//设置左边margin为10

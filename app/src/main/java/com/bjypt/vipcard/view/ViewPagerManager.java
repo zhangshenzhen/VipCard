@@ -218,7 +218,7 @@ public class ViewPagerManager {
         params.setMargins(10, 0, 0, 0);//设置左边margin为10
         view.setLayoutParams(params);
         //        view.setBackgroundColor(color);
-        view.setImageResource(R.mipmap.ic_launcher);
+        view.setImageResource(R.mipmap.app_ic_launcher);
         return view;
     }
 

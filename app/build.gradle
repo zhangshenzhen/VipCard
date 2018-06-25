@@ -11,8 +11,8 @@ android {
         applicationId "com.bjypt.vipcard"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 83
-        versionName "4.7.1"
+        versionCode 86
+        versionName "4.7.4"
         multiDexEnabled true
 
         ndk {

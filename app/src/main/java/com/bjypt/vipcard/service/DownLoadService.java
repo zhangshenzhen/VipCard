@@ -4,8 +4,6 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
-import android.content.pm.PackageInstaller;
-import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +16,6 @@ import android.widget.Toast;
 
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.SystemSettingActivity;
-import com.bjypt.vipcard.fragment.ManyFragment;
 import com.bjypt.vipcard.utils.FileUtil;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 
@@ -167,20 +164,20 @@ public class DownLoadService extends Service {
             //先设定RemoteViews
             view = new RemoteViews(getPackageName(), R.layout.layout_notification);
             //设置对应IMAGEVIEW的ID的资源图片
-            view.setImageViewResource(R.id.iv, R.mipmap.ic_launcher);
+            view.setImageViewResource(R.id.iv, R.mipmap.app_ic_launcher);
             view.setTextViewText(R.id.tv, 0 + "%");
             view.setProgressBar(R.id.pro, 100, 0, false);
 
             mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             mBuilder = new NotificationCompat.Builder(this);
-            notification = new Notification(R.mipmap.ic_launcher, "正在下载", System.currentTimeMillis());
+            notification = new Notification(R.mipmap.app_ic_launcher, "正在下载", System.currentTimeMillis());
             mBuilder.setContentTitle("")//设置通知栏标题
                     .setContentText("")
                     .setTicker("开始下载") //通知首次出现在通知栏，带上升动画效果的
                     .setPriority(Notification.PRIORITY_MAX)//设置该通知优先级
                     .setAutoCancel(true)//设置这个标志当用户单击面板就可以让通知将自动取消
                     .setOngoing(false)//ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
-                    .setSmallIcon(R.mipmap.ic_launcher);//设置通知小ICON
+                    .setSmallIcon(R.mipmap.app_ic_launcher);//设置通知小ICON
 
             mBuilder.setContent(view);
         }

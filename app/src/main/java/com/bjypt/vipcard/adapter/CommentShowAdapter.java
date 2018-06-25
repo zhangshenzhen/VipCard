@@ -51,7 +51,7 @@ public class CommentShowAdapter extends MyBaseAdapter<CommentData>{
 
         holder = (ViewHolder)convertView.getTag();
 //        if("".equals(list.get(position).getPosition())){
-//            holder.imageView.setImageResource(R.drawable.ic_launcher);
+//            holder.imageView.setImageResource(R.drawable.app_ic_launcher);
 //        }
 //        ImageLoader.getInstance().displayImage(list.get(position).getPosition(), holder.imageView);
 

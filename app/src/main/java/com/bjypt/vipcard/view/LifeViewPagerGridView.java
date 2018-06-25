@@ -126,7 +126,7 @@ public class LifeViewPagerGridView {
 
     public View roundview(int height) {
         RoundImageView view = new RoundImageView(context);
-        view.setImageResource(R.mipmap.ic_launcher);
+        view.setImageResource(R.mipmap.app_ic_launcher);
 //        View view = new View(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(height, height);
         params.setMargins(10, 0, 0, 0);//设置左边margin为10
