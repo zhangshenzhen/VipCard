@@ -24,7 +24,7 @@
                 android:id="@+id/iv_cy_gradview_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/app_ic_launcher" />
         </LinearLayout>
 
         <TextView

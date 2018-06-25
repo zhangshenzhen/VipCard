@@ -17,7 +17,7 @@
             android:layout_height="22dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/app_ic_launcher"/>
 
         <TextView
             android:id="@+id/tv_pay_name"
