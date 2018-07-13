@@ -3,11 +3,13 @@ package com.bjypt.vipcard.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.http.SslError;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -96,6 +98,13 @@ public class BillDetailsActivity extends BaseActivity implements VolleyCallBack 
         ws.setSupportMultipleWindows(true);
         feePointWeb.requestFocus();
         feePointWeb.getSettings().setJavaScriptEnabled(true);//添加对JavaScript支持
+        feePointWeb.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed();
+            }
+        });
        /* Map<String, String> params = new HashMap<>();
         params.put("pkregister", getFromSharePreference(Config.userConfig.pkregister));
         Wethod.httpPost(this,1, Config.web.system_infomatiob, params, this);*/

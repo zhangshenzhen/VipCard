@@ -8,16 +8,16 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.activity.LifeServireH5Activity;
-import com.bjypt.vipcard.activity.LocationNewsActivity;
 import com.bjypt.vipcard.activity.LoginActivity;
+import com.bjypt.vipcard.activity.shangfeng.common.enums.UserInformationFields;
+import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
+import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.CommonWebActivity;
+import com.bjypt.vipcard.activity.shangfeng.util.SharedPreferencesUtils;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
@@ -25,7 +25,6 @@ import com.bjypt.vipcard.model.AppCategoryBean;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.view.ToastUtil;
-import com.sinia.orderlang.utils.SharedPreferencesUtils;
 import com.sinia.orderlang.utils.StringUtil;
 
 import org.json.JSONArray;
@@ -33,7 +32,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -147,6 +145,7 @@ public abstract class AppCategoryContextView extends LinearLayout implements Vol
                         url = url + "pkregister=";
                     }
                     url = url + SharedPreferenceUtils.getFromSharedPreference(getContext(), Config.userConfig.pkregister);
+                    url = url + "&phoneno=" + SharedPreferencesUtils.get(UserInformationFields.PHONE_NUMBER, "");
                 }
                 if(appCategoryBean.getLink_url().contains("alipays://platformapi")){
                     try {
@@ -158,11 +157,17 @@ public abstract class AppCategoryContextView extends LinearLayout implements Vol
                         ToastUtil.showToast(getContext(), "该功能需跳转支付宝");
                     }
                 }
-                Intent intent = new Intent(getContext(), LifeServireH5Activity.class);
-                intent.putExtra("life_url", url);
-                intent.putExtra("isLogin", "N");
-                intent.putExtra("serviceName", appCategoryBean.getApp_name());
-                getContext().startActivity(intent);
+                if(url.startsWith(Config.web.shangfengh5)){
+                    CommonWebData commonWebData = new CommonWebData(url, appCategoryBean.getApp_name());
+                    CommonWebActivity.callActivity(getContext(), commonWebData );
+                }else{
+                    Intent intent = new Intent(getContext(), LifeServireH5Activity.class);
+                    intent.putExtra("life_url", url);
+                    intent.putExtra("isLogin", "N");
+                    intent.putExtra("serviceName", appCategoryBean.getApp_name());
+                    getContext().startActivity(intent);
+                }
+
             } else if (appCategoryBean.getLink_type() == AppCategoryBean.ActionTypeEnum.Native.getValue()) {
                 if (StringUtil.isEmpty(appCategoryBean.getAndroid_native_url())) {
                     ToastUtil.showToast(getContext(), "暂未开通");

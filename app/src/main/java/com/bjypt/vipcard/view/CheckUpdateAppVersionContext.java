@@ -1,20 +1,17 @@
 package com.bjypt.vipcard.view;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,7 +20,6 @@ import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
@@ -31,10 +27,10 @@ import com.bjypt.vipcard.adapter.VersionInfoAdapter;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
-import com.bjypt.vipcard.fragment.NewHomeFrag;
 import com.bjypt.vipcard.model.DownLoadBean;
 import com.bjypt.vipcard.model.DownLoadResultBean;
 import com.bjypt.vipcard.service.DownLoadService;
+import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.orhanobut.logger.Logger;
 import com.sinia.orderlang.utils.AppInfoUtil;
@@ -100,12 +96,7 @@ public class CheckUpdateAppVersionContext implements VolleyCallBack {
         rl_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                flag = false;
-                if (myBinder != null) {
-                    myBinder.setFlags(flag);
-                }
-                unBind();
-                popupWindow.dismiss();
+                cancelUpgrade("取消下载");
 
             }
         });
@@ -128,7 +119,7 @@ public class CheckUpdateAppVersionContext implements VolleyCallBack {
                     } else {
                         flag = true;
                         //开始下载
-                        myBinder.setFlags(flag);
+                        myBinder.setFlags(flag,"开始下载");
                         tv_version.setText("正在准备资源...");
                         myBinder.startdownLoad(downLoadResultBean.getUrl());
                     }
@@ -138,6 +129,15 @@ public class CheckUpdateAppVersionContext implements VolleyCallBack {
             //            }
         });
         popupWindow.showAtLocation(toParentLocation, Gravity.BOTTOM, 0, 0);
+    }
+
+    private void cancelUpgrade(String msg) {
+        flag = false;
+        if (myBinder != null) {
+            myBinder.setFlags(flag, msg);
+        }
+        unBind();
+        popupWindow.dismiss();
     }
 
     private void unBind() {
@@ -170,6 +170,13 @@ public class CheckUpdateAppVersionContext implements VolleyCallBack {
         public void onReceive(Context context, Intent intent) {
 
             if (intent.getAction().equals(RECIVER_ACTIONS)) {
+
+                boolean cancel_download =  intent.getBooleanExtra("cancel_download", false);
+                LogUtil.debugPrint("DownLoadReciver:" + cancel_download);
+                if(cancel_download){
+                    cancelUpgrade("网络不稳定，请检查网络后重新升级");
+                    return;
+                }
                 int size = Integer.parseInt(intent.getStringExtra("size"));
                 int numRead = Integer.parseInt(intent.getStringExtra("numRead"));
                 progress = numRead / (size / 100);
@@ -195,7 +202,7 @@ public class CheckUpdateAppVersionContext implements VolleyCallBack {
 
             flag = true;
             //开始下载
-            myBinder.setFlags(flag);
+            myBinder.setFlags(flag, "开始下载");
             tv_version.setText("正在准备资源...");
             myBinder.startdownLoad(downLoadResultBean.getUrl());
         }

@@ -22,12 +22,12 @@ public final class Config {
         public static final String hus_url = "http://121.196.233.207:9090/hus";   //检测服务器升级服务(正式)
 
 
-        public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
+//        public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
 //        public static final String shangfengh5= "http://47.96.105.168:19094/";
 
         public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
 //        public static final String hyb_url = "http://47.93.79.174:9002/hyb/";       //预上线服务器地址
-//        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //59地址
+        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //59地址
 
         public static final String base = hyb_url + "ws/";
 
@@ -38,22 +38,22 @@ public final class Config {
         public static final String picUrl = "http://img-cn-hangzhou.aliyuncs.com/huiyuanbao/";
 
         //                public static final String URL_pay = "http://120.55.199.24:8080/hyb/";//正式
-        public static final String URL_pay = "http://123.57.232.188:8080/hyb/";//测试
+        public static final String URL_pay = hyb_url;//测试
 
 //        public static final String URL_pay = "http://47.93.79.174:9002/hyb/";//预上线
 //        public static final String URL_pay = "http://192.168.1.115:9999/hyb/";//凯旋
 //        public static final String URL_pay = "http://192.168.1.112:7778/hyb/";//杨建
 
         //                public static  final  String type_base = "http://192.168.1.129:8080/"; //wanglei
-        public static final String type_base = "http://123.57.232.188:8080/";//分类调用H5端口 测试
+//        public static final String type_base = "http://123.57.232.188:8080/";//分类调用H5端口 测试
 //        public static final String type_base = "http://47.93.79.174:9002/";//分类调用H5端口 预上线
-//        public static final String type_base = "https://hybjiekou.com:8443/";   //59地址
+        public static final String type_base = "https://hybjiekou.com:8443/";   //59地址
 
 
         /*生活服务调用以前接口，故使用以前端口号*/
-        public static final String life_base = "http://123.57.232.188:8080/hyb/S01/";//测试服务器地址
+//        public static final String life_base = "http://123.57.232.188:8080/hyb/S01/";//测试服务器地址
 //        public static final String life_base = "http://47.93.79.174:9001/hyb/S01/";//预上线服务器地址
-//        public static final String life_base = "   https://hyb.minszx.com:8443/hyb/S01/";//正式服务器地址
+        public static final String life_base = "   https://hyb.minszx.com:8443/hyb/S01/";//正式服务器地址
 //        public static final String life_base = "https://hybjiekou.com:8443/hyb/S01/";   //59地址
 
         public static final String ImgURL = "http://img-cn-hangzhou.aliyuncs.com/huiyuanbao/";

@@ -2,15 +2,18 @@ package com.bjypt.vipcard.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
@@ -29,7 +32,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.shangfeng.common.LocateResultFields;
+import com.bjypt.vipcard.activity.shangfeng.util.IsJudgeUtils;
 import com.bjypt.vipcard.activity.shangfeng.util.ShangfengUriHelper;
+import com.bjypt.vipcard.activity.shangfeng.util.SharedPreferencesUtils;
+import com.bjypt.vipcard.activity.shangfeng.util.ToastUtils;
+import com.bjypt.vipcard.activity.shangfeng.widget.dialog.BottomDialog;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.h5.h5override.H5OverrideUrlFactory;
@@ -39,6 +47,7 @@ import com.bjypt.vipcard.utils.AppUtil;
 import com.bjypt.vipcard.utils.BroadCastReceiverUtils;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.PhoneCpuId;
+import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.view.LoadingPageDialog;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.google.gson.Gson;
@@ -48,6 +57,7 @@ import com.sinia.orderlang.utils.StringUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -330,13 +340,16 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
         ws.setGeolocationDatabasePath(getFilesDir().getPath());
         h5Web.requestFocus();
         Log.e("killme", "one:" + h5Url);
+        String lat =  SharedPreferenceUtils.getFromSharedPreference(this,Config.userConfig.CURRENT_LATU);
+        String lon = SharedPreferenceUtils.getFromSharedPreference(this,  Config.userConfig.CURRENT_LNGU);
+        String citycode = String.valueOf(SharedPreferencesUtils.get(LocateResultFields.CITY_CODE, Config.DEFAULT_CITY_CODE));
         if (isLogin.equals("N")) {
-            h5Web.loadUrl(h5Url);
+            h5Web.loadUrl(h5Url + "&latitude=" + lat +"&longitude=" + lon +"&citycode=" + citycode);
         } else {
             if (getIntent().hasExtra("isallurl") && getIntent().getStringExtra("isallurl").equals("Y")) {
-                h5Web.loadUrl(h5Url + getFromSharePreference(Config.userConfig.pkregister) + "&versionCode=" + getVersion());
+                h5Web.loadUrl(h5Url + getFromSharePreference(Config.userConfig.pkregister) + "&versionCode=" + getVersion() +"&latitude=" + lat +"&longitude=" + lon +"&citycode=" + citycode);
             } else {
-                h5Web.loadUrl(Config.web.type_base + h5Url + getFromSharePreference(Config.userConfig.pkregister) + "&versionCode=" + getVersion());
+                h5Web.loadUrl(Config.web.type_base + h5Url + getFromSharePreference(Config.userConfig.pkregister) + "&versionCode=" + getVersion() +"&latitude=" + lat +"&longitude=" + lon +"&citycode=" + citycode);
             }
         }
         h5Web.addJavascriptInterface(new AndroidJavaScript(this), "jump");
@@ -480,16 +493,6 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
             return "";
         }
 
-    }
-
-    public class AndroidJavascriptExtends extends AndroidJavaScript {
-        private Context context;
-
-        public AndroidJavascriptExtends(Context context) {
-            super(context);
-            this.context = context;
-        }
-
         @JavascriptInterface
         public String getSign(Object paramsStr) {
             LogUtil.debugPrint(paramsStr.toString());
@@ -498,7 +501,94 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
             Map<String, String> params = new Gson().fromJson(paramsStr.toString(), type);
             return AES.createSign(new TreeMap<String, String>(params));
         }
+
+        @JavascriptInterface
+        public void openMap(final String locations){
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        JSONObject object = new JSONObject(locations);
+                        showDialog(object.getString("address"), object.getString("lat"), object.getString("lon"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
+
+
+        /**
+         * 显示 第三方地图应用
+         */
+        private void showDialog(final String address,final String lat,final String lon) {
+
+//        currentAddress = String.valueOf(SharedPreferencesUtils.get(LocateResultFields.CURRENT_ADDRESS, ""));
+
+            BottomDialog dialog = new BottomDialog(context, "使用高德地图", "使用百度地图");
+            dialog.setClickListener(new BottomDialog.BtnBottomListener() {
+                @Override
+                public void onBtn1Click() {
+                    if (IsJudgeUtils.isAvilible(context, "com.autonavi.minimap")) {
+                        try {
+                            Intent intent = Intent.getIntent("androidamap://navi?sourceApplication= &poiname=" + address + "&lat="
+                                    + lat + "&lon="
+                                    + lon + "&dev=0");
+                            context.startActivity(intent);
+                        } catch (URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        //未安装
+                        //market为路径，id为包名
+                        //显示手机上所有的market商店
+                        ToastUtils.showToast("您尚未安装高德地图");
+                        try {
+                            Uri uri = Uri.parse("market://details?id=com.autonavi.minimap");
+                            Intent mIntent = new Intent(Intent.ACTION_VIEW, uri);
+                            context.startActivity(mIntent);
+                        } catch (ActivityNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onBtn2Click() {
+                    if (IsJudgeUtils.isAvilible(context, "com.baidu.BaiduMap")) {
+                        try {
+//                        String uri = "intent://map/direction?origin=latlng:0,0|name:"+currentAddress+"&destination=" + merchantLBean.getAddress() + "&mode=drivingion=" + "城市" + "&referer=Autohome|GasStation#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end";
+
+                            Intent intent = Intent.getIntent("intent://map/direction?" +
+                                    "destination=latlng:" + lat + ","
+                                    + lon + "|name:" + address +       //终点
+                                    "&mode=driving&" +          //导航路线方式
+                                    "region=北京" +           //
+                                    "&src=慧医#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end");
+                            context.startActivity(intent); //启动调用
+                        } catch (URISyntaxException e) {
+                            Log.e("intent", e.getMessage());
+                        }
+                    } else {
+                        //未安装
+                        //market为路径，id为包名
+                        //显示手机上所有的market商店
+                        ToastUtils.showToast("您尚未安装百度地图");
+                        Uri uri = Uri.parse("market://details?id=com.baidu.BaiduMap");
+                        Intent mIntent = new Intent(Intent.ACTION_VIEW, uri);
+                        context.startActivity(mIntent);
+                    }
+
+                }
+            });
+            dialog.show();
+        }
+
+
+
     }
+
 
     /**
      * 获取版本号

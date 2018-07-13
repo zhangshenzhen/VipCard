@@ -1,16 +1,10 @@
 package com.bjypt.vipcard.utils;
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.View;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -20,25 +14,14 @@ import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
-import com.bjypt.vipcard.activity.CityActivity;
-import com.bjypt.vipcard.activity.FirstActivity;
-import com.bjypt.vipcard.activity.MainActivity;
-import com.bjypt.vipcard.base.MyApplication;
+import com.bjypt.vipcard.activity.shangfeng.common.LocateResultFields;
+import com.bjypt.vipcard.activity.shangfeng.util.SharedPreferencesUtils;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
-import com.bjypt.vipcard.dialog.NormalDialog;
 import com.bjypt.vipcard.model.LocationDingweiBean;
-import com.bjypt.vipcard.view.ToastUtil;
-import com.orhanobut.logger.Logger;
-import com.sinia.orderlang.utils.SharedPreferencesUtils;
 import com.sinia.orderlang.utils.StringUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import static net.tsz.afinal.core.AsyncTask.init;
 
 /**
  * Created by Administrator on 2016/11/17.
@@ -101,10 +84,10 @@ public class GaoDeMapLocation implements AMapLocationListener, PoiSearch.OnPoiSe
         if (null != aMapLocation) {
             if(null != aMapLocation.getCity()) {
                 SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_CITY, aMapLocation.getCity().replace("市", ""));
-                Logger.e("定位回调:" + aMapLocation.getCity().replace("市", ""));
+               LogUtil.debugPrint("定位回调:" + aMapLocation.getCity().replace("市", ""));
                 SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_LATU, aMapLocation.getLatitude() + "");
                 SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_LNGU, aMapLocation.getLongitude() + "");
-                Logger.e("经度 :" + aMapLocation.getLongitude() + " ; 纬度 :" + aMapLocation.getLatitude());
+                LogUtil.debugPrint("经度 :" + aMapLocation.getLongitude() + " ; 纬度 :" + aMapLocation.getLatitude());
             }
 
             Message msg = locationHandler.obtainMessage();
@@ -142,7 +125,7 @@ public class GaoDeMapLocation implements AMapLocationListener, PoiSearch.OnPoiSe
                         }
                     } else {
                         Log.i("gps", "citycode= " + ld.getCityCode() +", " + oldCityCode);
-
+                        SharedPreferencesUtils.put(LocateResultFields.CITY_CODE,ld.getCityCode());
                         if (StringUtil.isNotEmpty(ld.getCityCode()) && StringUtil.isNotEmpty(oldCityCode) && !oldCityCode.equalsIgnoreCase(ld.getCityCode())) {
                             //城市都存在，但是和原来的citycode不一致
                             if (onCityLocationChangeListener != null) {

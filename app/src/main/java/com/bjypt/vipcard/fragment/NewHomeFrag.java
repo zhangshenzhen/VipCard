@@ -9,8 +9,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +25,6 @@ import com.bjypt.vipcard.activity.LoginActivity;
 import com.bjypt.vipcard.activity.MainActivity;
 import com.bjypt.vipcard.adapter.HomeRecyclerViewAdapter;
 import com.bjypt.vipcard.adapter.NewHomeAdapter;
-import com.bjypt.vipcard.adapter.SpaceItemDecoration;
 import com.bjypt.vipcard.base.BaseFrament;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.bean.AnnouncementBean;
@@ -35,8 +32,6 @@ import com.bjypt.vipcard.bean.WeatherBean;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.model.AppCategoryBean;
-import com.bjypt.vipcard.model.AppCategoryLifeTypeBean;
-import com.bjypt.vipcard.model.AppCategroyLifeTypeResultDataBean;
 import com.bjypt.vipcard.model.LifeHuiData;
 import com.bjypt.vipcard.model.XinWenAdBean;
 import com.bjypt.vipcard.model.XinWenData;
@@ -44,8 +39,6 @@ import com.bjypt.vipcard.pulltorefresh.PullToRefreshBase;
 import com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView;
 import com.bjypt.vipcard.utils.BroadCastReceiverUtils;
 import com.bjypt.vipcard.utils.GaoDeMapLocation;
-import com.bjypt.vipcard.utils.LogUtil;
-import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.view.CheckUpdateAppVersionContext;
 import com.bjypt.vipcard.view.TextViewMult;
@@ -53,18 +46,16 @@ import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.view.categoryview.AppCategoryContextView;
 import com.bjypt.vipcard.view.categoryview.AppCategoryHomeBannerView;
 import com.bjypt.vipcard.view.categoryview.AppCategoryHomeMenuView;
+import com.bjypt.vipcard.view.categoryview.AppCategoryHomeRecyclerViewList;
 import com.bjypt.vipcard.widget.GlidePopupWindow;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.orhanobut.logger.Logger;
 import com.sinia.orderlang.bean.RedpacketBean;
-import com.sinia.orderlang.utils.StringUtil;
 
-import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -86,15 +77,7 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
     // title
     @BindView(R.id.rl_title)
     RelativeLayout rl_title;
-    //  公共服务
-    @BindView(R.id.rcv_commonality_serve)
-    RecyclerView rcv_commonality_serve;
-    //  生活服务
-    @BindView(R.id.rcv_life_serve)
-    RecyclerView rcv_life_serve;
-    //  交通出行
-    @BindView(R.id.rcv_going_out)
-    RecyclerView rcv_going_out;
+
 
     // 天气
     @BindView(R.id.ibtn_weather)
@@ -102,17 +85,6 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
 
     @BindView(R.id.tv_hot_news)
     TextViewMult tv_hot_news;
-
-    @BindView(R.id.tv_title1)
-    TextView tv_title1;
-    @BindView(R.id.tv_title2)
-    TextView tv_title2;
-    @BindView(R.id.tv_title3)
-    TextView tv_title3;
-
-    private List<TextView> titles = null;
-    private List<RecyclerView> items = null;
-
 
     private BroadCastReceiverUtils utils;
 //    private MyBroadCastReceiver myBroadCastReceiver;            //切换城市的推送
@@ -154,6 +126,8 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
 
     AppCategoryHomeMenuView appCategoryHomeMenuView;//首页八大汇菜单
 
+    AppCategoryHomeRecyclerViewList appCategoryHomeRecyclerViewList;//公共服务 生活服务 交通出行
+
     private View view;
     private WeatherBean weatherBean;
     private GlidePopupWindow glidePopupWindow;
@@ -178,14 +152,6 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
 
     @Override
     public void beforeInitView() {
-        items = new ArrayList<>();
-        items.add(rcv_commonality_serve);
-        items.add(rcv_life_serve);
-        items.add(rcv_going_out);
-        titles = new ArrayList<>();
-        titles.add(tv_title1);
-        titles.add(tv_title2);
-        titles.add(tv_title3);
 
 //        utils = new BroadCastReceiverUtils();
 //        myBroadCastReceiver = new MyBroadCastReceiver();
@@ -336,10 +302,6 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
         ptrs_new_home.getLoadingLayoutProxy().setRefreshingLabel("refreshingLabel");
         ptrs_new_home.getLoadingLayoutProxy().setReleaseLabel("releaseLabel");
 
-        initRecyclerView(rcv_commonality_serve);
-        initRecyclerView(rcv_life_serve);
-        initRecyclerView(rcv_going_out);
-
         //上拉、下拉设定
         ptrs_new_home.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
 
@@ -348,6 +310,7 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
         tv_city_new_home = (TextView) getActivity().findViewById(R.id.tv_city_new_home);
         appCategoryHomeBannerView = (AppCategoryHomeBannerView) getActivity().findViewById(R.id.appCategoryHomeBannerView);
         appCategoryHomeMenuView = (AppCategoryHomeMenuView) getActivity().findViewById(R.id.appCategoryHomeMenuView);
+        appCategoryHomeRecyclerViewList = (AppCategoryHomeRecyclerViewList)view.findViewById(R.id.appCategoryHomeRecyclerViewList);
 
         appCategoryHomeMenuView.setOnloadCompleteListener(new AppCategoryContextView.OnloadCompleteListener() {
             @Override
@@ -364,14 +327,6 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
         tv_hot_news.setOnItemClickListener(this);
     }
 
-    private void initRecyclerView(RecyclerView recyclerView) {
-        LinearLayoutManager layoutmanager = new LinearLayoutManager(getContext());
-        layoutmanager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        //设置RecyclerView 布局
-        recyclerView.setLayoutManager(layoutmanager);
-        recyclerView.addItemDecoration(new SpaceItemDecoration(35));
-    }
-
 
     @Override
     public void afterInitView() {
@@ -383,7 +338,7 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
 
         reReqeust();
         lasttime = Long.parseLong(String.valueOf(System.currentTimeMillis()).toString().substring(0, 10));
-        getClassifyData();
+//        getClassifyData();
 
     }
 
@@ -438,6 +393,7 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
     private void reReqeust() {
         appCategoryHomeBannerView.reload();
         appCategoryHomeMenuView.reload();
+        appCategoryHomeRecyclerViewList.reload();
     }
 
     @Override
@@ -455,7 +411,7 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
                 requestGongGao();
                 onRequest(QUERY_REFERSH);
                 reReqeust();
-                getClassifyData();
+//                getClassifyData();
 //                com.orhanobut.logger.Logger.e("已刷新。。。。。");
             }
 
@@ -478,62 +434,62 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
 
 //    <---------------首页分类-------------->
 
-    private static final int request_code_data = 1;
-
-    private void getClassifyData() {
-        Map<String, String> params = new HashMap<>();
-        params.put("city_code", SharedPreferenceUtils.getFromSharedPreference(getContext(), Config.web.cityCode, "1558"));
-//        params.put("city_code", Config.userConfig.citycode);
-        params.put("mtlevel", "1");
-
-        Wethod.httpPost(getContext(), request_code_data, Config.web.application_common_menu, params, new VolleyCallBack<String>() {
 
 
-            private HomeRecyclerViewAdapter homeRecyclerViewAdapter;
-
-            @Override
-            public void onSuccess(int reqcode, String result) {
-                com.orhanobut.logger.Logger.e("reqcode :" + reqcode);
-                com.orhanobut.logger.Logger.json(result);
-                ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();
-                if (StringUtil.isNotEmpty(result)) {
-                    try {
-                        AppCategroyLifeTypeResultDataBean appCategroyLifeTypeResultDataBean = objectMapper.readValue(result.toString(), AppCategroyLifeTypeResultDataBean.class);
-                        if (appCategroyLifeTypeResultDataBean != null && appCategroyLifeTypeResultDataBean.getResultData() != null) {
-                            List<AppCategoryLifeTypeBean> appCategoryLifeTypeBeans = appCategroyLifeTypeResultDataBean.getResultData();
-                            for (int i = 0; i < appCategoryLifeTypeBeans.size(); i++) {
-
-                                AppCategoryLifeTypeBean appCategoryLifeTypeBean = appCategoryLifeTypeBeans.get(i);
-                                Logger.d(appCategoryLifeTypeBean);
-                                Logger.e(appCategoryLifeTypeBean.getApp_name());
-                                titles.get(i).setText(appCategoryLifeTypeBean.getApp_name());
-
-                                homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(getContext(), appCategoryLifeTypeBean.getSubLife());
-                                items.get(i).setAdapter(homeRecyclerViewAdapter);
-
-                            }
-                        } else {
-//                            com.orhanobut.logger.Logger.e("appCategroyLifeTypeResultDataBean 为空");
-                        }
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-
-            @Override
-            public void onFailed(int reqcode, String result) {
-                LogUtil.debugPrint("网络请求失败：reqcode=" + reqcode + "  result=" + result);
-            }
-
-            @Override
-            public void onError(VolleyError volleyError) {
-                LogUtil.debugPrint("网络请求错误：" + volleyError.getMessage());
-            }
-        }, View.GONE);
-    }
+//    private void getClassifyData() {
+//        Map<String, String> params = new HashMap<>();
+//        params.put("city_code", SharedPreferenceUtils.getFromSharedPreference(getContext(), Config.web.cityCode, "1558"));
+////        params.put("city_code", Config.userConfig.citycode);
+//        params.put("mtlevel", "1");
+//
+//        Wethod.httpPost(getContext(), request_code_data, Config.web.application_common_menu, params, new VolleyCallBack<String>() {
+//
+//
+//            private HomeRecyclerViewAdapter homeRecyclerViewAdapter;
+//
+//            @Override
+//            public void onSuccess(int reqcode, String result) {
+//                com.orhanobut.logger.Logger.e("reqcode :" + reqcode);
+//                com.orhanobut.logger.Logger.json(result);
+//                ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();
+//                if (StringUtil.isNotEmpty(result)) {
+//                    try {
+//                        AppCategroyLifeTypeResultDataBean appCategroyLifeTypeResultDataBean = objectMapper.readValue(result.toString(), AppCategroyLifeTypeResultDataBean.class);
+//                        if (appCategroyLifeTypeResultDataBean != null && appCategroyLifeTypeResultDataBean.getResultData() != null) {
+//                            List<AppCategoryLifeTypeBean> appCategoryLifeTypeBeans = appCategroyLifeTypeResultDataBean.getResultData();
+//                            for (int i = 0; i < appCategoryLifeTypeBeans.size(); i++) {
+//
+//                                AppCategoryLifeTypeBean appCategoryLifeTypeBean = appCategoryLifeTypeBeans.get(i);
+//                                Logger.d(appCategoryLifeTypeBean);
+//                                Logger.e(appCategoryLifeTypeBean.getApp_name());
+//                                titles.get(i).setText(appCategoryLifeTypeBean.getApp_name());
+//
+//                                homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(getContext(), appCategoryLifeTypeBean.getSubLife());
+//                                items.get(i).setAdapter(homeRecyclerViewAdapter);
+//
+//                            }
+//                        } else {
+////                            com.orhanobut.logger.Logger.e("appCategroyLifeTypeResultDataBean 为空");
+//                        }
+//
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onFailed(int reqcode, String result) {
+//                LogUtil.debugPrint("网络请求失败：reqcode=" + reqcode + "  result=" + result);
+//            }
+//
+//            @Override
+//            public void onError(VolleyError volleyError) {
+//                LogUtil.debugPrint("网络请求错误：" + volleyError.getMessage());
+//            }
+//        }, View.GONE);
+//    }
 
     @Override
     /*

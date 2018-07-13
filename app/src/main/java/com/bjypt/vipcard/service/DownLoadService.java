@@ -48,18 +48,18 @@ public class DownLoadService extends Service {
             save(url);
         }
 
-        public void setFlags(boolean flags) {
+        public void setFlags(boolean flags, String msg) {
             flag = flags;
             if (flag) {
                 startNotification();
-                setToast("开始下载");
+                setToast(msg);
                 isCancel = true;
             } else {
                 cancelNotification();
                 mHander.removeCallbacks(mRunnable);
                 if (isCancel) {
 
-                    setToast("下载取消");
+                    setToast(msg);
                     isCancel = false;
                 }
             }
@@ -71,7 +71,10 @@ public class DownLoadService extends Service {
             @Override
             public void run() {
                 File file = downLoadFile(url);
-                FileUtil.openFile(DownLoadService.this, file);
+                if(flag){
+                    FileUtil.openFile(DownLoadService.this, file);
+                }
+
             }
         }).start();
     }
@@ -86,6 +89,7 @@ public class DownLoadService extends Service {
             tmpFile.mkdir();
         }
         File file = new File(FileUtil.apkSavePath + "/" + fileName);
+
         try {
             URL url = new URL(httpUrl);
             try {
@@ -122,6 +126,7 @@ public class DownLoadService extends Service {
                         } else {
                             Log.i("aaa", "下载终止1");
                             SharedPreferenceUtils.saveToSharedPreference(DownLoadService.this,"gengxinxiazai","1");
+                            cancelDownload();
 //                            Uri packageURI = Uri.parse("package:com.bjypt.vipcard");
 //                            Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
 //                            startActivity(uninstallIntent);
@@ -134,9 +139,11 @@ public class DownLoadService extends Service {
                 is.close();
             } catch (IOException e) {
                 e.printStackTrace();
+                cancelDownload();
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
+            cancelDownload();
         }
         if (flag) {
             return file;
@@ -144,6 +151,15 @@ public class DownLoadService extends Service {
             return null;
         }
 
+    }
+
+    private void cancelDownload(){
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("cancel_download", true);
+        intent.putExtras(bundle);
+        intent.setAction(SystemSettingActivity.RECIVER_ACTIONS);
+        sendBroadcast(intent);
+        flag = false;
     }
 
     private NotificationManager mNotificationManager;

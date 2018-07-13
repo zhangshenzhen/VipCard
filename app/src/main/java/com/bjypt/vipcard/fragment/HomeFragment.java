@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -77,7 +76,6 @@ import com.bjypt.vipcard.zbar.activity.CaptureActivity;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.orhanobut.logger.Logger;
 import com.sinia.orderlang.utils.StringUtil;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -1190,7 +1188,7 @@ public class HomeFragment extends BaseFrament implements VolleyCallBack<String> 
 
             flag = true;
             //开始下载
-            myBinder.setFlags(flag);
+            myBinder.setFlags(flag,"开始下载");
             tv_version.setText("正在准备资源...");
             myBinder.startdownLoad(downLoadResultBean.getUrl());
         }
