@@ -26,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.shangfeng.common.LocateResultFields;
+import com.bjypt.vipcard.activity.shangfeng.util.SharedPreferencesUtils;
 import com.bjypt.vipcard.base.BaseFraActivity;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.dialog.NormalDialog;

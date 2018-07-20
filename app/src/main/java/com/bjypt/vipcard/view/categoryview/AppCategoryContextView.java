@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.activity.LifeServireH5Activity;
 import com.bjypt.vipcard.activity.LoginActivity;
+import com.bjypt.vipcard.activity.shangfeng.common.LocateResultFields;
 import com.bjypt.vipcard.activity.shangfeng.common.enums.UserInformationFields;
 import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
 import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.CommonWebActivity;
@@ -158,6 +159,12 @@ public abstract class AppCategoryContextView extends LinearLayout implements Vol
                     }
                 }
                 if(url.startsWith(Config.web.shangfengh5)){
+                    if (!url.endsWith("&")) {
+                        url = url + "&";
+                    }
+                    url = url + "citycode=" + SharedPreferencesUtils.get(LocateResultFields.CITY_CODE, "");
+                    url = url + "&latitude=" + SharedPreferencesUtils.get(LocateResultFields.LOCATION_LATITUDE, "");
+                    url = url + "&longitude=" + SharedPreferencesUtils.get(LocateResultFields.LOCATION_LONGITUDE, "");
                     CommonWebData commonWebData = new CommonWebData(url, appCategoryBean.getApp_name());
                     CommonWebActivity.callActivity(getContext(), commonWebData );
                 }else{

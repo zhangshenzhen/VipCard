@@ -116,6 +116,7 @@ public class GaoDeMapLocation implements AMapLocationListener, PoiSearch.OnPoiSe
 //                        SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.cname, ld.getAdress());
 //                    }
 
+
                     if ((ld == null || StringUtil.isEmpty(ld.getCityCode())) || StringUtil.isEmpty(oldCityCode)) {
                         //提示默认阜阳，并弹出提示是否选择城市
                         locationClient.stopLocation();
@@ -126,6 +127,9 @@ public class GaoDeMapLocation implements AMapLocationListener, PoiSearch.OnPoiSe
                     } else {
                         Log.i("gps", "citycode= " + ld.getCityCode() +", " + oldCityCode);
                         SharedPreferencesUtils.put(LocateResultFields.CITY_CODE,ld.getCityCode());
+                        SharedPreferencesUtils.put(LocateResultFields.CITY_CODE, ld.getCityCode());
+                        SharedPreferencesUtils.put(LocateResultFields.LOCATION_LONGITUDE, String.valueOf(ld.getmLng()));
+                        SharedPreferencesUtils.put(LocateResultFields.LOCATION_LATITUDE, String.valueOf(ld.getmLat()));
                         if (StringUtil.isNotEmpty(ld.getCityCode()) && StringUtil.isNotEmpty(oldCityCode) && !oldCityCode.equalsIgnoreCase(ld.getCityCode())) {
                             //城市都存在，但是和原来的citycode不一致
                             if (onCityLocationChangeListener != null) {
