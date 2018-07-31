@@ -29,4 +29,5 @@
     <item type="id" name="xinwen_three"></item>
     <item type="id" name="xinwen_four"></item>
     <item name="recyclerview_swipe" type="id"/>
+    <item name="news_data_id" type="id"></item>
 </resources>

@@ -3,6 +3,8 @@ package com.bjypt.vipcard.fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -178,10 +180,89 @@ public class HomeNewsFragment extends Fragment implements VolleyCallBack {
         }
     }
 
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if(msg.what ==1){
+                View view =  (View)msg.obj;
+                linear_news_list.addView(view);
+                loadImg(view);
+            }
+        }
+    };
 
-    private void notifyDataSetChanged(List<FuYangNews.ResultDataBean> newsList) {
+
+    private void loadImg(View view){
+        FuYangNews.ResultDataBean resultDataBean =  (FuYangNews.ResultDataBean)view.getTag(R.id.news_data_id);
+        ItemThreeHolder threeHolder = (ItemThreeHolder)view.getTag();
+        int type = 0;
+        if (resultDataBean.getAttachment() != null) {
+            type = resultDataBean.getAttachment().size();
+        }
+        switch (type) {
+            case 0:
+                break;
+            case 1:
+            case 2:
+                if ("".equals(resultDataBean.getAttachment().get(0).getAttachment())) {
+                    threeHolder.home_news_pic_one1.setImageResource(R.mipmap.xinwen_two);
+                } else {
+                    if (resultDataBean.getAttachment().get(0).getRemote().equals("0")) {
+                        ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one1, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+                    } else {
+                        ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one1, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+                    }
+                }
+                break;
+            case 3:
+                if ("".equals(resultDataBean.getAttachment().get(0).getAttachment())) {
+                    threeHolder.home_news_pic_one2.setImageResource(R.mipmap.xinwen_two);
+                } else {
+                    if (resultDataBean.getAttachment().get(0).getRemote().equals("0")) {
+                        ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+                    } else {
+                        ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+                    }
+                }
+                if (threeHolder.home_news_pic_two2 != null) {
+                    if ("".equals(resultDataBean.getAttachment().get(1).getAttachment())) {
+                        threeHolder.home_news_pic_two2.setImageResource(R.mipmap.xinwen_two);
+                    } else {
+                        if (resultDataBean.getAttachment().get(1).getRemote().equals("0")) {
+                            ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(1).getAttachment(), threeHolder.home_news_pic_two2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+                        } else {
+                            ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(1).getAttachment(), threeHolder.home_news_pic_two2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+                        }
+                    }
+                }
+                if (threeHolder.home_news_pic_three2 != null) {
+                    if ("".equals(resultDataBean.getAttachment().get(2).getAttachment())) {
+                        threeHolder.home_news_pic_three2.setImageResource(R.mipmap.xinwen_three);
+                    } else {
+                        if (resultDataBean.getAttachment().get(2).getRemote().equals("0")) {
+                            ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(2).getAttachment(), threeHolder.home_news_pic_three2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+                        } else {
+                            ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(2).getAttachment(), threeHolder.home_news_pic_three2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+                        }
+                    }
+                }
+                break;
+        }
+    }
+
+    private void notifyDataSetChanged(final List<FuYangNews.ResultDataBean> newsList) {
         for (int i = 0; i < newsList.size(); i++) {
-            linear_news_list.addView(getView(newsList.get(i)));
+            final int p = i;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    View view =   getView(newsList.get(p));
+                    Message msg = new Message();
+                    msg.what =1;
+                    msg.obj = view;
+                    handler.sendMessage(msg);
+                }
+            }).start();
         }
     }
 
@@ -219,6 +300,7 @@ public class HomeNewsFragment extends Fragment implements VolleyCallBack {
         threeHolder.linear_news_1 = (LinearLayout) convertView.findViewById(R.id.linear_news_1);
         threeHolder.linear_news_2 = (LinearLayout) convertView.findViewById(R.id.linear_news_2);
         convertView.setTag(threeHolder);
+        convertView.setTag(R.id.news_data_id, resultDataBean);
         switch (type) {
             case 0:
                 threeHolder.linear_news_1.setVisibility(View.GONE);
@@ -240,15 +322,15 @@ public class HomeNewsFragment extends Fragment implements VolleyCallBack {
                 threeHolder.tv_create_time1.setText(resultDataBean.getCreate_time());
                 threeHolder.tv_viewnum1.setText(resultDataBean.getViewnum());
                 threeHolder.tv_commentnum1.setText(resultDataBean.getCommentnum());
-                if ("".equals(resultDataBean.getAttachment().get(0).getAttachment())) {
-                    threeHolder.home_news_pic_one1.setImageResource(R.mipmap.xinwen_two);
-                } else {
-                    if (resultDataBean.getAttachment().get(0).getRemote().equals("0")) {
-                        ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one1, AppConfig.XINWEN_IMG_OPTIONS_THREE);
-                    } else {
-                        ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one1, AppConfig.XINWEN_IMG_OPTIONS_THREE);
-                    }
-                }
+//                if ("".equals(resultDataBean.getAttachment().get(0).getAttachment())) {
+//                    threeHolder.home_news_pic_one1.setImageResource(R.mipmap.xinwen_two);
+//                } else {
+//                    if (resultDataBean.getAttachment().get(0).getRemote().equals("0")) {
+//                        ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one1, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+//                    } else {
+//                        ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one1, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+//                    }
+//                }
                 break;
             case 3:
                 threeHolder.linear_news_2.setVisibility(View.VISIBLE);
@@ -259,37 +341,37 @@ public class HomeNewsFragment extends Fragment implements VolleyCallBack {
                 threeHolder.tv_create_time2.setText(resultDataBean.getCreate_time());
                 threeHolder.tv_viewnum2.setText(resultDataBean.getViewnum());
                 threeHolder.tv_commentnum2.setText(resultDataBean.getCommentnum());
-                if ("".equals(resultDataBean.getAttachment().get(0).getAttachment())) {
-                    threeHolder.home_news_pic_one2.setImageResource(R.mipmap.xinwen_two);
-                } else {
-                    if (resultDataBean.getAttachment().get(0).getRemote().equals("0")) {
-                        ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
-                    } else {
-                        ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
-                    }
-                }
-                if (threeHolder.home_news_pic_two2 != null) {
-                    if ("".equals(resultDataBean.getAttachment().get(1).getAttachment())) {
-                        threeHolder.home_news_pic_two2.setImageResource(R.mipmap.xinwen_two);
-                    } else {
-                        if (resultDataBean.getAttachment().get(1).getRemote().equals("0")) {
-                            ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(1).getAttachment(), threeHolder.home_news_pic_two2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
-                        } else {
-                            ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(1).getAttachment(), threeHolder.home_news_pic_two2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
-                        }
-                    }
-                }
-                if (threeHolder.home_news_pic_three2 != null) {
-                    if ("".equals(resultDataBean.getAttachment().get(2).getAttachment())) {
-                        threeHolder.home_news_pic_three2.setImageResource(R.mipmap.xinwen_three);
-                    } else {
-                        if (resultDataBean.getAttachment().get(2).getRemote().equals("0")) {
-                            ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(2).getAttachment(), threeHolder.home_news_pic_three2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
-                        } else {
-                            ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(2).getAttachment(), threeHolder.home_news_pic_three2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
-                        }
-                    }
-                }
+//                if ("".equals(resultDataBean.getAttachment().get(0).getAttachment())) {
+//                    threeHolder.home_news_pic_one2.setImageResource(R.mipmap.xinwen_two);
+//                } else {
+//                    if (resultDataBean.getAttachment().get(0).getRemote().equals("0")) {
+//                        ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+//                    } else {
+//                        ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(0).getAttachment(), threeHolder.home_news_pic_one2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+//                    }
+//                }
+//                if (threeHolder.home_news_pic_two2 != null) {
+//                    if ("".equals(resultDataBean.getAttachment().get(1).getAttachment())) {
+//                        threeHolder.home_news_pic_two2.setImageResource(R.mipmap.xinwen_two);
+//                    } else {
+//                        if (resultDataBean.getAttachment().get(1).getRemote().equals("0")) {
+//                            ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(1).getAttachment(), threeHolder.home_news_pic_two2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+//                        } else {
+//                            ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(1).getAttachment(), threeHolder.home_news_pic_two2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+//                        }
+//                    }
+//                }
+//                if (threeHolder.home_news_pic_three2 != null) {
+//                    if ("".equals(resultDataBean.getAttachment().get(2).getAttachment())) {
+//                        threeHolder.home_news_pic_three2.setImageResource(R.mipmap.xinwen_three);
+//                    } else {
+//                        if (resultDataBean.getAttachment().get(2).getRemote().equals("0")) {
+//                            ImageLoader.getInstance().displayImage(Config.web.fy_picUrl + resultDataBean.getAttachment().get(2).getAttachment(), threeHolder.home_news_pic_three2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+//                        } else {
+//                            ImageLoader.getInstance().displayImage(resultDataBean.getAttachment().get(2).getAttachment(), threeHolder.home_news_pic_three2, AppConfig.XINWEN_IMG_OPTIONS_THREE);
+//                        }
+//                    }
+//                }
                 break;
         }
         convertView.setOnClickListener(new View.OnClickListener() {
