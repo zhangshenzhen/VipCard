@@ -158,6 +158,45 @@ public class ShareSDKUtil {
     }
 
     /**
+     * 微信、朋友圈分享
+     *
+     * @param context    上下文
+     * @param mQRCodeURL 点击打开的链接
+     * @param mWxApi     传入微信api
+     * @param type       1：微信好友分享；2：微信朋友全
+     */
+    public static void shareWechatContent(Context context, String mQRCodeURL, IWXAPI mWxApi, int type, String content) {
+        SharedPreferenceUtils.saveToSharedPreference(context, "shareType", "app");
+        if (!MyApplication.mWxApi.isWXAppInstalled()) {
+            ToastUtil.showToast(context, "您还未安装微信客户端");
+            return;
+        }
+        // 初始化
+        WXWebpageObject wxWebpageObject = new WXWebpageObject();
+        wxWebpageObject.webpageUrl = mQRCodeURL;
+
+        WXMediaMessage wxMediaMessage = new WXMediaMessage(wxWebpageObject);
+        wxMediaMessage.mediaObject = wxWebpageObject;
+        wxMediaMessage.title = "繁城都市分享有礼";
+        wxMediaMessage.description = content;
+        wxMediaMessage.thumbData =
+                Util.bmpToByteArray(BitmapFactory.decodeResource(context.getResources(), R.mipmap.app_ic_launcher), true);
+        // 构造一个Req
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = String.valueOf(System.currentTimeMillis());
+        req.message = wxMediaMessage;
+        switch (type) {
+            case 1:
+                req.scene = SendMessageToWX.Req.WXSceneSession;
+                break;
+            case 2:
+                req.scene = SendMessageToWX.Req.WXSceneTimeline;
+                break;
+        }
+        mWxApi.sendReq(req);
+    }
+
+    /**
      * 微信、朋友圈分享 Web分享
      *
      * @param context 上下文

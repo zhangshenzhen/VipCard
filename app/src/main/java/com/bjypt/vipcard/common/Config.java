@@ -309,6 +309,8 @@ public final class Config {
         public static final String yu_e_bao_can = base + "post/balanceInvestCan";
         public static final String yu_e_bao_index = base + "post/balanceInvestIndex";
 
+        public static final String getShareData = hyb_url + "S03/share/getShare";
+
 
         /**********************************智慧尚峰 start*********************************************/
         /**

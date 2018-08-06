@@ -2,12 +2,16 @@ package com.bjypt.vipcard.widget;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.utils.DensityUtil;
 
@@ -20,6 +24,9 @@ public class BottomDialog extends Dialog {
     private BottonRouteListener mListener;
     private Button tv_route_one,tv_route_two,tv_route_three;
     private Button btn_cancel;
+    private LinearLayout linear_route_one, linear_route_two;
+    private ImageView iv_route_two, iv_route_one;
+
 
     public BottomDialog(Context context) {
 
@@ -47,8 +54,15 @@ public class BottomDialog extends Dialog {
         tv_route_two = (Button) view.findViewById(R.id.tv_route_two);
         btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
 
-        tv_route_one.setOnClickListener(new BottomDialog.clickListener());
-        tv_route_two.setOnClickListener(new BottomDialog.clickListener());
+
+        linear_route_one = (LinearLayout)view.findViewById(R.id.linear_route_one);
+        linear_route_two = (LinearLayout)view.findViewById(R.id.linear_route_two);
+
+        iv_route_one = (ImageView)view.findViewById(R.id.iv_route_one);
+        iv_route_two = (ImageView)view.findViewById(R.id.iv_route_two);
+
+        linear_route_one.setOnClickListener(new BottomDialog.clickListener());
+        linear_route_two.setOnClickListener(new BottomDialog.clickListener());
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,8 +75,18 @@ public class BottomDialog extends Dialog {
     }
 
 
+    public void setOneText(String text, int iconIds){
+        tv_route_one.setText(text);
+        iv_route_one.setVisibility(View.VISIBLE);
+        iv_route_one.setImageDrawable(getContext().getResources().getDrawable(iconIds));
 
+    }
 
+    public void setTwoText(String text, int iconIds){
+        tv_route_two.setText(text);
+        iv_route_two.setVisibility(View.VISIBLE);
+        iv_route_two.setImageDrawable(getContext().getResources().getDrawable(iconIds));
+    }
 
 
     public void setClickListener(BottonRouteListener listener) {
@@ -81,13 +105,13 @@ public class BottomDialog extends Dialog {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.tv_route_one:
+                case R.id.linear_route_one:
                     if (mListener != null) {
                         mListener.onItem1Listener();
                         dismiss();
                     }
                     break;
-                case R.id.tv_route_two:
+                case R.id.linear_route_two:
                     if (mListener != null) {
                         mListener.onItem2Listener();
                         dismiss();

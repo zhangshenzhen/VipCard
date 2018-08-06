@@ -294,11 +294,7 @@
             android:name=".activity.InformationActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-        <!-- 我的邀请 -->
-        <activity
-            android:name=".activity.MyInviteActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" />
+
         <!-- 生活服务分类 -->
         <activity
             android:name=".activity.LifeTypeActivity"

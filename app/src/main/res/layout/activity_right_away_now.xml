@@ -517,6 +517,65 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <!--在线支付-->
+                <LinearLayout
+                    android:id="@+id/layout_pay_zaixian"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/iv_pay_zaixian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:background="@null"
+                        android:src="@mipmap/select_false" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="13dp"
+                        android:text="在线支付"
+                        android:textColor="@color/dark_black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(支付宝、微信)"
+                        android:textColor="@color/app_color"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/pay_online_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(需支付14.54元)"
+                        android:textColor="@color/red_text_dishes"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/pay_online_discount_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="left|center_vertical"
+                        android:textColor="@color/red_text_dishes"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="#d5d2d2" />
+
                 <!--平台余额支付-->
                 <LinearLayout
                     android:id="@+id/layout_pay_pingtai"
@@ -646,64 +705,7 @@
                     android:layout_height="0.3dp"
                     android:background="#d5d2d2" />
 
-                <LinearLayout
-                    android:id="@+id/layout_pay_zaixian"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
 
-                    <ImageView
-                        android:id="@+id/iv_pay_zaixian"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="13dp"
-                        android:background="@null"
-                        android:src="@mipmap/select_false" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="13dp"
-                        android:text="在线支付"
-                        android:textColor="@color/dark_black"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:visibility="gone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="(支持支付宝、微信、银联)"
-                        android:textColor="@color/app_color"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/pay_online_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="(需支付14.54元)"
-                        android:textColor="@color/red_text_dishes"
-                        android:textSize="15sp"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/pay_online_discount_desc"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="right"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="left|center_vertical"
-                        android:textColor="@color/red_text_dishes"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="#d5d2d2" />
 
                 <LinearLayout
                     android:id="@+id/layout_pay_card"

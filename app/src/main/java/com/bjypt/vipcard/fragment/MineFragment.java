@@ -372,18 +372,7 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
                     startLogin();
                 }
                 break;
-            case 5:  // 推广收益
-                if ("Y".equals(getFromSharePreference(Config.userConfig.is_Login))) {
-                    Intent intentSignIn = new Intent(getActivity(), LifeServireH5Activity.class);
-                    intentSignIn.putExtra("life_url", Config.web.cardSalesH5 + getFromSharePreference(Config.userConfig.pkregister));
-                    intentSignIn.putExtra("isLogin", "N");
-                    intentSignIn.putExtra("serviceName", "推广人收益");
-                    startActivity(intentSignIn);
-                } else {
-                    startLogin();
-                }
 
-                break;
             case 4:  // 招商热线
                 DialogInterface.OnClickListener dialogOnclicListener = new DialogInterface.OnClickListener() {
                     @Override
@@ -403,6 +392,28 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
                 };
                 //弹窗让用户选择，是否允许申请权限
                 DialogUtil.showConfirm(getActivity(), "招商及客服热线", "是否拨打招商及客服热线4001808366(08:00-17:00)", dialogOnclicListener, dialogOnclicListener);
+                break;
+            case 5:
+                if ("Y".equals(getFromSharePreference(Config.userConfig.is_Login))) {
+                    Intent intentSignIn = new Intent(getActivity(), LifeServireH5Activity.class);
+                    intentSignIn.putExtra("life_url", Config.web.vip_minszx + getFromSharePreference(Config.userConfig.pkregister));
+                    intentSignIn.putExtra("isLogin", "N");
+                    intentSignIn.putExtra("serviceName", "积分商城");
+                    startActivity(intentSignIn);
+                } else {
+                    startLogin();
+                }
+                break;
+            case 6:// 推广收益
+                if ("Y".equals(getFromSharePreference(Config.userConfig.is_Login))) {
+                    Intent intentSignIn = new Intent(getActivity(), LifeServireH5Activity.class);
+                    intentSignIn.putExtra("life_url", Config.web.cardSalesH5 + getFromSharePreference(Config.userConfig.pkregister));
+                    intentSignIn.putExtra("isLogin", "N");
+                    intentSignIn.putExtra("serviceName", "推广人收益");
+                    startActivity(intentSignIn);
+                } else {
+                    startLogin();
+                }
                 break;
         }
     }

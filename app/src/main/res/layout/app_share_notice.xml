@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/transparency">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/app_share_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="分享获收益"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    <ImageView android:id="@+id/share_app_close"
+        android:layout_width="18dp"
+        android:layout_height="14dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/app_share_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/textview_title"
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="12dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/app_share_logo"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/textview_title" />
+
+    <ImageView
+        android:id="@+id/iv_share_img"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/qr_code_bg_normal"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/textview_desc"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="2.0dp"
+        android:text="请将二维码分享至朋友圈，您将获得朋友加油款或商厦中新超市购物款的1%的收益，实时到你的账户"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/iv_share_img" />
+
+
+    <Button
+        android:id="@+id/app_share_pay"
+        android:layout_width="214dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="156dp"
+        android:layout_marginTop="8dp"
+        android:background="@mipmap/app_share_pay"
+        android:text="先去支付"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/textview_desc"
+        app:layout_constraintStart_toStartOf="@+id/textview_desc"
+        app:layout_constraintTop_toBottomOf="@+id/textview_desc" />
+
+    <Button
+        android:id="@+id/app_share_wechat"
+        android:layout_width="214dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:background="@mipmap/app_share_wechat"
+        android:text="立即分享"
+        android:textColor="@color/app_color"
+        app:layout_constraintEnd_toEndOf="@+id/app_share_pay"
+        app:layout_constraintStart_toStartOf="@+id/app_share_pay"
+        app:layout_constraintTop_toBottomOf="@+id/app_share_pay"
+
+        />
+</android.support.constraint.ConstraintLayout>

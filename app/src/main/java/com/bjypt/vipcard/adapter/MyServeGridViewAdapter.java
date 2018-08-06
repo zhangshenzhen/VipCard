@@ -19,8 +19,8 @@ import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 public class MyServeGridViewAdapter extends BaseAdapter {
 
     private int[] images = {R.mipmap.transaction_record, R.mipmap.withdraw_deposit_record,
-            R.mipmap.recharge_record, R.mipmap.shape, R.mipmap.attract_investment, R.mipmap.generalize};
-    private String[] images_info = {"交易记录", "提现记录", "充值记录", "推荐给朋友", "客服热线", "卡推广收益"};
+            R.mipmap.recharge_record, R.mipmap.shape, R.mipmap.attract_investment, R.mipmap.integral_shop, R.mipmap.generalize};
+    private String[] images_info = {"交易记录", "提现记录", "充值记录", "推荐给朋友", "客服热线","积分商城", "卡推广收益"};
     private final LayoutInflater inflater;
     private Context context;
 

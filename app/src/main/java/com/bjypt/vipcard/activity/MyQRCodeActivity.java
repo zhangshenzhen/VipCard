@@ -199,7 +199,14 @@ public class MyQRCodeActivity extends BaseActivity implements VolleyCallBack, Pl
                 break;
             case R.id.my_inite:
                 //我的邀请页面
-                startActivity(new Intent(this, MyInviteActivity.class));
+//                startActivity(new Intent(this, MyInviteActivity.class));
+//                Config.web.my_invite_ + getFromSharePreference(Config.userConfig.pkregister)
+
+                Intent intent = new Intent(MyQRCodeActivity.this, LifeServireH5Activity.class);
+                intent.putExtra("life_url", Config.web.my_invite_ + getFromSharePreference(Config.userConfig.pkregister));
+                intent.putExtra("isLogin", "N");
+                intent.putExtra("serviceName", "分享收益");
+                startActivity(intent);
                 break;
         }
     }

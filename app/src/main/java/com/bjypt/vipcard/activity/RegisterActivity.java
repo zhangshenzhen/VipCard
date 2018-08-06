@@ -94,6 +94,7 @@ public class RegisterActivity extends BaseActivity implements VolleyCallBack {
     @Override
     public void initView() {
         iv_agreed = (ImageButton) findViewById(R.id.iv_agreed);
+        iv_agreed.setSelected(true);
         relative_pop = (LinearLayout) findViewById(R.id.relative_pop);
         mBack = (LinearLayout) findViewById(R.id.register_back);//返回键
         mGetCode = (TextView) findViewById(R.id.register_get_code_tv);//获取验证码
@@ -245,9 +246,7 @@ public class RegisterActivity extends BaseActivity implements VolleyCallBack {
         textview_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent);
-                RegisterActivity.this.finish();
+                popupWindow.dismiss();
             }
         });
         popupWindow.showAtLocation(relative_pop, Gravity.BOTTOM, 0, 0);

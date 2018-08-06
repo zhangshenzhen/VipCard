@@ -41,6 +41,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="25dp"
+            android:clickable="false"
             android:background="@null"
             android:src="@drawable/select_consent_btn" />
 

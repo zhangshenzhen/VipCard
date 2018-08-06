@@ -8,7 +8,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,13 +19,16 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +42,7 @@ import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.PayDealTypeEnum;
 import com.bjypt.vipcard.common.Wethod;
+import com.bjypt.vipcard.model.GetShareDataResultBean;
 import com.bjypt.vipcard.model.RightAddOrderData;
 import com.bjypt.vipcard.model.RightAwayBeforeData;
 import com.bjypt.vipcard.model.RightAwayData;
@@ -44,18 +50,24 @@ import com.bjypt.vipcard.model.StringListResultBean;
 import com.bjypt.vipcard.model.SystemInfomationBean;
 import com.bjypt.vipcard.utils.AES;
 import com.bjypt.vipcard.utils.DensityUtil;
+import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.MD5;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
+import com.bjypt.vipcard.utils.ShareSDKUtil;
 import com.bjypt.vipcard.utils.VirtualmoneySuccessHelper;
 import com.bjypt.vipcard.view.AdTextViewMult;
 import com.bjypt.vipcard.view.ToastUtil;
+import com.bjypt.vipcard.widget.BottomDialog;
 import com.bjypt.vipcard.widget.PetroleumView;
+import com.bjypt.vipcard.zbar.encoding.EncodingUtils;
 import com.brioal.adtextviewlib.entity.AdEntity;
 import com.sinia.orderlang.utils.StringUtil;
 
 import net.frakbot.jumpingbeans.JumpingBeans;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -65,12 +77,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+
 /**
  * Created by tuyouze on 2016/11/16 0016
  * 立即支付.
  */
 
-public class RightAwayActivity extends BaseActivity implements VolleyCallBack<String> {
+public class RightAwayActivity extends BaseActivity implements VolleyCallBack<String>, BottomDialog.BottonRouteListener, PlatformActionListener {
 
     private String pkmuser;//商家主键
     private String merchantName;//商家名称
@@ -131,11 +146,15 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
     private static final int request_pay_before = 2222;
     private int request_random_front = 1122; //每次请求随机一个整数
     private int request_discount_info = 123456;
+    private int request_share_info_code = 112333123;
+    private GetShareDataResultBean getShareDataResultBean;
+    private BottomDialog bottomDialog;
     private TextView pay_online_discount_desc;
     private TextView pay_pingtai_discount_desc;
     private TextView pay_merchant_discount_desc;
     private TextView card_pay_discount_des;
     private String categoryId;
+    PopupWindow popupWindow;
 
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
@@ -300,6 +319,8 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
         } else {
             startActivity(new Intent(this, LoginActivity.class));
         }
+
+        httpGetShareData();
     }
 
     @Override
@@ -558,6 +579,7 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
             }
         });
 
+        selectZaixian();
     }
 
     private void http_get_pay_front() {
@@ -687,13 +709,7 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
                 break;
             //在线支付
             case R.id.layout_pay_zaixian:
-                PAY_STYLE = 1;
-                check_pay_style = 1;
-                iv_pay_zaixian.setImageResource(R.mipmap.select_true);
-                iv_pay_yue.setImageResource(R.mipmap.select_false);
-                iv_pay_pingtai.setImageResource(R.mipmap.select_false);
-                iv_pay_card.setImageResource(R.mipmap.select_false);
-                http_get_pay_front();
+                selectZaixian();
                 break;
             /***
              * 商家余额支付
@@ -736,114 +752,129 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
                 finish();
                 break;
             case R.id.btn_at_once_pay:
-                //立即支付 todo
-                if (rightAwayData != null) {
-                    if (right_away_edit.getText().toString() == null || right_away_edit.getText().toString().equals("")) {
-                        Toast.makeText(this, "请输入支付金额", Toast.LENGTH_LONG).show();
-                    } else if (Double.parseDouble(right_away_edit.getText().toString()) <= 0) {
-                        Toast.makeText(this, "请输入正确的支付金额", Toast.LENGTH_LONG).show();
-                    } else if (Double.parseDouble(rightAwayData.getResultData().getWaitMoney()) == 0.00) {
-                        PAY_STYLE = 11;
-                        if (getFromSharePreference(Config.userConfig.paypassword).equals("") || getFromSharePreference(Config.userConfig.paypassword) == null) {
-                            //未设置支付密码
-                            Toast.makeText(this, "请设置支付密码", Toast.LENGTH_LONG).show();
-                            PSD_TYPE = false;
-                            Intent mLogPsdIntent = new Intent(this, ChangePasswordActivity.class);
-                            mLogPsdIntent.putExtra("psdType", PSD_TYPE);
-                            startActivityForResult(mLogPsdIntent, 0);
-                        } else {
-                            if (Double.parseDouble(rightAwayData.getResultData().getBalance_sys()) >= Double.parseDouble(rightAwayData.getResultData().getWaitMoney())) {
-                                psdDialog = new PsdDialog(this, "金额", merchantName, rightAwayData.getResultData().getWaitMoney());
-                                psdDialog.show();
-                            } else {
-                                //弹出选择框，去充值还是取消平台余额支付
-                                new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请使用在线支付或者线下支付")
+
+                //分享
+                shareApp();
+                break;
+        }
+    }
+
+    private void selectZaixian() {
+        PAY_STYLE = 1;
+        check_pay_style = 1;
+        iv_pay_zaixian.setImageResource(R.mipmap.select_true);
+        iv_pay_yue.setImageResource(R.mipmap.select_false);
+        iv_pay_pingtai.setImageResource(R.mipmap.select_false);
+        iv_pay_card.setImageResource(R.mipmap.select_false);
+        http_get_pay_front();
+    }
+
+    private void payBusiness() {
+        if (rightAwayData != null) {
+            if (right_away_edit.getText().toString() == null || right_away_edit.getText().toString().equals("")) {
+                Toast.makeText(this, "请输入支付金额", Toast.LENGTH_LONG).show();
+            } else if (Double.parseDouble(right_away_edit.getText().toString()) <= 0) {
+                Toast.makeText(this, "请输入正确的支付金额", Toast.LENGTH_LONG).show();
+            } else if (Double.parseDouble(rightAwayData.getResultData().getWaitMoney()) == 0.00) {
+                PAY_STYLE = 11;
+                if (getFromSharePreference(Config.userConfig.paypassword).equals("") || getFromSharePreference(Config.userConfig.paypassword) == null) {
+                    //未设置支付密码
+                    Toast.makeText(this, "请设置支付密码", Toast.LENGTH_LONG).show();
+                    PSD_TYPE = false;
+                    Intent mLogPsdIntent = new Intent(this, ChangePasswordActivity.class);
+                    mLogPsdIntent.putExtra("psdType", PSD_TYPE);
+                    startActivityForResult(mLogPsdIntent, 0);
+                } else {
+                    if (Double.parseDouble(rightAwayData.getResultData().getBalance_sys()) >= Double.parseDouble(rightAwayData.getResultData().getWaitMoney())) {
+                        psdDialog = new PsdDialog(this, "金额", merchantName, rightAwayData.getResultData().getWaitMoney());
+                        psdDialog.show();
+                    } else {
+                        //弹出选择框，去充值还是取消平台余额支付
+                        new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请使用在线支付或者线下支付")
 //                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
 //                                            public void onClick(DialogInterface dialog, int which) {
 //                                                //跳转到余额不足充值页面
 //                                                startRechage(2, pksystem);
 //                                            }
 //                                        })
-                                        .setNegativeButton("确定", null)
+                                .setNegativeButton("确定", null)
+                                .show();
+                    }
+                }
+            } else {
+                if (PAY_STYLE == 1) {
+                    //TODO 跳转到在线支付页面
+                    Intent intent = new Intent(this, RightAwayOnLineActivity.class);
+                    intent.putExtra("mname", merchantName);//商家名称
+                    intent.putExtra("waitMoney", rightAwayData.getResultData().getWaitMoney());//支付金额
+                    intent.putExtra("pkmuser", pkmuser);//商家主键
+                    intent.putExtra("pk_merchant", pk_merchant); //商家主键或者是连锁店主键 用于调用topay接口使用
+                    intent.putExtra("redPacket", rightAwayData.getResultData().getRedPacket());//红包
+                    intent.putExtra("pkWeal", coups);
+                    intent.putExtra("virtualMoney", rightAwayData.getResultData().getVirtualMoney());
+                    intent.putExtra("amount", rightAwayData.getResultData().getAmount());
+                    intent.putExtra("non_discount_amount_aes", right_away_edit_no.getText().toString());
+                    startActivity(intent);
+                } else if (PAY_STYLE == 2 || PAY_STYLE == 3) {
+                    if (getFromSharePreference(Config.userConfig.paypassword).equals("") || getFromSharePreference(Config.userConfig.paypassword) == null) {
+                        //未设置支付密码
+                        Toast.makeText(this, "请设置支付密码", Toast.LENGTH_LONG).show();
+                        PSD_TYPE = false;
+                        Intent mLogPsdIntent = new Intent(this, ChangePasswordActivity.class);
+                        mLogPsdIntent.putExtra("psdType", PSD_TYPE);
+                        startActivityForResult(mLogPsdIntent, 0);
+                    } else {
+                        if (PAY_STYLE == 2) {
+                            if (Double.parseDouble(rightAwayData.getResultData().getBalance_mer()) >= Double.parseDouble(rightAwayData.getResultData().getWaitMoney())) {
+                                psdDialog = new PsdDialog(this, "金额", merchantName, rightAwayData.getResultData().getWaitMoney());
+                                psdDialog.show();
+                            } else {
+                                //弹出选择框，去充值还是取消商家余额支付
+                                new AlertDialog.Builder(this).setTitle("充值确认").setMessage("是否去充值？")
+                                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                startRechage(1, pkmuser);
+                                                jiyishuzhi = rightAwayData.getResultData().getAmount();
+                                            }
+                                        })
+                                        .setNegativeButton("取消", null)
                                         .show();
                             }
-                        }
-                    } else {
-                        if (PAY_STYLE == 1) {
-                            //TODO 跳转到在线支付页面
-                            Intent intent = new Intent(this, RightAwayOnLineActivity.class);
-                            intent.putExtra("mname", merchantName);//商家名称
-                            intent.putExtra("waitMoney", rightAwayData.getResultData().getWaitMoney());//支付金额
-                            intent.putExtra("pkmuser", pkmuser);//商家主键
-                            intent.putExtra("pk_merchant", pk_merchant); //商家主键或者是连锁店主键 用于调用topay接口使用
-                            intent.putExtra("redPacket", rightAwayData.getResultData().getRedPacket());//红包
-                            intent.putExtra("pkWeal", coups);
-                            intent.putExtra("virtualMoney", rightAwayData.getResultData().getVirtualMoney());
-                            intent.putExtra("amount", rightAwayData.getResultData().getAmount());
-                            intent.putExtra("non_discount_amount_aes", right_away_edit_no.getText().toString());
-                            startActivity(intent);
-                        } else if (PAY_STYLE == 2 || PAY_STYLE == 3) {
-                            if (getFromSharePreference(Config.userConfig.paypassword).equals("") || getFromSharePreference(Config.userConfig.paypassword) == null) {
-                                //未设置支付密码
-                                Toast.makeText(this, "请设置支付密码", Toast.LENGTH_LONG).show();
-                                PSD_TYPE = false;
-                                Intent mLogPsdIntent = new Intent(this, ChangePasswordActivity.class);
-                                mLogPsdIntent.putExtra("psdType", PSD_TYPE);
-                                startActivityForResult(mLogPsdIntent, 0);
+                        } else if (PAY_STYLE == 3) {
+                            if (Double.parseDouble(rightAwayData.getResultData().getBalance_sys()) >= Double.parseDouble(rightAwayData.getResultData().getWaitMoney())) {
+                                psdDialog = new PsdDialog(this, "金额", merchantName, rightAwayData.getResultData().getWaitMoney());
+                                psdDialog.show();
                             } else {
-                                if (PAY_STYLE == 2) {
-                                    if (Double.parseDouble(rightAwayData.getResultData().getBalance_mer()) >= Double.parseDouble(rightAwayData.getResultData().getWaitMoney())) {
-                                        psdDialog = new PsdDialog(this, "金额", merchantName, rightAwayData.getResultData().getWaitMoney());
-                                        psdDialog.show();
-                                    } else {
-                                        //弹出选择框，去充值还是取消商家余额支付
-                                        new AlertDialog.Builder(this).setTitle("充值确认").setMessage("是否去充值？")
-                                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                        startRechage(1, pkmuser);
-                                                        jiyishuzhi = rightAwayData.getResultData().getAmount();
-                                                    }
-                                                })
-                                                .setNegativeButton("取消", null)
-                                                .show();
-                                    }
-                                } else if (PAY_STYLE == 3) {
-                                    if (Double.parseDouble(rightAwayData.getResultData().getBalance_sys()) >= Double.parseDouble(rightAwayData.getResultData().getWaitMoney())) {
-                                        psdDialog = new PsdDialog(this, "金额", merchantName, rightAwayData.getResultData().getWaitMoney());
-                                        psdDialog.show();
-                                    } else {
 
-                                        //isSystemRecharge   = 0: 无系统充值送， 弹对话框有去加款   = 1:  有系统充值送 弹toast提示平台余额不足
-                                        if ("1".equals(isSystemRecharge)) {
-                                            ToastUtil.showToast(RightAwayActivity.this, "平台余额不足，可选择其他方式支付");
-                                        } else {
-                                            //弹出选择框，去充值还是取消平台余额支付
-                                            new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请使用在线支付或者线下支付")
+                                //isSystemRecharge   = 0: 无系统充值送， 弹对话框有去加款   = 1:  有系统充值送 弹toast提示平台余额不足
+                                if ("1".equals(isSystemRecharge)) {
+                                    ToastUtil.showToast(RightAwayActivity.this, "平台余额不足，可选择其他方式支付");
+                                } else {
+                                    //弹出选择框，去充值还是取消平台余额支付
+                                    new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请使用在线支付或者线下支付")
 //                                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
 //                                                        public void onClick(DialogInterface dialog, int which) {
 //                                                            startRechage(2, pksystem);
 //                                                        }
 //                                                    })
-                                                    .setNegativeButton("确定", null)
-                                                    .show();
-                                        }
-                                    }
+                                            .setNegativeButton("确定", null)
+                                            .show();
                                 }
                             }
-                        } else if (PAY_STYLE == 44) {
-                            if (Double.parseDouble(rightAwayBeforeData.getResultData().getAreaCardBalance()) >= Double.parseDouble(rightAwayData.getResultData().getWaitMoney())) {
-                                psdDialog = new PsdDialog(this, "金额", merchantName, rightAwayData.getResultData().getWaitMoney());
-                                psdDialog.show();
-                            } else {
-                                ToastUtil.showToast(this, "您的卡余额不足,请充值后再消费");
-                            }
-                        } else if (PAY_STYLE == 4) {
-                            psdDialog = new PsdDialog(this, "金额", merchantName, rightAwayData.getResultData().getWaitMoney());
-                            psdDialog.show();
                         }
                     }
+                } else if (PAY_STYLE == 44) {
+                    if (Double.parseDouble(rightAwayBeforeData.getResultData().getAreaCardBalance()) >= Double.parseDouble(rightAwayData.getResultData().getWaitMoney())) {
+                        psdDialog = new PsdDialog(this, "金额", merchantName, rightAwayData.getResultData().getWaitMoney());
+                        psdDialog.show();
+                    } else {
+                        ToastUtil.showToast(this, "您的卡余额不足,请充值后再消费");
+                    }
+                } else if (PAY_STYLE == 4) {
+                    psdDialog = new PsdDialog(this, "金额", merchantName, rightAwayData.getResultData().getWaitMoney());
+                    psdDialog.show();
                 }
-                break;
+            }
         }
     }
 
@@ -858,6 +889,74 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
             return 44;
         }
         return 1;
+    }
+
+
+    private void shareApp() {
+        if (getShareDataResultBean != null && getShareDataResultBean.getResultData() != null && "1".equals(getShareDataResultBean.getResultData().getHYB_SHARE_SWITCH())) {
+            DisplayMetrics dm = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(dm);
+            int screenWidth = dm.widthPixels;
+            int screenHeigh = dm.heightPixels;
+            View view = View.inflate(RightAwayActivity.this, R.layout.app_share_notice, null);
+            popupWindow = new PopupWindow(view, screenWidth, screenHeigh);
+            popupWindow.setBackgroundDrawable(new BitmapDrawable());
+            TextView textview_desc = (TextView) view.findViewById(R.id.textview_desc);
+            ImageView iv_share_img = (ImageView) view.findViewById(R.id.iv_share_img);
+            Button app_share_pay = (Button) view.findViewById(R.id.app_share_pay);
+            Button app_share_wechat = (Button) view.findViewById(R.id.app_share_wechat);
+            ImageView share_app_close = (ImageView) view.findViewById(R.id.share_app_close);
+            textview_desc.setText(getShareDataResultBean.getResultData().getHYB_SHARE_CONTENT());
+            Bitmap mQRCodeBitmap = EncodingUtils.createQRCode(getShareDataResultBean.getResultData().getRegist_url(), 500, 500, null);
+            iv_share_img.setImageBitmap(mQRCodeBitmap);
+
+            share_app_close.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    getShareDataResultBean = null;
+                    popupWindow.dismiss();
+                }
+            });
+            app_share_pay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    getShareDataResultBean = null;
+                    popupWindow.dismiss();
+                    payBusiness();
+                }
+            });
+            app_share_wechat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    bottomDialog = new BottomDialog(RightAwayActivity.this);
+                    bottomDialog.setClickListener(RightAwayActivity.this);
+                    bottomDialog.setCanceledOnTouchOutside(true);
+                    bottomDialog.setOneText("微信好友", R.mipmap.weixin);
+                    bottomDialog.setTwoText("微信朋友圈", R.mipmap.weixin_friend);
+                    bottomDialog.show();
+                }
+            });
+
+
+//        textview_back = (TextView) view.findViewById(R.id.textview_back);
+//        stringPop.setText(text);
+//        canclePop.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                popupWindow.dismiss();
+//            }
+//        });
+//        textview_back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                popupWindow.dismiss();
+//            }
+//        });
+            popupWindow.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
+        } else {
+            //立即支付 todo
+            payBusiness();
+        }
     }
 
     private void showPayStyle(int count, String[] style) {
@@ -885,6 +984,13 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
                 mAllPayStyle.setVisibility(View.GONE);
             }
         }
+    }
+
+
+    private void httpGetShareData() {
+        Map<String, String> params = new HashMap<>();
+//        params.put("userId", pkregister);
+        Wethod.httpPost(RightAwayActivity.this, request_share_info_code, Config.web.getShareData + "?userId=" + pkregister, params, RightAwayActivity.this, View.GONE);
     }
 
     @Override
@@ -1059,6 +1165,22 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else if (reqcode == request_share_info_code) {
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                getShareDataResultBean = new GetShareDataResultBean();
+                getShareDataResultBean.setMsg(jsonObject.getString("msg"));
+                getShareDataResultBean.setResultStatus(jsonObject.getInt("resultStatus"));
+                GetShareDataResultBean.ResultDataBean resultDataBean = new GetShareDataResultBean.ResultDataBean();
+                resultDataBean.setHYB_LOGO(jsonObject.getJSONObject("resultData").getString("HYB_LOGO"));
+                resultDataBean.setHYB_SHARE_CONTENT(jsonObject.getJSONObject("resultData").getString("HYB_SHARE_CONTENT"));
+                resultDataBean.setHYB_SHARE_SWITCH(jsonObject.getJSONObject("resultData").getString("HYB_SHARE_SWITCH"));
+                resultDataBean.setHYB_SHARE_TITLE(jsonObject.getJSONObject("resultData").getString("HYB_SHARE_TITLE"));
+                resultDataBean.setRegist_url(jsonObject.getJSONObject("resultData").getString("regist_url"));
+                getShareDataResultBean.setResultData(resultDataBean);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -1155,6 +1277,38 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
         param.put("paySubject", "在" + merchantName + "消费");
         param.put("payBody", "消费");
         Wethod.httpPost(this, request_pay_before, Config.web.pay_new_before, param, this);
+    }
+
+    @Override
+    public void onItem1Listener() {
+        ShareSDKUtil.shareWechatContent(this, getShareDataResultBean.getResultData().getRegist_url(), MyApplication.mWxApi, 1, getShareDataResultBean.getResultData().getHYB_SHARE_CONTENT());
+    }
+
+    @Override
+    public void onItem2Listener() {
+        ShareSDKUtil.shareWechatContent(this, getShareDataResultBean.getResultData().getRegist_url(), MyApplication.mWxApi, 2, getShareDataResultBean.getResultData().getHYB_SHARE_CONTENT());
+    }
+
+    @Override
+    public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+        getShareDataResultBean = null;
+        if (bottomDialog != null && bottomDialog.isShowing()) {
+            bottomDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onError(Platform platform, int i, Throwable throwable) {
+        if (bottomDialog != null && bottomDialog.isShowing()) {
+            bottomDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void onCancel(Platform platform, int i) {
+        if (bottomDialog != null && bottomDialog.isShowing()) {
+            bottomDialog.dismiss();
+        }
     }
 
     class PsdDialog extends Dialog {

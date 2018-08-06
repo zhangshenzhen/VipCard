@@ -52,7 +52,7 @@ public class AccountGridViewAdapter extends BaseAdapter{
         }else{
             holder = (ViewHolder) view.getTag();
         }
-        if(4 == position || 3 == position) {
+        if(4 == position ) {
             holder.iv_photo.setVisibility(View.GONE);
             holder.tv_name.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
