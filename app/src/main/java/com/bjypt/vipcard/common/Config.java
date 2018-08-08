@@ -19,15 +19,22 @@ public final class Config {
         public static final String cityCode = "1558";
 
         //public static final String hus_url = "http://123.57.232.188:9980/hus/";//检测服务器升级服务
-        public static final String hus_url = "http://121.196.233.207:9090/hus";   //检测服务器升级服务(正式)
+        public static final String hus_url = "http://121.196.233.207:9090/hus";   //检测服务器升级服务(正式
 
 
-//        public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
-//        public static final String shangfengh5= "http://47.96.105.168:19094/";
+        //测试服务器地址
+        public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
+        public static final String shangfengh5= "http://123.57.232.188:19094/";
 
-        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
-//        public static final String hyb_url = "http://47.93.79.174:9002/hyb/";       //预上线服务器地址
-        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //59地址
+        //正式服务器地址
+//        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
+//        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //207地址
+
+        //预上线服务器地址
+//        public static final String hyb_url = "http://47.93.79.174:9002/hyb/";
+//        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
+
+
 
         public static final String base = hyb_url + "ws/";
 
@@ -311,8 +318,11 @@ public final class Config {
 
         public static final String getShareData = hyb_url + "S03/share/getShare";
 
+       public static final String appShareUrl =  shangfengh5 +"register/index.html#/hybshare?pkregister=";
 
-        /**********************************智慧尚峰 start*********************************************/
+
+
+            /**********************************智慧尚峰 start*********************************************/
         /**
          * 首页菜单
          */

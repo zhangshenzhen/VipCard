@@ -20,10 +20,15 @@ import com.bjypt.vipcard.activity.shangfeng.primary.merchant.ui.MerchantActivity
 import com.bjypt.vipcard.activity.shangfeng.primary.merchant.ui.MerchantDetailsActivity;
 import com.bjypt.vipcard.activity.shangfeng.primary.pay.H5PayActivity;
 import com.bjypt.vipcard.activity.shangfeng.primary.pay.ScanPayActivity;
+import com.bjypt.vipcard.base.MyApplication;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.utils.ShareSDKUtil;
+import com.bjypt.vipcard.view.ToastUtil;
+import com.bjypt.vipcard.widget.ShareBottomDialog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
+import com.sinia.orderlang.utils.StringUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +39,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import cn.sharesdk.framework.ShareSDK;
 
 /**
  * Created by wanglei on 2018/5/17.
@@ -71,6 +78,11 @@ public class ShangfengUriHelper {
      * shangfeng://app/h5/pay               H5调用本地支付
      * shangfeng://app/h5/callbrowse        系统浏览器打开页面
      * shangfeng://app/h5/callapp           H5 app内部打开
+     * shangfeng://app/h5/share             H5 分享
+     * -------------------------title  分享标题
+     * -------------------------content  分享内容
+     * -------------------------linkurl   分享链接
+     * ------------------------- shangfeng://app/h5/share?title=123&content=456&linkurl=httpbaidu.com
      * alipays://platformapi                支付宝
      */
     public void startSearch(String uriString) {
@@ -90,14 +102,17 @@ public class ShangfengUriHelper {
                 H5PayActivity.callActivity(context, uriString);
             } else if (part.startsWith("//app/h5/callbrowse")) {
                 callBrowse(uri);
+            } else if (part.startsWith("//app/h5/share")) {
+                ShareSDK.initSDK(context);
+                shareUri(uri);
             } else if (part.startsWith("//app/h5/callapp")) {
                 String page = uri.getQueryParameter("page");
                 String is_login = uri.getQueryParameter("is_login");//默认不需要登录
                 //需要登录，但是app 未登录
                 if (StringUtils.isNotEmpty(is_login) && "Y".equalsIgnoreCase(is_login) && !isLogin) {
-                    if(is_login_callback){//登录之后直接跳转到支付页面
+                    if (is_login_callback) {//登录之后直接跳转到支付页面
                         LoginActivity.callActivity(context, uriString, null);
-                    }else{
+                    } else {
                         LoginActivity.callActivity(context);
                     }
                 }
@@ -112,11 +127,11 @@ public class ShangfengUriHelper {
                             String fee = uri.getQueryParameter("fee");
                             String price = uri.getQueryParameter("price");
                             MerchantDetailsActivity.callActivity(context, pkmuser, price + "");
-                        }else if(natvie_url.equalsIgnoreCase("scanpay")){
-                            String barcode  = uri.getQueryParameter("barcode");
+                        } else if (natvie_url.equalsIgnoreCase("scanpay")) {
+                            String barcode = uri.getQueryParameter("barcode");
                             String dealtype = uri.getQueryParameter("dealtype");
-                            if("14".equals(dealtype)){//智慧尚峰抢单，
-                                dealtype  ="15";//繁城都市抢单
+                            if ("14".equals(dealtype)) {//智慧尚峰抢单，
+                                dealtype = "15";//繁城都市抢单
                             }
                             ScanPayActivity.callActivity(context, dealtype, barcode);
                         }
@@ -131,6 +146,30 @@ public class ShangfengUriHelper {
         } else {
             callOnSearchFailListener("暂时不支持此功能");
         }
+    }
+
+    private void shareUri(Uri uri) {
+        final String title = uri.getQueryParameter("title");
+        final String content = uri.getQueryParameter("content");
+        final String linkurl = uri.getQueryParameter("linkurl");
+        if (StringUtil.isEmpty(title) || StringUtil.isEmpty(linkurl)) {
+            ToastUtil.showToast(context, "分享参数错误title和linkurl都不能为空");
+            return;
+        }
+
+        ShareBottomDialog dialog = new ShareBottomDialog(context);
+        dialog.show();
+        dialog.setClickListener(new ShareBottomDialog.ShareBtnListener() {
+            @Override
+            public void onWeixinFriendClick() {
+                ShareSDKUtil.shareWechatContent(context, linkurl, MyApplication.mWxApi, 1, content, title);
+            }
+
+            @Override
+            public void onWinxinFriendCircleClick() {
+                ShareSDKUtil.shareWechatContent(context, linkurl, MyApplication.mWxApi, 2, content,title);
+            }
+        });
     }
 
     public boolean isContains(String url) {
@@ -350,7 +389,7 @@ public class ShangfengUriHelper {
     }
 
     public String buildWebPage(String url, String title) {
-        return "shangfeng://app/h5/callapp?page=web&url=" + URLEncoder.encode(url) + "&title="+ title+"&is_login=Y";
+        return "shangfeng://app/h5/callapp?page=web&url=" + URLEncoder.encode(url) + "&title=" + title + "&is_login=Y";
     }
 
     public interface OnSearchListener {

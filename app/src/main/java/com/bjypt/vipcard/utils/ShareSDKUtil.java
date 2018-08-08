@@ -165,7 +165,7 @@ public class ShareSDKUtil {
      * @param mWxApi     传入微信api
      * @param type       1：微信好友分享；2：微信朋友全
      */
-    public static void shareWechatContent(Context context, String mQRCodeURL, IWXAPI mWxApi, int type, String content) {
+    public static void shareWechatContent(Context context, String mQRCodeURL, IWXAPI mWxApi, int type, String content, String title) {
         SharedPreferenceUtils.saveToSharedPreference(context, "shareType", "app");
         if (!MyApplication.mWxApi.isWXAppInstalled()) {
             ToastUtil.showToast(context, "您还未安装微信客户端");
@@ -177,7 +177,7 @@ public class ShareSDKUtil {
 
         WXMediaMessage wxMediaMessage = new WXMediaMessage(wxWebpageObject);
         wxMediaMessage.mediaObject = wxWebpageObject;
-        wxMediaMessage.title = "繁城都市分享有礼";
+        wxMediaMessage.title = title;
         wxMediaMessage.description = content;
         wxMediaMessage.thumbData =
                 Util.bmpToByteArray(BitmapFactory.decodeResource(context.getResources(), R.mipmap.app_ic_launcher), true);

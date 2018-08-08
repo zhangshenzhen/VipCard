@@ -367,7 +367,12 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
             case 3:  // 推荐给朋友
                 if ("Y".equals(getFromSharePreference(Config.userConfig.is_Login))) {
                     Log.i("aaa", "" + filepath);
-                    startActivity(new Intent(getActivity(), MyQRCodeActivity.class));
+//                    startActivity(new Intent(getActivity(), MyQRCodeActivity.class));
+                    Intent intentShare = new Intent(getActivity(), LifeServireH5Activity.class);
+                    intentShare.putExtra("life_url", Config.web.appShareUrl + getFromSharePreference(Config.userConfig.pkregister));
+                    intentShare.putExtra("isLogin", "N");
+                    intentShare.putExtra("serviceName", "推荐给好友");
+                    startActivity(intentShare);
                 } else {
                     startLogin();
                 }

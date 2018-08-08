@@ -1281,12 +1281,12 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
 
     @Override
     public void onItem1Listener() {
-        ShareSDKUtil.shareWechatContent(this, getShareDataResultBean.getResultData().getRegist_url(), MyApplication.mWxApi, 1, getShareDataResultBean.getResultData().getHYB_SHARE_CONTENT());
+        ShareSDKUtil.shareWechatContent(this, getShareDataResultBean.getResultData().getRegist_url(), MyApplication.mWxApi, 1, getShareDataResultBean.getResultData().getHYB_SHARE_CONTENT(),"繁城都市分享有礼");
     }
 
     @Override
     public void onItem2Listener() {
-        ShareSDKUtil.shareWechatContent(this, getShareDataResultBean.getResultData().getRegist_url(), MyApplication.mWxApi, 2, getShareDataResultBean.getResultData().getHYB_SHARE_CONTENT());
+        ShareSDKUtil.shareWechatContent(this, getShareDataResultBean.getResultData().getRegist_url(), MyApplication.mWxApi, 2, getShareDataResultBean.getResultData().getHYB_SHARE_CONTENT(),"繁城都市分享有礼");
     }
 
     @Override
