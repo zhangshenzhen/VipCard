@@ -28,6 +28,7 @@ import com.gallerypick.utils.SystemBarTintManager;
 import com.orhanobut.logger.Logger;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.piwik.sdk.Tracker;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -329,4 +330,7 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         }
     }
 
+    public Tracker getTracker() {
+        return ((MyPiwikApplication) getApplication()).getTracker();
+    }
 }

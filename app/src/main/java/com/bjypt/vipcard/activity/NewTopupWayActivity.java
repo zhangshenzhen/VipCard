@@ -25,6 +25,7 @@ import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.PayDealTypeEnum;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.model.LimitBean;
 import com.bjypt.vipcard.model.SelectMoneyBean;
@@ -40,6 +41,7 @@ import com.sinia.orderlang.utils.StringUtil;
 import com.unionpay.UPPayAssistEx;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -97,6 +99,8 @@ public class NewTopupWayActivity extends BaseActivity implements VolleyCallBack,
 
         //充值、提现需调用的接口获取上下限
         requestLimit();
+
+        TrackHelper.track().screen(TrackCommon.ViewTrackRecharge).title(TrackCommon.ViewTrackRecharge).with(getTracker());
     }
 
     @Override

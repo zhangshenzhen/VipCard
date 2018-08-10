@@ -36,6 +36,7 @@ import com.bjypt.vipcard.base.MyApplication;
 import com.bjypt.vipcard.base.RespBase;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.model.CommentDetailsClBean;
 import com.bjypt.vipcard.model.LoginData;
@@ -45,6 +46,7 @@ import com.bjypt.vipcard.utils.AES;
 import com.bjypt.vipcard.utils.MD5;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.PhoneCpuId;
+import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.utils.StringUtils;
 import com.bjypt.vipcard.view.LoadingPageDialog;
 import com.bjypt.vipcard.view.ToastUtil;
@@ -60,6 +62,7 @@ import com.tencent.tauth.UiError;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -166,6 +169,8 @@ public class LoginActivity extends BaseActivity implements VolleyCallBack {
         ws.setCacheMode(WebSettings.LOAD_NO_CACHE);
         ws.setGeolocationDatabasePath(getFilesDir().getPath());
         webView.requestFocus();
+
+        TrackHelper.track().screen(TrackCommon.ViewTrackLogin).title(TrackCommon.ViewTrackLogin).with(getTracker());
     }
 
     @Override
@@ -410,6 +415,9 @@ public class LoginActivity extends BaseActivity implements VolleyCallBack {
         } else if (StringUtil.isNotEmpty(callbackData)) {
             shangfengUriHelper.startSearch(callbackData);
         }
+
+        String clientId = SharedPreferenceUtils.getFromSharedPreference(getApplicationContext(), Config.userConfig.phoneno);
+        getTracker().setUserId(clientId);
 
         startService(new Intent(LoginActivity.this, MQTTService.class));
         finish();

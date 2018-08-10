@@ -28,6 +28,7 @@ import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.RespBase;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.config.Constant;
 import com.bjypt.vipcard.model.LoginData;
@@ -37,6 +38,9 @@ import com.bjypt.vipcard.utils.MD5;
 import com.bjypt.vipcard.utils.PhoneCpuId;
 import com.bjypt.vipcard.utils.StringUtils;
 import com.bjypt.vipcard.view.LoadingPageDialog;
+
+
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -89,6 +93,8 @@ public class RegisterActivity extends BaseActivity implements VolleyCallBack {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         screenWidth = dm.widthPixels;
         screenHeigh = dm.heightPixels;
+
+        TrackHelper.track().screen(TrackCommon.ViewTrackRegister).title(TrackCommon.ViewTrackRegister).with(getTracker());
     }
 
     @Override

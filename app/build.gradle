@@ -7,12 +7,16 @@ android {
 //        incremental true
         javaMaxHeapSize "4g"
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
     defaultConfig {
         applicationId "com.bjypt.vipcard"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 87
-        versionName "4.7.5"
+        versionCode 89
+        versionName "4.7.7"
         multiDexEnabled true
 
         ndk {
@@ -185,6 +189,8 @@ dependencies {
 
     // 扫码、生成二维码库
     compile 'com.github.jwkj:LibZXing:v1.1.2'
+
+    implementation 'org.piwik.sdk:piwik-sdk:3.0.3'
 }
 //task clean(type: Delete) {
 //    delete rootProject.buildDir

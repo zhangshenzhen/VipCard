@@ -95,7 +95,7 @@ public class NewBindBankCardActivity extends BaseActivity implements VolleyCallB
     }
 
     //请求绑定的银行卡信息
-    public void requestBindCard(){
+    public void requestBindCard() {
         Map<String, String> params = new HashMap<>();
         params.put("pkregister", getFromSharePreference(Config.userConfig.pkregister));
         Wethod.httpPost(NewBindBankCardActivity.this, 111, Config.web.is_bind_card, params, this);
@@ -193,25 +193,25 @@ public class NewBindBankCardActivity extends BaseActivity implements VolleyCallB
                 break;
             case R.id.ll_at_city:
             case R.id.tv_at_city:
-                if (StringUtil.isNotEmpty(mGuiShuHangString)) {
-                    bankCitySelectUtil = new BankCitySelectUtil(this, true, "");
-                    bankCitySelectUtil.setOnItemClickListner(new BankCitySelectUtil.OnItemClickListener() {
-                        @Override
-                        public void click(String value, String n) {
-                            tv_at_city.setText(value + "  " + n);
-                            bankprovince = value;
-                            bankcity = n;
-                            if (value.equals("北京") || value.equals("天津") || value.equals("重庆") || value.equals("海南") || value.equals("上海")) {
-                                requestBankKey(value);
-                            } else {
-                                requestBankKey(n);
-                            }
+//                if (StringUtil.isNotEmpty(mGuiShuHangString)) {
+                bankCitySelectUtil = new BankCitySelectUtil(this, true, "");
+                bankCitySelectUtil.setOnItemClickListner(new BankCitySelectUtil.OnItemClickListener() {
+                    @Override
+                    public void click(String value, String n) {
+                        tv_at_city.setText(value + "  " + n);
+                        bankprovince = value;
+                        bankcity = n;
+                        if (value.equals("北京") || value.equals("天津") || value.equals("重庆") || value.equals("海南") || value.equals("上海")) {
+                            requestBankKey(value);
+                        } else {
+                            requestBankKey(n);
                         }
-                    });
-                    bankCitySelectUtil.show(mBack);
-                } else {
-                    Toast.makeText(NewBindBankCardActivity.this, "请先输入您的银行卡号", Toast.LENGTH_SHORT).show();
-                }
+                    }
+                });
+                bankCitySelectUtil.show(mBack);
+//                } else {
+//                    Toast.makeText(NewBindBankCardActivity.this, "请先输入您的银行卡号", Toast.LENGTH_SHORT).show();
+//                }
                 break;
             case R.id.ll_at_concrete:
             case R.id.tv_at_concrete:
@@ -334,15 +334,15 @@ public class NewBindBankCardActivity extends BaseActivity implements VolleyCallB
 
     @Override
     public void onSuccess(int reqcode, String result) {
-        if(reqcode == REQUEST_BAND_INFO){
+        if (reqcode == REQUEST_BAND_INFO) {
 //            requestBindCard();
         }
         if (reqcode == REQUEST_UNBIND_BUTTON) {
             try {
-                UnBindCardBean unBindCardBean = getConfiguration().readValue(result.toString(),UnBindCardBean.class);
-                if (unBindCardBean.getResultData().getFlag()==0){
+                UnBindCardBean unBindCardBean = getConfiguration().readValue(result.toString(), UnBindCardBean.class);
+                if (unBindCardBean.getResultData().getFlag() == 0) {
                     unbind_card.setVisibility(View.GONE);
-                }else if (unBindCardBean.getResultData().getFlag() ==1){
+                } else if (unBindCardBean.getResultData().getFlag() == 1) {
                     unbind_card.setVisibility(View.VISIBLE);
                 }
             } catch (IOException e) {
@@ -568,7 +568,7 @@ public class NewBindBankCardActivity extends BaseActivity implements VolleyCallB
         Wethod.httpPost(NewBindBankCardActivity.this, REQUEST_UNBIND_BUTTON, Config.web.un_bind_card, null, this);
     }
 
-    private void requestBindInfo(){
+    private void requestBindInfo() {
         Map<String, String> params = new HashMap<>();
         params.put("pkregister", getFromSharePreference(Config.userConfig.pkregister));
         Wethod.httpPost(NewBindBankCardActivity.this, REQUEST_BAND_INFO, Config.web.bind_info, params, this);

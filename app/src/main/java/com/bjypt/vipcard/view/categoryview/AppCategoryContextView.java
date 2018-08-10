@@ -19,8 +19,11 @@ import com.bjypt.vipcard.activity.shangfeng.common.enums.UserInformationFields;
 import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
 import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.CommonWebActivity;
 import com.bjypt.vipcard.activity.shangfeng.util.SharedPreferencesUtils;
+import com.bjypt.vipcard.base.MyApplication;
+import com.bjypt.vipcard.base.MyPiwikApplication;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.model.AppCategoryBean;
 import com.bjypt.vipcard.utils.LogUtil;
@@ -31,6 +34,8 @@ import com.sinia.orderlang.utils.StringUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -242,5 +247,15 @@ public abstract class AppCategoryContextView extends LinearLayout implements Vol
         void onError(VolleyError volleyError);
     }
 
+
+    public Tracker getTracker() {
+        return MyApplication.getInstance().getTracker();
+    }
+//
+    public void postTracker(String actionName, String name){
+
+        TrackHelper.track().event(TrackCommon.ViewTrackCategroy, actionName).name(name).value(1f).with(getTracker());
+
+    }
 
 }

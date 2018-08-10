@@ -29,7 +29,9 @@ import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.shangfeng.common.LocateResultFields;
 import com.bjypt.vipcard.activity.shangfeng.util.SharedPreferencesUtils;
 import com.bjypt.vipcard.base.BaseFraActivity;
+import com.bjypt.vipcard.base.MyPiwikApplication;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.dialog.NormalDialog;
 import com.bjypt.vipcard.fragment.HomeFragment;
 import com.bjypt.vipcard.fragment.ManyFragment;
@@ -50,6 +52,9 @@ import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.sinia.orderlang.activity.SpecialPriceMainActivity;
 import com.sinia.orderlang.fragment.SpecialPriceFra;
 import com.sinia.orderlang.utils.StringUtil;
+
+import org.piwik.sdk.Tracker;
+import org.piwik.sdk.extra.TrackHelper;
 
 
 public class MainActivity extends BaseFraActivity {
@@ -165,8 +170,11 @@ public class MainActivity extends BaseFraActivity {
 
     @Override
     public void afterInitView() {
+        TrackHelper.track().screen(TrackCommon.ViewTrackPagesMainTab).title("首页").with(getTracker());
+    }
 
-
+    private Tracker getTracker() {
+        return ((MyPiwikApplication) getApplication()).getTracker();
     }
 
     @Override
@@ -185,10 +193,10 @@ public class MainActivity extends BaseFraActivity {
         switch (v.getId()) {
             case R.id.ly_main_new_home:
                 setTabSelection(0);
-                break;
+                 break;
             case R.id.ly_vip_jie:
                 setTabSelection(1);
-                break;
+                   break;
             case R.id.ly_life_sup:
 
                 setTabSelection(2);
@@ -254,6 +262,7 @@ public class MainActivity extends BaseFraActivity {
                 } else {
                     transaction.show(newHomeFrag);
                 }
+//                TrackHelper.track().event(TrackCommon.ViewTrackCategroy, TrackCommon.ViewTrackPagesMainTab).name("首页").value(1f).with(getTracker());
                 break;
             case 1:
                 tv_main_vip_jie.setTextColor(Color.parseColor("#52b8b8"));
@@ -264,6 +273,7 @@ public class MainActivity extends BaseFraActivity {
                 } else {
                     transaction.show(shopStreetFragment);
                 }
+                TrackHelper.track().event(TrackCommon.ViewTrackCategroy, TrackCommon.ViewTrackPagesMerchatTab).name("铺子").value(1f).with(getTracker());
                 break;
             case 2:
                 tv_main_life_sup.setTextColor(Color.parseColor("#52b8b8"));
@@ -273,7 +283,7 @@ public class MainActivity extends BaseFraActivity {
                 } else {
                     Toast.makeText(this, "请先手动定位后再进入生活超市", Toast.LENGTH_SHORT).show();
                 }
-                break;
+               break;
             case 3:
                 tv_main_my_news.setTextColor(Color.parseColor("#52b8b8"));
                 tv_main_my_news.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.news, 0, 0);
@@ -284,6 +294,7 @@ public class MainActivity extends BaseFraActivity {
                 } else {
                     transaction.show(newsFragment);
                 }
+                TrackHelper.track().event(TrackCommon.ViewTrackCategroy, TrackCommon.ViewTrackPagesNewsTab).name("有料").value(1f).with(getTracker());
                 break;
             case 4:
                 tv_main_my.setTextColor(Color.parseColor("#52b8b8"));
@@ -295,6 +306,7 @@ public class MainActivity extends BaseFraActivity {
                 } else {
                     transaction.show(mineFragment);
                 }
+                TrackHelper.track().event(TrackCommon.ViewTrackCategroy, TrackCommon.ViewTrackPagesMineTab).name("我的").value(1f).with(getTracker());
                 break;
 
 

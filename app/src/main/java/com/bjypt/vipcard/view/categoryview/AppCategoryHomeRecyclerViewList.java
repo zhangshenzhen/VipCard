@@ -12,6 +12,7 @@ import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.adapter.HomeRecyclerViewAdapter;
 import com.bjypt.vipcard.adapter.SpaceItemDecoration;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.model.AppCategoryBean;
 import com.bjypt.vipcard.model.AppCategoryLifeTypeBean;
 import com.bjypt.vipcard.model.AppCategroyLifeTypeResultDataBean;
@@ -136,6 +137,9 @@ public class AppCategoryHomeRecyclerViewList extends AppCategoryContextView {
                         homeRecyclerViewAdapter.setMyItemClickListener(new HomeRecyclerViewAdapter.MyItemClickListener() {
                             @Override
                             public void onItemClick(AppCategoryBean appCategoryBean) {
+                                if(appCategoryBean != null){
+                                    postTracker(TrackCommon.ViewTrackLifeService, appCategoryBean.getApp_name());
+                                }
                                 onAppCategoryItemClick(appCategoryBean);
                             }
                         });

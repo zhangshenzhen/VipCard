@@ -12,8 +12,11 @@ import android.util.Log;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.bjypt.vipcard.activity.shangfeng.util.MapLocationUtil;
+import com.bjypt.vipcard.activity.shangfeng.util.StringUtils;
 import com.bjypt.vipcard.activity.shangfeng.util.ToastMgr;
+import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.utils.CustomHurlStack;
+import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.utils.SsX509TrustManager;
 import com.bjypt.vipcard.wxapi.Constants;
 import com.orhanobut.logger.Logger;
@@ -22,6 +25,9 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.tencent.smtt.sdk.QbSdk;
 import com.umeng.analytics.MobclickAgent;
 import com.zhy.http.okhttp.OkHttpUtils;
+
+
+import org.piwik.sdk.TrackerConfig;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,7 +42,7 @@ import okhttp3.OkHttpClient;
  * Date by 2016/3/8
  * Use by 基类
  */
-public class MyApplication extends MultiDexApplication {
+public class MyApplication extends MyPiwikApplication {
     public static RequestQueue requestQueue;
     public static IWXAPI mWxApi;
     private ArrayList<Activity> activities = new ArrayList<Activity>();
@@ -190,4 +196,10 @@ public class MyApplication extends MultiDexApplication {
     public void setUpgrading(boolean is_upgrading){
         this.is_upgrading = is_upgrading;
     }
+
+    @Override
+    public TrackerConfig onCreateTrackerConfig() {
+        return TrackerConfig.createDefault("http://123.57.232.188:19090/piwik/piwik.php", 2);
+    }
+
 }

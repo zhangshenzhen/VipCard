@@ -41,6 +41,7 @@ import com.bjypt.vipcard.base.RespBase;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.PayDealTypeEnum;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.model.GetShareDataResultBean;
 import com.bjypt.vipcard.model.RightAddOrderData;
@@ -68,6 +69,8 @@ import net.frakbot.jumpingbeans.JumpingBeans;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.piwik.sdk.extra.TrackHelper;
+//import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -321,6 +324,8 @@ public class RightAwayActivity extends BaseActivity implements VolleyCallBack<St
         }
 
         httpGetShareData();
+
+        TrackHelper.track().screen(TrackCommon.ViewTrackAwayPay).title(TrackCommon.ViewTrackAwayPay).with(getTracker());
     }
 
     @Override

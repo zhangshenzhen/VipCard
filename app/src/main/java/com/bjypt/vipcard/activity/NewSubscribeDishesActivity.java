@@ -34,6 +34,7 @@ import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.config.AppConfig;
 import com.bjypt.vipcard.model.CarouselBean;
@@ -62,6 +63,7 @@ import net.frakbot.jumpingbeans.JumpingBeans;
 
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -210,6 +212,9 @@ public class NewSubscribeDishesActivity extends BaseActivity implements VolleyCa
         StatusBarUtil.setImgTransparent(this);
 
         setContentView(R.layout.activity_new_subscribedisher);
+
+
+        TrackHelper.track().screen(TrackCommon.ViewTrackMerchantDetail).title(TrackCommon.ViewTrackMerchantDetail).with(getTracker());
     }
 
     @Override

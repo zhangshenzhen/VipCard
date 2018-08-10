@@ -20,6 +20,7 @@ import com.bjypt.vipcard.activity.LifeServireH5Activity;
 import com.bjypt.vipcard.activity.LifeTypeActivity;
 import com.bjypt.vipcard.activity.LoginActivity;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.config.AppConfig;
 import com.bjypt.vipcard.model.AppCategoryBean;
@@ -218,7 +219,11 @@ public class AppCategoryLifeTypeMenuView extends AppCategoryContextView {
                     @Override
                     public void onClick(View v) {
                         if(list.get(position).getApp_id() != 0){
-                            onAppCategoryItemClick(list.get(position));
+                            AppCategoryBean appCategoryBean = list.get(position);
+                            if(appCategoryBean != null){
+                                postTracker(TrackCommon.ViewTrackLifeService, appCategoryBean.getApp_name());
+                            }
+                            onAppCategoryItemClick(appCategoryBean);
                         }
                     }
                 });

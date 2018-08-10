@@ -13,6 +13,7 @@ import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.LifeServireH5Activity;
 import com.bjypt.vipcard.adapter.InnGridViewAdapter;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.model.AppCategoryBean;
 import com.bjypt.vipcard.model.AppCategroyResultDataBean;
 import com.bjypt.vipcard.utils.LogUtil;
@@ -89,7 +90,11 @@ public class AppCategoryHomeCommonMenuView extends AppCategoryContextView {
             igv_new_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    onAppCategoryItemClick(getItemBean(position));
+                    AppCategoryBean appCategoryBean = getItemBean(position);
+                    if(appCategoryBean != null){
+                        postTracker(TrackCommon.ViewTrackCommonMenus, appCategoryBean.getApp_name());
+                    }
+                    onAppCategoryItemClick(appCategoryBean);
                 }
             });
 

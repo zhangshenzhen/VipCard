@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.config.AppConfig;
 import com.bjypt.vipcard.model.AppCategoryBean;
 import com.bjypt.vipcard.model.AppCategroyResultDataBean;
@@ -172,7 +173,7 @@ public class AppCategoryHomeMenuView extends AppCategoryContextView {
     }
 
 
-    class AppCategoryGroupBean{
+    class AppCategoryGroupBean {
         private List<AppCategoryBean> appCategoryBeans;
 
         public List<AppCategoryBean> getAppCategoryBeans() {
@@ -183,8 +184,6 @@ public class AppCategoryHomeMenuView extends AppCategoryContextView {
             this.appCategoryBeans = appCategoryBeans;
         }
     }
-
-
 
 
     public View roundview(int height) {
@@ -241,7 +240,7 @@ public class AppCategoryHomeMenuView extends AppCategoryContextView {
                     new LinearLayout.LayoutParams(viewpager_category_new_home.getMeasuredWidth(), viewpager_category_new_home.getMeasuredHeight());
             gridView.setLayoutParams(layoutParams);
             gridView.setNumColumns(size / 2);
-            gridView.setVerticalSpacing(DensityUtil.dip2px(context,17));
+            gridView.setVerticalSpacing(DensityUtil.dip2px(context, 17));
             gridView.setAdapter(new MyGridViewAdapter(context, listbeans, position));
             container.addView(gridView);
             return gridView;
@@ -295,13 +294,17 @@ public class AppCategoryHomeMenuView extends AppCategoryContextView {
             }
             viewHolder.textView.setText(list.get(flag).getAppCategoryBeans().get(position).getApp_name());
             //AppConfig.DEFAULT_IMG_MERCHANT_BG 配置iamgeloader的显示参数
-            ImageLoader.getInstance().displayImage( list.get(flag).getAppCategoryBeans().get(position).getApp_icon(),
+            ImageLoader.getInstance().displayImage(list.get(flag).getAppCategoryBeans().get(position).getApp_icon(),
                     viewHolder.iv_menu, AppConfig.DEFAULT_IMG_MERCHANT_BG);
 
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                     onAppCategoryItemClick(getItemBean(position));
+                    AppCategoryBean appCategoryBean = getItemBean(position);
+                    if(appCategoryBean != null){
+                        postTracker(TrackCommon.ViewTrackCommonMenus , appCategoryBean.getApp_name());
+                    }
+                    onAppCategoryItemClick(appCategoryBean);
                 }
             });
             return convertView;

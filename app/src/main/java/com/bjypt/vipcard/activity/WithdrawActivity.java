@@ -31,6 +31,7 @@ import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.RespBase;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.TrackCommon;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.dialog.NormalDialog;
 import com.bjypt.vipcard.model.LimitBean;
@@ -42,6 +43,8 @@ import com.bjypt.vipcard.utils.MD5;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sinia.orderlang.utils.StringUtil;
+
+import org.piwik.sdk.extra.TrackHelper;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -99,6 +102,8 @@ public class WithdrawActivity extends BaseActivity implements VolleyCallBack {
 
         //充值、提现需调用的接口获取上下限
         requestLimit();
+
+        TrackHelper.track().screen(TrackCommon.ViewTrackWithdraw).title(TrackCommon.ViewTrackWithdraw).with(getTracker());
     }
 
     @Override
