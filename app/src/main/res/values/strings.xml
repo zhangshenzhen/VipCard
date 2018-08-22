@@ -210,6 +210,6 @@
     <string name="my_title_text">我的</string>
     <!--系统消息-->
     <string name="system_messages">系统消息</string>
-
+    <string name="pwd_hint_text">密码6~16位，至少包含数字和字母</string>
 
 </resources>

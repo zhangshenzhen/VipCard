@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:text="原密码:"
+            android:text="原密码："
             android:textSize="@dimen/normal" />
 
         <EditText
@@ -59,6 +59,8 @@
             android:layout_marginLeft="3dp"
             android:layout_toRightOf="@id/old_psd"
             android:background="@null"
+            android:textSize="13sp"
+            android:hint="请输入"
             android:password="true"
             android:singleLine="true" />
 
@@ -96,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:text="新密码:"
+            android:text="新密码："
             android:textSize="@dimen/normal" />
 
         <EditText
@@ -105,6 +107,8 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="3dp"
             android:layout_toRightOf="@id/new_psd"
+            android:hint="@string/pwd_hint_text"
+            android:textSize="13sp"
             android:background="@null"
             android:digits="@string/psd"
             android:maxLength="32"
@@ -147,6 +151,8 @@
             android:layout_marginLeft="3dp"
             android:layout_toRightOf="@id/again_psd"
             android:background="@null"
+            android:textSize="13sp"
+            android:hint="请输入"
             android:digits="@string/psd"
             android:maxLength="32"
             android:password="true"
@@ -163,7 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:text="支付密码需输入6位数字，登录密码不超过32为字符"
+            android:text="支付密码需输入6位数字，登录密码不超过16为字符"
             android:textColor="@color/app_color"
             android:textSize="@dimen/small" />
     </RelativeLayout>

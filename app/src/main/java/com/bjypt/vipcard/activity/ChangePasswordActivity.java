@@ -110,6 +110,12 @@ public class ChangePasswordActivity extends BaseActivity implements VolleyCallBa
             mNewPsd.setInputType(EditorInfo.TYPE_CLASS_PHONE);
             mNewPsds.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         }
+
+        if(!PSD_TYPE){
+            mOldpsd.setHint("");
+            mNewPsd.setHint("");
+            mNewPsds.setHint("");
+        }
     }
 
     DigitsKeyListener mListener = new DigitsKeyListener() {

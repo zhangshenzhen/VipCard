@@ -344,7 +344,15 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
         String lon = SharedPreferenceUtils.getFromSharedPreference(this,  Config.userConfig.CURRENT_LNGU);
         String citycode = String.valueOf(SharedPreferencesUtils.get(LocateResultFields.CITY_CODE, Config.DEFAULT_CITY_CODE));
         if (isLogin.equals("N")) {
-            h5Web.loadUrl(h5Url + "&latitude=" + lat +"&longitude=" + lon +"&citycode=" + citycode);
+            if(h5Url.endsWith("?") || h5Url.endsWith("&")){
+                h5Url = h5Url + "latitude=" + lat +"&longitude=" + lon +"&citycode=" + citycode;
+            }else{
+                if(h5Url.endsWith(".html") || h5Url.endsWith(".jsp")){
+                    h5Url = h5Url +"?a1=1";
+                }
+                h5Url = h5Url + "&latitude=" + lat +"&longitude=" + lon +"&citycode=" + citycode;
+            }
+            h5Web.loadUrl(h5Url);
         } else {
             if (getIntent().hasExtra("isallurl") && getIntent().getStringExtra("isallurl").equals("Y")) {
                 h5Web.loadUrl(h5Url + getFromSharePreference(Config.userConfig.pkregister) + "&versionCode=" + getVersion() +"&latitude=" + lat +"&longitude=" + lon +"&citycode=" + citycode);
@@ -411,7 +419,7 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
 
                         }
                     } else {
-                        finish();
+                        h5Web.goBack();
                     }
 
 
@@ -451,6 +459,16 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
         public String getDeviceId() {
             LogUtil.debugPrint(PhoneCpuId.getDeviceId(context));
             return PhoneCpuId.getDeviceId(context);
+        }
+
+        @JavascriptInterface
+        public void setTitle(String s){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            },100);
         }
 
         @JavascriptInterface

@@ -71,7 +71,7 @@
                 android:layout_marginLeft="13dp"
                 android:layout_marginRight="13dp"
                 android:gravity="center"
-                android:text="手机"
+                android:text="手机号码"
                 android:textSize="16sp" />
 
             <EditText
@@ -79,6 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:hint="请输入手机号"
                 android:layout_toRightOf="@+id/tv_phone_num"
                 android:background="@null"
                 android:textSize="13sp" />
@@ -123,6 +124,7 @@
                 android:id="@+id/register_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="输入验证码"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/yanzhengma"
                 android:background="@null"
@@ -155,6 +157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:hint="@string/pwd_hint_text"
                 android:textSize="13sp" />
 
         </LinearLayout>
@@ -183,6 +186,7 @@
                 android:id="@+id/register_psd_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="确认新密码"
                 android:background="@null"
                 android:gravity="center_vertical"
                 android:textSize="13sp" />

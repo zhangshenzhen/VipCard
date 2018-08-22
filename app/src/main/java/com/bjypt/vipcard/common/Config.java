@@ -23,12 +23,14 @@ public final class Config {
 
 
         //测试服务器地址
-        public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
-        public static final String shangfengh5= "http://123.57.232.188:19094/";
+//        public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
+//        public static final String shangfengh5= "http://123.57.232.188:19094/";
+//          public static final String app_h5_url = "http://testsun.hybjiekou.com/hyb_ct_h5app/";
 
         //正式服务器地址
-//        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
-//        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //207地址
+        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
+        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //207地址
+        public static final String app_h5_url = "http://sun.hybjiekou.com/hyb_ct_h5app/";
 
         //预上线服务器地址
 //        public static final String hyb_url = "http://47.93.79.174:9002/hyb/";
@@ -85,7 +87,7 @@ public final class Config {
         public static final String system_proposelist = hus_url + "post/getSystemProposeList?pkregister="; //意见反馈
 
         public static final String home_service = base + "post/getHomeInfo";//首页数据获取
-        public static final String calculator_finances = hyb_url + "resource/finances/index.html";//理财计算器
+        public static final String calculator_finances = hyb_url + "resource/finances/index.html?";//理财计算器
         public static final String home_merchant = base + "post/v4.3.5/merchantList";//首页商户列表
         public static final String merchant_details = base + "post/getMerchantDetail";//商家详情
         public static final String product_spec = base + "post/getProductSpec";//商家详情
@@ -318,7 +320,7 @@ public final class Config {
 
         public static final String getShareData = hyb_url + "S03/share/getShare";
 
-       public static final String appShareUrl =  shangfengh5 +"register/index.html#/hybshare?pkregister=";
+       public static final String appShareUrl = app_h5_url +"#/hybshare?pkregister=";
 
 
 

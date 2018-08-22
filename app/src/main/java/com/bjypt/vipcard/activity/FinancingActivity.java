@@ -73,8 +73,8 @@ public class FinancingActivity extends BaseActivity implements VolleyCallBack {
         layoutParams.height = getStatusBarHeight();
 
 //        Intent intent = getIntent();
-//        pkmuser = intent.getStringExtra("pkmuser");
-        pkmuser = SharedPreferenceUtils.getFromSharedPreference(this, Config.userConfig.pkregister);
+        pkmuser = getIntent().getStringExtra("pkmuser");
+//        pkmuser = SharedPreferenceUtils.getFromSharedPreference(this, Config.userConfig.pkregister);
     }
 
     @Override
@@ -237,10 +237,13 @@ public class FinancingActivity extends BaseActivity implements VolleyCallBack {
      * 跳转到理财计算器界面
      */
     private void goCalculator() {
-        Intent intent1 = new Intent(this, LifeServireH5Activity.class);
-        intent1.putExtra("life_url", Config.web.calculator_finances);
-        intent1.putExtra("isLogin", "N");
-        startActivity(intent1);
+//        Intent intent1 = new Intent(this, LifeServireH5Activity.class);
+//        intent1.putExtra("life_url", Config.web.calculator_finances);
+//        intent1.putExtra("serviceName","我提现");
+//        intent1.putExtra("isLogin", "N");
+//        startActivity(intent1);
+        Intent intent2 = new Intent(this, WithdrawActivity.class);
+        startActivity(intent2);
     }
 
     /**
