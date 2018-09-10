@@ -63,7 +63,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler, Vol
     // ΢微信发送请求到第三方应用时，会回调到该方法
     @Override
     public void onReq(BaseReq req) {
-//        Toast.makeText(this, "openid = " + req.openId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "openid = " + req.openId +"  " + req.getType(), Toast.LENGTH_SHORT).show();
 
         switch (req.getType()) {
             case ConstantsAPI.COMMAND_GETMESSAGE_FROM_WX:

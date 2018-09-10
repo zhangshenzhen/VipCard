@@ -392,4 +392,13 @@
         <attr name="points_container_background" format="reference|color"/>
     </declare-styleable>
 
+    <attr name="titleLayoutHeight" format="dimension"/>
+
+    <!-- 自定义状态栏的属性 -->
+    <declare-styleable name="CustomStatusBarView">
+        <!-- 总是显示，作用相当于 fitSystemWindows -->
+        <attr name="showAlways" format="boolean"/>
+        <!-- 在指定的安卓系统版本以上显示，仅当 showAlways 为 false 时 -->
+        <attr name="showAfterSdkVersionInt" format="integer"/>
+    </declare-styleable>
 </resources>

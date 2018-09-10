@@ -1,8 +1,10 @@
 package com.bjypt.vipcard.base;
 
+import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.Window;
@@ -26,6 +28,13 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     public static final int MIN_CLICK_DELAY_TIME = 1000;
     long lastClickTime = 0;
+    protected Activity mActivity; // 给子类用的
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mActivity = getActivity();
+    }
 
     /**
      * 存储数据到SharePreference

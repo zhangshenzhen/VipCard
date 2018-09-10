@@ -180,7 +180,7 @@ public class ShareSDKUtil {
         wxMediaMessage.title = title;
         wxMediaMessage.description = content;
         wxMediaMessage.thumbData =
-                Util.bmpToByteArray(BitmapFactory.decodeResource(context.getResources(), R.mipmap.app_ic_launcher), true);
+                Util.bmpToByteArray(BitmapFactory.decodeResource(context.getResources(), R.mipmap.app_ic_launcher2), true);
         // 构造一个Req
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         req.transaction = String.valueOf(System.currentTimeMillis());

@@ -168,7 +168,7 @@ public class CircleAdapter extends BaseRecycleViewAdapter {
 //            boolean hasFavort = circleItem.hasFavort();
 //            boolean hasComment = circleItem.hasComment();
 
-            Glide.with(context).load(headImg).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).transform(new GlideCircleTransform(context)).into(holder.headIv);
+                Glide.with(context).load(headImg).diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.color.bg_no_photo).transform(new GlideCircleTransform(context)).into(holder.headIv);
 
             holder.nameTv.setText(name);
             holder.timeTv.setText(createTime);
@@ -188,11 +188,15 @@ public class CircleAdapter extends BaseRecycleViewAdapter {
             holder.headIv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, CircleMyActivity.class);
-                    intent.putExtra("uid", circleId);
-                    intent.putExtra("username", name);
-                    intent.putExtra("avatar", headImg);
-                    context.startActivity(intent);
+
+                    if(circleId != null){
+                        Intent intent = new Intent(context, CircleMyActivity.class);
+                        intent.putExtra("uid", circleId);
+                        intent.putExtra("username", name);
+                        intent.putExtra("avatar", headImg);
+                        context.startActivity(intent);
+                    }
+
                 }
             });
             holder.nameTv.setOnClickListener(new View.OnClickListener() {

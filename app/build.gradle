@@ -191,6 +191,10 @@ dependencies {
     compile 'com.github.jwkj:LibZXing:v1.1.2'
 
     implementation 'org.piwik.sdk:piwik-sdk:3.0.3'
+
+    compile 'com.chanven.lib:cptr:1.1.0'
+
+    compile 'com.wordplat:RecyclerViewEasyDivider:1.0.3'
 }
 //task clean(type: Delete) {
 //    delete rootProject.buildDir

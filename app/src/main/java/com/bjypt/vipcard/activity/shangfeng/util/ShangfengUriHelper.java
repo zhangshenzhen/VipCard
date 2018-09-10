@@ -81,7 +81,8 @@ public class ShangfengUriHelper {
      * shangfeng://app/h5/share             H5 分享
      * -------------------------title  分享标题
      * -------------------------content  分享内容
-     * -------------------------linkurl   分享链接
+     * -------------------------linkurl   ls
+     *
      * ------------------------- shangfeng://app/h5/share?title=123&content=456&linkurl=httpbaidu.com
      * alipays://platformapi                支付宝
      */

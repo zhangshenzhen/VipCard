@@ -114,6 +114,24 @@
                 android:textColor="@color/text_color"
                 android:textSize="12sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_friends"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@mipmap/my_normal"
+                android:text="圈圈"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>
