@@ -1058,6 +1058,12 @@
             android:theme="@style/Othere_AppTheme"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
+        <activity android:name=".activity.crowdfunding.MyCrowdfundingActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.crowdfunding.CrowdfundingAccountListActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.crowdfunding.CrowdfundingAccountInfoActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.crowdfunding.CrowdfundingQRDisplayActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.crowdfunding.CrowdfundingQRPayActivity"  android:screenOrientation="portrait" />
+        <activity android:name=".activity.crowdfunding.CrowdfundingQRDescriptionActivity" android:screenOrientation="portrait" />
         <!-- *********************************** shangfeng ui end **********************************-->
     </application>
 
