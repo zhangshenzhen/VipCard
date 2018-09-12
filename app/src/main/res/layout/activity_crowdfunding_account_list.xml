@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/sub_head_view" />
+
+    <com.bjypt.vipcard.pulltorefresh.PullToRefreshListView
+        android:id="@+id/lv_account_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#00000000"
+        android:divider="#00000000"
+        android:dividerHeight="3dp"
+        android:fadingEdge="none"
+        android:scrollbars="none" />
+
+</LinearLayout>

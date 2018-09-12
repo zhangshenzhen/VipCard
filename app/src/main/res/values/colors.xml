@@ -228,5 +228,7 @@
     <color name="colorPrimaryDark">#9BA2FD</color>
     <!--首页底部文字未选中的颜色-->
     <color name="main_unchecked_text_color">#999999</color>
+    <color name="cf_default_text">#52b9b8</color>
+    <color name="cf_account_detail_head">#2c281d</color>
 
 </resources>
