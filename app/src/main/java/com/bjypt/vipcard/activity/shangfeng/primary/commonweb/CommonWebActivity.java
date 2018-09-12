@@ -93,7 +93,7 @@ public class CommonWebActivity extends BaseAgentWebActivity {
     }
 
     @Override
-    protected void setTitle(WebView view, String title) {
+    void setWebTitle(String title) {
         tvTitle.setText(title);
     }
 

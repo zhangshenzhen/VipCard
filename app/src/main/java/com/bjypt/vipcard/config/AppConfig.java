@@ -187,6 +187,15 @@ public class AppConfig {
             .showImageOnFail(R.drawable.header_gray) // 设置图片加载或解码过程中发生错误显示的图片
             .build();
 
+    /*众筹默认头像*/
+    public static final DisplayImageOptions CF_HEADER_GRAY = new DisplayImageOptions.Builder()
+            .cacheInMemory(true).imageScaleType(ImageScaleType.IN_SAMPLE_INT)
+            .cacheOnDisk(true)
+            .bitmapConfig(android.graphics.Bitmap.Config.RGB_565)
+            .showStubImage(R.mipmap.my_photo) // 设置图片下载期间显示的图片
+            .showImageForEmptyUri(R.mipmap.my_photo) // 设置图片Uri为空或是错误的时候显示的图片
+            .showImageOnFail(R.mipmap.my_photo) // 设置图片加载或解码过程中发生错误显示的图片
+            .build();
 
     /*圈圈默认背景*/
     public static final DisplayImageOptions CIRCLE_BACKGROUND_IMAGE = new DisplayImageOptions.Builder()

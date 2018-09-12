@@ -19,6 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.utils.BroadCastReceiverUtils;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
@@ -265,6 +266,10 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     public void doStartUnionPayPlugin(Activity activity, String tn,
                                       String mode) {
 
+    }
+
+    public String getPkregister(){
+        return SharedPreferenceUtils.getFromSharedPreference(this, Config.userConfig.pkregister);
     }
 
     @Override

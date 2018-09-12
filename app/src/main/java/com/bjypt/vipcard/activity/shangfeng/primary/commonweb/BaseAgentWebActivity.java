@@ -93,7 +93,7 @@ public abstract class BaseAgentWebActivity extends BaseActivity {
                 .ready()
                 .go(getUrl());
         mAgentWeb.clearWebCache();
-        mAgentWeb.getJsInterfaceHolder().addJavaObject("android", new AndroidInterface(mAgentWeb, this));
+        mAgentWeb.getJsInterfaceHolder().addJavaObject("android", new AndroidInterface(mAgentWeb, this, BaseAgentWebActivity.this));
     }
 
 
@@ -180,9 +180,7 @@ public abstract class BaseAgentWebActivity extends BaseActivity {
     }
 
 
-    protected void setTitle(WebView view, String title) {
-
-    }
+    abstract void setWebTitle(String title);
 
     protected
     @Nullable

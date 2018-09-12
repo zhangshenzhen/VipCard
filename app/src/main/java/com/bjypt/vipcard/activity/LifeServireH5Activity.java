@@ -387,6 +387,11 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
         ll_close.setOnClickListener(this);
     }
 
+
+    private void setActvitiyTitle(String title){
+        tv.setText(title);
+    }
+
     @Override
     public void onClickEvent(View v) {
 
@@ -466,7 +471,7 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-
+                    LifeServireH5Activity.this.setActvitiyTitle(s);
                 }
             },100);
         }
