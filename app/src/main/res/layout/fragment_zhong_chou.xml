@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+   <View
+        android:id="@+id/statusBarView"
+        android:background="@color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </View>
+
+
+    <ScrollView
+      android:id="@+id/sc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/zhongchou_linlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+           <!-- <android.support.v4.view.ViewPager
+              android:id="@+id/zhongchou_pager"
+              android:layout_width="match_parent"
+              android:layout_height="145dp">
+          </android.support.v4.view.ViewPager>-->
+    <!--首页 banner-->
+    <com.bjypt.vipcard.view.categoryview.ZhongchouBannerView
+        android:id="@+id/zhongchouHomeBanner"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@color/theme_color"
+        app:bannerType="home_banner" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/home_messages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:drawableLeft="@drawable/tui_jian"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:text="今日推荐" />
+
+
+                  <com.bjypt.vipcard.view.ZhongchouTextViewMult
+                     android:id="@+id/tv_hot"
+                      android:layout_alignParentRight="true"
+                      android:layout_centerVertical="true"
+                      android:layout_width="wrap_content"
+                      android:layout_height="145dp"
+                      android:layout_marginRight="15dp"
+                      app:ad_text_front_size="14sp"/>
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/statusBarView2"
+                android:background="#f7f7f7"
+                android:layout_width="match_parent"
+                android:layout_height="6dp">
+
+            </View>
+
+         <android.support.v7.widget.RecyclerView
+             android:orientation="horizontal"
+             android:id="@+id/recycle_view"
+             android:layout_width="match_parent"
+             android:layout_height="200dp">
+
+         </android.support.v7.widget.RecyclerView>
+            <View
+                android:id="@+id/statusBarView3"
+                android:background="#f7f7f7"
+                android:layout_width="match_parent"
+                android:layout_height="6dp">
+            </View>
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/stl_zhongchou"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:background="@color/gray"
+                app:tl_indicator_color="@color/app_color"
+                app:tl_indicator_corner_radius="5dp"
+                app:tl_indicator_height="2dp"
+                app:tl_indicator_margin_left="5dp"
+                app:tl_indicator_margin_right="5dp"
+                app:tl_indicator_style="NORMAL"
+                app:tl_textSelectColor="@color/app_color"
+                app:tl_textUnselectColor="@color/gray_news"
+                app:tl_textsize="13sp" />
+
+            <com.bjypt.vipcard.view.NewsViewpager
+                android:id="@+id/vp_zhongchou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </com.bjypt.vipcard.view.NewsViewpager>
+
+
+
+
+        </LinearLayout>
+
+   </ScrollView>
+
+
+
+</LinearLayout>

@@ -18,6 +18,18 @@ public final class Config {
 
         public static final String cityCode = "1558";
 
+        /*
+        * 众筹界面首页的baner 地址*/
+        public static final String zhongchou_baner_url= "http://123.57.232.188:19096/api/hybApplicationConfig/getBanner";
+
+        /*
+        * 首页今日推荐
+        * */
+        public static final String zhongchou_recomend_url= "http://123.57.232.188:19096/api/hybCfProject/getRecommendProject";
+          /*
+          * 众筹列表*/
+          public static final String zhongchou_list_url= "123.57.232.188:19096/api/hybCfProject/getIsNoRecommendProject";
+
         //public static final String hus_url = "http://123.57.232.188:9980/hus/";//检测服务器升级服务
         public static final String hus_url = "http://121.196.233.207:9090/hus";   //检测服务器升级服务(正式
 
