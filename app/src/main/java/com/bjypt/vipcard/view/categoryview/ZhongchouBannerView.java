@@ -5,15 +5,16 @@ import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.model.AppCategoryBean;
 import com.bjypt.vipcard.model.AppCategroyResultDataBean;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
-import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.widget.FlyBanner;
 
 import org.codehaus.jackson.map.ObjectMapper;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ import java.util.Map;
  * Created by wanglei on 2017/12/26.
  */
 
-public class AppCategoryHomeBannerView extends AppCategoryContextView{
+public class ZhongchouBannerView extends AppCategoryContextView{
 
     private ArrayList<String> adv_list = new ArrayList<>();
     private FlyBanner viewpager_new_home;
@@ -33,15 +34,15 @@ public class AppCategoryHomeBannerView extends AppCategoryContextView{
 
     private int bannerType;
 
-    public AppCategoryHomeBannerView(Context context) {
+    public ZhongchouBannerView(Context context) {
         super(context);
     }
 
-    public AppCategoryHomeBannerView(Context context, @Nullable AttributeSet attrs) {
+    public ZhongchouBannerView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public AppCategoryHomeBannerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ZhongchouBannerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -64,11 +65,9 @@ public class AppCategoryHomeBannerView extends AppCategoryContextView{
     @Override
     public void httpGetData() {
         Map<String, String> params = new HashMap<>();
-        params.put("city_code", Config.web.cityCode);//SharedPreferenceUtils.getFromSharedPreference(getContext(), Config.userConfig.citycode, "1558")
-        params.put("app_type", bannerType+"");
-//        com.orhanobut.logger.Logger.e("city_code :"+SharedPreferenceUtils.getFromSharedPreference(getContext(), Config.userConfig.citycode, "1558"));
-//        com.orhanobut.logger.Logger.e("app_type :"+bannerType);
-        startLoading(Config.web.application_ad, params);
+      /*  params.put("city_code", Config.web.cityCode);//SharedPreferenceUtils.getFromSharedPreference(getContext(), Config.userConfig.citycode, "1558")
+        params.put("app_type", bannerType+"");*/
+        startLoading(Config.web.zhongchou_baner_url, params);
     }
 
     @Override

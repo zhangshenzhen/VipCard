@@ -157,7 +157,6 @@ public class HomeFragment extends BaseFrament implements VolleyCallBack<String> 
         context = getActivity();
         return inflater.inflate(R.layout.fra_home_page, container, false);
     }
-
     @Override
     public void beforeInitView() {
         utils = new BroadCastReceiverUtils();
@@ -225,7 +224,6 @@ public class HomeFragment extends BaseFrament implements VolleyCallBack<String> 
 
         stl_store = (SlidingTabLayout) mHeadView.findViewById(R.id.stl_store);
         vp_store= (ViewPager) mHeadView.findViewById(R.id.vp_store);
-
         mpullList.setMode(PullToRefreshBase.Mode.BOTH);
         nav_news = (ImageView) getActivity().findViewById(R.id.nav_news);
         home_now_city = (TextView) getActivity().findViewById(R.id.home_now_city);
@@ -856,7 +854,7 @@ public class HomeFragment extends BaseFrament implements VolleyCallBack<String> 
             } else if (i == 5) {
                 homeTypeBean.setMtname("健康");
             } else if (i == 6) {
-                homeTypeBean.setMtname("休闲娱乐");
+                homeTypeBean.setMtname(" 休闲娱乐");
             } else if (i == 7) {
                 homeTypeBean.setMtname("智能");
             } else if (i == 8) {
