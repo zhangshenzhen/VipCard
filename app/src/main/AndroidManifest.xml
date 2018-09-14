@@ -1064,6 +1064,7 @@
         <activity android:name=".activity.crowdfunding.CrowdfundingQRDisplayActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.crowdfunding.CrowdfundingQRPayActivity"  android:screenOrientation="portrait" />
         <activity android:name=".activity.crowdfunding.CrowdfundingQRDescriptionActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.crowdfunding.projectdetail.CrowdfundingDetailActivity" android:screenOrientation="portrait" />
         <!-- *********************************** shangfeng ui end **********************************-->
     </application>
 

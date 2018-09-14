@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,6 +23,7 @@ import com.bjypt.vipcard.base.BaseFraActivity;
 import com.bjypt.vipcard.base.MyPiwikApplication;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.TrackCommon;
+import com.bjypt.vipcard.fragment.crowdfunding.CrowdfundingFragment;
 import com.bjypt.vipcard.fragment.HomeFragment;
 import com.bjypt.vipcard.fragment.ManyFragment;
 import com.bjypt.vipcard.fragment.MerchantFragment;
@@ -32,7 +32,6 @@ import com.bjypt.vipcard.fragment.NewHomeFrag;
 import com.bjypt.vipcard.fragment.NewsFragment;
 import com.bjypt.vipcard.fragment.ShopStreetFragment;
 import com.bjypt.vipcard.fragment.VipTrainFragment;
-import com.bjypt.vipcard.fragment.ZhongChouFragment;
 import com.bjypt.vipcard.model.LocationDingweiBean;
 import com.bjypt.vipcard.umeng.UmengCountContext;
 import com.bjypt.vipcard.utils.BroadCastReceiverUtils;
@@ -63,7 +62,7 @@ public class MainActivity extends BaseFraActivity {
     private ManyFragment mManyFra;
     private VipTrainFragment mVipTrain;
     private NewsFragment newsFragment;
-    private ZhongChouFragment zhongChouFragment;
+    private CrowdfundingFragment zhongChouFragment;
     private SpecialPriceFra specialPriceFra;
     //    private LinearLayout  mTotalBottom; ads
     FragmentTransaction transaction;
@@ -283,7 +282,7 @@ public class MainActivity extends BaseFraActivity {
                //这里newsFragment 被替换成z hongChouFragment
                 if (zhongChouFragment == null) {
 //                    mManyFra = new ManyFragment();
-                    zhongChouFragment = new ZhongChouFragment();
+                    zhongChouFragment = new CrowdfundingFragment();
                     transaction.add(R.id.id_content, zhongChouFragment);
                 } else {
                     transaction.show(zhongChouFragment);

@@ -101,6 +101,7 @@
             <flag name="fine_discount_shop" value="0x7"/>
             <flag name="merchant_home_banner"  value="0x9" />
             <flag name="location_banner"  value="0x11" />
+            <flag name="crowdfunding_banner"  value="0x13" />
         </attr>
 
     </declare-styleable>
@@ -224,6 +225,7 @@
         <attr name="tl_tab_width"/>
 
         <!-- title -->
+        <attr name="tl_textSelectSize"/>
         <attr name="tl_textsize"/>
         <attr name="tl_textSelectColor"/>
         <attr name="tl_textUnselectColor"/>

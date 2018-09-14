@@ -73,6 +73,8 @@ public abstract class BaseAgentWebActivity extends BaseActivity {
 
     protected void buildAgentWeb() {
         ErrorLayoutEntity mErrorLayoutEntity = getErrorLayoutEntity();
+        String url = getUrl();
+
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(getAgentWebParent(), new ViewGroup.LayoutParams(-1, -1))
                 .useDefaultIndicator(getIndicatorColor(), getIndicatorHeight())
@@ -91,7 +93,7 @@ public abstract class BaseAgentWebActivity extends BaseActivity {
                 .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)
                 .createAgentWeb()
                 .ready()
-                .go(getUrl());
+                .go(url);
         mAgentWeb.clearWebCache();
         mAgentWeb.getJsInterfaceHolder().addJavaObject("android", new AndroidInterface(mAgentWeb, this, BaseAgentWebActivity.this));
     }

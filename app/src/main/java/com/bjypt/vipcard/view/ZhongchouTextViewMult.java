@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.shangfeng.data.bean.BannerBean;
 import com.bjypt.vipcard.bean.AnnouncementBean;
 import com.bjypt.vipcard.bean.ZhongChouBanerBean;
 
@@ -26,7 +28,7 @@ import java.util.List;
  */
 
 public class ZhongchouTextViewMult extends LinearLayout {
-    List<ZhongChouBanerBean> mTexts; //数据源
+    List<BannerBean> mTexts; //数据源
     private int flipInterval = 3000; //切换间隔时间
     private int anmiDuration = 2000;
     private ViewFlipper viewFlipper;
@@ -72,9 +74,9 @@ public class ZhongchouTextViewMult extends LinearLayout {
 
     public void setAnmiDuration(int anmiDuration) {
         this.anmiDuration = anmiDuration;
-        Animation inAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.slide_in_from_left);
+        Animation inAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_in_from_left);
         inAnimation.setDuration(anmiDuration);
-        Animation outAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.slide_out_to_right);
+        Animation outAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_out_to_right);
         outAnimation.setDuration(anmiDuration);
         viewFlipper.setInAnimation(inAnimation);
         viewFlipper.setOutAnimation(outAnimation);
@@ -88,7 +90,7 @@ public class ZhongchouTextViewMult extends LinearLayout {
         viewFlipper.startFlipping();
     }
 
-    public void stopFilpping(){
+    public void stopFilpping() {
         viewFlipper.stopFlipping();
     }
 
@@ -98,7 +100,7 @@ public class ZhongchouTextViewMult extends LinearLayout {
      * @param mTexts   数据源
      * @param pageSize 一页显示多少条
      */
-    public void setTexts(final List<ZhongChouBanerBean> mTexts, int pageSize) {
+    public void setTexts(final List<BannerBean> mTexts, int pageSize) {
         this.mTexts = mTexts;
         int countrecord = mTexts.size();
         int countpage = 1;
@@ -109,8 +111,8 @@ public class ZhongchouTextViewMult extends LinearLayout {
             countpage = countrecord / pageSize;
         } else {
             //补齐整页
-            int temp = countrecord % pageSize ;
-            for(int i=0;i< pageSize - temp;i++){
+            int temp = countrecord % pageSize;
+            for (int i = 0; i < pageSize - temp; i++) {
                 mTexts.add(mTexts.get(i));
             }
             countrecord = mTexts.size();
@@ -123,23 +125,24 @@ public class ZhongchouTextViewMult extends LinearLayout {
             linearLayout.setPadding(2, 2, 2, 2);
             linearLayout.setLayoutParams(params);
             linearLayout.setOrientation(LinearLayout.VERTICAL);
+            linearLayout.setGravity(Gravity.CENTER);
             int limit = (i + 1) * pageSize - 1;
             if (limit > countrecord) limit = countrecord - 1;
             for (int j = i * pageSize; j <= limit; j++) {
-                View view = inflater.inflate(R.layout.layout_adtextview_view_item, null);
+                View view = inflater.inflate(R.layout.view_crowdfunding_notice_item, null);
                 ImageView tv_mFront = (ImageView) view.findViewById(R.id.tv_mFront);
-                TextView tv_mBack = (TextView)view.findViewById(R.id.tv_mBack);
+                TextView tv_mBack = (TextView) view.findViewById(R.id.tv_mBack);
                 tv_mBack.setText(mTexts.get(j).getApp_name());
                 view.setTag(mTexts.get(j));
-                    view.setOnClickListener(new OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            //AnnouncementBean announcementBean = (AnnouncementBean)view.getTag();
-                           ZhongChouBanerBean zhongChouBean = (ZhongChouBanerBean) view.getTag();
-                            if(onItemClickListener != null)
-                            onItemClickListener.onClick(zhongChouBean);
-                          }
-                    });
+                view.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //AnnouncementBean announcementBean = (AnnouncementBean)view.getTag();
+                        BannerBean zhongChouBean = (BannerBean) view.getTag();
+                        if (onItemClickListener != null)
+                            onItemClickListener.onNoticeClick(zhongChouBean);
+                    }
+                });
                 linearLayout.addView(view);
             }
 
@@ -154,7 +157,7 @@ public class ZhongchouTextViewMult extends LinearLayout {
     }
 
     public interface OnItemClickListener {
-        void onClick(ZhongChouBanerBean zhongChouBean);
+        void onNoticeClick(BannerBean zhongChouBean);
     }
 
 

@@ -4,6 +4,7 @@
     <!--沉浸式无状态栏-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="titleLayoutHeight">0dp</item>
     </style>
 
 

@@ -56,7 +56,7 @@ public class ListRefreshView extends FrameLayout implements PtrUIHandler {
         statusHint = (TextView) view.findViewById(R.id.list_refresh_status);
         updateTime = (TextView) view.findViewById(R.id.list_refresh_updateTime);
         loadingImage = (ImageView) view.findViewById(R.id.list_refresh_loading_image);
-        loadingImage.setVisibility(GONE);
+//        loadingImage.setVisibility(GONE);
         view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         addView(view);
 
@@ -115,7 +115,7 @@ public class ListRefreshView extends FrameLayout implements PtrUIHandler {
             sharedPreferences.edit().putLong(mLastUpdateTimeKey, mLastUpdateTime).commit();
         }
         ((AnimationDrawable) loadingImage.getBackground()).stop();
-        loadingImage.setVisibility(GONE);
+//        loadingImage.setVisibility(GONE);
     }
 
     @Override

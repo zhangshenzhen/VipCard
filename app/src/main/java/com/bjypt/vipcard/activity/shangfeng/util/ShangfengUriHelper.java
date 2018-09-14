@@ -286,7 +286,10 @@ public class ShangfengUriHelper {
                         url = url + "&phoneno=" + SharedPreferencesUtils.get(UserInformationFields.PHONE_NUMBER, "");
                     }
                 }
-                if (!url.endsWith("&")) {
+                if(url.endsWith(".com") || url.endsWith(".cn") || url.endsWith(".net") || url.endsWith(".org")){
+                    url = url +"?";
+                }
+                if (!url.endsWith("&") && !url.endsWith("?")) {
                     url = url + "&";
                 }
                 url = url + "citycode=" + SharedPreferencesUtils.get(LocateResultFields.CITY_CODE, "");

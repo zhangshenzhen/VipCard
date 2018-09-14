@@ -3,10 +3,7 @@ package com.bjypt.vipcard.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -15,22 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
-import com.bjypt.vipcard.activity.LifeServireH5Activity;
-import com.bjypt.vipcard.activity.LoginActivity;
 import com.bjypt.vipcard.activity.MainActivity;
-import com.bjypt.vipcard.adapter.HomeRecyclerViewAdapter;
-import com.bjypt.vipcard.adapter.NewHomeAdapter;
-import com.bjypt.vipcard.adapter.RecommendAdapter;
+import com.bjypt.vipcard.adapter.cf.HomeCrowdfundingRecommendAdapter;
 import com.bjypt.vipcard.base.BaseFrament;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.bean.AnnouncementBean;
@@ -38,34 +24,17 @@ import com.bjypt.vipcard.bean.WeatherBean;
 import com.bjypt.vipcard.bean.ZhongChouBanerBean;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
-import com.bjypt.vipcard.model.AppCategoryBean;
-import com.bjypt.vipcard.model.LifeHuiData;
 import com.bjypt.vipcard.model.XinWenAdBean;
 import com.bjypt.vipcard.model.XinWenData;
-import com.bjypt.vipcard.pulltorefresh.PullToRefreshBase;
-import com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView;
-import com.bjypt.vipcard.utils.BroadCastReceiverUtils;
 import com.bjypt.vipcard.utils.GaoDeMapLocation;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
-import com.bjypt.vipcard.view.CheckUpdateAppVersionContext;
 import com.bjypt.vipcard.view.NewsViewpager;
-import com.bjypt.vipcard.view.TextViewMult;
-import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.view.ZhongchouTextViewMult;
-import com.bjypt.vipcard.view.categoryview.AppCategoryContextView;
-import com.bjypt.vipcard.view.categoryview.AppCategoryHomeBannerView;
-import com.bjypt.vipcard.view.categoryview.AppCategoryHomeMenuView;
 import com.bjypt.vipcard.view.categoryview.AppCategoryHomeRecyclerViewList;
 import com.bjypt.vipcard.view.categoryview.ZhongchouBannerView;
 import com.bjypt.vipcard.widget.GlidePopupWindow;
 import com.flyco.tablayout.SlidingTabLayout;
-import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.orhanobut.logger.Logger;
-import com.sinia.orderlang.bean.RedpacketBean;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -75,10 +44,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
@@ -87,7 +54,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2016/12/13.
  */
 
-public class ZhongChouFragment extends BaseFrament implements VolleyCallBack, ZhongchouTextViewMult.OnItemClickListener {
+public class ZhongChouFragment extends BaseFrament implements VolleyCallBack {
 
     // 标题右侧图标按钮
     private String address;
@@ -113,19 +80,19 @@ public class ZhongChouFragment extends BaseFrament implements VolleyCallBack, Zh
     private ArrayList<ZhongChouBanerBean> zhongChouBanerBeans;
     private ZhongchouBannerView bannerView;
     private ZhongchouTextViewMult tv_tuijian;
-    Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case 1:
-               tv_tuijian.setTexts(zhongChouBanerBeans , 1);
-                    break;
-                case 2:
-
-                    break;
-            }
-        }
-    };
+//    Handler handler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            switch (msg.what){
+//                case 1:
+//               tv_tuijian.setTexts(zhongChouBanerBeans , 1);
+//                    break;
+//                case 2:
+//
+//                    break;
+//            }
+//        }
+//    };
     private RecyclerView recycle_view;
     private SlidingTabLayout stl_zhongchou;
     private NewsViewpager vp_zhongchou;
@@ -157,7 +124,7 @@ public class ZhongChouFragment extends BaseFrament implements VolleyCallBack, Zh
        // getZhongchouData();//今日推荐
         LinearLayoutManager layoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         recycle_view.setLayoutManager(layoutManager);
-        recycle_view.setAdapter(new RecommendAdapter());
+        recycle_view.setAdapter(new HomeCrowdfundingRecommendAdapter(getContext()));
 
      }
 
@@ -165,7 +132,7 @@ public class ZhongChouFragment extends BaseFrament implements VolleyCallBack, Zh
 
     @Override
     public void initView() {
-        tv_tuijian.setOnItemClickListener(this);
+
     }
 
 
@@ -344,7 +311,7 @@ public class ZhongChouFragment extends BaseFrament implements VolleyCallBack, Zh
                    zhongChouBanerBeans.add(banerBean);
                }
            }
-           handler.sendEmptyMessage(1);
+//           handler.sendEmptyMessage(1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -383,13 +350,6 @@ public class ZhongChouFragment extends BaseFrament implements VolleyCallBack, Zh
     }
 
 
-    /* 卸载apk */
-    public static void uninstallApk(Context context, String packageName) {
-        Uri uri = Uri.parse("package:" + packageName);
-        Intent intent = new Intent(Intent.ACTION_DELETE, uri);
-        context.startActivity(intent);
-    }
-
 
     @Override
     public void onDestroy() {
@@ -399,8 +359,4 @@ public class ZhongChouFragment extends BaseFrament implements VolleyCallBack, Zh
     }
 
 
-    @Override
-    public void onClick(ZhongChouBanerBean zhongChouBean) {
-
-    }
 }

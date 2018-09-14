@@ -38,6 +38,8 @@ public class BannerBean implements Serializable {
 
     private String link_url;
 
+    public BannerBean(){}
+
     public BannerBean(int app_id, String app_name, String app_icon, int mtlevel, String city_code, int isentry, int link_type, String android_native_url, String native_params, String link_url) {
         this.app_id = app_id;
         this.app_name = app_name;

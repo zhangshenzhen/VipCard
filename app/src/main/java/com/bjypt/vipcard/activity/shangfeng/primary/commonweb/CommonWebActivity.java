@@ -69,6 +69,9 @@ public class CommonWebActivity extends BaseAgentWebActivity {
 //        url = "http://192.168.0.103:8081/order/index.html#/myorder?&pkregister=26fbe557f6c03c459015f7aa7c22b238&phoneno=18362915512";
         title = getIntent().getStringExtra("title");
 
+        if(!url.startsWith("http://")){
+            url = "http://" + url;
+        }
         tvTitle.setText(title);
         buildAgentWeb();
         findViewById(R.id.ibtn_back).setOnClickListener(new View.OnClickListener() {
