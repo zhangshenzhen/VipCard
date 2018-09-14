@@ -1,5 +1,6 @@
 package com.bjypt.vipcard.activity.crowdfunding.projectdetail;
 
+import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
@@ -8,11 +9,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.Button;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.crowdfunding.SupportInfoActivity;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.BaseFraActivity;
 import com.bjypt.vipcard.base.BaseFragment;
+import com.bjypt.vipcard.fragment.MineFragment;
 import com.bjypt.vipcard.fragment.crowdfunding.CrowdfundingFragment;
 import com.bjypt.vipcard.pulltorefresh.social.custom.AppBarHeaderBehavior;
 import com.flyco.tablayout.SlidingTabLayout;
@@ -27,6 +31,8 @@ public class CrowdfundingDetailActivity extends BaseFraActivity {
     private AppBarHeaderBehavior behavior;
     private HomeSubFragmentAdapter fragmentAdapter;
     BaseFragment[] projectContentFragments;
+
+    Button btn_topay;
 
     @Override
     public void setContentLayout() {
@@ -46,6 +52,8 @@ public class CrowdfundingDetailActivity extends BaseFraActivity {
         appBar = findViewById(R.id.appBar);
         behavior = (AppBarHeaderBehavior) ((CoordinatorLayout.LayoutParams) appBar.getLayoutParams()).getBehavior();
         appBar.setExpanded(true, false);
+
+        btn_topay = findViewById(R.id.btn_topay);
     }
 
     @Override
@@ -67,12 +75,18 @@ public class CrowdfundingDetailActivity extends BaseFraActivity {
 
     @Override
     public void bindListener() {
-
+        btn_topay.setOnClickListener(this);
     }
 
     @Override
     public void onClickEvent(View v) {
-
+        switch (v.getId()){
+          case  R.id.btn_topay:
+              Intent topay =  new Intent(this, SupportInfoActivity.class);
+              topay.putExtra("pkprogressitemid", 2);
+              startActivity(topay);
+            break;
+        }
     }
 
     /**
