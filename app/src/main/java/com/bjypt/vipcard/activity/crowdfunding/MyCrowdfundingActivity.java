@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
+import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.CommonWebActivity;
 import com.bjypt.vipcard.activity.shangfeng.util.StringUtils;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
@@ -17,6 +19,7 @@ import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.config.AppConfig;
 import com.bjypt.vipcard.model.cf.CfUserInfoData;
+import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -45,6 +48,7 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
     LinearLayout linear_item_request_online;
 
     private static final int request_user_code = 123;
+    private int pkmerchantid;
 
 
     @Override
@@ -54,6 +58,7 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
 
     @Override
     public void beforeInitView() {
+
 
     }
 
@@ -98,28 +103,51 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
 
     @Override
     public void onClickEvent(View v) {
+        String params = "pkregister=" + getPkregister() ;
         switch (v.getId()) {
             case R.id.linear_item_account_list:
                 Intent intent = new Intent(this, CrowdfundingAccountListActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.linear_item_buy_record:
+            case R.id.linear_item_buy_record://购买记录
+                CommonWebData buy_record = new CommonWebData();
+                buy_record.setTitle("购买记录");
+                buy_record.setUrl(Config.web.h5_CFBuyRecord + params+"&pkmerchantid=" );
+                CommonWebActivity.callActivity(this, buy_record);
 
                 break;
-            case R.id.linear_item_bind_bank:
+            case R.id.linear_item_bind_bank://绑定银行卡
+                CommonWebData bind_record = new CommonWebData();
+                bind_record.setTitle("绑定银行卡");
+                bind_record.setUrl(Config.web.h5_CFConsumeBinder + params);
+                CommonWebActivity.callActivity(this, bind_record);
 
                 break;
-            case R.id.linear_item_favolist:
+            case R.id.linear_item_favolist://我的收藏
+                Intent collection = new Intent(this, CollectionProjectActivity.class);
+                collection.putExtra("pkregister",getPkregister());
+                startActivity(collection);
 
                 break;
-            case R.id.linear_item_request_view:
+            case R.id.linear_item_request_view://申请查看记录
+                CommonWebData request_view_record = new CommonWebData();
+                request_view_record.setTitle("申请查看记录");
+                request_view_record.setUrl(Config.web.h5_CFConsumerequest_view + params);
+                CommonWebActivity.callActivity(this, request_view_record);
 
                 break;
-            case R.id.linear_item_request_online:
-
+            case R.id.linear_item_request_online://众筹申请
+                CommonWebData request_crowd = new CommonWebData();
+                request_crowd.setTitle("众筹申请");
+                request_crowd.setUrl(Config.web.h5_CFConsumerequest_crowd);
+                CommonWebActivity.callActivity(this, request_crowd);
 
                 break;
-            case R.id.btn_real_name:
+            case R.id.btn_real_name://立即认证
+                CommonWebData real_name = new CommonWebData();
+                real_name.setTitle("立即认证");
+                real_name.setUrl(Config.web.h5_CFConsumereal_name + params);
+                CommonWebActivity.callActivity(this, real_name);
 
                 break;
         }
@@ -127,6 +155,7 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
 
     @Override
     public void onSuccess(int reqcode, Object result) {
+        LogUtil.debugPrint("Result = "+ result);
         if (reqcode == request_user_code) {
             ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();
             try {

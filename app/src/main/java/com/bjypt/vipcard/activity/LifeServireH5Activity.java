@@ -471,7 +471,12 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    LifeServireH5Activity.this.setActvitiyTitle(s);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                        LifeServireH5Activity.this.setActvitiyTitle(s);
+                     }
+                    });
                 }
             },100);
         }

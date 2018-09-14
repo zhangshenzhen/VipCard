@@ -8,11 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.android.volley.VolleyError;
-
 import com.bjypt.vipcard.R;
-
+import com.bjypt.vipcard.adapter.CollectionProjectAdapter;
 import com.bjypt.vipcard.adapter.SellerProjectAdapter;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
@@ -32,14 +32,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CrowdfundingSellerProjectActivity extends BaseActivity implements VolleyCallBack{
+public class CollectionProjectActivity  extends BaseActivity implements VolleyCallBack{
 
     private PullToRefreshScrollView Pull_seller_view;
     private RecyclerView recyclerView;
 
-    private SellerProjectAdapter adapter;
+    private CollectionProjectAdapter adapter;
     ArrayList<SellerProjectBean.SellBean> sellBeans;//集合数据
     private int pkmerchantid;
+
+    private ImageView iv_code_back;
+    private String pkregister;
+
 
     Handler handler = new Handler() {
         @Override
@@ -48,7 +52,6 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
             adapter.reFresh(sellBeans);
         }
     };
-    private ImageView iv_code_back;
 
     @Override
     public void setContentLayout() {
@@ -59,24 +62,26 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
     public void beforeInitView() {
         sellBeans = new ArrayList<>();
         Intent intent = getIntent();
+        pkregister = intent.getStringExtra("pkregister");
         pkmerchantid = intent.getIntExtra("pkmerchantid",0);
     }
 
     @Override
     public void initView() {
+        TextView tv_sell_name = findViewById(R.id.tv_sell_name);
+        tv_sell_name.setText("收藏的项目");
         iv_code_back = findViewById(R.id.iv_code_back);
         Pull_seller_view = findViewById(R.id.Pull_seller_view);
-
         recyclerView = findViewById(R.id.rec_view);
         //设置间距
         HashMap<String, Integer> stringIntegerHashMap = new HashMap<>();
         stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.TOP_DECORATION,30);//top间距
         recyclerView.addItemDecoration(new RecyclerViewSpacesItemDecoration(stringIntegerHashMap));
         //设置布局管理器
-        LinearLayoutManager layoutManager=new LinearLayoutManager(CrowdfundingSellerProjectActivity.this,LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         //设置适配器
-        adapter = new SellerProjectAdapter(this,sellBeans);
+        adapter = new CollectionProjectAdapter(this,sellBeans);
         recyclerView.setAdapter(adapter);
 
         //设置下拉刷新
@@ -88,15 +93,15 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
         Pull_seller_view.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
 
         iv_code_back.setOnClickListener(this);
-        getNetData();//联网获取数据
+        getNetData();
     }
     public void getNetData() {
         Map<String,String> maps = new HashMap<>();
-        maps.put("pkmerchantid",pkmerchantid+"");
+        maps.put("pkmerchantid","");
         maps.put("pageNum","1");
-        maps.put("pageSize","6");
+        maps.put("pageSize","5");
         String url = "http://123.57.232.188:19096/api/hybCfProject/getProjectByMerchantId";
-        Wethod.httpPost(this,2, Config.web.Seller_project_url,maps,this);
+        Wethod.httpPost(this,2, url,maps,this);
     }
     @Override
     public void afterInitView() {
@@ -104,7 +109,7 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
         Pull_seller_view.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                getNetData();
+               getNetData();
             }
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
@@ -117,20 +122,16 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
     @Override
     public void bindListener() {
 
-     }
+    }
 
     @Override
     public void onClickEvent(View v) {
-
         switch (v.getId()){
             case R.id.iv_code_back:
                 finish();
                 break;
         }
-
     }
-
-
     private void jsonData( Object result) {
         try {
             JSONObject jsonObject = new JSONObject((String) result);//强转化为String 获取整体对象
@@ -150,21 +151,17 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
                     sellBean.setProjectName(data.getString("projectName"));
                     sellBean.setPkprojectid(data.getInt("pkprojectid"));
                     sellBean.setPkmerchantid(data.getInt("pkmerchantid"));
-                    sellBean.setOptimalMoney(data.getDouble("optimalMoney"));//最优惠金额
-                    sellBean.setCollection(data.getBoolean("collection"));
+                    sellBean.setOptimalMoney(data.getDouble("optimalMoney"));
                     sellBeans.add(sellBean);
                 }
             }
 
         } catch (JSONException e) {
             LogUtil.debugPrint("连接成功 错误："+ e.getMessage());
-
             e.printStackTrace();
         }
 
     }
-
-
 
     @Override
     public void onSuccess(int reqcode, Object result) {
@@ -178,7 +175,6 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
     public void onFailed(int reqcode, Object result) {
         Pull_seller_view.onRefreshComplete();// 停止刷新
         LogUtil.debugPrint("连接成功 reqcode = ........onFailed = "+ result);
-        // adapter.notifyDataSetChanged();
         handler.sendEmptyMessage(1);
     }
 
@@ -186,8 +182,6 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
     public void onError(VolleyError volleyError) {
         Pull_seller_view.onRefreshComplete();// 停止刷新
         LogUtil.debugPrint("连接成功 reqcode = ........onError = "+ volleyError.getMessage());
-        //adapter.notifyDataSetChanged();
         handler.sendEmptyMessage(1);
     }
-
 }

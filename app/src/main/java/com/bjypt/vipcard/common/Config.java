@@ -290,15 +290,23 @@ public final class Config {
         //提现记录
         public static final String h5_CFWithdrawRecord = app_h5_url +"#/zccashrecord?";
         //商家信息
-        public static final String h5_CFMerchantInfo = app_h5_url + "#sellerinfor?";
+        public static final String h5_CFMerchantInfo = app_h5_url + "#/sellerinfor?";
         //项目收益
         public static final String h5_CFProjectInterest = app_h5_url +"#zcprofitlist?";
         //购买记录
-        public static final String h5_CFBuyRecord = app_h5_url + "#buyrecord?";
+        public static final String h5_CFBuyRecord = app_h5_url + "#/buyrecord?";
         //消费记录
-        public static final String h5_CFConsumeRecord = app_h5_url + "#spendrecord?";
-
-
+        public static final String h5_CFConsumeRecord = app_h5_url + "#/spendrecord?";
+        //绑定银行卡
+        public static final String h5_CFConsumeBinder = app_h5_url + "#/zccardinfor?";
+        //查看申请记录
+        public static final String h5_CFConsumerequest_view = app_h5_url + "#/viewrecord?";
+        //众筹申请
+        public static final String h5_CFConsumerequest_crowd = app_h5_url + "#/apply";
+        //立即认证
+        public static final String h5_CFConsumereal_name = app_h5_url + "#/zcbindcard?";
+        //我的收藏
+       // public static final String h5_CFConsumeCollection = app_h5_url +"XXXXXXXXXX";
 
 
 

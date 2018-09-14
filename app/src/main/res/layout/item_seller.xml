@@ -62,6 +62,7 @@
 
                <TextView
                    android:layout_marginLeft="5dp"
+                   android:id="@+id/tv_youhui_num"
                    android:layout_toRightOf="@+id/tv_youhui"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -82,8 +83,9 @@
 
 
     <ImageView
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="18dp"
         android:layout_marginLeft="10dp"
+        android:rotation="-45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/opening"/>
