@@ -1057,14 +1057,11 @@
         <activity android:name=".activity.shangfeng.primary.capture.MyCaptureActivity"   android:screenOrientation="portrait"
             android:theme="@style/Othere_AppTheme"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".activity.ZhongchouDetalisActivity" />
 
         <activity android:name=".activity.crowdfunding.MyCrowdfundingActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.crowdfunding.CrowdfundingAccountListActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.crowdfunding.CrowdfundingAccountInfoActivity" android:screenOrientation="portrait" />
-        <activity android:name=".activity.crowdfunding.CrowdfundingQRDisplayActivity" android:screenOrientation="portrait" />
         <activity android:name=".activity.crowdfunding.CrowdfundingQRPayActivity"  android:screenOrientation="portrait" />
-        <activity android:name=".activity.crowdfunding.CrowdfundingQRDescriptionActivity" android:screenOrientation="portrait" />
        <activity android:name=".activity.crowdfunding.SafeRemindActivity"/>
         <activity android:name=".activity.crowdfunding.CrowdfundingSellerProjectActivity"/>
         <activity android:name=".activity.crowdfunding.CollectionProjectActivity"/>
