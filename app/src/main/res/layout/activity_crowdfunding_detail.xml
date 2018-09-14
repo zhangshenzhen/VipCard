@@ -32,8 +32,8 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_below="@id/rl_title"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_title">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBar"
@@ -142,7 +142,26 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/blue_b"></LinearLayout>
+        android:background="@color/blue_b">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_topay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/cf_default_text"
+            android:gravity="center"
+            android:text="支持一下"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+    </LinearLayout>
 
 
 </RelativeLayout>
