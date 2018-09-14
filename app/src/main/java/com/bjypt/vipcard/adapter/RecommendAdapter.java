@@ -9,9 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
-import com.bjypt.vipcard.cycleviewpager.CycleViewPagerHandler;
 
-import org.w3c.dom.Text;
 
 public class RecommendAdapter extends BaseRecycleViewAdapter {
     public RecommendAdapter() {

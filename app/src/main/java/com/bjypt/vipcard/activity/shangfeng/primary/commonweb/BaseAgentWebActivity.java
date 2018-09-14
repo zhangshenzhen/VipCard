@@ -168,7 +168,6 @@ public abstract class BaseAgentWebActivity extends BaseActivity {
         EventBusMessageEvent event = new EventBusMessageEvent();
         event.setWhat(EventBusWhat.NewOrder);
         EventBus.getDefault().post(event);
-
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }

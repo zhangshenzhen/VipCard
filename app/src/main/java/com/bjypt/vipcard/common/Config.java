@@ -29,6 +29,16 @@ public final class Config {
           /*
           * 众筹列表*/
           public static final String zhongchou_list_url= "123.57.232.188:19096/api/hybCfProject/getIsNoRecommendProject";
+         /*生成二维码
+         * */
+         public static final String zhongchou_tuo_code_url= "http://123.57.232.188:19096/api/hybScanpayStatus/randomScanPay";
+
+        /*生成二维码更新
+         * */
+        public static final String zhongchou_tuo_code_Update_url= "http://123.57.232.188:19096/api/hybScanpayStatus/updateScanPayStatus";
+       /*
+       * 商家众筹项目*/
+       public static final String Seller_project_url= "http://123.57.232.188:19096/api/hybCfProject/getProjectByMerchantId";
 
         //public static final String hus_url = "http://123.57.232.188:9980/hus/";//检测服务器升级服务
         public static final String hus_url = "http://121.196.233.207:9090/hus";   //检测服务器升级服务(正式

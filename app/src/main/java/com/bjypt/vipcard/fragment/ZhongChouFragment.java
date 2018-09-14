@@ -319,7 +319,7 @@ public class ZhongChouFragment extends BaseFrament implements VolleyCallBack, Zh
      */
     @Override
     public void onSuccess(int reqcode, Object result) {
-          LogUtil.debugPrint("onSuccess reqcode "+ reqcode +" currentThread :" +Thread.currentThread()  );
+          LogUtil.debugPrint("onSuccess reqcoderesult "+ reqcode +" currentThread :" +Thread.currentThread()  );
         try {
             JSONObject jsonObject = new JSONObject((String)result);
             JSONArray jsonArray = jsonObject.getJSONArray("resultData");
@@ -343,8 +343,8 @@ public class ZhongChouFragment extends BaseFrament implements VolleyCallBack, Zh
                    banerBean.setLink_type(link_type);
                    zhongChouBanerBeans.add(banerBean);
                }
+                 handler.sendEmptyMessage(1);
            }
-           handler.sendEmptyMessage(1);
         } catch (JSONException e) {
             e.printStackTrace();
         }

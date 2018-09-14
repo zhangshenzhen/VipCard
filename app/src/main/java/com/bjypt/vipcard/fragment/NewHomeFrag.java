@@ -19,6 +19,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.LifeServireH5Activity;
 import com.bjypt.vipcard.activity.LoginActivity;
@@ -315,7 +316,7 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
         appCategoryHomeMenuView.setOnloadCompleteListener(new AppCategoryContextView.OnloadCompleteListener() {
             @Override
             public void onComplete(String result) {
-                ptrs_new_home.onRefreshComplete();
+                    ptrs_new_home.onRefreshComplete();
             }
 
             @Override
@@ -401,9 +402,7 @@ public class NewHomeFrag extends BaseFrament implements VolleyCallBack, TextView
     * 绑定事件
     * */
     public void bindListener() {
-
         newHomeAdapter = new NewHomeAdapter(getActivity(), xinwenList, picList);
-
         ptrs_new_home.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {

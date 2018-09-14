@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_code_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/back_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="16sp"
+            android:text="商家众筹项目"></TextView>
+
+
+    </RelativeLayout>
+    <!-- 内容 -->
+    <com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView
+        android:id="@+id/Pull_seller_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_a"
+        android:layout_below="@+id/rl_title"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+              <android.support.v7.widget.RecyclerView
+                  android:id="@+id/rec_view"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+
+              </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView>
+
+
+</LinearLayout>
