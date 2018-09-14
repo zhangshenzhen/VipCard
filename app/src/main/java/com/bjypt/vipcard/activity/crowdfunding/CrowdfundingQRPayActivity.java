@@ -114,7 +114,6 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
     private void getDeviceId() {
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-
             return;
         }
         deviceId = tm.getDeviceId();

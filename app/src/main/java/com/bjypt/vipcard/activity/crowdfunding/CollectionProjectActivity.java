@@ -52,6 +52,7 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
             adapter.reFresh(sellBeans);
         }
     };
+    private TextView tv_sell_name;
 
     @Override
     public void setContentLayout() {
@@ -68,7 +69,7 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
 
     @Override
     public void initView() {
-        TextView tv_sell_name = findViewById(R.id.tv_sell_name);
+        tv_sell_name = findViewById(R.id.tv_sell_name);
         tv_sell_name.setText("收藏的项目");
         iv_code_back = findViewById(R.id.iv_code_back);
         Pull_seller_view = findViewById(R.id.Pull_seller_view);
