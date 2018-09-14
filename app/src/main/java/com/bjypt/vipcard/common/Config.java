@@ -18,6 +18,27 @@ public final class Config {
 
         public static final String cityCode = "1558";
 
+        /*
+        * 众筹界面首页的baner 地址*/
+        public static final String zhongchou_baner_url= "http://123.57.232.188:19096/api/hybApplicationConfig/getBanner";
+
+        /*
+        * 首页今日推荐
+        * */
+        public static final String zhongchou_recomend_url= "http://123.57.232.188:19096/api/hybCfProject/getRecommendProject";
+          /*
+          * 众筹列表*/
+          public static final String zhongchou_list_url= "123.57.232.188:19096/api/hybCfProject/getIsNoRecommendProject";
+         /*生成二维码
+         * */
+         public static final String zhongchou_tuo_code_url= "http://123.57.232.188:19096/api/hybScanpayStatus/randomScanPay";
+
+        /*生成二维码更新
+         * */
+        public static final String zhongchou_tuo_code_Update_url= "http://123.57.232.188:19096/api/hybScanpayStatus/updateScanPayStatus";
+       /*
+       * 商家众筹项目*/
+       public static final String Seller_project_url= "http://123.57.232.188:19096/api/hybCfProject/getProjectByMerchantId";
 
         //public static final String hus_url = "http://123.57.232.188:9980/hus/";//检测服务器升级服务
         public static final String hus_url = "http://121.196.233.207:9090/hus";   //检测服务器升级服务(正式
@@ -262,19 +283,6 @@ public final class Config {
         public static final String getCFUserData = cf_url + "api/hybRegister/getRegisterById";
         public static final String getCFAccountList = cf_url  + "api/hybCfUserAccount/findAllPage";
         public static final String getCFAccountInfo = cf_url + "api/hybCfUserAccount/getAccount";
-        /*
-         * 众筹界面首页的baner 地址
-         * */
-        public static final String zhongchou_baner_url= cf_url +"api/hybApplicationConfig/getBanner";
-        /*
-         * 首页今日推荐
-         * */
-        public static final String zhongchou_recomend_url = cf_url +"api/hybCfProject/getRecommendProject";
-        /*
-         * 众筹列表*/
-        public static final String zhongchou_list_url= cf_url +"api/hybCfProject/getIsNoRecommendProject";
-
-
         //我要提现
         public static final String h5_CFWithdraw = app_h5_url +  "#/zccash?";
         //余额记录

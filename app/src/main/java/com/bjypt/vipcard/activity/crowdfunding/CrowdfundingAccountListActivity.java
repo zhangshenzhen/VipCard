@@ -126,6 +126,12 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
 
     @Override
     public void onClickEvent(View v) {
+        switch (v.getId()){
+
+
+
+
+        }
 
     }
 

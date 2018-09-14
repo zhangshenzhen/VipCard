@@ -415,7 +415,7 @@ public class GoPayCardManageActivity extends BaseActivity implements VolleyCallB
         intent.putExtra("muname", muname);
         intent.putExtra("cardnum", cardnum);
         startActivityForResult(intent, SUCCESS_CODE);
-    }
+     }
 
     /**
      * 数字卡查看提示弹窗

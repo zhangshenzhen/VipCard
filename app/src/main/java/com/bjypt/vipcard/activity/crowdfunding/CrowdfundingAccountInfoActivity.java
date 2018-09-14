@@ -166,6 +166,8 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
             case R.id.iv_qr:
                 Intent intent = new Intent(this, CrowdfundingQRPayActivity.class);
                 intent.putExtra("pkmerchantid", pkmerchantid);
+                intent.putExtra("pkregister", getPkregister());
+                intent.putExtra("pkmuser","" );
                 startActivity(intent);
                 break;
             case R.id.linear_withdraw:
@@ -193,6 +195,9 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
                 CommonWebActivity.callActivity(this, interest_record);
                 break;
             case R.id.linear_merchant_project:
+                Intent intent2 = new Intent(this, CrowdfundingSellerProjectActivity.class);
+                intent2.putExtra("pkmerchantid", pkmerchantid);
+                startActivity(intent2);
                 break;
             case R.id.linear_buy_record:
                 CommonWebData buy_record = new CommonWebData();

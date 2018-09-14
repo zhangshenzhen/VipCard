@@ -1,10 +1,14 @@
 package com.bjypt.vipcard.activity.crowdfunding;
 
+import android.content.Intent;
 import android.view.View;
 
+import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.base.BaseActivity;
 
 public class CrowdfundingQRDisplayActivity extends BaseActivity{
+
+
 
     @Override
     public void setContentLayout() {
@@ -15,6 +19,7 @@ public class CrowdfundingQRDisplayActivity extends BaseActivity{
     public void beforeInitView() {
 
     }
+
 
     @Override
     public void initView() {
