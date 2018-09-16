@@ -51,6 +51,7 @@
             android:id="@+id/btn_cancel_agreement"
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:textSize="17sp"
             android:layout_weight="1"
             android:background="@color/white"
             android:text="取消" />
@@ -59,6 +60,8 @@
             android:id="@+id/btn_sure_agreement"
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:textColor="@color/white"
+            android:textSize="17sp"
             android:layout_weight="1"
             android:background="@color/app_theme_color"
             android:text="确定" />
