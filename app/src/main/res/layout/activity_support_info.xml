@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
 
+
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
         android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -26,13 +26,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:text="支持信息"></TextView>
 
 
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/real_name_remind"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:background="#fff6e5"
@@ -58,16 +59,159 @@
         <Button
             android:id="@+id/btn_real_name"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="25dp"
             android:layout_gravity="right|center_vertical"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/btn_cf_bind_bank"
+            android:layout_marginRight="30px"
+            android:background="@drawable/btn_real_name_bank"
             android:text="立即认证"
-            android:textColor="#52b9b8"
+            android:textColor="#66ffffff"
             android:textSize="15sp" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_support_money"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:layout_marginLeft="30px"
+        android:orientation="vertical">
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal">
+
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:text="支持金额："
+             />
+
+             <TextView
+                 android:id="@+id/tv_support_money"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textColor="#ff0000"
+                 android:textSize="18sp"
+                 android:text="300"
+              />
+         </LinearLayout>
+
+         <TextView
+             android:layout_marginTop="15dp"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="收益提示："/>
+
+        <TextView
+            android:id="@+id/tv_recevice_remind"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="预计收益10元，使用期限3个月，每年返还利息。本金到期返还。如未先写信息则不显示此框"/>
+
+    </LinearLayout>
+
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="20px"
+          android:background="#22888888"/>
+
+    <LinearLayout
+        android:layout_marginTop="30px"
+        android:layout_marginLeft="30px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/tv_danger"
+            android:drawablePadding="10px"
+            android:textSize="16sp"
+            android:text="风险说明"
+            android:textColor="#333333"
+            />
+          <TextView
+            android:textSize="16sp"
+              android:textColor="#444444"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请您务必审慎阅读、充分理解协议中相关条款内容，其中包括："/>
+        <TextView
+            android:textSize="16sp"
+            android:textColor="#444444"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1、风险提示条款和特别提示条款；"/>
+        <TextView
+            android:textSize="16sp"
+            android:textColor="#444444"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2、与您约定法律适用和管理条款；"/>
+        <TextView
+            android:textSize="16sp"
+            android:textColor="#444444"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3、其他以粗体标识的重要条款。"/>
+        <TextView
+            android:textSize="16sp"
+            android:textColor="#444444"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="如您不同意相关协议、公告、规则、操作流程和项目页面承诺，您有权选择不支持，一旦确认选择支持，即视为您已确认并完全同意相关协议"/>
+
+    </LinearLayout>
+
+   <LinearLayout
+       android:layout_marginTop="20dp"
+       android:layout_width="match_parent"
+       android:background="#f7f7f7"
+       android:layout_height="match_parent">
+
+       <LinearLayout
+       android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+           <TextView
+             android:gravity="center|right"
+               android:background="#ffffff"
+               android:textSize="17sp"
+               android:text="支付金额:"
+               android:layout_width="0dp"
+               android:textColor="#999999"
+               android:layout_height="match_parent"
+               android:layout_weight="4"/>
+           <TextView
+               android:id="@+id/tv_payfor_money"
+               android:gravity="center_vertical"
+               android:textColor="#999999"
+               android:background="#ffffff"
+               android:textSize="17sp"
+               android:text="100"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="3"/>
+
+           <Button
+               android:id="@+id/btn_go_payfor"
+               android:text="去支付"
+               android:textColor="@color/white"
+               android:background="#52b9b8"
+               android:layout_width="0dp"
+               android:textSize="17sp"
+               android:layout_height="match_parent"
+               android:layout_weight="7"/>
+
+    </LinearLayout>
+
+</LinearLayout>
 
 
 

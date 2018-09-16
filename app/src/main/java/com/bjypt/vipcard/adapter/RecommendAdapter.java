@@ -20,10 +20,10 @@ public class RecommendAdapter extends BaseRecycleViewAdapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-      View  view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recommend,null);
+     View  view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_crowdfuning_item_recommend,null);
       RecommendViewHolder  mViewHolder = new RecommendViewHolder(view);
 
-      return mViewHolder;
+      return null;
 
     }
 

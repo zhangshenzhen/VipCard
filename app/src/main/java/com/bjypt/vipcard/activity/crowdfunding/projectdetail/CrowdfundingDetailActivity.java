@@ -93,10 +93,8 @@ public class CrowdfundingDetailActivity extends BaseFraActivity {
      * ViewPager 的适配器
      */
     private static class HomeSubFragmentAdapter extends FragmentStatePagerAdapter {
-
         private BaseFragment[] fragment = null;
         private String[] titles = null;
-
         public HomeSubFragmentAdapter(FragmentManager fm, BaseFragment... fragment) {
             super(fm);
             this.fragment = fragment;

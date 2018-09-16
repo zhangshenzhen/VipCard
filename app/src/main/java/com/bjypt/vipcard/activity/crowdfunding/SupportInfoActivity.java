@@ -1,31 +1,92 @@
 package com.bjypt.vipcard.activity.crowdfunding;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.bjypt.vipcard.NewBindBankCardActivity;
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
+import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.CommonWebActivity;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
+import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.Wethod;
+import com.bjypt.vipcard.utils.LogUtil;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SupportInfoActivity extends BaseActivity implements VolleyCallBack {
+
+    private TextView tv_support_money;
+    private LinearLayout real_name_remind;
+    private TextView tv_recevice_remind;
+    private TextView tv_go_payfor;
+    private Button btn_go_payfor;
+    private ImageView igv_black;
+    private int resultCode = 123;
+    private int pkprogressitemid;
+    private boolean checkBankNo;
+    private String gift;
+    private int saleCount;
+    private int itemCount;
+    private int pkprojectid;
+    private boolean is_Realname;
+    private Button btn_real_name;
+    private  final int Is_Visible = 0;
+    private TextView recevice_remind;
+    private String tips;
+
     @Override
     public void setContentLayout() {
         setContentView(R.layout.activity_support_info);
-    }
+     }
 
     @Override
     public void beforeInitView() {
+        Intent intent = getIntent();
+        pkprogressitemid = intent.getIntExtra("pkprogressitemid",0);
 
-    }
+       }
 
     @Override
     public void initView() {
-
+        igv_black = (ImageView)findViewById(R.id.igv_back);//fanhui
+        btn_real_name = (Button) findViewById(R.id.btn_real_name);//认证
+        real_name_remind = (LinearLayout)findViewById(R.id.real_name_remind);
+        tv_support_money = (TextView)findViewById(R.id.tv_support_money);//支持金额
+        tv_recevice_remind = findViewById(R.id.tv_recevice_remind);//收益提示信息
+        tv_go_payfor = findViewById(R.id.tv_payfor_money);//支付金额
+        recevice_remind = findViewById(R.id.tv_recevice_remind);
+        btn_go_payfor = findViewById(R.id.btn_go_payfor);
+        btn_real_name.setOnClickListener(this);
+        igv_black.setOnClickListener(this);
+        btn_go_payfor.setOnClickListener(this);
     }
 
     @Override
     public void afterInitView() {
+        Map<String, String> params = new HashMap<>();
+        params.put("pkregister", getPkregister());
+        LogUtil.debugPrint("SupportInfoActivity = pkregister "+ getPkregister() );
 
+        params.put("pkprogressitemid",pkprogressitemid+"");
+        params.put("pkregister", getPkregister());
+        String url = "http://123.57.232.188:19096/api/hybCfMerchantCrowdfundingProjectItem/getProjectItemExplain";
+        Wethod.httpPost(this, resultCode, url, params, this);
     }
 
     @Override
@@ -35,21 +96,87 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
 
     @Override
     public void onClickEvent(View v) {
+        switch (v.getId()){
+            case R.id.btn_go_payfor:
+            remindDialog();
+                break;
+            case R.id.igv_back:
+                finish();
+                break;
+            case R.id.btn_real_name:
 
+               if (!is_Realname && real_name_remind.getVisibility()==Is_Visible){//可见的
+                    //去实名认证
+                   String params = "pkregister=" + getPkregister();
+                   CommonWebData withdraw = new CommonWebData();
+                   withdraw.setTitle("实名认证");
+                   withdraw.setUrl(Config.web.h5_CFConsumereal_name + params);
+                   CommonWebActivity.callActivity(this, withdraw);
+                }
+                break;
+        }
+
+    }
+
+    private void remindDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+        View v = inflater.inflate(R.layout.myself_dialog, null);
+        //builer.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
+        Button btn_look = (Button) v.findViewById(R.id.btn_look);
+        final Dialog dialog = builder.create();
+        dialog.show();
+        dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
+        btn_look.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent = new Intent(SupportInfoActivity.this,SupportAgreementActivity.class);
+                //intent.putExtra()
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override
     public void onSuccess(int reqcode, Object result) {
+        LogUtil.debugPrint("SupportInfoActivity = onSuccess "+ reqcode+" result "+ result );
+        try {
+            JSONObject jsonObject = new JSONObject((String) result);//强转化为String 获取整体对象
+            JSONObject jsonresult = jsonObject.getJSONObject("resultData");
+            pkprojectid = jsonresult.getInt("pkprojectid");
+            itemCount = jsonresult.getInt("itemCount");// 	单项份数
+            saleCount = jsonresult.getInt("saleCount");// 	卖出份数
+            gift = jsonresult.getString("gift");//赠品
+            tips = jsonresult.getString("tips");//收益提示
+            checkBankNo = jsonresult.getBoolean("checkBankNo");//是否是么认证
+            is_Realname = checkBankNo;
+            updata();
+         } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void updata() {
+        tv_support_money.setText(itemCount*saleCount+"");
+        tv_go_payfor.setText(itemCount*saleCount+"");
+        recevice_remind.setText(tips+"此提示信息来源于网络");
+
+        if (is_Realname){//是否实名认证
+            real_name_remind.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onFailed(int reqcode, Object result) {
+        LogUtil.debugPrint("SupportInfoActivity = onFailed "+ reqcode+" result "+ result );
 
     }
 
     @Override
     public void onError(VolleyError volleyError) {
+        LogUtil.debugPrint("SupportInfoActivity = onError " +volleyError.getMessage() );
 
     }
 }

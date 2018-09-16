@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#00FFFFFF"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:text="协议书"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/dialog_tontent"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textColor="#666666"
+        android:gravity="center"
+        android:text="购买前请仔细阅读支持协议《项目支持协议书》"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/btn_look"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20px"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="160dp"
+        android:layout_height="36dp"
+        android:text="点击查看"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_xieyi"/>
+
+</LinearLayout>

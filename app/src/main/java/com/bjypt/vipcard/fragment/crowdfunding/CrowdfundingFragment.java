@@ -39,6 +39,7 @@ import com.bjypt.vipcard.pulltorefresh.social.PullListLayout;
 import com.bjypt.vipcard.pulltorefresh.social.custom.AppBarHeaderBehavior;
 import com.bjypt.vipcard.pulltorefresh.social.custom.CustomCollapsingNoToolbarLayout;
 import com.bjypt.vipcard.utils.DensityUtil;
+import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.view.ZhongchouTextViewMult;
@@ -217,6 +218,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
 
     @Override
     public void onSuccess(int reqcode, Object result) {
+        LogUtil.debugPrint("CrowfunFragment : "+ result);
         if (reqcode == request_code_notices) {
             pullList.refreshComplete();
             handlerNotices(result);
