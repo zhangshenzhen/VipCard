@@ -1065,6 +1065,9 @@
        <activity android:name=".activity.crowdfunding.SafeRemindActivity"/>
         <activity android:name=".activity.crowdfunding.CrowdfundingSellerProjectActivity"/>
         <activity android:name=".activity.crowdfunding.CollectionProjectActivity"/>
+        <activity android:name=".activity.crowdfunding.SupportInfoActivity"/>
+        <activity android:name=".activity.crowdfunding.SupportAgreementActivity"/>
+
         <activity
             android:name=".activity.crowdfunding.CrowdfundingBigOneCodeActivity"
             android:screenOrientation="portrait" />
