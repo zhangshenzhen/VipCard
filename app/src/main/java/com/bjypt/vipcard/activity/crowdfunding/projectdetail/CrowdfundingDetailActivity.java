@@ -219,10 +219,15 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
     public void onClickEvent(View v) {
         switch (v.getId()) {
             case R.id.btn_topay:
+                if(projectDetailDataBean == null){
+                    ToastUtil.showToast(this, "正在加载,请稍后...");
+                    return;
+                }
                 if(cfProjectDetailAmountItemView.getSelectProjectItemId() ==0){
                     ToastUtil.showToast(this, "请选择一个金额");
                 }else{
                     Intent topay = new Intent(this, SupportInfoActivity.class);
+                    topay.putExtra("paytype", projectDetailDataBean.getResultData().getPayType());
                     topay.putExtra("pkprogressitemid", cfProjectDetailAmountItemView.getSelectProjectItemId());
                     startActivity(topay);
                 }
