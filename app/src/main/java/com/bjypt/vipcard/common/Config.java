@@ -30,7 +30,7 @@ public final class Config {
         public static final String cf_url = "http://123.57.232.188:19096/";
 //        public static final String cf_h5_url = "";
 //        public stati
-
+       // http://123.57.232.188:19096/api/hybCfMerchantCrowdfundingProjectItem/getProjectItemExplain";
         //正式服务器地址
 //        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
 //        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //207地址
@@ -288,6 +288,9 @@ public final class Config {
         /*
          * 众筹界面首页的baner 地址*/
         public static final String zhongchou_baner_url = cf_url + "api/hybApplicationConfig/getBanner";
+       /*
+       * 支持信息*/
+       public static final String zhongchou_supportInfo_url = cf_url + "api/hybCfMerchantCrowdfundingProjectItem/getProjectItemExplain";
 
         /*
          * 首页今日推荐
