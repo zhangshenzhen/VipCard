@@ -25,8 +25,8 @@ public final class Config {
 
         //测试服务器地址
         public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
-        public static final String shangfengh5= "http://123.57.232.188:19094/";
-          public static final String app_h5_url = "http://testsun.hybjiekou.com/hyb_ct_h5app/";
+        public static final String shangfengh5 = "http://123.57.232.188:19094/";
+        public static final String app_h5_url = "http://testsun.hybjiekou.com/hyb_ct_h5app/";
         public static final String cf_url = "http://123.57.232.188:19096/";
 //        public static final String cf_h5_url = "";
 //        public stati
@@ -41,7 +41,6 @@ public final class Config {
         //预上线服务器地址
 //        public static final String hyb_url = "http://47.93.79.174:9002/hyb/";
 //        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
-
 
 
         public static final String base = hyb_url + "ws/";
@@ -260,18 +259,18 @@ public final class Config {
          * 众筹
          */
         public static final String getCFUserData = cf_url + "api/hybRegister/getRegisterById";
-        public static final String getCFAccountList = cf_url  + "api/hybCfUserAccount/findAllPage";
+        public static final String getCFAccountList = cf_url + "api/hybCfUserAccount/findAllPage";
         public static final String getCFAccountInfo = cf_url + "api/hybCfUserAccount/getAccount";
         //我要提现
-        public static final String h5_CFWithdraw = app_h5_url +  "#/zccash?";
+        public static final String h5_CFWithdraw = app_h5_url + "#/zccash?";
         //余额记录
-        public static final String h5_CFBalanceRecord = app_h5_url +"#/balancerecord?";
+        public static final String h5_CFBalanceRecord = app_h5_url + "#/balancerecord?";
         //提现记录
-        public static final String h5_CFWithdrawRecord = app_h5_url +"#/zccashrecord?";
+        public static final String h5_CFWithdrawRecord = app_h5_url + "#/zccashrecord?";
         //商家信息
         public static final String h5_CFMerchantInfo = app_h5_url + "#sellerinfor?";
         //项目收益
-        public static final String h5_CFProjectInterest = app_h5_url +"#zcprofitlist?";
+        public static final String h5_CFProjectInterest = app_h5_url + "#zcprofitlist?";
         //购买记录
         public static final String h5_CFBuyRecord = app_h5_url + "#buyrecord?";
         //消费记录
@@ -288,30 +287,57 @@ public final class Config {
         // public static final String h5_CFConsumeCollection = app_h5_url +"XXXXXXXXXX";
         /*
          * 众筹界面首页的baner 地址*/
-        public static final String zhongchou_baner_url= cf_url + "api/hybApplicationConfig/getBanner";
+        public static final String zhongchou_baner_url = cf_url + "api/hybApplicationConfig/getBanner";
 
         /*
          * 首页今日推荐
          * */
-        public static final String zhongchou_recomend_url= cf_url + "api/hybCfProject/getRecommendProject";
+        public static final String zhongchou_recomend_url = cf_url + "api/hybCfProject/getRecommendProject";
         /*
          * 众筹列表*/
-        public static final String zhongchou_list_url= cf_url + "api/hybCfProject/getIsNoRecommendProject";
+        public static final String zhongchou_list_url = cf_url + "api/hybCfProject/getIsNoRecommendProject";
         /*生成二维码
          * */
-        public static final String zhongchou_tuo_code_url= cf_url + "api/hybScanpayStatus/randomScanPay";
+        public static final String zhongchou_tuo_code_url = cf_url + "api/hybScanpayStatus/randomScanPay";
 
         /*生成二维码更新
          * */
-        public static final String zhongchou_tuo_code_Update_url= cf_url + "api/hybScanpayStatus/updateScanPayStatus";
+        public static final String zhongchou_tuo_code_Update_url = cf_url + "api/hybScanpayStatus/updateScanPayStatus";
         /*
          * 商家众筹项目*/
-        public static final String Seller_project_url= cf_url + "api/hybCfProject/getProjectByMerchantId";
-
-
-
-
-
+        public static final String Seller_project_url = cf_url + "api/hybCfProject/getProjectByMerchantId";
+        /**
+         * 根据项目ID查询项目详情
+         */
+        public static final String get_crowdfunding_project_detail = cf_url + "api/hybCfProjectHtml/getProjectById";
+        /**
+         * 众筹帮详情 产品介绍
+         */
+        public static final String h5_cf_product_info = app_h5_url + "#/productinfor?";
+        /**
+         * 众筹帮详情 团队介绍
+         */
+        public static final String h5_cf_team_introduction = app_h5_url + "#/teamIntroduction?";
+        /**
+         * 众筹帮详情 常见问题
+         */
+        public static final String h5_cf_common_problem = app_h5_url + "#/commonProblem?";
+        /**
+         * 众筹帮详情 项目进展
+         */
+        public static final String h5_cf_project_progress = app_h5_url + "#projectProgress?";
+        /**
+         * 添加收藏
+         */
+        public static final String cf_favo_project = cf_url +"api/hybCfProjectCollection/insCollection";
+        /**
+         * 删除收藏
+         */
+        public static final String cf_unfavo_project = cf_url + "api/hybCfProjectCollection/delCollection";
+        /**
+         *项目子项信息
+         */
+        public static final String cf_project_amount_item = cf_url + "api/hybCfMerchantCrowdfundingProjectItem/findAllByProjectId";
 
         public static final String citizen_card_register = hyb_url + "app/h5/card/activation?pkregister=";   //实体卡激活
         public static final String citizen_card_dissolving = hyb_url + "app/h5/card/guashi";   //实体卡挂失
@@ -382,11 +408,10 @@ public final class Config {
 
         public static final String getShareData = hyb_url + "S03/share/getShare";
 
-       public static final String appShareUrl = app_h5_url +"#/hybshare?pkregister=";
+        public static final String appShareUrl = app_h5_url + "#/hybshare?pkregister=";
 
 
-
-            /**********************************智慧尚峰 start*********************************************/
+        /**********************************智慧尚峰 start*********************************************/
         /**
          * 首页菜单
          */

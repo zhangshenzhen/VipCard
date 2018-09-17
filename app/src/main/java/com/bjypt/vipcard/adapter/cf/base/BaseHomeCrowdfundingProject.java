@@ -63,7 +63,7 @@ public abstract class BaseHomeCrowdfundingProject extends BaseRecycleViewAdapter
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, CrowdfundingDetailActivity.class);
-//                intent.putExtra("")
+                intent.putExtra("pkprojectid", cfProjectItem.getPkprojectid());
                 context.startActivity(intent);
             }
         });

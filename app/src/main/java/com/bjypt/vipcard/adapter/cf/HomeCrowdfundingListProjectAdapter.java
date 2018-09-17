@@ -1,6 +1,7 @@
 package com.bjypt.vipcard.adapter.cf;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.crowdfunding.projectdetail.CrowdfundingDetailActivity;
 import com.bjypt.vipcard.adapter.BaseRecycleViewAdapter;
 import com.bjypt.vipcard.adapter.cf.holder.HomeCrowdfundingGridViewHolder;
 import com.bjypt.vipcard.adapter.cf.holder.HomeCrowdfundingListViewHolder;
@@ -67,6 +69,15 @@ public class HomeCrowdfundingListProjectAdapter extends BaseRecycleViewAdapter<C
                 .load( cfProjectItem.getHeadImg())
                 .error(R.mipmap.more)
                 .into(holder.icon);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, CrowdfundingDetailActivity.class);
+                intent.putExtra("pkprojectid", cfProjectItem.getPkprojectid());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

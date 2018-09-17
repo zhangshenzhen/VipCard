@@ -18,6 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.utils.BroadCastReceiverUtils;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
@@ -197,6 +198,10 @@ public abstract class BaseFraActivity extends FragmentActivity implements View.O
         super.onDestroy();
         utils.UnRegisterBroadCastReceiver(this, myBroad);
         MyApplication.getInstance().deleteActivity(this);
+    }
+
+    public String getPkregister(){
+        return SharedPreferenceUtils.getFromSharedPreference(this, Config.userConfig.pkregister);
     }
 
     class MyBroad extends BroadcastReceiver {
