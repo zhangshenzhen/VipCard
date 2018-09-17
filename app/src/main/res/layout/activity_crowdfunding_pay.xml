@@ -110,12 +110,11 @@
                     android:background="@mipmap/right_bg" />
             </LinearLayout>
 
-            <com.bjypt.vipcard.view.PayAwayView
-                android:id="@+id/payAwayView"
+            <com.bjypt.vipcard.activity.crowdfunding.pay.CrowdfundingPayAwayView
+                android:id="@+id/crowdfundingPayAwayView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dealType="lifeservice"
-                app:preOrder="true" />
+                />
 
             <Button
                 android:id="@+id/btn_ok_pay"

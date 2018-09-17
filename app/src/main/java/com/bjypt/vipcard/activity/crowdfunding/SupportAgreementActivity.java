@@ -5,7 +5,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.crowdfunding.pay.CrowdfundingPayActivity;
 import com.bjypt.vipcard.base.BaseActivity;
+
+import java.math.BigDecimal;
 
 public class SupportAgreementActivity extends BaseActivity {
 
@@ -56,6 +59,7 @@ public class SupportAgreementActivity extends BaseActivity {
                 Intent intent = new Intent(this, CrowdfundingPayActivity.class);
                 intent.putExtra("pkprogressitemid", pkprogressitemid);
                 intent.putExtra("paytype", paytype);
+                intent.putExtra("amount", "0.01");
                 startActivity(intent);
                 //打开支付界面
                 break;

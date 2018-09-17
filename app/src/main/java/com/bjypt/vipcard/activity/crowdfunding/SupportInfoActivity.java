@@ -138,6 +138,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
                 dialog.dismiss();
                 Intent intent = new Intent(SupportInfoActivity.this, SupportAgreementActivity.class);
                 intent.putExtra("pkprogressitemid", pkprogressitemid);
+
                 intent.putExtra("paytype", paytype);
                 startActivity(intent);
             }

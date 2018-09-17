@@ -11,7 +11,8 @@ public enum PayDealTypeEnum {
     WuzhedianChongzhi(4, "五折店充值"),
     WuzhedianLijiMaidan(5, "五折店立即买单"),
     LifeServicePay(6, "生活服务支付"),
-    PetroleumPay(10, "石油券");
+    PetroleumPay(10, "石油券"),
+    CrowdfundingBuy(17, "购买众筹");
 
 
     private int code;

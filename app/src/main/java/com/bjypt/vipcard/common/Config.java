@@ -338,6 +338,14 @@ public final class Config {
          *项目子项信息
          */
         public static final String cf_project_amount_item = cf_url + "api/hybCfMerchantCrowdfundingProjectItem/findAllByProjectId";
+        /**
+         * 众筹购买支付--预下单
+         */
+        public static final String cf_buy_pre_order = cf_url +"api/order/v1/add";
+        /**
+         * 众筹购买支付下单
+         */
+        public  static final String cf_buy_topay = cf_url + "api/order/v1/toPay";
 
         public static final String citizen_card_register = hyb_url + "app/h5/card/activation?pkregister=";   //实体卡激活
         public static final String citizen_card_dissolving = hyb_url + "app/h5/card/guashi";   //实体卡挂失
