@@ -10,6 +10,7 @@ import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.PayDealTypeEnum;
 import com.bjypt.vipcard.utils.AES;
+import com.bjypt.vipcard.view.ToastUtil;
 import com.sinia.orderlang.utils.StringUtil;
 
 import java.math.BigDecimal;
@@ -21,7 +22,7 @@ public class CrowdfundingPayActivity extends BaseActivity implements Crowdfundin
     private int pkprogressitemid;
     private int pkmerchantid;
     private int paytype;
-    private BigDecimal amount;
+    private String amount;
     private TextView tv_sum;
     private CrowdfundingPayAwayView crowdfundingPayAwayView;
 
@@ -36,7 +37,7 @@ public class CrowdfundingPayActivity extends BaseActivity implements Crowdfundin
     public void beforeInitView() {
         pkprogressitemid = getIntent().getIntExtra("pkprogressitemid", 0);
         paytype = getIntent().getIntExtra("paytype", 0);
-        amount = new BigDecimal(getIntent().getStringExtra("amount"));
+        amount = getIntent().getStringExtra("amount");
         pkmerchantid = getIntent().getIntExtra("pkmerchantid", 0);
     }
 
@@ -57,6 +58,7 @@ public class CrowdfundingPayActivity extends BaseActivity implements Crowdfundin
     @Override
     public void afterInitView() {
         tv_sum.setText(amount+"");
+        crowdfundingPayAwayView.setOnPayListener(this);
         crowdfundingPayAwayView.setPayAway(paytype);
     }
 
@@ -81,6 +83,7 @@ public class CrowdfundingPayActivity extends BaseActivity implements Crowdfundin
     @Override
     public void OnPayFinish() {
         finish();
+        ToastUtil.showToast(this, "支付成功");
     }
 
     @Override
@@ -96,7 +99,7 @@ public class CrowdfundingPayActivity extends BaseActivity implements Crowdfundin
         param.put("amount", amount+"");//业务类型 1.充值 2立即买单 3优惠券  后续待定
         param.put("orderid", outorderid);//金额
         param.put("dealtype", PayDealTypeEnum.CrowdfundingBuy.getCode()+"");
-        param.put("paytype", "购买众筹项目");
+        param.put("paytype", crowdfundingPayAwayView.getSelectPayCode().getCode()+"");
         param.put("paySubject", "购买众筹项目");
         param.put("payBody", "购买众筹项目");
         return param;

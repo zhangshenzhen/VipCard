@@ -229,6 +229,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                     Intent topay = new Intent(this, SupportInfoActivity.class);
                     topay.putExtra("paytype", projectDetailDataBean.getResultData().getPayType());
                     topay.putExtra("pkprogressitemid", cfProjectDetailAmountItemView.getSelectProjectItemId());
+                    topay.putExtra("pkmerchantid", projectDetailDataBean.getResultData().getPkmerchantid());
                     startActivity(topay);
                 }
                 break;

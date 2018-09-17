@@ -15,6 +15,8 @@ public class SupportAgreementActivity extends BaseActivity {
     private Button btn_cancel, btn_sure;
 
     private int pkprogressitemid;
+    private int pkmerchantid;
+    private String amount;
     private int paytype;
 
     @Override
@@ -25,6 +27,8 @@ public class SupportAgreementActivity extends BaseActivity {
     @Override
     public void beforeInitView() {
         pkprogressitemid = getIntent().getIntExtra("pkprogressitemid", 0);
+        pkmerchantid = getIntent().getIntExtra("pkmerchantid", 0);
+        amount = getIntent().getStringExtra("amount");
         paytype = getIntent().getIntExtra("paytype", 0);
         if (pkprogressitemid == 0) {
             finish();
@@ -59,8 +63,10 @@ public class SupportAgreementActivity extends BaseActivity {
                 Intent intent = new Intent(this, CrowdfundingPayActivity.class);
                 intent.putExtra("pkprogressitemid", pkprogressitemid);
                 intent.putExtra("paytype", paytype);
-                intent.putExtra("amount", "0.01");
+                intent.putExtra("amount", amount);
+                intent.putExtra("pkmerchantid", pkmerchantid);
                 startActivity(intent);
+                finish();
                 //打开支付界面
                 break;
 

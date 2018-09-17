@@ -18,7 +18,16 @@ public class AddOrderData {
     private String point;
     private String redPacket;
     private String outorderid;
+    private String orderid;
     private String virtualMoney;
+
+    public String getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(String orderid) {
+        this.orderid = orderid;
+    }
 
     public String getOutorderid() {
         return outorderid;

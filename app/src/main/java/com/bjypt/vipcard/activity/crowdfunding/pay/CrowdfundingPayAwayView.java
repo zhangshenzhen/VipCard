@@ -93,7 +93,6 @@ public class CrowdfundingPayAwayView extends LinearLayout implements VolleyCallB
     private OnPayListener onPayListener;
     private TextView tv_more_pay;
     private ImageView iv_pay_anim;
-    private String primaryk;
     private PayAway selectPayAway;
     private int dealType = 17; //业务类型
     private AnimationDrawable drawable;
@@ -153,13 +152,7 @@ public class CrowdfundingPayAwayView extends LinearLayout implements VolleyCallB
         initPayWay();
     }
 
-    /**
-     * 成功后跳转的页面
-     */
-    public void goSuccessPage(String pkregister) {
-        VirtualmoneySuccessHelper virtualmoneySuccessHelper = new VirtualmoneySuccessHelper(activity, "充值成功");
-        virtualmoneySuccessHelper.checkVirtualmoney(pkregister, primaryk);
-    }
+
 
     /**
      * 发起支付
@@ -273,9 +266,8 @@ public class CrowdfundingPayAwayView extends LinearLayout implements VolleyCallB
         } else if (reqcode == request_create_order) {
             try {
                 AddOrderBean addOrderBean = ObjectMapperFactory.createObjectMapper().readValue(result.toString(), AddOrderBean.class);
-                primaryk = addOrderBean.getResultData().getPkpayid();
-                orderId = addOrderBean.getResultData().getOutorderid();
-                toPay(addOrderBean.getResultData().getOutorderid(), null);
+                orderId = addOrderBean.getResultData().getOrderid();
+                toPay(orderId, null);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -383,8 +375,7 @@ public class CrowdfundingPayAwayView extends LinearLayout implements VolleyCallB
 
     private void toPay(String outorderid, String payMoney) {
         Map<String, String> params = onPayListener.toPayParams(outorderid, payMoney);
-        orderId = params.get("orderid");
-        Wethod.httpPost(this.getContext(), request_topay, Config.web.pay_new_before, params, this, View.GONE);
+        Wethod.httpPost(this.getContext(), request_topay, Config.web.cf_buy_topay, params, this, View.GONE);
     }
 
     private void payFinish() {

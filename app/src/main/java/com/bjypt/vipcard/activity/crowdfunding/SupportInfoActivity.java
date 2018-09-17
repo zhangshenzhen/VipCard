@@ -46,6 +46,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     private ImageView igv_black;
     private final int resultCode = 123;
     private int pkprogressitemid;
+    private int pkmerchantid;
     private int paytype;
     private boolean checkBankNo;
     private String gift;
@@ -58,6 +59,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     private String tips;
     private BigDecimal itemAmount;
 
+
     @Override
     public void setContentLayout() {
         setContentView(R.layout.activity_support_info);
@@ -67,6 +69,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     public void beforeInitView() {
         Intent intent = getIntent();
         pkprogressitemid = intent.getIntExtra("pkprogressitemid", 0);
+        pkmerchantid = intent.getIntExtra("pkmerchantid", 0);
         paytype = intent.getIntExtra("paytype", 0);
 
     }
@@ -93,7 +96,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         LogUtil.debugPrint("SupportInfoActivity = pkregister " + getPkregister());
         params.put("pkprogressitemid", pkprogressitemid + "");
         params.put("pkregister", getPkregister());
-       // String url = "http://123.57.232.188:19096/api/hybCfMerchantCrowdfundingProjectItem/getProjectItemExplain";
+        // String url = "http://123.57.232.188:19096/api/hybCfMerchantCrowdfundingProjectItem/getProjectItemExplain";
         Wethod.httpPost(this, resultCode, Config.web.zhongchou_supportInfo_url, params, this);
     }
 
@@ -139,11 +142,14 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent intent = new Intent(SupportInfoActivity.this, SupportAgreementActivity.class);
-                intent.putExtra("pkprogressitemid", pkprogressitemid);
-
-                intent.putExtra("paytype", paytype);
-                startActivity(intent);
+                if (itemAmount != null) {
+                    Intent intent = new Intent(SupportInfoActivity.this, SupportAgreementActivity.class);
+                    intent.putExtra("pkprogressitemid", pkprogressitemid);
+                    intent.putExtra("pkmerchantid", pkmerchantid);
+                    intent.putExtra("amount", itemAmount.stripTrailingZeros().toPlainString());
+                    intent.putExtra("paytype", paytype);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -151,18 +157,18 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     @Override
     public void onSuccess(int reqcode, Object result) {
         LogUtil.debugPrint("SupportInfoActivity = onSuccess " + reqcode + " result " + result);
-        switch (reqcode){
-            case resultCode :
-            try {
-                CfProjectDetailItemDataBean cfProjectDetailItemDataBean = ObjectMapperFactory.createObjectMapper().readValue(result.toString(), CfProjectDetailItemDataBean.class);
-                if (cfProjectDetailItemDataBean != null) {
-                  updata(cfProjectDetailItemDataBean);
-                }else {
-                Toast.makeText(SupportInfoActivity.this,"请求结果为空",Toast.LENGTH_SHORT).show();
+        switch (reqcode) {
+            case resultCode:
+                try {
+                    CfProjectDetailItemDataBean cfProjectDetailItemDataBean = ObjectMapperFactory.createObjectMapper().readValue(result.toString(), CfProjectDetailItemDataBean.class);
+                    if (cfProjectDetailItemDataBean != null) {
+                        updata(cfProjectDetailItemDataBean);
+                    } else {
+                        Toast.makeText(SupportInfoActivity.this, "请求结果为空", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-             } catch (IOException e) {
-                e.printStackTrace();
-            }
                 break;
         }
 
@@ -171,9 +177,9 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     private void updata(CfProjectDetailItemDataBean dataBean) {
         CfProjectDetailItemDataBean.ResultDataBean resultBeanData = dataBean.getResultData();
 
-          itemCount = resultBeanData.getItemCount();
-          saleCount = resultBeanData.getSaleCount();
-          itemAmount = resultBeanData.getItemAmount();
+        itemCount = resultBeanData.getItemCount();
+        saleCount = resultBeanData.getSaleCount();
+        itemAmount = resultBeanData.getItemAmount();
 
         tv_support_money.setText(resultBeanData.getItemAmount().stripTrailingZeros().toPlainString() + "");
         tv_go_payfor.setText(itemAmount.stripTrailingZeros().toPlainString() + "");
