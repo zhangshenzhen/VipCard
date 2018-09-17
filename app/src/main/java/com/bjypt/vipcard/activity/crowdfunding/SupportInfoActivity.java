@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.NewBindBankCardActivity;
@@ -22,7 +24,9 @@ import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.model.cf.CfProjectDetailItemDataBean;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
+import com.bjypt.vipcard.wxapi.Util;
 import com.google.gson.JsonObject;
+import com.sinia.orderlang.utils.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,19 +44,19 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     private TextView tv_go_payfor;
     private Button btn_go_payfor;
     private ImageView igv_black;
-    private int resultCode = 123;
+    private final int resultCode = 123;
     private int pkprogressitemid;
     private int paytype;
     private boolean checkBankNo;
     private String gift;
-    private int saleCount;
+    private double saleCount;
     private int itemCount;
     private int pkprojectid;
     private boolean is_Realname;
     private Button btn_real_name;
-    private final int Is_Visible = 0;
     private TextView recevice_remind;
     private String tips;
+    private BigDecimal itemAmount;
 
     @Override
     public void setContentLayout() {
@@ -87,11 +91,10 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         Map<String, String> params = new HashMap<>();
         params.put("pkregister", getPkregister());
         LogUtil.debugPrint("SupportInfoActivity = pkregister " + getPkregister());
-
         params.put("pkprogressitemid", pkprogressitemid + "");
         params.put("pkregister", getPkregister());
-        String url = "http://123.57.232.188:19096/api/hybCfMerchantCrowdfundingProjectItem/getProjectItemExplain";
-        Wethod.httpPost(this, resultCode, url, params, this);
+       // String url = "http://123.57.232.188:19096/api/hybCfMerchantCrowdfundingProjectItem/getProjectItemExplain";
+        Wethod.httpPost(this, resultCode, Config.web.zhongchou_supportInfo_url, params, this);
     }
 
     @Override
@@ -147,38 +150,34 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     @Override
     public void onSuccess(int reqcode, Object result) {
         LogUtil.debugPrint("SupportInfoActivity = onSuccess " + reqcode + " result " + result);
-        try {
-
+        switch (reqcode){
+            case resultCode :
             try {
                 CfProjectDetailItemDataBean cfProjectDetailItemDataBean = ObjectMapperFactory.createObjectMapper().readValue(result.toString(), CfProjectDetailItemDataBean.class);
                 if (cfProjectDetailItemDataBean != null) {
-
+                  updata(cfProjectDetailItemDataBean);
+                }else {
+                Toast.makeText(SupportInfoActivity.this,"请求结果为空",Toast.LENGTH_SHORT).show();
                 }
-                updata(cfProjectDetailItemDataBean);
-                JSONObject jsonObject = new JSONObject((String) result);//强转化为String 获取整体对象
-
-                JSONObject jsonresult = jsonObject.getJSONObject("resultData");
-                pkprojectid = jsonresult.getInt("pkprojectid");
-
-                saleCount = jsonresult.getInt("saleCount");// 	卖出份数
-                gift = jsonresult.getString("gift");//赠品
-                tips = jsonresult.getString("tips");//收益提示
-                checkBankNo = jsonresult.getBoolean("checkBankNo");//是否是么认证
-                is_Realname = checkBankNo;
-            } catch (IOException e) {
+             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
+                break;
         }
+
     }
 
     private void updata(CfProjectDetailItemDataBean dataBean) {
-        tv_support_money.setText(dataBean.getResultData().getItemAmount().stripTrailingZeros().toPlainString() + "");
-        tv_go_payfor.setText(itemCount * saleCount + "");
-        recevice_remind.setText(tips + "此提示信息来源于网络");
+        CfProjectDetailItemDataBean.ResultDataBean resultBeanData = dataBean.getResultData();
 
+          itemCount = resultBeanData.getItemCount();
+          saleCount = resultBeanData.getSaleCount();
+          itemAmount = resultBeanData.getItemAmount();
+
+        tv_support_money.setText(resultBeanData.getItemAmount().stripTrailingZeros().toPlainString() + "");
+        tv_go_payfor.setText(itemAmount.stripTrailingZeros().toPlainString() + "");
+        recevice_remind.setText(resultBeanData.getTips());
+        is_Realname = resultBeanData.isCheckBankNo();
         if (is_Realname) {//是否实名认证
             real_name_remind.setVisibility(View.GONE);
         }
