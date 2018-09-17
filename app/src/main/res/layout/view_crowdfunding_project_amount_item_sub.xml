@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_item_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginBottom="2dp"
+        android:maxLines="1"
+        android:layout_marginLeft="10dp"
+        android:gravity="center_vertical"
+        android:paddingBottom="3dp"
+        android:paddingLeft="8dp"
+        android:background="@mipmap/cf_project_item_tip"
+        android:text="免费送酒"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/btn_item_amount"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/cf_project_detail_item_amount"
+        android:text="100元"
+        android:textColor="@drawable/cf_project_detail_item_amount"
+        android:textSize="16sp"
+        android:textStyle="normal" />
+</LinearLayout>
+
+
+

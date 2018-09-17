@@ -1,12 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/transparent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/theme_color</item>
         <item name="colorAccent">@color/theme_color</item>
         <item name="titleLayoutHeight">10dp</item>
         <item name="android:windowBackground">@color/theme_color</item>
         <item name="android:windowIsTranslucent">true</item>
+        <item name="alertDialogTheme">@style/Theme.AppCompat.Light.Dialog.Alert</item>
     </style>
 
     <!--白屏的解决-->

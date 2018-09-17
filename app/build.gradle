@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
     dexOptions {
 //        incremental true
         javaMaxHeapSize "4g"
@@ -83,118 +83,119 @@ ext {
 dependencies {
     //                compile fileTree(dir: 'libs', include: ['*.jar'])
     //    compile 'com.android.support:multidex:1.0.1'
-    compile files('libs/Volley.jar')
-    compile files('libs/gson-2.3.1.jar')
-    compile files('libs/alipaySdk-20151112.jar')
-    compile files('libs/umeng-analytics-v5.6.4.jar')
-    compile files('libs/ZBarDecoder.jar')
-    compile files('libs/universal-image-loader-1.9.3.jar')
-    compile files('libs/jackson-core-asl-1.9.10.jar')
-    compile files('libs/afinal_0.5.1_bin.jar')
-    compile files('libs/httpclient-4.3.5.jar')
-    compile files('libs/UPPayPluginExStd.jar')
+    implementation files('libs/Volley.jar')
+    implementation files('libs/gson-2.3.1.jar')
+    implementation files('libs/alipaySdk-20151112.jar')
+    implementation files('libs/umeng-analytics-v5.6.4.jar')
+    implementation files('libs/ZBarDecoder.jar')
+    implementation files('libs/universal-image-loader-1.9.3.jar')
+    implementation files('libs/jackson-core-asl-1.9.10.jar')
+    implementation files('libs/afinal_0.5.1_bin.jar')
+    implementation files('libs/httpclient-4.3.5.jar')
+    implementation files('libs/UPPayPluginExStd.jar')
     //    compile files('libs/AMap_3DMap_V3.3.2_20160525.jar')
-    compile files('libs/AMap_Location_V2.4.1_20160414.jar')
-    compile files('libs/AMap_Search_V3.2.1_20160308.jar')
+    implementation files('libs/AMap_Location_V2.4.1_20160414.jar')
+    implementation files('libs/AMap_Search_V3.2.1_20160308.jar')
     //compile files('libs/AMap3DMap_3.3.1_AMapNavi_1.8.0_20160420.jar')
-    compile files('libs/jackson-mapper-asl-1.9.10.jar')
-    compile files('libs/UPPayAssistEx.jar')
+    implementation files('libs/jackson-mapper-asl-1.9.10.jar')
+    implementation files('libs/UPPayAssistEx.jar')
 //    compile files('libs/zxing.jar')
-    compile files('libs/httpcore-4.3.2.jar')
-    compile files('libs/httpmime-4.3.5.jar')
-    compile files('libs/libammsdk.jar')
-    compile files('libs/bitmaputils.jar')
-    compile files('libs/glide-3.7.0.jar')
-    compile files('libs/BmobSDK_V3.3.4_0310.jar')
-    compile files('libs/android-async-http-1.4.3.jar')
-    compile files('libs/MobCommons-2016.0707.1708.jar')
-    compile files('libs/MobTools-2016.0707.1708.jar')
-    compile files('libs/ShareSDK-Core-2.7.4.jar')
-    compile files('libs/ShareSDK-QZone-2.7.4.jar')
-    compile files('libs/ShareSDK-SinaWeibo-2.7.4.jar')
-    compile files('libs/ShareSDK-Wechat-2.7.4.jar')
-    compile files('libs/ShareSDK-Wechat-Core-2.7.4.jar')
-    compile files('libs/ShareSDK-Wechat-Favorite-2.7.4.jar')
-    compile files('libs/ShareSDK-Wechat-Moments-2.7.4.jar')
-    compile files('libs/open_sdk_r5886_lite.jar')
-    compile files('libs/open_sdk_r5886_lite.jar')
-    compile files('libs/tbs_sdk_thirdapp_v3.5.0.1004_43500_sharewithdownload_withoutGame_obfs_20170801_113025.jar')
+    implementation files('libs/httpcore-4.3.2.jar')
+    implementation files('libs/httpmime-4.3.5.jar')
+    implementation files('libs/libammsdk.jar')
+    implementation files('libs/bitmaputils.jar')
+    implementation files('libs/glide-3.7.0.jar')
+    implementation files('libs/BmobSDK_V3.3.4_0310.jar')
+    implementation files('libs/android-async-http-1.4.3.jar')
+    implementation files('libs/MobCommons-2016.0707.1708.jar')
+    implementation files('libs/MobTools-2016.0707.1708.jar')
+    implementation files('libs/ShareSDK-Core-2.7.4.jar')
+    implementation files('libs/ShareSDK-QZone-2.7.4.jar')
+    implementation files('libs/ShareSDK-SinaWeibo-2.7.4.jar')
+    implementation files('libs/ShareSDK-Wechat-2.7.4.jar')
+    implementation files('libs/ShareSDK-Wechat-Core-2.7.4.jar')
+    implementation files('libs/ShareSDK-Wechat-Favorite-2.7.4.jar')
+    implementation files('libs/ShareSDK-Wechat-Moments-2.7.4.jar')
+    implementation files('libs/open_sdk_r5886_lite.jar')
+    implementation files('libs/open_sdk_r5886_lite.jar')
+    implementation files('libs/tbs_sdk_thirdapp_v3.5.0.1004_43500_sharewithdownload_withoutGame_obfs_20170801_113025.jar')
     //noinspection GradleCompatible
 //    compile 'com.android.support:design:25.0.0-alpha1'
     //noinspection GradleCompatible
 //    compile 'com.android.support:appcompat-v7:25.3.1'
     implementation "com.android.support:appcompat-v7:${supportLibVersion}"
-    compile "com.android.support:design:${supportLibVersion}"
-    compile "com.android.support:recyclerview-v7:${supportLibVersion}"
-    compile "com.android.support:cardview-v7:${supportLibVersion}"
+    implementation "com.android.support:design:${supportLibVersion}"
+    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
+    implementation "com.android.support:cardview-v7:${supportLibVersion}"
 
-    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    implementation 'com.google.android.gms:play-services-appindexing:8.4.0'
 //    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.github.Brioal:ADTextView:1.6'
-    compile 'com.recker.flybanner:flybanner:1.3'
-    compile 'net.frakbot:jumpingbeans:1.3.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.github.chrisbanes:PhotoView:1.3.0'
-    compile 'com.malinskiy:superrecyclerview:1.1.4'
-    compile 'com.mikhaellopez:circularprogressbar:1.1.1'
-    compile 'pub.devrel:easypermissions:0.2.1'
-    compile 'com.github.yalantis:ucrop:2.2.1'
+    implementation 'com.github.Brioal:ADTextView:1.6'
+    implementation 'com.recker.flybanner:flybanner:1.3'
+    implementation 'net.frakbot:jumpingbeans:1.3.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:support-v4:25.3.1'
+    implementation 'com.github.chrisbanes:PhotoView:1.3.0'
+    implementation 'com.malinskiy:superrecyclerview:1.1.4'
+    implementation 'com.mikhaellopez:circularprogressbar:1.1.1'
+    implementation 'pub.devrel:easypermissions:0.2.1'
+    implementation 'com.github.yalantis:ucrop:2.2.1'
 //    compile 'com.just.agentwebX5:agentwebX5:1.0.0'
 
     /** **************** agentweb *******https://github.com/Justson/AgentWeb                  **************************/
-    compile 'com.just.agentweb:agentweb:4.0.2'
+    implementation 'com.just.agentweb:agentweb:4.0.2'
 
     // (必选)
-    compile 'com.just.agentweb:download:4.0.2'
+    implementation 'com.just.agentweb:download:4.0.2'
 
     // (可选)
-    compile 'com.just.agentweb:filechooser:4.0.2'
+    implementation 'com.just.agentweb:filechooser:4.0.2'
 
-    compile 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
-    compile files('libs/ShareSDK-QQ-2.7.4.jar')
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile files('libs/jcore-android-1.1.9.jar')
-    compile files('libs/jpush-android-3.1.1.jar')
+    implementation 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
+    implementation files('libs/ShareSDK-QQ-2.7.4.jar')
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation files('libs/jcore-android-1.1.9.jar')
+    implementation files('libs/jpush-android-3.1.1.jar')
     // butterknife注解
-    compile "com.jakewharton:butterknife:${butterknife}"
+    implementation "com.jakewharton:butterknife:${butterknife}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterknifecompiler}"
     // logger 日志
-    compile "com.orhanobut:logger:${loggerz}"
+    implementation "com.orhanobut:logger:${loggerz}"
     // 滑动按钮
-    compile 'ch.ielse:switchbutton:1.0.0'
+    implementation 'ch.ielse:switchbutton:1.0.0'
 
-    compile 'org.jsoup:jsoup:1.11.2'
-    compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
+    implementation 'org.jsoup:jsoup:1.11.2'
+    implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
 
 
     // OkHttp3
-    compile "com.squareup.okhttp3:okhttp:${okhttp3}"
-    compile "com.squareup.okio:okio:${okio}"
-    compile "com.zhy:okhttputils:${okhttputils}"
-    compile 'com.zhy:okhttputils:2.6.2'
+    implementation "com.squareup.okhttp3:okhttp:${okhttp3}"
+    implementation "com.squareup.okio:okio:${okio}"
+    implementation "com.zhy:okhttputils:${okhttputils}"
+    implementation 'com.zhy:okhttputils:2.6.2'
 
-    compile 'com.github.Even201314:NumberMorphView4Android:1.2.0'
-    compile 'org.greenrobot:eventbus:3.0.0'
+    implementation 'com.github.Even201314:NumberMorphView4Android:1.2.0'
+    implementation 'org.greenrobot:eventbus:3.0.0'
     // 3D地图
-    compile 'com.amap.api:3dmap:latest.integration'
+    implementation 'com.amap.api:3dmap:latest.integration'
     //6.0动态权限
-    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.3@aar'
+    implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.9.3@aar'
     // 设置状态栏颜色 库
-    compile 'com.githang:status-bar-compat:0.7'
+    implementation 'com.githang:status-bar-compat:0.7'
 
     //rxjava
-    compile "io.reactivex:rxandroid:${rxAndroid}"
-    compile "io.reactivex:rxjava:${rxjava}"
+    implementation "io.reactivex:rxandroid:${rxAndroid}"
+    implementation "io.reactivex:rxjava:${rxjava}"
 
     // 扫码、生成二维码库
-    compile 'com.github.jwkj:LibZXing:v1.1.2'
+    implementation 'com.github.jwkj:LibZXing:v1.1.2'
 
     implementation 'org.piwik.sdk:piwik-sdk:3.0.3'
 
-    compile 'com.chanven.lib:cptr:1.1.0'
+    implementation 'com.chanven.lib:cptr:1.1.0'
 
-    compile 'com.wordplat:RecyclerViewEasyDivider:1.0.3'
+    implementation 'com.wordplat:RecyclerViewEasyDivider:1.0.3'
+
 }
 //task clean(type: Delete) {
 //    delete rootProject.buildDir

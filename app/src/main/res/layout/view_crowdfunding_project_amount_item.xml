@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择支持金额"
+            android:textColor="@color/black_9"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/linear_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout android:id="@+id/relate_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/tv_project_item_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/cf_project_detail_item_desc"
+            android:padding="10dp"
+            android:text="预计收益10元"
+            android:textColor="@color/black_3" />
+    </RelativeLayout>
+
+</LinearLayout>
