@@ -6,7 +6,7 @@
     android:layout_marginLeft="5dp"
     android:layout_marginTop="30dp"
     android:layout_marginRight="5dp"
-    android:background="#ffffff">
+    android:background="@drawable/cf_project_list_item_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,16 +33,18 @@
             android:text="火红的太阳在天上这里逆向思维的否定是这样的么后ID额好的发不发"
             />
 
+         <!--   style="?android:attr/progressBarStyleHorizontal"-->
         <ProgressBar
             android:layout_marginTop="5dp"
             android:id="@+id/progress_bar"
-            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_height="4dp"
+            android:progress="10"
             android:max="100"
-            android:background="#ff0000"
+            style="@style/CFProgressBar"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_width="match_parent"
-            android:layout_height="1dp" />
+             />
 
            <RelativeLayout
                android:layout_width="match_parent"
@@ -83,9 +85,10 @@
 
 
     <ImageView
+        android:id="@+id/igv"
         android:layout_marginTop="18dp"
-        android:layout_marginLeft="10dp"
-        android:rotation="-45"
+        android:layout_marginLeft="5dp"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/cf_project_status_start"/>

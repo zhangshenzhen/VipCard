@@ -29,7 +29,7 @@ public class HomeCrowdfundingListProjectAdapter extends BaseRecycleViewAdapter<C
     public HomeCrowdfundingListProjectAdapter(Context context) {
         this.context = context;
         int width = AppInfoUtil.getScreenWidth(context);
-        icon_width = width - DensityUtil.dip2px(context, 20);
+        icon_width = width - DensityUtil.dip2px(context, 10);
         icon_height = (int) (icon_width / 1.82);
     }
 

@@ -115,7 +115,6 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
                 finish();
                 break;
             case R.id.btn_real_name:
-
                 if (!is_Realname && real_name_remind.getVisibility() == View.VISIBLE) {//可见的
                     //去实名认证
                     String params = "pkregister=" + getPkregister();
