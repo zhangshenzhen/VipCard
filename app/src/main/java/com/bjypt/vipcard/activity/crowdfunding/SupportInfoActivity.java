@@ -58,6 +58,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     private TextView recevice_remind;
     private String tips;
     private BigDecimal itemAmount;
+    private TextView tv_danger_instruc;
 
 
     @Override
@@ -81,6 +82,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         real_name_remind = (LinearLayout) findViewById(R.id.real_name_remind);
         tv_support_money = (TextView) findViewById(R.id.tv_support_money);//支持金额
         tv_recevice_remind = findViewById(R.id.tv_recevice_remind);//收益提示信息
+        tv_danger_instruc = findViewById(R.id.tv_danger_instruc);//风险说明
         tv_go_payfor = findViewById(R.id.tv_payfor_money);//支付金额
         recevice_remind = findViewById(R.id.tv_recevice_remind);
         btn_go_payfor = findViewById(R.id.btn_go_payfor);
@@ -122,6 +124,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
                     withdraw.setTitle("实名认证");
                     withdraw.setUrl(Config.web.h5_CFConsumereal_name + params);
                     CommonWebActivity.callActivity(this, withdraw);
+
                 }
                 break;
         }
@@ -180,9 +183,10 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         saleCount = resultBeanData.getSaleCount();
         itemAmount = resultBeanData.getItemAmount();
 
-        tv_support_money.setText(resultBeanData.getItemAmount().stripTrailingZeros().toPlainString() + "");
-        tv_go_payfor.setText(itemAmount.stripTrailingZeros().toPlainString() + "");
+        tv_support_money.setText(resultBeanData.getItemAmount().stripTrailingZeros().toPlainString() + "元");
+        tv_go_payfor.setText(" "+itemAmount.stripTrailingZeros().toPlainString() + "元");
         recevice_remind.setText(resultBeanData.getTips());
+        tv_danger_instruc.setText(resultBeanData.getExplain());//风险说明
         is_Realname = resultBeanData.isCheckBankNo();
         if (is_Realname) {//是否实名认证
             real_name_remind.setVisibility(View.GONE);
