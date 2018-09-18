@@ -101,12 +101,11 @@ public class CrowdfundingDetailBannerView extends LinearLayout {
             relate_play.setVisibility(View.VISIBLE);
             videoView.setVideoPath(videoUrl);
             iv_play.setVisibility(View.VISIBLE);
-//            videoView.setBackgroundColor(getResources().getColor(R.color.white));
+            videoView.setZOrderOnTop(true);
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
                     videoView.seekTo(0);//2000000
-//                    videoView.setBackgroundColor(getResources().getColor(R.color.transparency_color));
                 }
             });
 
@@ -120,6 +119,7 @@ public class CrowdfundingDetailBannerView extends LinearLayout {
                         public void onCompletion(MediaPlayer mediaPlayer) {
                             LogUtil.debugPrint("videoView:" + videoView.getCurrentPosition() + "");
                             iv_play.setVisibility(View.VISIBLE);
+//                            videoView.setBackgroundColor(getResources().getColor(R.color.white));
                             videoView.seekTo(0);
                         }
                     });

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -24,25 +23,22 @@ import com.bjypt.vipcard.activity.crowdfunding.SupportInfoActivity;
 import com.bjypt.vipcard.activity.crowdfunding.projectdetail.entity.ProjectDetailDataBean;
 import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
 import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.CommonWebActivity;
-import com.bjypt.vipcard.activity.shangfeng.util.ToastUtils;
-import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.BaseFraActivity;
 import com.bjypt.vipcard.base.BaseFragment;
 import com.bjypt.vipcard.base.RespBase;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
-import com.bjypt.vipcard.fragment.MineFragment;
-import com.bjypt.vipcard.fragment.crowdfunding.CrowdfundingFragment;
 import com.bjypt.vipcard.pulltorefresh.social.custom.AppBarHeaderBehavior;
 import com.bjypt.vipcard.utils.AmountDisplayUtil;
 import com.bjypt.vipcard.utils.DialogUtil;
-import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.PermissionUtils;
 import com.bjypt.vipcard.view.CfProjectDetailAmountItemView;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.view.categoryview.CrowdfundingDetailBannerView;
+import com.bjypt.vipcard.widget.SucessTipAutoCloseDialog;
+import com.bjypt.vipcard.widget.SucessTipDialog;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.githang.statusbar.StatusBarCompat;
 import com.squareup.picasso.Picasso;
@@ -187,13 +183,21 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                 iv_project_favo.setSelected(true);
                 RespBase respBase = ObjectMapperFactory.createObjectMapper().readValue(result.toString(), RespBase.class);
                 projectDetailDataBean.getResultData().setCheckId(Integer.parseInt(respBase.getResultData().toString()));
+                showSucessTip("收藏成功");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else if (reqcode == request_code_unfavo_project) {
             iv_project_favo.setSelected(false);
             projectDetailDataBean.getResultData().setCheckId(null);
+            showSucessTip("取消收藏成功");
         }
+    }
+
+    private void showSucessTip(String msg) {
+        SucessTipAutoCloseDialog rechargeStateDialog = new SucessTipAutoCloseDialog(this);
+        rechargeStateDialog.setTextContent(msg);
+        rechargeStateDialog.show();
     }
 
 
@@ -219,13 +223,13 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
     public void onClickEvent(View v) {
         switch (v.getId()) {
             case R.id.btn_topay:
-                if(projectDetailDataBean == null){
+                if (projectDetailDataBean == null) {
                     ToastUtil.showToast(this, "正在加载,请稍后...");
                     return;
                 }
-                if(cfProjectDetailAmountItemView.getSelectProjectItemId() ==0){
+                if (cfProjectDetailAmountItemView.getSelectProjectItemId() == 0) {
                     ToastUtil.showToast(this, "请选择一个金额");
-                }else{
+                } else {
                     Intent topay = new Intent(this, SupportInfoActivity.class);
                     topay.putExtra("paytype", projectDetailDataBean.getResultData().getPayType());
                     topay.putExtra("pkprogressitemid", cfProjectDetailAmountItemView.getSelectProjectItemId());
@@ -324,6 +328,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
     private static class HomeSubFragmentAdapter extends FragmentStatePagerAdapter {
         private BaseFragment[] fragment = null;
         private String[] titles = null;
+
         public HomeSubFragmentAdapter(FragmentManager fm, BaseFragment... fragment) {
             super(fm);
             this.fragment = fragment;

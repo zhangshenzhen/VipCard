@@ -46,6 +46,7 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
     LinearLayout linear_item_favolist;
     LinearLayout linear_item_request_view;
     LinearLayout linear_item_request_online;
+    LinearLayout linear_real_name;
 
     private static final int request_user_code = 123;
     private int pkmerchantid;
@@ -75,6 +76,7 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
         linear_item_request_view = (LinearLayout) findViewById(R.id.linear_item_request_view);
         linear_item_request_online = (LinearLayout) findViewById(R.id.linear_item_request_online);
         btn_realname = (Button) findViewById(R.id.btn_real_name);
+        linear_real_name = findViewById(R.id.linear_real_name);
     }
 
     @Override
@@ -166,6 +168,10 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
                 }
                 if(StringUtils.isNotEmpty(userInfoData.getResultData().getBankCode())){
                     iv_real_name.setVisibility(View.VISIBLE);
+                    linear_real_name.setVisibility(View.GONE);
+                }else{
+                    iv_real_name.setVisibility(View.GONE);
+                    linear_real_name.setVisibility(View.VISIBLE);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

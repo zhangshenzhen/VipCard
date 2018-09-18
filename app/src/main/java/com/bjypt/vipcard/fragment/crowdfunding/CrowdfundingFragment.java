@@ -86,7 +86,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
 
     private ImageView iv_display_type;
 
-
+    private boolean is_recomment_scroll = false;
 
 
     @Nullable
@@ -148,7 +148,25 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
         rv_recoment_projects.setAdapter(homeCrowdfundingRecommendAdapter);
         HorizontalSpaceItemDecoration horizontalSpaceItemDecoration = new HorizontalSpaceItemDecoration(DensityUtil.dip2px(getContext(), 5), 0);
         rv_recoment_projects.addItemDecoration(horizontalSpaceItemDecoration);
+
+        rv_recoment_projects.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    is_recomment_scroll = false;
+                }else{
+                    is_recomment_scroll = true;
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
     }
+
+
 
     @Override
     public void afterInitView() {
@@ -284,7 +302,8 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
 
         @Override
         public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-            return behavior.getCurrentVerticalOffset() == 0 && super.checkCanDoRefresh(frame, content, header);
+            return !is_recomment_scroll &&   behavior.getCurrentVerticalOffset() == 0 && super.checkCanDoRefresh(frame, content, header);
+//            return false;
         }
 
         @Override

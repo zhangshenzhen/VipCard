@@ -56,7 +56,7 @@ public abstract class BaseHomeCrowdfundingProject extends BaseRecycleViewAdapter
         BigDecimal progress = cfProjectItem.getProgressCfAmount().divide(cfProjectItem.getCfAmount(),2, BigDecimal.ROUND_HALF_UP);
         holder.tvProgress_data.setText(progress.multiply(new BigDecimal(100)).intValue() +"%");
         Picasso.with(context)
-                .load( cfProjectItem.getHeadImg())
+                .load( cfProjectItem.getGridUrl())
                 .error(R.mipmap.more)
                 .into(holder.icon);
         holder.itemView.setOnClickListener(new View.OnClickListener() {

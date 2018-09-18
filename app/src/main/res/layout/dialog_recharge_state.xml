@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="250dp"
@@ -16,56 +16,54 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:src="@mipmap/pay_succeed"
-            />
+            android:src="@mipmap/pay_succeed" />
 
         <TextView
             android:id="@+id/tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_photo"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
             android:text="充值成功"
             android:textColor="@color/black_3"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/iv_photo"
-            />
+            android:textSize="20sp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
-            android:background="@color/gallery_separation"
             android:layout_above="@+id/ll_tab_bottom"
-            />
+            android:background="@color/gallery_separation" />
+
         <LinearLayout
             android:id="@+id/ll_tab_bottom"
             android:layout_width="match_parent"
-            android:orientation="horizontal"
+            android:layout_height="40dp"
             android:layout_alignParentBottom="true"
-            android:layout_height="40dp">
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/btn1"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:text="确定"
-                android:gravity="center"
+                android:layout_weight="1"
                 android:background="@null"
-                android:textColor="@color/app_theme_color"
-                />
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/app_theme_color" />
+
             <Button
                 android:id="@+id/btn2"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:text="到订单记录"
-                android:gravity="center"
+                android:layout_weight="1"
                 android:background="@null"
-                android:visibility="gone"
+                android:gravity="center"
+                android:text="到订单记录"
                 android:textColor="@color/app_theme_color"
-                />
+                android:visibility="gone" />
         </LinearLayout>
     </RelativeLayout>
-
 
 
 </RelativeLayout>

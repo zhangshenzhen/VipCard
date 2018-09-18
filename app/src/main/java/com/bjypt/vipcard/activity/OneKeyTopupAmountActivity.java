@@ -34,7 +34,6 @@ import com.bjypt.vipcard.view.MyDialog;
 import com.bjypt.vipcard.view.PayAwayView;
 import com.bjypt.vipcard.widget.MyGridView;
 import com.bjypt.vipcard.widget.PetroleumView;
-import com.bjypt.vipcard.widget.RechargeStateDialog;
 import com.orhanobut.logger.Logger;
 import com.sinia.orderlang.utils.StringUtil;
 import com.unionpay.UPPayAssistEx;
@@ -197,9 +196,9 @@ public class OneKeyTopupAmountActivity extends BaseActivity implements VolleyCal
     private void payFinish() {
         if (FLAG == 3) {
 
-//            RechargeStateDialog rechargeStateDialog = new RechargeStateDialog(this)
+//            SucessTipDialog rechargeStateDialog = new SucessTipDialog(this)
 //                    .setButtonText("充值成功", "确定", null)
-//                    .setBtnClick(new RechargeStateDialog.ButtonClickListener() {
+//                    .setBtnClick(new SucessTipDialog.ButtonClickListener() {
 //                        @Override
 //                        public void btn1Click() {
 //

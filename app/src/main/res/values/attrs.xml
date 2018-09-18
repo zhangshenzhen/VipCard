@@ -101,7 +101,7 @@
             <flag name="fine_discount_shop" value="0x7"/>
             <flag name="merchant_home_banner"  value="0x9" />
             <flag name="location_banner"  value="0x11" />
-            <flag name="crowdfunding_banner"  value="0x13" />
+            <flag name="crowdfunding_banner"  value="0xd" />
         </attr>
 
     </declare-styleable>

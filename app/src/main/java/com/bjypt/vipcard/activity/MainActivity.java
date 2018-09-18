@@ -1,38 +1,49 @@
 package com.bjypt.vipcard.activity;
 
+import android.app.ActionBar;
 import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.shangfeng.common.LocateResultFields;
+import com.bjypt.vipcard.activity.shangfeng.util.SharedPreferencesUtils;
 import com.bjypt.vipcard.base.BaseFraActivity;
 import com.bjypt.vipcard.base.MyPiwikApplication;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.TrackCommon;
-import com.bjypt.vipcard.fragment.crowdfunding.CrowdfundingFragment;
+import com.bjypt.vipcard.dialog.NormalDialog;
 import com.bjypt.vipcard.fragment.HomeFragment;
 import com.bjypt.vipcard.fragment.ManyFragment;
 import com.bjypt.vipcard.fragment.MerchantFragment;
 import com.bjypt.vipcard.fragment.MineFragment;
+import com.bjypt.vipcard.fragment.MyFragment;
 import com.bjypt.vipcard.fragment.NewHomeFrag;
 import com.bjypt.vipcard.fragment.NewsFragment;
 import com.bjypt.vipcard.fragment.ShopStreetFragment;
 import com.bjypt.vipcard.fragment.VipTrainFragment;
 import com.bjypt.vipcard.model.LocationDingweiBean;
+import com.bjypt.vipcard.service.MQTTService;
 import com.bjypt.vipcard.umeng.UmengCountContext;
 import com.bjypt.vipcard.utils.BroadCastReceiverUtils;
 import com.bjypt.vipcard.utils.GaoDeMapLocation;
@@ -62,7 +73,6 @@ public class MainActivity extends BaseFraActivity {
     private ManyFragment mManyFra;
     private VipTrainFragment mVipTrain;
     private NewsFragment newsFragment;
-    private CrowdfundingFragment zhongChouFragment;
     private SpecialPriceFra specialPriceFra;
     //    private LinearLayout  mTotalBottom; ads
     FragmentTransaction transaction;
@@ -279,15 +289,14 @@ public class MainActivity extends BaseFraActivity {
             case 3:
                 tv_main_my_news.setTextColor(Color.parseColor("#52b8b8"));
                 tv_main_my_news.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.news, 0, 0);
-               //这里newsFragment 被替换成z hongChouFragment
-                if (zhongChouFragment == null) {
+                if (newsFragment == null) {
 //                    mManyFra = new ManyFragment();
-                    zhongChouFragment = new CrowdfundingFragment();
-                    transaction.add(R.id.id_content, zhongChouFragment);
+                    newsFragment = new NewsFragment();
+                    transaction.add(R.id.id_content, newsFragment);
                 } else {
-                    transaction.show(zhongChouFragment);
+                    transaction.show(newsFragment);
                 }
-                TrackHelper.track().event(TrackCommon.ViewTrackCategroy, TrackCommon.ViewTrackPagesNewsTab).name("众筹").value(1f).with(getTracker());
+                TrackHelper.track().event(TrackCommon.ViewTrackCategroy, TrackCommon.ViewTrackPagesNewsTab).name("有料").value(1f).with(getTracker());
                 break;
             case 4:
                 tv_main_my.setTextColor(Color.parseColor("#52b8b8"));
@@ -317,9 +326,8 @@ public class MainActivity extends BaseFraActivity {
         if (newHomeFrag != null) {
             transaction.hide(newHomeFrag);
         }
-        //这里newsFragment 被替换成zhongChouFragment
-        if (zhongChouFragment != null) {
-            transaction.hide(zhongChouFragment);
+        if (newsFragment != null) {
+            transaction.hide(newsFragment);
         }
         if (mMerchantFra != null) {
             transaction.hide(mMerchantFra);

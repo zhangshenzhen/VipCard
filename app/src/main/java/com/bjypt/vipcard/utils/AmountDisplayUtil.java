@@ -9,10 +9,10 @@ public class AmountDisplayUtil {
      * @return
      */
     public static final String displayChineseWan(BigDecimal amount){
-        if(amount.compareTo(new BigDecimal(1000))>0){
+        if(amount.compareTo(new BigDecimal(1000))>=0){
            return  amount.divide(new BigDecimal(10000)).stripTrailingZeros().toPlainString()+"万";
         }else{
-            return amount.stripTrailingZeros().toPlainString();
+            return amount.stripTrailingZeros().toPlainString()+"元";
         }
     }
 }

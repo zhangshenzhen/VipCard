@@ -3,7 +3,6 @@ package com.bjypt.vipcard.widget;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,7 @@ import com.bjypt.vipcard.R;
  * Created by Dell on 2018/4/11.
  */
 
-public class RechargeStateDialog extends Dialog implements View.OnClickListener {
+public class SucessTipDialog extends Dialog implements View.OnClickListener {
 
     private LayoutInflater inflater;
     private View view;
@@ -27,11 +26,12 @@ public class RechargeStateDialog extends Dialog implements View.OnClickListener 
     private TextView tv_content;
     private ButtonClickListener buttonClickListener;
 
-    public RechargeStateDialog(@NonNull Context context) {
-        super(context, R.style.MyDialog);
+    public SucessTipDialog(@NonNull Context context) {
+        super(context,R.style.MyDialogStyle);
         inflater = LayoutInflater.from(context);
         initViews();
     }
+
 
     private void initViews() {
         view = inflater.inflate(R.layout.dialog_recharge_state,null);
@@ -46,9 +46,12 @@ public class RechargeStateDialog extends Dialog implements View.OnClickListener 
         btn1 = (Button) view.findViewById(R.id.btn1);
         btn2 = (Button) view.findViewById(R.id.btn2);
         view.setOnClickListener(this);
+        setContentView(view);
     }
 
-    public RechargeStateDialog setButtonText(String text,String buttonText, String buttonString2){
+
+
+    public SucessTipDialog setButtonText(String text, String buttonText, String buttonString2){
         tv_content.setText(text);
         if(null != buttonText){
             btn1.setText(buttonText);
@@ -67,7 +70,7 @@ public class RechargeStateDialog extends Dialog implements View.OnClickListener 
         return this;
     }
 
-    public RechargeStateDialog setBtnClick(ButtonClickListener listener){
+    public SucessTipDialog setBtnClick(ButtonClickListener listener){
         this.buttonClickListener = listener;
         return this;
     }

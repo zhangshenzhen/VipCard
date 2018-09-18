@@ -67,7 +67,7 @@ public class ZhongchouBannerView extends AppCategoryContextView{
         Map<String, String> params = new HashMap<>();
       /*  params.put("city_code", Config.web.cityCode);//SharedPreferenceUtils.getFromSharedPreference(getContext(), Config.userConfig.citycode, "1558")
         params.put("app_type", bannerType+"");*/
-        params.put("app_type", bannerType+"");
+        params.put("type", bannerType+"");
         startLoading(Config.web.zhongchou_baner_url, params);
     }
 

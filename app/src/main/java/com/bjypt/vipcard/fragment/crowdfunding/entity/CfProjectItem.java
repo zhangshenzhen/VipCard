@@ -23,8 +23,27 @@ public class CfProjectItem {
     private Integer status;
     private Integer payType;
     private Integer viewAuth;
+    private String gridUrl;
+
+    private BigDecimal optimalMoney;
 
     private boolean collection;
+
+    public BigDecimal getOptimalMoney() {
+        return optimalMoney;
+    }
+
+    public void setOptimalMoney(BigDecimal optimalMoney) {
+        this.optimalMoney = optimalMoney;
+    }
+
+    public String getGridUrl() {
+        return gridUrl;
+    }
+
+    public void setGridUrl(String gridUrl) {
+        this.gridUrl = gridUrl;
+    }
 
     public Integer getPkprojectid() {
         return pkprojectid;

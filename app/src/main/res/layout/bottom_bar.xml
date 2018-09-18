@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:drawableTop="@mipmap/news_normal"
-                android:text="众筹"
+                android:text="有料"
                 android:textColor="@color/text_color"
                 android:textSize="12sp" />
 

@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/home_item_press"
     android:fitsSystemWindows="true"
-    android:background="@color/background_color"
     android:orientation="vertical">
 
     <include layout="@layout/sub_head_view" />
@@ -17,5 +17,13 @@
         android:dividerHeight="3dp"
         android:fadingEdge="none"
         android:scrollbars="none" />
+
+    <ImageView
+        android:id="@+id/iv_nodata"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:scaleType="fitXY"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/cf_project_detail_nohas_card" />w
 
 </LinearLayout>

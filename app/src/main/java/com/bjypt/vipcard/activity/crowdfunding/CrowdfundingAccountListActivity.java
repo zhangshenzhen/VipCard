@@ -4,12 +4,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.adapter.cf.AccountListAdapter;
+import com.bjypt.vipcard.adapter.cf.listener.LoadMoreWrapper;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
@@ -34,6 +36,7 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
     TextView tv_merchant_title_name;
     PullToRefreshListView lv_account_list;
     ImageButton ibtn_back;
+    ImageView iv_nodata;
 
     final int QUERY_EXERCISE_MORE = 0x0101;
     final int QUERY_EXERCISE_REFERSH = 0x0110;
@@ -45,6 +48,8 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
     private List<CfAccountData> resultDataBeanList ;
 
     AccountListAdapter accountListAdapter;
+//    private LoadMoreWrapper loadMoreWrapper;
+
 
 
     @Override
@@ -70,6 +75,7 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
             }
         });
         tv_merchant_title_name.setText("众筹列表");
+        iv_nodata = findViewById(R.id.iv_nodata);
     }
 
 
@@ -95,6 +101,7 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
 
         resultDataBeanList = new ArrayList<>();
         accountListAdapter = new AccountListAdapter(this, resultDataBeanList);
+//        loadMoreWrapper = new LoadMoreWrapper(accountListAdapter);
         lv_account_list.setAdapter(accountListAdapter);
 
         lv_account_list.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
@@ -127,10 +134,6 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
     @Override
     public void onClickEvent(View v) {
         switch (v.getId()){
-
-
-
-
         }
 
     }
@@ -150,8 +153,16 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
                     } else { // 加载更多
                         resultDataBeanList.addAll(merchantListBean.getResultData().getList());
                     }
-                    accountListAdapter.notifyDataSetChanged();
                     lv_account_list.onRefreshComplete();
+                    accountListAdapter.notifyDataSetChanged();
+                    if(resultDataBeanList.size() ==0 ){
+                        lv_account_list.setVisibility(View.GONE);
+                        iv_nodata.setVisibility(View.VISIBLE);
+                    }else{
+                        lv_account_list.setVisibility(View.VISIBLE);
+                        iv_nodata.setVisibility(View.GONE);
+                    }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -42,7 +42,6 @@ public abstract class BaseFraActivity extends FragmentActivity implements View.O
     private MyBroad myBroad;
     private SystemBarTintManager tintManager;
 
-
     /**
      * 设置布局文件
      **/

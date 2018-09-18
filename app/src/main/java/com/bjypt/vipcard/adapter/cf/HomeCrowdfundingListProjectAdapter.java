@@ -14,6 +14,7 @@ import com.bjypt.vipcard.adapter.BaseRecycleViewAdapter;
 import com.bjypt.vipcard.adapter.cf.holder.HomeCrowdfundingGridViewHolder;
 import com.bjypt.vipcard.adapter.cf.holder.HomeCrowdfundingListViewHolder;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItem;
+import com.bjypt.vipcard.utils.AmountDisplayUtil;
 import com.bjypt.vipcard.utils.DensityUtil;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.sinia.orderlang.utils.AppInfoUtil;
@@ -58,13 +59,13 @@ public class HomeCrowdfundingListProjectAdapter extends BaseRecycleViewAdapter<C
         }
         if(cfProjectItem.getCfAmount().compareTo(new BigDecimal(0))>0){
             BigDecimal progress = cfProjectItem.getProgressCfAmount().divide(cfProjectItem.getCfAmount(),2, BigDecimal.ROUND_HALF_UP);
-            holder.pb_project_progress.setProgress(progress.intValue() > 100 ? 100 : progress.intValue());
+            holder.pb_project_progress.setProgress(progress.intValue() > 100 ? 100 : progress.multiply(new BigDecimal(100)).intValue());
             holder.tvProgress_data.setText(progress.multiply(new BigDecimal(100)).intValue() +"%");
         }else{
             holder.pb_project_progress.setProgress(100);
             holder.tvProgress_data.setText("100%");
         }
-
+        holder.tv_start_amount.setText("起投金额：" + AmountDisplayUtil.displayChineseWan(cfProjectItem.getOptimalMoney()));
         Picasso.with(context)
                 .load( cfProjectItem.getHeadImg())
                 .error(R.mipmap.more)

@@ -2,6 +2,7 @@ package com.bjypt.vipcard.base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.StrictMode;
@@ -89,10 +90,20 @@ public class MyApplication extends MyPiwikApplication {
 
         initOkHttp();
         initToastMgr();
+
+//        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            Resources resources = getContext().getResources();
+//            Configuration config = resources.getConfiguration();
+//
+//            config.setToDefaults();
+//        }
+
     }
 
-    public  MapLocationUtil getMapLocationUtil(){
-        if(mapLocationUtil == null){
+
+
+    public MapLocationUtil getMapLocationUtil() {
+        if (mapLocationUtil == null) {
             mapLocationUtil = MapLocationUtil.getInstance(this);
         }
         return mapLocationUtil;
@@ -120,7 +131,6 @@ public class MyApplication extends MyPiwikApplication {
     private void initToastMgr() {
         ToastMgr.ToastEnum.builder.init(this);
     }
-
 
 
     public static RequestQueue getHttpQueue() {
@@ -155,7 +165,7 @@ public class MyApplication extends MyPiwikApplication {
         activities.add(activity);
     }
 
-    public Activity getFirstActivity(){
+    public Activity getFirstActivity() {
         return activities.get(0);
     }
 
@@ -187,13 +197,14 @@ public class MyApplication extends MyPiwikApplication {
 
     /**
      * true: 正在升级  false:服务正常
+     *
      * @return
      */
-    public boolean isUpgrading(){
+    public boolean isUpgrading() {
         return is_upgrading;
     }
 
-    public void setUpgrading(boolean is_upgrading){
+    public void setUpgrading(boolean is_upgrading) {
         this.is_upgrading = is_upgrading;
     }
 
