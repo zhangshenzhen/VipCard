@@ -42,16 +42,6 @@ public class CfProjectItem {
 
     private BigDecimal optimalMoney;
 
-    public BigDecimal getOptimalMoney() {
-        return optimalMoney;
-    }
-
-    public void setOptimalMoney(BigDecimal optimalMoney) {
-        this.optimalMoney = optimalMoney;
-    }
-
-    private BigDecimal  optimalMoney;
-
     private boolean collection;
 
     public BigDecimal getOptimalMoney() {
