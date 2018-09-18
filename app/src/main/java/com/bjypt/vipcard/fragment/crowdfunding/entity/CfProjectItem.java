@@ -11,6 +11,21 @@ public class CfProjectItem {
     private long settleEndAt;
     private Object sponsor;
     private String headImg;
+
+    public String getProject_name() {
+        return project_name;
+    }
+
+    public void setProject_name(String project_name) {
+        this.project_name = project_name;
+    }
+
+    private String project_name;
+
+
+    private  BigDecimal progress_cf_amount;
+    private BigDecimal cf_amount;
+    private String head_img;
     private Object underwrite;
     private BigDecimal cfAmount;
     private BigDecimal progressCfAmount;
@@ -26,6 +41,16 @@ public class CfProjectItem {
     private String gridUrl;
 
     private BigDecimal optimalMoney;
+
+    public BigDecimal getOptimalMoney() {
+        return optimalMoney;
+    }
+
+    public void setOptimalMoney(BigDecimal optimalMoney) {
+        this.optimalMoney = optimalMoney;
+    }
+
+    private BigDecimal  optimalMoney;
 
     private boolean collection;
 
@@ -211,5 +236,29 @@ public class CfProjectItem {
 
     public void setCollection(boolean collection) {
         this.collection = collection;
+    }
+
+    public String getHead_img() {
+        return head_img;
+    }
+
+    public void setHead_img(String head_img) {
+        this.head_img = head_img;
+    }
+
+    public BigDecimal getCf_amount() {
+        return cf_amount;
+    }
+
+    public void setCf_amount(BigDecimal cf_amount) {
+        this.cf_amount = cf_amount;
+    }
+
+    public BigDecimal getProgress_cf_amount() {
+        return progress_cf_amount;
+    }
+
+    public void setProgress_cf_amount(BigDecimal progress_cf_amount) {
+        this.progress_cf_amount = progress_cf_amount;
     }
 }

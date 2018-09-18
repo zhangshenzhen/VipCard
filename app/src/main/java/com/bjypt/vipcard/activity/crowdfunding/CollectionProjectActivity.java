@@ -14,22 +14,27 @@ import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.adapter.CollectionProjectAdapter;
 import com.bjypt.vipcard.adapter.SellerProjectAdapter;
+import com.bjypt.vipcard.adapter.cf.listener.EndlessRecyclerOnScrollListener;
+import com.bjypt.vipcard.adapter.cf.listener.LoadMoreWrapper;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
-import com.bjypt.vipcard.bean.SellerProjectBean;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
+import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItem;
+import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectListDataBean;
 import com.bjypt.vipcard.pulltorefresh.PullToRefreshBase;
 import com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView;
 import com.bjypt.vipcard.utils.LogUtil;
+import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.view.RecyclerViewSpacesItemDecoration;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.codehaus.jackson.map.ObjectMapper;
 
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CollectionProjectActivity  extends BaseActivity implements VolleyCallBack{
@@ -38,21 +43,28 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
     private RecyclerView recyclerView;
 
     private CollectionProjectAdapter adapter;
-    ArrayList<SellerProjectBean.SellBean> sellBeans;//集合数据
+    ArrayList<CfProjectItem> sellBeans;//集合数据
     private int pkmerchantid;
+    private LoadMoreWrapper loadMoreWrapper;
+    private EndlessRecyclerOnScrollListener onScrollListener;
 
     private ImageView iv_code_back;
     private String pkregister;
-
+     List<CfProjectItem> SellerProjectBeans = new ArrayList<>();
 
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             // adapter.notifyDataSetChanged();
             adapter.reFresh(sellBeans);
+            adapter.reFresh(SellerProjectBeans);
+            loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
+            recyclerView.removeOnScrollListener(onScrollListener);
+            recyclerView.setAdapter(loadMoreWrapper);
         }
     };
     private TextView tv_sell_name;
+    private boolean is_refresh;
 
     @Override
     public void setContentLayout() {
@@ -76,14 +88,15 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
         recyclerView = findViewById(R.id.rec_view);
         //设置间距
         HashMap<String, Integer> stringIntegerHashMap = new HashMap<>();
-        stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.TOP_DECORATION,30);//top间距
+        stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.TOP_DECORATION,10);//top间距
         recyclerView.addItemDecoration(new RecyclerViewSpacesItemDecoration(stringIntegerHashMap));
         //设置布局管理器
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         //设置适配器
-        adapter = new CollectionProjectAdapter(this,sellBeans);
-        recyclerView.setAdapter(adapter);
+        adapter = new CollectionProjectAdapter(this,SellerProjectBeans);
+        loadMoreWrapper = new LoadMoreWrapper(adapter);
+        recyclerView.setAdapter(loadMoreWrapper);
 
         //设置下拉刷新
         Pull_seller_view.getLoadingLayoutProxy().setLastUpdatedLabel("lastUpdateLabel");
@@ -95,14 +108,30 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
 
         iv_code_back.setOnClickListener(this);
         getNetData();
+        initScrollListener();
     }
+
+    private void initScrollListener() {
+        if (onScrollListener != null)
+            recyclerView.removeOnScrollListener(onScrollListener);
+
+        onScrollListener = new EndlessRecyclerOnScrollListener() {
+            @Override
+            public void onLoadMore() {
+                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
+                //loadDatas(QUERY_EXERCISE_MORE);
+            }
+        };
+        // 设置加载更多监听
+        recyclerView.addOnScrollListener(onScrollListener);
+    }
+
     public void getNetData() {
         Map<String,String> maps = new HashMap<>();
-        maps.put("pkmerchantid","");
+        maps.put("pkregister",getPkregister());
         maps.put("pageNum","1");
-        maps.put("pageSize","5");
-        String url = "http://123.57.232.188:19096/api/hybCfProject/getProjectByMerchantId";
-        Wethod.httpPost(this,2, url,maps,this);
+        maps.put("pageSize","3");
+        Wethod.httpPost(this,2, Config.web.h5_CFConsumeCollection,maps,this);
     }
     @Override
     public void afterInitView() {
@@ -111,6 +140,7 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
                getNetData();
+                is_refresh = true;
             }
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
@@ -134,7 +164,24 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
         }
     }
     private void jsonData( Object result) {
+        ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();
+        CfProjectListDataBean cfProjectListDataBean = null;
         try {
+            cfProjectListDataBean = objectMapper.readValue(result.toString(), CfProjectListDataBean.class);
+
+            if(is_refresh){
+
+            SellerProjectBeans.clear();
+
+            }
+
+        SellerProjectBeans.addAll(cfProjectListDataBean.getResultData().getList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+      /*  try {
             JSONObject jsonObject = new JSONObject((String) result);//强转化为String 获取整体对象
             //JSONObject jsonObjectresultData = new JSONObject(jsonObject.toString());
             //再获取resultData 对象
@@ -161,7 +208,7 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
             LogUtil.debugPrint("连接成功 错误："+ e.getMessage());
             e.printStackTrace();
         }
-
+*/
     }
 
     @Override

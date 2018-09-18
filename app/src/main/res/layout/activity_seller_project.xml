@@ -31,13 +31,14 @@
 
     </RelativeLayout>
     <!-- 内容 -->
-    <com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView
+   <!-- <com.bjypt.vipcard.pulltorefresh.social.PullListLayout-->
+  <com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView
         android:id="@+id/Pull_seller_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gray_a"
         android:layout_below="@+id/rl_title"
-        android:scrollbars="none">
+         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,8 +53,9 @@
               </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
+   <!-- </com.bjypt.vipcard.pulltorefresh.social.PullListLayout>-->
 
-    </com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView>
+   </com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView>
 
 
 </LinearLayout>
