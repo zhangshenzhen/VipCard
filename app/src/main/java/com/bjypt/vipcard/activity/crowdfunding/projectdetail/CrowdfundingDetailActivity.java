@@ -231,6 +231,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                     ToastUtil.showToast(this, "请选择一个金额");
                 } else {
                     Intent topay = new Intent(this, SupportInfoActivity.class);
+                    topay.putExtra("getSelectTipText",cfProjectDetailAmountItemView.getSelectTipText());
                     topay.putExtra("paytype", projectDetailDataBean.getResultData().getPayType());
                     topay.putExtra("pkprogressitemid", cfProjectDetailAmountItemView.getSelectProjectItemId());
                     topay.putExtra("pkmerchantid", projectDetailDataBean.getResultData().getPkmerchantid());

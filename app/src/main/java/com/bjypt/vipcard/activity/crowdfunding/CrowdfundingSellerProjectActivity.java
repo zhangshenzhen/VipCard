@@ -57,20 +57,27 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
    // ArrayList<SellerProjectBean.SellBean> sellBeans = new ArrayList<>();
     private int pkmerchantid;
     List<CfProjectItem> SellerProjectBeans = new ArrayList<>();
+    final int QUERY_EXERCISE_MORE = 0x0101;
+    final int QUERY_EXERCISE_REFERSH = 0x0110;
+    private int page = 0;
+    private int pageLength = 2;
+
+    private ImageView iv_code_back;
+    private boolean is_refresh;
+
+
 
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
                 adapter.reFresh(SellerProjectBeans);
                 loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
-                recyclerView.removeOnScrollListener(onScrollListener);
-                recyclerView.setAdapter(loadMoreWrapper);
+               // recyclerView.removeOnScrollListener(onScrollListener);
+               // recyclerView.setAdapter(loadMoreWrapper);
                // loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
 
          }
     };
-    private ImageView iv_code_back;
-    private boolean is_refresh;
 
     @Override
     public void setContentLayout() {
@@ -115,7 +122,7 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
         Pull_seller_view.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
 
         iv_code_back.setOnClickListener(this);
-        getNetData();//联网获取数据
+        getNetData(QUERY_EXERCISE_REFERSH);//联网获取数据
         initScrollListener();
     }
 
@@ -127,7 +134,7 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
             @Override
             public void onLoadMore() {
                 loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
-                //loadDatas(QUERY_EXERCISE_MORE);
+                getNetData(QUERY_EXERCISE_MORE);
             }
         };
         // 设置加载更多监听
@@ -136,11 +143,19 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
 
 
 
-    public void getNetData() {
+    public void getNetData(int refresh_type) {
+        if (refresh_type == QUERY_EXERCISE_REFERSH) {
+            page = 1;
+            is_refresh = true;
+        } else {
+            page += 1;
+            is_refresh = false;
+        }
+
         Map<String,String> maps = new HashMap<>();
         maps.put("pkmerchantid",pkmerchantid+"");
-        maps.put("pageNum","1");
-        maps.put("pageSize","6");
+        maps.put("pageNum",page+"");
+        maps.put("pageSize",pageLength+"");
         //String url = "http://123.57.232.188:19096/api/hybCfProject/getProjectByMerchantId";
         Wethod.httpPost(this,2, Config.web.Seller_project_url,maps,this);
     }
@@ -150,7 +165,7 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
         Pull_seller_view.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-                getNetData();
+                getNetData(QUERY_EXERCISE_REFERSH);
                 is_refresh   = true;
             }
             @Override
@@ -180,36 +195,24 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
 
     private void jsonData( Object result) {
         try {
-           // JSONObject jsonObject = new JSONObject((String) result);//强转化为String 获取整体对象
 
-           // JSONObject jsonObjectresultData2 = jsonObject.getJSONObject("resultData");
-           // String resultString = jsonObjectresultData2.toString();
               ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();
               CfProjectListDataBean cfProjectListDataBean = objectMapper.readValue(result.toString(), CfProjectListDataBean.class);
               if(is_refresh){
-              SellerProjectBeans.clear();
+                 SellerProjectBeans.clear();
+                 is_refresh = false;
               }
 
               SellerProjectBeans.addAll(cfProjectListDataBean.getResultData().getList());
 
-            /* JSONArray jsonArray = jsonObjectresultData2.getJSONArray("list");
-            LogUtil.debugPrint("连接成功 成功："+ jsonArray.getString(1));
-            sellBeans.clear();//每次刷新时清空以前的数据，
-           if(jsonArray != null &&jsonArray.length()>0 ){
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject data = jsonArray.getJSONObject(i);//集合中单个对象
-                    SellerProjectBean.SellBean sellBean =  new SellerProjectBean.SellBean();
+              if(cfProjectListDataBean.getResultData().getList().size()< pageLength){
+                  loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
+                  recyclerView.removeOnScrollListener(onScrollListener);
+              }else {
+                 // loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
+                  loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
+              }
 
-                    sellBean.setHeadImg(data.getString("headImg"));
-                    sellBean.setProjectName(data.getString("projectName"));
-                    sellBean.setPkprojectid(data.getInt("pkprojectid"));
-                    sellBean.setPkmerchantid(data.getInt("pkmerchantid"));
-                    sellBean.setOptimalMoney(data.getDouble("optimalMoney"));//最优惠金额
-                    sellBean.setCollection(data.getBoolean("collection"));
-                   // sellBean.setCfAmount(data.getDouble(""));
-                    sellBeans.add(sellBean);
-                }
-            }*/
 
 
         }catch (JsonParseException e) {

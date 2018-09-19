@@ -59,6 +59,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     private String tips;
     private BigDecimal itemAmount;
     private TextView tv_danger_instruc;
+    private String selectTip;
 
 
     @Override
@@ -72,7 +73,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         pkprogressitemid = intent.getIntExtra("pkprogressitemid", 0);
         pkmerchantid = intent.getIntExtra("pkmerchantid", 0);
         paytype = intent.getIntExtra("paytype", 0);
-
+        selectTip = intent.getStringExtra("getSelectTipText"); //提示信息
     }
 
     @Override
@@ -185,7 +186,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
 
         tv_support_money.setText(resultBeanData.getItemAmount().stripTrailingZeros().toPlainString() + "元");
         tv_go_payfor.setText(" "+itemAmount.stripTrailingZeros().toPlainString() + "元");
-        recevice_remind.setText(resultBeanData.getTips());
+        recevice_remind.setText(selectTip);//提示信息
         tv_danger_instruc.setText(resultBeanData.getExplain());//风险说明
         is_Realname = resultBeanData.isCheckBankNo();
         if (is_Realname) {//是否实名认证
