@@ -13,11 +13,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
 
 
+import com.bjypt.vipcard.activity.crowdfunding.projectdetail.CrowdfundingDetailActivity;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItem;
 import com.bjypt.vipcard.utils.DensityUtil;
 import com.bumptech.glide.Glide;
@@ -60,19 +62,6 @@ public class SellerProjectAdapter extends RecyclerView.Adapter{
         mviewHoldr.imageView.setLayoutParams(params);
 
 
-         //图片条目的点击事件
-          mviewHoldr.imageView.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  //获取点击的条目位置;
-                  int posion = mviewHoldr.getAdapterPosition();
-                  //点击传递参数
-                  //Intent intent = new Intent(mcontext,FruiteActivity.class);
-                 // intent.putExtra("FRUIT_NAME",fruit.getName());
-                 // intent.putExtra("FRUIT_IMAGE_ID",fruit.getImageid());
-                 // mcontext.startActivity(intent);
-              }
-          });
 
         return mviewHoldr;
 
@@ -117,12 +106,27 @@ public class SellerProjectAdapter extends RecyclerView.Adapter{
            sellerViewHoldr.tv_precent.setText(sellBean.getProgressCfAmount().stripTrailingZeros().toPlainString()+"%");
        }
 
+        //图片条目的点击事件
+        sellerViewHoldr.re_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //获取点击的条目位置;
+                //int posion = sellerViewHoldr.getAdapterPosition();
+                //点击传递参数
+                Intent intent = new Intent(mcontext, CrowdfundingDetailActivity.class);
+                intent.putExtra("pkprojectid", sellBean.getPkprojectid());
+                mcontext.startActivity(intent);
+
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
         return sellerBeans.size()>0? sellerBeans.size():0;
     }
+
    static class SellerViewHoldr extends RecyclerView.ViewHolder{
 
        private final ImageView imageView ;
@@ -131,6 +135,7 @@ public class SellerProjectAdapter extends RecyclerView.Adapter{
        private final ProgressBar progressBar;
        private final TextView tv_precent;
        private final TextView tv_youhui_num;//最优惠金额
+       private final RelativeLayout re_item ;
 
        public SellerViewHoldr(View itemView) {
            super(itemView);
@@ -141,7 +146,7 @@ public class SellerProjectAdapter extends RecyclerView.Adapter{
            tv_precent = itemView.findViewById(R.id.tv_precent);
            tv_youhui_num = itemView.findViewById(R.id.tv_youhui_num);
            igv = itemView.findViewById(R.id.igv);*/
-
+           re_item = itemView.findViewById(R.id.re_item);
            imageView = itemView.findViewById(R.id.igv_icon);
            igv = itemView.findViewById(R.id.igv_zhongchou);
            tv_youhui_num = itemView.findViewById(R.id.tv_start_amount);
