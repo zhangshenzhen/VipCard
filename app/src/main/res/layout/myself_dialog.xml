@@ -3,15 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#00FFFFFF"
+    android:background="@mipmap/xieyi_bg"
     android:orientation="vertical">
-
+   <!--高 180dp-->
     <TextView
         android:id="@+id/dialog_title"
         android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:textColor="#333333"
         android:gravity="center"
         android:text="协议书"
@@ -22,19 +22,51 @@
         android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:textColor="#666666"
-        android:gravity="center"
+        android:gravity="left"
         android:text="购买前请仔细阅读支持协议《项目支持协议书》"
         android:textSize="14sp" />
 
+     <LinearLayout
+         android:gravity="center_horizontal"
+         android:layout_marginTop="25dp"
+         android:layout_gravity="center_horizontal"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal">
+
+       <CheckBox
+           android:layout_gravity="center_horizontal"
+           android:id="@+id/ck_box"
+           android:checked="false"
+           android:layout_marginRight="8dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:button="@drawable/selector_box"
+           android:background="@null"
+           />
+
+         <TextView
+             android:layout_gravity="center_horizontal"
+             android:textSize="13sp"
+
+             android:textColor="#333333"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="阅读后才能去支付"/>
+
+     </LinearLayout>
+
     <Button
         android:id="@+id/btn_look"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="20px"
         android:layout_gravity="center_horizontal"
-        android:layout_width="160dp"
-        android:layout_height="36dp"
+        android:layout_width="165dp"
+        android:layout_height="35dp"
         android:text="点击查看"
         android:textSize="17sp"
         android:textColor="@color/white"
