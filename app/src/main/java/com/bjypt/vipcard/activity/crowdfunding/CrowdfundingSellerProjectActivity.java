@@ -60,10 +60,9 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
     final int QUERY_EXERCISE_MORE = 0x0101;
     final int QUERY_EXERCISE_REFERSH = 0x0110;
     private int page = 0;
-    private int pageLength = 2;
-
-    private ImageView iv_code_back;
+    private int pageLength = 10;
     private boolean is_refresh;
+    private ImageView iv_code_back;
 
 
 
@@ -71,10 +70,6 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
         @Override
         public void handleMessage(Message msg) {
                 adapter.reFresh(SellerProjectBeans);
-                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
-               // recyclerView.removeOnScrollListener(onScrollListener);
-               // recyclerView.setAdapter(loadMoreWrapper);
-               // loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
 
          }
     };
@@ -104,15 +99,12 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
         //设置布局管理器
         LinearLayoutManager layoutManager=new LinearLayoutManager(CrowdfundingSellerProjectActivity.this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
-
+        //设置适配器
         adapter = new SellerProjectAdapter(CrowdfundingSellerProjectActivity.this,SellerProjectBeans);
         loadMoreWrapper = new LoadMoreWrapper(adapter);
         recyclerView.setAdapter(loadMoreWrapper);
 
-       /* loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
-        recyclerView.removeOnScrollListener(onScrollListener);
-        recyclerView.setAdapter(loadMoreWrapper);
-       */
+
         //设置下拉刷新
         Pull_seller_view.getLoadingLayoutProxy().setLastUpdatedLabel("lastUpdateLabel");
         Pull_seller_view.getLoadingLayoutProxy().setPullLabel("PULLLABLE");
@@ -122,6 +114,7 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
         Pull_seller_view.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
 
         iv_code_back.setOnClickListener(this);
+
         getNetData(QUERY_EXERCISE_REFERSH);//联网获取数据
         initScrollListener();
     }
@@ -138,7 +131,7 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
             }
         };
         // 设置加载更多监听
-        recyclerView.addOnScrollListener(onScrollListener);
+      recyclerView.addOnScrollListener(onScrollListener);
     }
 
 
@@ -209,16 +202,10 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
                   loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
                   recyclerView.removeOnScrollListener(onScrollListener);
               }else {
-                 // loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
-                  loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
+                  loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
+                 // loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
               }
 
-
-
-        }catch (JsonParseException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

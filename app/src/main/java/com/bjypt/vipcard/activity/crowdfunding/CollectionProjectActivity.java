@@ -43,7 +43,7 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
     private RecyclerView recyclerView;
 
     private CollectionProjectAdapter adapter;
-    ArrayList<CfProjectItem> sellBeans;//集合数据
+    //ArrayList<CfProjectItem> sellBeans;//集合数据
     private int pkmerchantid;
     private LoadMoreWrapper loadMoreWrapper;
     private EndlessRecyclerOnScrollListener onScrollListener;
@@ -52,19 +52,25 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
     private String pkregister;
      List<CfProjectItem> SellerProjectBeans = new ArrayList<>();
 
+    final int QUERY_EXERCISE_MORE = 0x0101;
+    final int QUERY_EXERCISE_REFERSH = 0x0110;
+    private int page = 0;
+    private int pageLength = 10;
+    private boolean is_refresh;
+    private TextView tv_sell_name;
+
+
+
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             // adapter.notifyDataSetChanged();
-            adapter.reFresh(sellBeans);
+
             adapter.reFresh(SellerProjectBeans);
-            loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
-            recyclerView.removeOnScrollListener(onScrollListener);
-            recyclerView.setAdapter(loadMoreWrapper);
+
         }
     };
-    private TextView tv_sell_name;
-    private boolean is_refresh;
+
 
     @Override
     public void setContentLayout() {
@@ -73,7 +79,7 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
 
     @Override
     public void beforeInitView() {
-        sellBeans = new ArrayList<>();
+      //  sellBeans = new ArrayList<>();
         Intent intent = getIntent();
         pkregister = intent.getStringExtra("pkregister");
         pkmerchantid = intent.getIntExtra("pkmerchantid",0);
@@ -107,7 +113,7 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
         Pull_seller_view.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
 
         iv_code_back.setOnClickListener(this);
-        getNetData();
+        getNetData(QUERY_EXERCISE_REFERSH);//联网获取数据
         initScrollListener();
     }
 
@@ -119,18 +125,25 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
             @Override
             public void onLoadMore() {
                 loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
-                //loadDatas(QUERY_EXERCISE_MORE);
+                getNetData(QUERY_EXERCISE_MORE);
             }
         };
         // 设置加载更多监听
         recyclerView.addOnScrollListener(onScrollListener);
     }
 
-    public void getNetData() {
+    public void getNetData(int refresh_type) {
+        if (refresh_type == QUERY_EXERCISE_REFERSH) {
+            page = 1;
+            is_refresh = true;
+        } else {
+            page += 1;
+            is_refresh = false;
+        }
         Map<String,String> maps = new HashMap<>();
         maps.put("pkregister",getPkregister());
-        maps.put("pageNum","1");
-        maps.put("pageSize","3");
+        maps.put("pageNum",page+"");
+        maps.put("pageSize",pageLength+"");
         Wethod.httpPost(this,2, Config.web.h5_CFConsumeCollection,maps,this);
     }
     @Override
@@ -139,7 +152,7 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
         Pull_seller_view.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ScrollView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-               getNetData();
+                getNetData(QUERY_EXERCISE_REFERSH);
                 is_refresh = true;
             }
             @Override
@@ -168,47 +181,27 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
         CfProjectListDataBean cfProjectListDataBean = null;
         try {
             cfProjectListDataBean = objectMapper.readValue(result.toString(), CfProjectListDataBean.class);
-
             if(is_refresh){
-
             SellerProjectBeans.clear();
-
+              is_refresh = false;
             }
 
         SellerProjectBeans.addAll(cfProjectListDataBean.getResultData().getList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-
-      /*  try {
-            JSONObject jsonObject = new JSONObject((String) result);//强转化为String 获取整体对象
-            //JSONObject jsonObjectresultData = new JSONObject(jsonObject.toString());
-            //再获取resultData 对象
-            JSONObject jsonObjectresultData2 = jsonObject.getJSONObject("resultData");
-            //JSONObject jsonObjectresultData2 = jsonObjectresultData.getJSONObject("resultData");
-            //resultData 对象中获取集合
-            JSONArray jsonArray = jsonObjectresultData2.getJSONArray("list");
-            LogUtil.debugPrint("连接成功 成功："+ jsonArray.getString(1));
-            sellBeans.clear();//每次刷新时清空以前的数据，
-            if(jsonArray != null &&jsonArray.length()>0 ){
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject data = jsonArray.getJSONObject(i);//集合中单个对象
-                    SellerProjectBean.SellBean sellBean =  new SellerProjectBean.SellBean();
-                    sellBean.setHeadImg(data.getString("headImg"));
-                    sellBean.setProjectName(data.getString("projectName"));
-                    sellBean.setPkprojectid(data.getInt("pkprojectid"));
-                    sellBean.setPkmerchantid(data.getInt("pkmerchantid"));
-                    sellBean.setOptimalMoney(data.getDouble("optimalMoney"));
-                    sellBeans.add(sellBean);
-                }
+            if(cfProjectListDataBean.getResultData().getList().size()< pageLength){
+                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
+                recyclerView.removeOnScrollListener(onScrollListener);
+            }else {
+                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
+                // loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
             }
 
-        } catch (JSONException e) {
-            LogUtil.debugPrint("连接成功 错误："+ e.getMessage());
+
+         } catch (IOException e) {
             e.printStackTrace();
-        }
-*/
+         }
+
+
     }
 
     @Override
