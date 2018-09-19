@@ -166,7 +166,7 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
                 if (userInfoData != null && userInfoData.getResultData() != null && StringUtil.isNotEmpty(userInfoData.getResultData().getPosition())) {
                     ImageLoader.getInstance().displayImage(userInfoData.getResultData().getPosition(), iv_headpic, AppConfig.CF_HEADER_GRAY);
                 }
-                if(StringUtils.isNotEmpty(userInfoData.getResultData().getBankCode())){
+                if(StringUtils.isNotEmpty(userInfoData.getResultData().getBankcardno())){
                     iv_real_name.setVisibility(View.VISIBLE);
                     linear_real_name.setVisibility(View.GONE);
                 }else{

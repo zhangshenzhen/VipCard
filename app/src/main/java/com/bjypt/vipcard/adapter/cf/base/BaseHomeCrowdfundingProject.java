@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.math.BigDecimal;
 
-public abstract class BaseHomeCrowdfundingProject extends BaseRecycleViewAdapter<CfProjectItem,HomeCrowdfundingGridViewHolder> {
+public abstract class BaseHomeCrowdfundingProject extends BaseRecycleViewAdapter<CfProjectItem, HomeCrowdfundingGridViewHolder> {
     protected int icon_width = 0;
     protected int icon_height = 0;
     Context context;
@@ -42,21 +42,21 @@ public abstract class BaseHomeCrowdfundingProject extends BaseRecycleViewAdapter
 
     @Override
     public void onBindViewHolder(HomeCrowdfundingGridViewHolder holder, int position) {
-        CfProjectItem  cfProjectItem = datas.get(position);
+        CfProjectItem cfProjectItem = datas.get(position);
         holder.tvName.setText(cfProjectItem.getProjectName());
-        if(cfProjectItem.getStatus() ==3){
+        if (cfProjectItem.getStatus() == 3) {
             holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_end));
-        }else{
-            if(cfProjectItem.getCfAmount().compareTo(cfProjectItem.getProgressCfAmount()) <=0){
+        } else {
+            if (cfProjectItem.getCfAmount().compareTo(cfProjectItem.getProgressCfAmount()) <= 0) {
                 holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_build));
-            }else{
+            } else {
                 holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_start));
             }
         }
-        BigDecimal progress = cfProjectItem.getProgressCfAmount().divide(cfProjectItem.getCfAmount(),2, BigDecimal.ROUND_HALF_UP);
-        holder.tvProgress_data.setText(progress.multiply(new BigDecimal(100)).intValue() +"%");
+        BigDecimal progress = cfProjectItem.getProgressCfAmount().divide(cfProjectItem.getCfAmount(), 2, BigDecimal.ROUND_HALF_UP);
+        holder.tvProgress_data.setText(progress.multiply(new BigDecimal(100)).intValue() + "%");
         Picasso.with(context)
-                .load( cfProjectItem.getGridUrl())
+                .load(cfProjectItem.getGridUrl())
                 .error(R.mipmap.more)
                 .into(holder.icon);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
