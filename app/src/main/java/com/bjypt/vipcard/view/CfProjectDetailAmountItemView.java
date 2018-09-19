@@ -151,6 +151,10 @@ public class CfProjectDetailAmountItemView extends LinearLayout implements Volle
         return selectItemId;
     }
 
+    public String getSelectTipText(){
+        return tv_project_item_desc.getText().toString();
+    }
+
     @Override
     public void onFailed(int reqcode, Object result) {
 
