@@ -3,6 +3,7 @@ package com.bjypt.vipcard.activity.crowdfunding;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.crowdfunding.pay.CrowdfundingPayActivity;
@@ -18,6 +19,7 @@ public class SupportAgreementActivity extends BaseActivity {
     private int pkmerchantid;
     private String amount;
     private int paytype;
+    private TextView tv_agreement;
 
     @Override
     public void setContentLayout() {
@@ -37,6 +39,7 @@ public class SupportAgreementActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        tv_agreement = findViewById(R.id.tv_agreement);
         btn_cancel = (Button) findViewById(R.id.btn_cancel_agreement);
         btn_sure = (Button) findViewById(R.id.btn_sure_agreement);
         btn_cancel.setOnClickListener(this);
@@ -50,7 +53,7 @@ public class SupportAgreementActivity extends BaseActivity {
 
     @Override
     public void bindListener() {
-
+        tv_agreement.setText("");
     }
 
     @Override

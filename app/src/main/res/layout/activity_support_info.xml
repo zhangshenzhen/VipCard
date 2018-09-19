@@ -62,10 +62,10 @@
             android:layout_width="70dp"
             android:layout_height="25dp"
             android:layout_gravity="right|center_vertical"
-            android:layout_marginRight="30px"
+            android:layout_marginRight="15dp"
             android:background="@drawable/btn_real_name_bank"
             android:text="立即认证"
-            android:textColor="#66ffffff"
+            android:textColor="#ffffff"
             android:textSize="15sp" />
     </LinearLayout>
 
@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#333333"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:text="支持金额："
              />
 
@@ -95,7 +95,7 @@
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:textColor="#ff0000"
-                 android:textSize="18sp"
+                 android:textSize="15sp"
                  android:text="300"
               />
          </LinearLayout>
@@ -104,11 +104,13 @@
              android:layout_marginTop="15dp"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
+             android:textColor="#999999"
              android:text="收益提示："/>
 
         <TextView
             android:id="@+id/tv_recevice_remind"
             android:layout_marginTop="15dp"
+            android:textColor="#999999"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="预计收益10元，使用期限3个月，每年返还利息。本金到期返还。如未先写信息则不显示此框"/>
@@ -117,7 +119,7 @@
 
       <View
           android:layout_width="match_parent"
-          android:layout_height="20px"
+          android:layout_height="10dp"
           android:background="#22888888"/>
 
     <LinearLayout
@@ -131,36 +133,41 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@mipmap/tv_danger"
             android:drawablePadding="10px"
-            android:textSize="16sp"
-            android:text="风险说明"
+            android:textSize="15sp"
+            android:text="风险说明:"
             android:textColor="#333333"
             />
           <TextView
-            android:textSize="16sp"
-              android:textColor="#444444"
+           android:id="@+id/tv_danger_instruc"
+            android:textSize="15sp"
+            android:textColor="#444444"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="请您务必审慎阅读、充分理解协议中相关条款内容，其中包括："/>
         <TextView
-            android:textSize="16sp"
+            android:visibility="gone"
+            android:textSize="15sp"
             android:textColor="#444444"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1、风险提示条款和特别提示条款；"/>
         <TextView
-            android:textSize="16sp"
+            android:visibility="gone"
+            android:textSize="15sp"
             android:textColor="#444444"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2、与您约定法律适用和管理条款；"/>
         <TextView
-            android:textSize="16sp"
+            android:visibility="gone"
+            android:textSize="15sp"
             android:textColor="#444444"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3、其他以粗体标识的重要条款。"/>
         <TextView
-            android:textSize="16sp"
+            android:visibility="gone"
+            android:textSize="15sp"
             android:textColor="#444444"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

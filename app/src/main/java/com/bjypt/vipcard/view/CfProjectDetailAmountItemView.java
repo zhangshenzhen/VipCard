@@ -109,7 +109,7 @@ public class CfProjectDetailAmountItemView extends LinearLayout implements Volle
                                     tv_item_desc.setVisibility(View.GONE);
                                 }
                             }
-                            btn_item_amount.setText(projectDetailAmountItem.getResultData().get(j).getItemAmount().stripTrailingZeros().toPlainString()+"");
+                            btn_item_amount.setText("￥"+projectDetailAmountItem.getResultData().get(j).getItemAmount().stripTrailingZeros().toPlainString()+"");
                             btn_item_amount.setOnClickListener(new View.OnClickListener(){
                                 @Override
                                 public void onClick(View view) {
