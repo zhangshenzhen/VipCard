@@ -88,7 +88,6 @@
                         android:minHeight="50dp"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text="小哥好啊，兄弟们在增加，阜阳人民需要你。小哥好啊，兄弟们在增加，阜阳人民需要你。小哥好啊，兄弟们在增加，阜阳人民需要你。"
                         android:textColor="@color/black_3" />
 
                     <LinearLayout

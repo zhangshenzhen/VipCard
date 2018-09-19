@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
@@ -33,7 +34,6 @@ public class CrowdfundingDetailBannerView extends LinearLayout {
     private VideoView videoView;
     private RelativeLayout relate_play;
 
-    private ImageView iv_play;
     String videoUrl = null;
     String videoBg = null;
 
@@ -55,7 +55,6 @@ public class CrowdfundingDetailBannerView extends LinearLayout {
         viewpager_new_home = (FlyBanner) findViewById(R.id.viewpager_new_home);
         videoView = findViewById(R.id.videoView);
         relate_play = findViewById(R.id.relate_play);
-        iv_play = findViewById(R.id.iv_play);
         // 设置指示点位置
         viewpager_new_home.setPoinstPosition(2);
 
@@ -100,31 +99,15 @@ public class CrowdfundingDetailBannerView extends LinearLayout {
         if (!videoView.isPlaying()) {
             relate_play.setVisibility(View.VISIBLE);
             videoView.setVideoPath(videoUrl);
-            iv_play.setVisibility(View.VISIBLE);
+            MediaController mediaController = new MediaController(getContext(), false);
+            videoView.setMediaController(mediaController);
             videoView.setZOrderOnTop(true);
+            videoView.setZOrderMediaOverlay(true);
             videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
-                    videoView.seekTo(0);//2000000
-                }
-            });
-
-            iv_play.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    iv_play.setVisibility(View.GONE);
-                    videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mediaPlayer) {
-                            LogUtil.debugPrint("videoView:" + videoView.getCurrentPosition() + "");
-                            iv_play.setVisibility(View.VISIBLE);
-//                            videoView.setBackgroundColor(getResources().getColor(R.color.white));
-                            videoView.seekTo(0);
-                        }
-                    });
-                    videoView.requestFocus();
-                    videoView.start();
+                    videoView.seekTo(200);//2000000
+                    mediaController.show();
                 }
             });
         }
