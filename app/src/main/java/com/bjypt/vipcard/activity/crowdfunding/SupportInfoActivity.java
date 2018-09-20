@@ -65,6 +65,8 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     private TextView tv_danger_instruc;
     private String selectTip;
 
+    private static final int request_pay_result_code = 10001;
+
 
     @Override
     public void setContentLayout() {
@@ -144,8 +146,8 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
 
     private void remindDialog() {
         int width = AppInfoUtil.getScreenWidth(this);
-        int  icon_width = width - DensityUtil.dip2px(this, 1);
-       // int icon_height = (int) (icon_width / 1.82);
+        int icon_width = width - DensityUtil.dip2px(this, 1);
+        // int icon_height = (int) (icon_width / 1.82);
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -154,18 +156,18 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
 
         //builer.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
         Button btn_look = (Button) v.findViewById(R.id.btn_look);
-        CheckBox ck_box = (CheckBox)v.findViewById(R.id.ck_box);
+        CheckBox ck_box = (CheckBox) v.findViewById(R.id.ck_box);
 
         final Dialog dialog = builder.create();
         dialog.show();
         //dialog设置宽高
-        WindowManager.LayoutParams params =dialog.getWindow().getAttributes();
-        params.width = width - width/4;//设置宽
-        params.height = width - width/3 ;
+        WindowManager.LayoutParams params = dialog.getWindow().getAttributes();
+        params.width = width - width / 4;//设置宽
+        params.height = width - width / 3;
         dialog.getWindow().setAttributes(params);
 
         dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
-       // AlertDialog.setView(v,0,0,0,0); //去除边框
+        // AlertDialog.setView(v,0,0,0,0); //去除边框
         btn_look.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +178,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
                     intent.putExtra("pkmerchantid", pkmerchantid);
                     intent.putExtra("amount", itemAmount.stripTrailingZeros().toPlainString());
                     intent.putExtra("paytype", paytype);
-                    startActivity(intent);
+                    startActivityForResult(intent, request_pay_result_code);
                 }
             }
         });
@@ -210,7 +212,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         itemAmount = resultBeanData.getItemAmount();
 
         tv_support_money.setText(resultBeanData.getItemAmount().stripTrailingZeros().toPlainString() + "元");
-        tv_go_payfor.setText(" "+itemAmount.stripTrailingZeros().toPlainString() + "元");
+        tv_go_payfor.setText(" " + itemAmount.stripTrailingZeros().toPlainString() + "元");
         recevice_remind.setText(selectTip);//提示信息
         tv_danger_instruc.setText(resultBeanData.getExplain());//风险说明
         is_Realname = resultBeanData.isCheckBankNo();
@@ -229,5 +231,20 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     public void onError(VolleyError volleyError) {
         LogUtil.debugPrint("SupportInfoActivity = onError " + volleyError.getMessage());
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == request_pay_result_code) {
+            if (resultCode == RESULT_OK) {
+                boolean gotoMain = data.getBooleanExtra("gotoCfMain", false);
+                Intent intent = new Intent();
+                intent.putExtra("gotoCfMain", gotoMain);
+                setResult(RESULT_OK, intent);
+                finish();
+            }else{
+                finish();
+            }
+        }
     }
 }

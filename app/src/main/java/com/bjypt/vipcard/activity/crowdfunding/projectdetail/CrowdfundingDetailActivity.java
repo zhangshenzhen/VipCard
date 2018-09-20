@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.crowdfunding.CrowdfundingPayFinishActivity;
 import com.bjypt.vipcard.activity.crowdfunding.SupportInfoActivity;
 import com.bjypt.vipcard.activity.crowdfunding.projectdetail.entity.ProjectDetailDataBean;
 import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
@@ -83,6 +84,8 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
     CrowdfundingDetailBannerView crowdfundingDetailBannerView;
     CfProjectDetailAmountItemView cfProjectDetailAmountItemView;
     private LinearLayout linear_collection;
+
+    public static final int request_pay_result_code = 10001;
 
     @Override
     public void setContentLayout() {
@@ -237,7 +240,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                     topay.putExtra("paytype", projectDetailDataBean.getResultData().getPayType());
                     topay.putExtra("pkprogressitemid", cfProjectDetailAmountItemView.getSelectProjectItemId());
                     topay.putExtra("pkmerchantid", projectDetailDataBean.getResultData().getPkmerchantid());
-                    startActivity(topay);
+                    startActivityForResult(topay, request_pay_result_code);
                 }
                 break;
             case R.id.linear_merchant_project:
@@ -279,6 +282,21 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                 DialogUtil.showConfirm(this, "客服热线", "是否拨打客服热线4001808366(08:00-17:00)", dialogOnclicListener, dialogOnclicListener);
 
                 break;
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == request_pay_result_code && resultCode == RESULT_OK){
+            if(data != null){
+                boolean gotoMain = data.getBooleanExtra("gotoCfMain", false);
+                if(gotoMain){
+                    finish();
+                }
+            }else{
+                finish();
+            }
 
         }
     }

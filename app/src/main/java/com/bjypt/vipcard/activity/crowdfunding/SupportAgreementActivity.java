@@ -21,6 +21,9 @@ public class SupportAgreementActivity extends BaseActivity {
     private int paytype;
     private TextView tv_agreement;
 
+
+    private static final int request_pay_result_code = 10001;
+
     @Override
     public void setContentLayout() {
         setContentView(R.layout.activity_agreement);
@@ -68,12 +71,25 @@ public class SupportAgreementActivity extends BaseActivity {
                 intent.putExtra("paytype", paytype);
                 intent.putExtra("amount", amount);
                 intent.putExtra("pkmerchantid", pkmerchantid);
-                startActivity(intent);
-                finish();
+                startActivityForResult(intent,request_pay_result_code);
                 //打开支付界面
                 break;
 
         }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == request_pay_result_code){
+            if(resultCode == RESULT_CANCELED){
+                finish();
+            }else if(resultCode == RESULT_OK){
+                boolean gotoMain = data.getBooleanExtra("gotoCfMain", false);
+                Intent intent = new Intent();
+                intent.putExtra("gotoCfMain", gotoMain);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        }
     }
 }

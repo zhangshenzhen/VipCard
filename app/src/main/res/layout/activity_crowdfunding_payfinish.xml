@@ -7,6 +7,11 @@
 
     <include layout="@layout/sub_head_view" />
 
+    <View
+        android:background="@color/home_item_press"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,14 +26,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:src="@mipmap/cf_pay_sucess" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="25dp"
                 android:layout_marginTop="13dp"
                 android:text="支付成功"
                 android:textColor="@color/black_3"
@@ -40,7 +45,7 @@
                 android:background="@color/gray_e" />
 
             <TextView
-                android:id="@+id/tv_project"
+                android:id="@+id/tv_project_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -49,23 +54,22 @@
                 android:layout_marginTop="10dp"
                 android:gravity="left|center_vertical"
                 android:minHeight="50dp"
-                android:text="项目名称：说啊当发生的发卡斯蒂略分阿斯顿反馈；拉萨的肌肤爱上；当理发师了；地方啊；收到了看法是阿斯顿了看法是抵抗力  阿斯顿放声大哭阿斯顿  阿里斯顿分； 阿斯顿空间 ；爱上；地方"
+                android:text="项目名称：说啊当发生的发卡斯蒂略分阿斯顿反馈；拉萨的肌肤爱上；"
                 android:textColor="@color/black_3"
                 android:textSize="15sp" />
 
-            <TextView
+            <TextView android:id="@+id/tv_pay_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="10dp"
                 android:gravity="left|center_vertical"
                 android:text="支付时间："
                 android:textColor="@color/black_3"
                 android:textSize="15sp" />
 
-            <TextView
+            <TextView android:id="@+id/tv_pay_amout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -77,7 +81,7 @@
                 android:textColor="@color/black_3"
                 android:textSize="15sp" />
 
-            <TextView
+            <TextView android:id="@+id/tv_pay_away"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -89,7 +93,7 @@
                 android:textColor="@color/black_3"
                 android:textSize="15sp" />
 
-            <TextView
+            <TextView android:id="@+id/tv_income_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -101,7 +105,7 @@
                 android:textColor="@color/black_3"
                 android:textSize="15sp" />
 
-            <TextView
+            <TextView android:id="@+id/tv_end_at"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -113,7 +117,7 @@
                 android:textColor="@color/black_3"
                 android:textSize="15sp" />
 
-            <TextView
+            <TextView android:id="@+id/tv_ordernum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -129,10 +133,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <Button
+                <Button android:id="@+id/btn_next_buy"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:background="@drawable/btn_cf_pay_finish"
@@ -140,7 +145,7 @@
                     android:textColor="@color/black_3"
                     android:textSize="17sp" />
 
-                <Button
+                <Button android:id="@+id/btn_main_page"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="45dp"
