@@ -173,7 +173,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
             case R.id.linear_withdraw:
                 CommonWebData withdraw = new CommonWebData();
                 withdraw.setTitle("我要提现");
-                withdraw.setUrl(Config.web.h5_CFWithdraw + params);
+                withdraw.setUrl(Config.web.h5_CFWithdraw + params+"&pkuseraccountid=1");
                 CommonWebActivity.callActivity(this, withdraw);
                 break;
             case R.id.linear_balance_record:
