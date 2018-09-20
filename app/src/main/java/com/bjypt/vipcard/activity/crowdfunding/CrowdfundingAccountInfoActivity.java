@@ -125,7 +125,6 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         TextView tv_title = (TextView) findViewById(R.id.tv_title);
         tv_title.setText(merchant_name);
 
-        getAccountData();
         showAmount();
 
         tv_vipname.setText(vip_name);
@@ -143,6 +142,12 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         params.put("pkmerchantid", pkmerchantid + "");
         params.put("pkregister", getPkregister());
         Wethod.httpPost(this, request_code_account_data, Config.web.getCFAccountInfo, params, this, View.GONE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getAccountData();
     }
 
     @Override

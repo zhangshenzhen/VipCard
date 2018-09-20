@@ -350,6 +350,18 @@ public final class Config {
          */
         public  static final String cf_buy_topay = cf_url + "api/order/v1/toPay";
 
+        /**
+         * 获取订单信息
+         */
+        public static final String cf_order_info = cf_url + "api/order/v1/info";
+
+
+
+
+
+
+
+
         public static final String citizen_card_register = hyb_url + "app/h5/card/activation?pkregister=";   //实体卡激活
         public static final String citizen_card_dissolving = hyb_url + "app/h5/card/guashi";   //实体卡挂失
         public static final String citizen_card_undissolving = hyb_url + "app/h5/card/jiegua";   //实体卡解挂
