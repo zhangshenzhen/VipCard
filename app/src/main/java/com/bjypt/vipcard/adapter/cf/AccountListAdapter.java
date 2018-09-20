@@ -92,7 +92,7 @@ public class AccountListAdapter  extends BaseAdapter{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("pkuseraccountid", list.get(i).getPkmerchantid());
+                intent.putExtra("pkuseraccountid", list.get(i).getPkuseraccountid());
                 intent.putExtra("cardno", list.get(i).getCardno());
                 intent.putExtra("displaycardno", view.getTag().toString());
                 intent.putExtra("pkmerchantid", list.get(i).getPkmerchantid());
