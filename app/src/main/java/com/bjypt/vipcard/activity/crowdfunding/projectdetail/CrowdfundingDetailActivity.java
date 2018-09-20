@@ -82,6 +82,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
     ProjectDetailDataBean projectDetailDataBean;
     CrowdfundingDetailBannerView crowdfundingDetailBannerView;
     CfProjectDetailAmountItemView cfProjectDetailAmountItemView;
+    private LinearLayout linear_collection;
 
     @Override
     public void setContentLayout() {
@@ -217,6 +218,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
         linear_merchant_project.setOnClickListener(this);
         iv_project_customer_service.setOnClickListener(this);
         iv_project_favo.setOnClickListener(this);
+
     }
 
     @Override
@@ -246,15 +248,16 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                     CommonWebActivity.callActivity(this, merchant);
                 }
                 break;
-            case R.id.iv_project_favo:
+            case R.id.iv_project_favo://收藏View
                 if (projectDetailDataBean != null && projectDetailDataBean.getResultData() != null) {
-                    if (projectDetailDataBean.getResultData().getCheckId() == null) {
+                   if (projectDetailDataBean.getResultData().getCheckId() == null) {
                         favoProjectDetail();
-                    } else {
+                   } else {
                         unfavoProjectDetail();
                     }
                 }
                 break;
+
             case R.id.iv_project_customer_service:
                 DialogInterface.OnClickListener dialogOnclicListener = new DialogInterface.OnClickListener() {
                     @Override

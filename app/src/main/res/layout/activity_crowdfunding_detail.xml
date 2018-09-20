@@ -347,6 +347,8 @@
         android:background="@color/white">
 
         <LinearLayout
+            android:clickable="true"
+            android:id="@+id/linear_collection"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="3"

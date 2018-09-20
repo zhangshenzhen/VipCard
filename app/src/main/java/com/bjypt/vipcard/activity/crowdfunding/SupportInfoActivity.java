@@ -5,7 +5,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
@@ -22,10 +24,12 @@ import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.model.cf.CfProjectDetailItemDataBean;
+import com.bjypt.vipcard.utils.DensityUtil;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.wxapi.Util;
 import com.google.gson.JsonObject;
+import com.sinia.orderlang.utils.AppInfoUtil;
 import com.sinia.orderlang.utils.Utils;
 
 import org.json.JSONException;
@@ -74,6 +78,12 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         pkmerchantid = intent.getIntExtra("pkmerchantid", 0);
         paytype = intent.getIntExtra("paytype", 0);
         selectTip = intent.getStringExtra("getSelectTipText"); //提示信息
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        afterInitView();
     }
 
     @Override
@@ -133,19 +143,34 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     }
 
     private void remindDialog() {
+        int width = AppInfoUtil.getScreenWidth(this);
+        int  icon_width = width - DensityUtil.dip2px(this, 1);
+       // int icon_height = (int) (icon_width / 1.82);
+
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
         View v = inflater.inflate(R.layout.myself_dialog, null);
+
         //builer.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
         Button btn_look = (Button) v.findViewById(R.id.btn_look);
+        CheckBox ck_box = (CheckBox)v.findViewById(R.id.ck_box);
+
         final Dialog dialog = builder.create();
         dialog.show();
+        //dialog设置宽高
+        WindowManager.LayoutParams params =dialog.getWindow().getAttributes();
+        params.width = width - width/4;//设置宽
+        params.height = width - width/3 ;
+        dialog.getWindow().setAttributes(params);
+
         dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
+       // AlertDialog.setView(v,0,0,0,0); //去除边框
         btn_look.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                if (itemAmount != null) {
+                if (itemAmount != null && ck_box.isChecked()) {
                     Intent intent = new Intent(SupportInfoActivity.this, SupportAgreementActivity.class);
                     intent.putExtra("pkprogressitemid", pkprogressitemid);
                     intent.putExtra("pkmerchantid", pkmerchantid);
