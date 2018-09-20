@@ -80,11 +80,15 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         selectTip = intent.getStringExtra("getSelectTipText"); //提示信息
     }
 
+   boolean reLoad = false;
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onResume() {
+        super.onResume();
+        if(reLoad){
         afterInitView();
-    }
+        }
+        reLoad = true;
+     }
 
     @Override
     public void initView() {
@@ -169,7 +173,10 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         btn_look.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                 dialog.dismiss();
+                if(!ck_box.isChecked()){
+                 Toast.makeText(SupportInfoActivity.this,"勾选阅读协议框才能查看协议书",Toast.LENGTH_SHORT).show();
+                 }
                 if (itemAmount != null && ck_box.isChecked()) {
                     Intent intent = new Intent(SupportInfoActivity.this, SupportAgreementActivity.class);
                     intent.putExtra("pkprogressitemid", pkprogressitemid);
