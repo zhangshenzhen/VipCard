@@ -26,12 +26,12 @@ import java.util.List;
 public class AccountListAdapter  extends BaseAdapter{
     private Context context;
     private List<CfAccountData> list;
-
-    public AccountListAdapter(Context context, List<CfAccountData> list) {
+   private String phoneno;
+    public AccountListAdapter(Context context, List<CfAccountData> list,String phoneno) {
         this.context = context;
         this.list = list;
+        this.phoneno = phoneno;
     }
-
 
     @Override
     public int getCount() {
@@ -99,6 +99,7 @@ public class AccountListAdapter  extends BaseAdapter{
                 intent.putExtra("merchant_name", list.get(i).getMerchant_name());
                 intent.putExtra("vip_name", list.get(i).getVip_name());
                 intent.putExtra("type_num", list.get(i).getType_num());
+                intent.putExtra("phoneno",phoneno);
                 intent.setClass(context, CrowdfundingAccountInfoActivity.class);
                 context.startActivity(intent);
             }

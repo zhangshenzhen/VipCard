@@ -87,7 +87,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     protected void onResume() {
         super.onResume();
         if(reLoad){
-        afterInitView();
+         afterInitView();
         }
         reLoad = true;
      }
