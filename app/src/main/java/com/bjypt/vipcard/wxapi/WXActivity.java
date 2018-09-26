@@ -16,7 +16,6 @@ import cn.sharesdk.wechat.utils.WechatHandlerActivity;
 
 /** 微信客户端回调activity示例 */
 public class WXActivity extends WechatHandlerActivity {
-
 	/**
 	 * 处理微信发出的向第三方应用请求app message
 	 * <p>

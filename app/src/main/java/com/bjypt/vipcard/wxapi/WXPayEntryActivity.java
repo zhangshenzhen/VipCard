@@ -97,8 +97,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 			finish();
 			processPayResult(PayTypeView.PAY_FAIL);
 		}
-
-
 	}
 
 

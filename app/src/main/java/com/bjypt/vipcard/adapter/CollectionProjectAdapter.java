@@ -96,9 +96,8 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
             BigDecimal progress = sellBean.getProgressCfAmount().divide(sellBean.getCfAmount(),2, BigDecimal.ROUND_HALF_UP);
 
             BigDecimal b=new BigDecimal(String.valueOf(progress));
-            double rate = b.intValue();
-
-            sellerViewHoldr.progressBar.setProgress((int)rate*100);
+            double rate = b.doubleValue()*100;
+            sellerViewHoldr.progressBar.setProgress((int)rate);
             sellerViewHoldr.tv_precent.setText(progress.multiply(new BigDecimal(100)).intValue() +"%");
 
         }else{

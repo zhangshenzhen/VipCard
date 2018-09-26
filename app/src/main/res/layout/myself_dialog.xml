@@ -17,7 +17,36 @@
         android:text="协议书"
         android:textSize="18sp" />
 
-    <TextView
+   <!-- <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#666666"
+            android:gravity="left"
+            android:textSize="14sp"
+            android:text="购买前请仔细阅读支持协议"
+            />
+        <TextView
+            android:id="@+id/dialog_tontent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#52b9b8"
+            android:maxLines="2"
+            android:gravity="left"
+            android:textSize="14sp"
+            android:text="《项目支持协议书》"
+            />
+
+    </LinearLayout>
+-->
+  <TextView
         android:id="@+id/dialog_tontent"
         android:layout_width="match_parent"
         android:layout_gravity="center_horizontal"

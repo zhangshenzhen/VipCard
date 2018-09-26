@@ -417,12 +417,12 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
 
     @Override
     public void onFailed(int reqcode, Object result) {
-
+        LogUtil.debugPrint("onFailed = " + result);
     }
 
     @Override
     public void onError(VolleyError volleyError) {
-
+        LogUtil.debugPrint("onError = " + volleyError.getMessage());
     }
 
     @Override

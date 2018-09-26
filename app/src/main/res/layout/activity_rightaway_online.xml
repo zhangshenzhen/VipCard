@@ -68,7 +68,7 @@
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        layout_price
+       <!-- layout_price-->
 
         <TextView
             android:id="@+id/tv_merchant_price"
