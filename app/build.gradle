@@ -33,12 +33,13 @@ android {
     }
 
     signingConfigs {
-        release {
+      release {
             keyAlias 'bjypt'
             keyPassword '123456'
             storeFile file('../vipCard.keystore')
             storePassword '123456'
         }
+
     }
 
 //    // 自定义APK安装包名
