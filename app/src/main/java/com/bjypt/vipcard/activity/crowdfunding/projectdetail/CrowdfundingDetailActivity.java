@@ -138,12 +138,8 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
     @Override
     public void afterInitView() {
         projectContentFragments = new ProjectContentFragment[4];
-//        for (int i=0;i< projectContentFragments.length;i++){
-//
-//        }
         String tabparams = String.format("pkregister=%s&pkprojectid=%s", getPkregister(), pkprojectid + "");
         projectContentFragments[0] = ProjectContentFragment.newInstance(Config.web.h5_cf_product_info + tabparams);
-        projectContentFragments[0] = ProjectContentFragment.newInstance("http://baidu.com");
 
         projectContentFragments[1] = ProjectContentFragment.newInstance(Config.web.h5_cf_team_introduction + tabparams);
         projectContentFragments[2] = ProjectContentFragment.newInstance(Config.web.h5_cf_common_problem + tabparams);

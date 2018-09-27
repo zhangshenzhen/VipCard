@@ -201,7 +201,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
             case R.id.linear_interest_record:
                 CommonWebData interest_record = new CommonWebData();
                 interest_record.setTitle("项目收益记录");
-                interest_record.setUrl(Config.web.h5_CFProjectInterest + params + "&pkuseraccountid" + pkuseraccountid);
+                interest_record.setUrl(Config.web.h5_CFProjectInterest + params + "pkuseraccountid" + pkuseraccountid);
                 CommonWebActivity.callActivity(this, interest_record);
                 break;
             case R.id.linear_merchant_project:

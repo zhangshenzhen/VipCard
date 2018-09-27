@@ -210,6 +210,7 @@
            <Button
                android:id="@+id/btn_go_payfor"
                android:text="去支付"
+               android:gravity="center"
                android:textColor="@color/white"
                android:background="#52b9b8"
                android:layout_width="0dp"
