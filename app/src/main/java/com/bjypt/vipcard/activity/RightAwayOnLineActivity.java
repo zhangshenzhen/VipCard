@@ -241,7 +241,6 @@ public class RightAwayOnLineActivity extends BaseActivity implements VolleyCallB
                 zbar_flag = 2;
 //                dialog.show();
 //                dialog.getWindow().setBackgroundDrawable(new ColorDrawable());
-
                 Map<String, String> orderAddParams = new HashMap<>();
                 orderAddParams.put("pkregister", getFromSharePreference(Config.userConfig.pkregister));
                 orderAddParams.put("pkmuser", pkmuser);
@@ -349,9 +348,9 @@ public class RightAwayOnLineActivity extends BaseActivity implements VolleyCallB
                     /**
                      * 支付宝
                      */
-//                Alipay alipay = new Alipay(RightAwayOnLineActivity.this, Alipay_handler);
-//                alipay.setProduct(mname, mname, waitMoney, tn, queryPkid, "1");
-//                alipay.startAlipay();
+//                    Alipay alipay = new Alipay(RightAwayOnLineActivity.this, Alipay_handler);
+//                   alipay.setProduct(mname, mname, waitMoney, tn, queryPkid, "1");
+//                   alipay.startAlipay();
 
                     NewPayData newPayData = getConfiguration().readValue(result.toString(), NewPayData.class);
                     NewAlipay newAlipay = new NewAlipay(RightAwayOnLineActivity.this, Alipay_handler);
@@ -378,7 +377,7 @@ public class RightAwayOnLineActivity extends BaseActivity implements VolleyCallB
                      * 银联支付
                      */
                     Log.e("TYZ", "tn:" + tn);
-//                goUnionpay(tn);
+//                  goUnionpay(tn);
                     NewYinLianPayData newYinLianPayData = getConfiguration().readValue(result.toString(), NewYinLianPayData.class);
                     goUnionpay(newYinLianPayData.getResultData().getTn());
                 }

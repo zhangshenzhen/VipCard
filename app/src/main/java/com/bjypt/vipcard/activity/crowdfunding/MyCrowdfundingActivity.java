@@ -50,6 +50,7 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
 
     private static final int request_user_code = 123;
     private int pkmerchantid;
+    private String phoneno;
 
 
     @Override
@@ -109,6 +110,7 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
         switch (v.getId()) {
             case R.id.linear_item_account_list:
                 Intent intent = new Intent(this, CrowdfundingAccountListActivity.class);
+                intent.putExtra("phoneno",phoneno);
                 startActivity(intent);
                 break;
             case R.id.linear_item_buy_record://购买记录
@@ -163,6 +165,7 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
             try {
                 CfUserInfoData userInfoData = objectMapper.readValue(result.toString(), CfUserInfoData.class);
                 tv_nickname.setText(userInfoData.getResultData().getNickname());
+                phoneno = userInfoData.getResultData().getPhoneno();//获取phoneno
                 if (userInfoData != null && userInfoData.getResultData() != null && StringUtil.isNotEmpty(userInfoData.getResultData().getPosition())) {
                     ImageLoader.getInstance().displayImage(userInfoData.getResultData().getPosition(), iv_headpic, AppConfig.CF_HEADER_GRAY);
                 }

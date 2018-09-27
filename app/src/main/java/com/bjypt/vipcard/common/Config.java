@@ -285,6 +285,9 @@ public final class Config {
         public static final String h5_CFConsumereal_name = app_h5_url + "#/zcbindcard?";
         //我的收藏
          public static final String h5_CFConsumeCollection = cf_url +"api/hybCfProjectCollectionHtml/findAllByPkregister";
+       //绑定实体卡
+       public static final String h5_Binder_card = app_h5_url+"#/bindentitycard?";
+
         /*
          * 众筹界面首页的baner 地址*/
         public static final String zhongchou_baner_url = cf_url + "api/hybApplicationConfig/getBanner";

@@ -48,7 +48,8 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
     private List<CfAccountData> resultDataBeanList ;
 
     AccountListAdapter accountListAdapter;
-//    private LoadMoreWrapper loadMoreWrapper;
+    private String phoneno;
+    //    private LoadMoreWrapper loadMoreWrapper;
 
 
 
@@ -59,6 +60,7 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
 
     @Override
     public void beforeInitView() {
+        phoneno = getIntent().getStringExtra("phoneno");
 
     }
 
@@ -100,9 +102,10 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
     public void afterInitView() {
 
         resultDataBeanList = new ArrayList<>();
-        accountListAdapter = new AccountListAdapter(this, resultDataBeanList);
+        accountListAdapter = new AccountListAdapter(this, resultDataBeanList,phoneno);
 //        loadMoreWrapper = new LoadMoreWrapper(accountListAdapter);
         lv_account_list.setAdapter(accountListAdapter);
+
 
         lv_account_list.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
             @Override

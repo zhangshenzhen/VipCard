@@ -290,6 +290,7 @@
             </com.bjypt.vipcard.pulltorefresh.social.custom.CustomCollapsingNoToolbarLayout>
             <!-- SlidingTabLayout 在滑动到顶部时停靠在标题栏布局下边  -->
 
+             <!--   app:layout_scrollFlags="enterAlways"-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

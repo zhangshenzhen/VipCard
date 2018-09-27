@@ -64,6 +64,8 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
 
 
     private static final int request_code_account_data = 124;
+    private LinearLayout linear_binder_card;
+    private String phoneno;
 
 
     @Override
@@ -82,6 +84,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         pkmerchantid = getIntent().getIntExtra("pkmerchantid", 0);
         vip_name = getIntent().getStringExtra("vip_name");
         type_num = getIntent().getIntExtra("type_num", 1);
+        phoneno = getIntent().getStringExtra("phoneno");
 
         show_amount_display_key = Config.userConfig.cf_display_amount_key + getPkregister() + pkmerchantid;
 
@@ -108,6 +111,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         linear_buy_record = (LinearLayout) findViewById(R.id.linear_buy_record);
         linear_consume_record = (LinearLayout) findViewById(R.id.linear_consume_record);
         linear_display_amount = (LinearLayout) findViewById(R.id.linear_display_amount);
+        linear_binder_card = findViewById(R.id.linear_binder_card); //绑定实体卡
         iv_amount_display = (ImageView) findViewById(R.id.iv_amount_display);
         findViewById(R.id.ibtn_back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,6 +165,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         linear_buy_record.setOnClickListener(this);
         linear_consume_record.setOnClickListener(this);
         linear_display_amount.setOnClickListener(this);
+        linear_binder_card.setOnClickListener(this);
 
     }
 
@@ -215,6 +220,13 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
                 consume_record.setTitle("会员消费记录");
                 consume_record.setUrl(Config.web.h5_CFConsumeRecord + params);
                 CommonWebActivity.callActivity(this, consume_record);
+                break;
+            case R.id.linear_binder_card:
+                String binder_params = "pkregister=" + getPkregister() + "&phoneno=" + phoneno+"&pkuseraccountid="+pkuseraccountid;
+                CommonWebData binder_card = new CommonWebData();
+                binder_card.setTitle("绑定实体卡");
+                binder_card.setUrl(Config.web.h5_Binder_card + binder_params);
+                CommonWebActivity.callActivity(this, binder_card);
                 break;
             case R.id.linear_display_amount:
                 String is_show_display = SharedPreferenceUtils.getFromSharedPreference(this, show_amount_display_key);

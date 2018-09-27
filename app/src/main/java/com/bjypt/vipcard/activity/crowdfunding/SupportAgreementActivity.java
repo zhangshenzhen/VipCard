@@ -66,12 +66,13 @@ public class SupportAgreementActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.btn_sure_agreement:
-                Intent intent = new Intent(this, CrowdfundingPayActivity.class);
+               /* Intent intent = new Intent(this, CrowdfundingPayActivity.class);
                 intent.putExtra("pkprogressitemid", pkprogressitemid);
                 intent.putExtra("paytype", paytype);
                 intent.putExtra("amount", amount);
                 intent.putExtra("pkmerchantid", pkmerchantid);
-                startActivityForResult(intent,request_pay_result_code);
+                startActivityForResult(intent,request_pay_result_code);*/
+               finish();
                 //打开支付界面
                 break;
 

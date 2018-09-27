@@ -3,6 +3,14 @@ package com.bjypt.vipcard.activity.crowdfunding;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,6 +25,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.NewBindBankCardActivity;
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.crowdfunding.pay.CrowdfundingPayActivity;
 import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
 import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.CommonWebActivity;
 import com.bjypt.vipcard.base.BaseActivity;
@@ -86,10 +95,10 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     @Override
     protected void onResume() {
         super.onResume();
-        if(reLoad){
-        afterInitView();
+        /*if(reLoad){
+         afterInitView();
         }
-        reLoad = true;
+        reLoad = true;*/
      }
 
     @Override
@@ -161,7 +170,8 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         //builer.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
         Button btn_look = (Button) v.findViewById(R.id.btn_look);
         CheckBox ck_box = (CheckBox) v.findViewById(R.id.ck_box);
-
+        TextView dialog_tontent = (TextView) v.findViewById(R.id.dialog_tontent);
+       // dialog_tontent.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);//设置下划线
         final Dialog dialog = builder.create();
         dialog.show();
         //dialog设置宽高
@@ -172,25 +182,69 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
 
         dialog.getWindow().setContentView(v);//自定义布局应该在这里添加，要在dialog.show()的后面
         // AlertDialog.setView(v,0,0,0,0); //去除边框
+        //采用拼接的形式
+        dialog_tontent.setText("购买前请仔细阅读支持协议");
+        SpannableString clickString = new SpannableString("《项目支持协议》");
+        clickString.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                //dialog.dismiss();
+                Intent intent = new Intent(SupportInfoActivity.this, SupportAgreementActivity.class);
+                crowdStartActivity(intent);
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(Color.parseColor("#52b9b8"));//设置颜色
+                ds.setUnderlineText(true);
+            }
+        }, 0, clickString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        dialog_tontent.append(clickString);
+        //相应点点击事件
+        dialog_tontent.setMovementMethod(LinkMovementMethod.getInstance());
+
+
+        ck_box.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ck_box.isChecked()){
+                    btn_look.setText("去支付");
+                }else {
+                    btn_look.setText("点击查看");
+                }
+
+            }
+        });
+
+
+
         btn_look.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 dialog.dismiss();
-                if(!ck_box.isChecked()){
-                 Toast.makeText(SupportInfoActivity.this,"勾选阅读协议框才能查看协议书",Toast.LENGTH_SHORT).show();
-                 }
-                if (itemAmount != null && ck_box.isChecked()) {
+
+                if (itemAmount != null && (!ck_box.isChecked())) {
                     Intent intent = new Intent(SupportInfoActivity.this, SupportAgreementActivity.class);
-                    intent.putExtra("pkprogressitemid", pkprogressitemid);
-                    intent.putExtra("pkmerchantid", pkmerchantid);
-                    intent.putExtra("amount", itemAmount.stripTrailingZeros().toPlainString());
-                    intent.putExtra("paytype", paytype);
-                    startActivityForResult(intent, request_pay_result_code);
+                    crowdStartActivity(intent);
+                }else if(itemAmount != null && (ck_box.isChecked())) {
+                    dialog.dismiss();
+                    Intent intent = new Intent(SupportInfoActivity.this, CrowdfundingPayActivity.class);
+                    crowdStartActivity(intent);
                 }
             }
         });
     }
 
+
+     public void crowdStartActivity(Intent intent){
+         intent.putExtra("pkprogressitemid", pkprogressitemid);
+         intent.putExtra("pkmerchantid", pkmerchantid);
+         intent.putExtra("amount", itemAmount.stripTrailingZeros().toPlainString());
+         intent.putExtra("paytype", paytype);
+         startActivityForResult(intent, request_pay_result_code);
+
+
+     }
     @Override
     public void onSuccess(int reqcode, Object result) {
         LogUtil.debugPrint("SupportInfoActivity = onSuccess " + reqcode + " result " + result);
@@ -220,8 +274,11 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
 
         tv_support_money.setText(resultBeanData.getItemAmount().stripTrailingZeros().toPlainString() + "元");
         tv_go_payfor.setText(" " + itemAmount.stripTrailingZeros().toPlainString() + "元");
-        recevice_remind.setText(selectTip);//提示信息
-        tv_danger_instruc.setText(resultBeanData.getExplain());//风险说明
+        //recevice_remind.setText(selectTip);//提示信息
+        recevice_remind.setText("\n"+Html.fromHtml(selectTip)+"");//提示信息
+
+        String html = resultBeanData.getExplain();
+        tv_danger_instruc.setText("\n"+Html.fromHtml(html)+"");//风险说明
         is_Realname = resultBeanData.isCheckBankNo();
         if (is_Realname) {//是否实名认证
             real_name_remind.setVisibility(View.GONE);
@@ -248,9 +305,9 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
                 Intent intent = new Intent();
                 intent.putExtra("gotoCfMain", gotoMain);
                 setResult(RESULT_OK, intent);
-                finish();
+              //  finish();
             }else{
-                finish();
+              //  finish();
             }
         }
     }
