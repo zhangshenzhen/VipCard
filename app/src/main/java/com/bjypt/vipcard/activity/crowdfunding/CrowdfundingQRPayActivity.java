@@ -23,6 +23,8 @@ import com.bjypt.vipcard.activity.GoPayCardManageActivity;
 import com.bjypt.vipcard.activity.LifeServireH5Activity;
 import com.bjypt.vipcard.activity.LoginActivity;
 import com.bjypt.vipcard.activity.OneKeyTopupAmountActivity;
+import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
+import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.CommonWebActivity;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
@@ -34,6 +36,7 @@ import com.bjypt.vipcard.model.MyRandomBean;
 import com.bjypt.vipcard.model.TwoCodeInfoBean;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
+import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.zbar.encoding.EncodingUtils;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -50,7 +53,7 @@ import java.util.Map;
 
 public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCallBack {
     private static final int REQUEST_RANDOM = 201710201;
-    private static final int REQUEST_UPDATE_STATUS = 201710202;
+    private static final int REQUEST_GET_STATUS = 201710202;
     private static final String TAG = "CrowdfundingQRPay";
     private static final String CODE = "utf-8";
     private static final int SUCCESS_CODE = 456258;
@@ -172,6 +175,7 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
             public void run() {
                 Map<String, String> param = new HashMap<>();
                 param.put("pkregister", pkregister);
+                param.put("pkmerchantid", pkmerchantid+"");
                 param.put("deviceid", deviceId);
                // param.put("cardnum", "XXX");
                // param.put("pkmerchantid", String.valueOf(pkmerchantid));
@@ -225,7 +229,7 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
             public void run() {
                 Map<String, String> param = new HashMap<>();
                 param.put("barcode", mBarcode);
-                Wethod.httpPost(CrowdfundingQRPayActivity.this, REQUEST_UPDATE_STATUS, Config.web.zhongchou_tuo_code_Update_url, param, CrowdfundingQRPayActivity.this, View.GONE);
+                Wethod.httpPost(CrowdfundingQRPayActivity.this, REQUEST_GET_STATUS, Config.web.zhongchou_get_barcode_url, param, CrowdfundingQRPayActivity.this, View.GONE);
                 handler4.postDelayed(update4, 2000);
             }
         };
@@ -247,6 +251,7 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
                 handler4.removeCallbacks(update4);//停止指令
                 final CodePaySuccessDialog dialog = new CodePaySuccessDialog(this);
                 dialog.setTitle("支付成功");
+                dialog.setPositiveButton("到消费记录");
                 dialog.setOnNegativeListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -257,40 +262,39 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
                 dialog.setOnPositiveListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(CrowdfundingQRPayActivity.this, LifeServireH5Activity.class);
-                       // intent.putExtra("life_url", Config.web.citizen_card_expense_calendar + "?type_main=7" + "&cardnum=" + cardnum + "&pkregister=");
-                        intent.putExtra("isLogin", "Y");
-                        intent.putExtra("isallurl", "Y");
-                        intent.putExtra("serviceName", "消费记录");
-                        startActivity(intent);
+                        String params = "pkregister=" + getPkregister() + "&pkmerchantid=" + pkmerchantid;
+                        CommonWebData consume_record = new CommonWebData();
+                        consume_record.setTitle("会员消费记录");
+                        consume_record.setUrl(Config.web.h5_CFConsumeRecord + params);
+                        CommonWebActivity.callActivity(CrowdfundingQRPayActivity.this, consume_record);
                         dialog.dismiss();
                         CrowdfundingQRPayActivity.this.finish();
                     }
                 });
             } else if (status == 4) {
-//                ToastUtil.showToast(this, "卡余额不足，请充值");
+                ToastUtil.showToast(this, "卡余额不足，请充值");
                 handler4.removeCallbacks(update4);//停止指令
-                final MoneyBeyongDialog dialog2 = new MoneyBeyongDialog(this);
-                dialog2.setTitle("卡余额不足，请充值");
-                dialog2.setOnPositiveListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent1 = new Intent(CrowdfundingQRPayActivity.this, OneKeyTopupAmountActivity.class);
-                        intent1.putExtra("pkmuser", 0);
-                        intent1.putExtra("muname", 0);
-                        intent1.putExtra("FLAG", 1);
-                        startActivity(intent1);
-                        CrowdfundingQRPayActivity.this.finish();
-                        dialog2.dismiss();
-                    }
-                });
-                dialog2.setOnNegativeListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        CrowdfundingQRPayActivity.this.finish();
-                        dialog2.dismiss();
-                    }
-                });
+//                final MoneyBeyongDialog dialog2 = new MoneyBeyongDialog(this);
+//                dialog2.setTitle("卡余额不足，请充值");
+//                dialog2.setOnPositiveListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent1 = new Intent(CrowdfundingQRPayActivity.this, OneKeyTopupAmountActivity.class);
+//                        intent1.putExtra("pkmuser", 0);
+//                        intent1.putExtra("muname", 0);
+//                        intent1.putExtra("FLAG", 1);
+//                        startActivity(intent1);
+//                        CrowdfundingQRPayActivity.this.finish();
+//                        dialog2.dismiss();
+//                    }
+//                });
+//                dialog2.setOnNegativeListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        CrowdfundingQRPayActivity.this.finish();
+//                        dialog2.dismiss();
+//                    }
+//                });
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -362,19 +366,19 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
     /**
      * 跳转到充值界面
      */
-    private void jumpRecharge() {
-        if (getFromSharePreference(Config.userConfig.is_Login).equals("Y")) {
-            Intent intent1 = new Intent(this, OneKeyTopupAmountActivity.class);
-            intent1.putExtra("pkmuser", 0);
-            intent1.putExtra("muname", 0);
-            intent1.putExtra("FLAG", 1);
-            startActivity(intent1);
-        } else {
-            Intent intentLogin = new Intent(this, LoginActivity.class);
-            intentLogin.putExtra("loginsss", "Y");
-            startActivity(intentLogin);
-        }
-    }
+//    private void jumpRecharge() {
+//        if (getFromSharePreference(Config.userConfig.is_Login).equals("Y")) {
+//            Intent intent1 = new Intent(this, OneKeyTopupAmountActivity.class);
+//            intent1.putExtra("pkmuser", 0);
+//            intent1.putExtra("muname", 0);
+//            intent1.putExtra("FLAG", 1);
+//            startActivity(intent1);
+//        } else {
+//            Intent intentLogin = new Intent(this, LoginActivity.class);
+//            intentLogin.putExtra("loginsss", "Y");
+//            startActivity(intentLogin);
+//        }
+//    }
     /**
      * 数字卡查看提示弹窗
      */
@@ -409,7 +413,7 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
             case REQUEST_RANDOM:
                 loadTwoAndOneCode(result);
                 break;
-            case REQUEST_UPDATE_STATUS:
+            case REQUEST_GET_STATUS:
                 loadTwoCodeInfo(result);
                 break;
         }
@@ -417,7 +421,12 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
 
     @Override
     public void onFailed(int reqcode, Object result) {
-
+        switch (reqcode){
+            case REQUEST_RANDOM:
+                Wethod.ToFailMsg(this, result.toString());
+                finish();
+                break;
+        }
     }
 
     @Override

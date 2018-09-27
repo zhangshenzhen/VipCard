@@ -306,6 +306,10 @@ public final class Config {
         /*生成二维码更新
          * */
         public static final String zhongchou_tuo_code_Update_url = cf_url + "api/hybScanpayStatus/updateScanPayStatus";
+        /**
+         * 获取二维码信息
+         */
+        public static final String zhongchou_get_barcode_url = cf_url + "api/hybScanpayStatus/getScanPayStatus";
         /*
          * 商家众筹项目*/
         public static final String Seller_project_url = cf_url + "api/hybCfProject/getProjectByMerchantId";
