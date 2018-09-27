@@ -69,6 +69,12 @@ public class CrowdfundingPayActivity extends BaseActivity implements Crowdfundin
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        crowdfundingPayAwayView.onResume();
+    }
+
+    @Override
     public void bindListener() {
         btn_ok_pay.setOnClickListener(this);
     }

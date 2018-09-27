@@ -11,6 +11,7 @@ import com.bjypt.vipcard.activity.PayOnLineActivity;
 import com.bjypt.vipcard.activity.RightAwayOnLineActivity;
 import com.bjypt.vipcard.activity.TopupWayActivity;
 import com.bjypt.vipcard.activity.ZbarPayActivity;
+import com.bjypt.vipcard.activity.crowdfunding.pay.CrowdfundingPayAwayView;
 import com.bjypt.vipcard.activity.shangfeng.common.EventBusMessageEvent;
 import com.bjypt.vipcard.activity.shangfeng.common.enums.EventBusWhat;
 import com.bjypt.vipcard.activity.shangfeng.widget.PayTypeView;
@@ -72,6 +73,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 				TopupWayActivity.WXPAY_FLAG = 2;
 				RightAwayOnLineActivity.WXPAY_FLAG = 2;
 				PayAwayView.WXPAY_FLAG  =2;
+				CrowdfundingPayAwayView.WXPAY_FLAG =2;
 				finish();
 
 				if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
@@ -87,6 +89,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 			ZbarPayActivity.WXPAY_FLAG = 3;
 			TopupWayActivity.WXPAY_FLAG = 3;
 			PayAwayView.WXPAY_FLAG  =3;
+			CrowdfundingPayAwayView.WXPAY_FLAG = 3;
 			RightAwayOnLineActivity.WXPAY_FLAG = 3;
 
 			processPayResult(PayTypeView.PAY_CANCEL);
