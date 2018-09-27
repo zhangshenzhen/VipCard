@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -209,20 +210,24 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
         Pull_seller_view.onRefreshComplete();// 停止刷新
         jsonData(result);
         LogUtil.debugPrint("连接成功 reqcode = ........onSuccess = "+ result);
+        Log.i("TAG,","连接成功 reqcode = ........onSuccess = "+ result);
         handler.sendEmptyMessage(1);
     }
 
     @Override
     public void onFailed(int reqcode, Object result) {
         Pull_seller_view.onRefreshComplete();// 停止刷新
-        LogUtil.debugPrint("连接成功 reqcode = ........onFailed = "+ result);
+        Log.i("TAG,","连接成功 reqcode = ........onFailed = "+ result);
+
         handler.sendEmptyMessage(1);
     }
 
     @Override
     public void onError(VolleyError volleyError) {
         Pull_seller_view.onRefreshComplete();// 停止刷新
-        LogUtil.debugPrint("连接成功 reqcode = ........onError = "+ volleyError.getMessage());
+      //  LogUtil.debugPrint("连接成功 reqcode = ........onError = "+ volleyError.getMessage());
+        Log.i("TAG,","连接成功 reqcode = ........onError = "+ volleyError.getMessage());
+
         handler.sendEmptyMessage(1);
     }
 }
