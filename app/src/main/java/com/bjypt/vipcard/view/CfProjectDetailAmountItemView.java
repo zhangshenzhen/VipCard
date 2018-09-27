@@ -109,6 +109,14 @@ public class CfProjectDetailAmountItemView extends LinearLayout implements Volle
                                     tv_item_desc.setVisibility(View.GONE);
                                 }
                             }
+
+                        /*   if(i==0){ //默认选中第一个
+                              //  ProjectDetailAmountItem.ResultDataBean resultDataBean = (ProjectDetailAmountItem.ResultDataBean)  view.getTag();
+                                tv_project_item_desc.setText(projectDetailAmountItem.getResultData().get(i).getItemDesc());
+                                relate_desc.setVisibility(View.VISIBLE);
+                                refreshSelectItem(projectDetailAmountItem.getResultData().get(i));
+                            }*/
+
                             btn_item_amount.setText("￥"+projectDetailAmountItem.getResultData().get(j).getItemAmount().stripTrailingZeros().toPlainString()+"");
                             btn_item_amount.setOnClickListener(new View.OnClickListener(){
                                 @Override

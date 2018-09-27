@@ -33,6 +33,7 @@ import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.pulltorefresh.social.custom.AppBarHeaderBehavior;
 import com.bjypt.vipcard.utils.AmountDisplayUtil;
 import com.bjypt.vipcard.utils.DialogUtil;
+import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.PermissionUtils;
 import com.bjypt.vipcard.view.CfProjectDetailAmountItemView;
@@ -157,6 +158,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
         getProjectDetail();
 
         cfProjectDetailAmountItemView.loadProjectAmountItem(pkprojectid);
+
     }
 
     private void getProjectDetail() {
@@ -184,6 +186,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
     public void onSuccess(int reqcode, Object result) {
         if (reqcode == request_code_project_deatil) {
             handlerProjectDetail(result);
+            LogUtil.debugPrint("handlerProjectDetail = "+ result);
         } else if (reqcode == request_code_favo_project) {
             try {
                 iv_project_favo.setSelected(true);
@@ -242,6 +245,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                     topay.putExtra("paytype", projectDetailDataBean.getResultData().getPayType());
                     topay.putExtra("pkprogressitemid", cfProjectDetailAmountItemView.getSelectProjectItemId());
                     topay.putExtra("pkmerchantid", projectDetailDataBean.getResultData().getPkmerchantid());
+                    topay.putExtra("projectDetailDataBean",projectDetailDataBean);
                     startActivityForResult(topay, request_pay_result_code);
                 }
                 break;
@@ -322,7 +326,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                 tv_remaining_count.setText(projectDetailDataBean.getResultData().getNumber() + "份");
                 tv_remaining_days.setText(projectDetailDataBean.getResultData().getDays() + "天");
                 tv_merchant_name.setText(projectDetailDataBean.getResultData().getMerchantName());
-                tv_merchant_desc.setText(projectDetailDataBean.getResultData().getMerchantContent());
+                tv_merchant_desc.setText(projectDetailDataBean.getResultData().getOneContent());//修改了字段
                 Picasso.with(this)
                         .load(projectDetailDataBean.getResultData().getMerchantLogo())
                         .error(R.mipmap.merchant_item_error)

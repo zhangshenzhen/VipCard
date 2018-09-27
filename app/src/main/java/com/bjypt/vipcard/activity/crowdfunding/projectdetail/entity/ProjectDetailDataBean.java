@@ -1,9 +1,10 @@
 package com.bjypt.vipcard.activity.crowdfunding.projectdetail.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class ProjectDetailDataBean {
+public class ProjectDetailDataBean  implements Serializable{
 
     /**
      * resultStatus : 0
@@ -39,7 +40,7 @@ public class ProjectDetailDataBean {
         this.resultData = resultData;
     }
 
-    public static class ResultDataBean {
+    public static class ResultDataBean implements Serializable {
         /**
          * pkprojectid : 3
          * pkmerchantid : 1
@@ -70,6 +71,7 @@ public class ProjectDetailDataBean {
          * commonProblem : null
          * pkregister : null
          * optimalMoney : null
+         * agreement ：协议
          * days : 81
          * number : 620
          * checkId : null
@@ -120,6 +122,26 @@ public class ProjectDetailDataBean {
         private String merchantName;
         private String merchantLogo;
         private String merchantContent;
+        private String oneContent;
+
+        public String getOneContent() {
+            return oneContent;
+        }
+
+        public void setOneContent(String oneContent) {
+            this.oneContent = oneContent;
+        }
+
+
+        public String getAgreement() {
+            return agreement;
+        }
+
+        public void setAgreement(String agreement) {
+            this.agreement = agreement;
+        }
+
+        private String agreement;//购买协议
 
         public String getMerchantName() {
             return merchantName;
@@ -136,6 +158,8 @@ public class ProjectDetailDataBean {
         public void setMerchantLogo(String merchantLogo) {
             this.merchantLogo = merchantLogo;
         }
+
+
 
         public String getMerchantContent() {
             return merchantContent;

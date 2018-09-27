@@ -1,12 +1,14 @@
 package com.bjypt.vipcard.activity.crowdfunding;
 
 import android.content.Intent;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.crowdfunding.pay.CrowdfundingPayActivity;
+import com.bjypt.vipcard.activity.crowdfunding.projectdetail.entity.ProjectDetailDataBean;
 import com.bjypt.vipcard.base.BaseActivity;
 
 import java.math.BigDecimal;
@@ -23,6 +25,7 @@ public class SupportAgreementActivity extends BaseActivity {
 
 
     private static final int request_pay_result_code = 10001;
+    private ProjectDetailDataBean projectDetailDataBean;
 
     @Override
     public void setContentLayout() {
@@ -35,6 +38,7 @@ public class SupportAgreementActivity extends BaseActivity {
         pkmerchantid = getIntent().getIntExtra("pkmerchantid", 0);
         amount = getIntent().getStringExtra("amount");
         paytype = getIntent().getIntExtra("paytype", 0);
+        projectDetailDataBean = (ProjectDetailDataBean) getIntent().getSerializableExtra("projectDetailDataBean");
         if (pkprogressitemid == 0) {
             finish();
         }
@@ -56,13 +60,19 @@ public class SupportAgreementActivity extends BaseActivity {
 
     @Override
     public void bindListener() {
-        tv_agreement.setText("");
-    }
+        String html_agreement = projectDetailDataBean.getResultData().getAgreement();
+        if (html_agreement !=null) {
+            tv_agreement.setText("\n" + Html.fromHtml(html_agreement));
+        }else {
+            tv_agreement.setText("还没有文本数据");
+        }
+     }
 
     @Override
     public void onClickEvent(View v) {
         switch (v.getId()) {
             case R.id.btn_cancel_agreement:
+                setResult(RESULT_OK);
                 finish();
                 break;
             case R.id.btn_sure_agreement:
@@ -72,7 +82,8 @@ public class SupportAgreementActivity extends BaseActivity {
                 intent.putExtra("amount", amount);
                 intent.putExtra("pkmerchantid", pkmerchantid);
                 startActivityForResult(intent,request_pay_result_code);*/
-               finish();
+                setResult(RESULT_OK);
+                finish();
                 //打开支付界面
                 break;
 
