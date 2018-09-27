@@ -26,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.bjypt.vipcard.NewBindBankCardActivity;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.crowdfunding.pay.CrowdfundingPayActivity;
+import com.bjypt.vipcard.activity.crowdfunding.projectdetail.entity.ProjectDetailDataBean;
 import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
 import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.CommonWebActivity;
 import com.bjypt.vipcard.base.BaseActivity;
@@ -75,6 +76,10 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     private String selectTip;
 
     private static final int request_pay_result_code = 10001;
+    private CheckBox ck_box;
+    private TextView dialog_tontent;
+    private Button btn_look;
+    private ProjectDetailDataBean projectDetailDataBean;
 
 
     @Override
@@ -85,6 +90,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     @Override
     public void beforeInitView() {
         Intent intent = getIntent();
+        projectDetailDataBean = (ProjectDetailDataBean) intent.getSerializableExtra("projectDetailDataBean");
         pkprogressitemid = intent.getIntExtra("pkprogressitemid", 0);
         pkmerchantid = intent.getIntExtra("pkmerchantid", 0);
         paytype = intent.getIntExtra("paytype", 0);
@@ -168,10 +174,10 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         View v = inflater.inflate(R.layout.myself_dialog, null);
 
         //builer.setView(v);//这里如果使用builer.setView(v)，自定义布局只会覆盖title和button之间的那部分
-        Button btn_look = (Button) v.findViewById(R.id.btn_look);
-        CheckBox ck_box = (CheckBox) v.findViewById(R.id.ck_box);
-        TextView dialog_tontent = (TextView) v.findViewById(R.id.dialog_tontent);
-       // dialog_tontent.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);//设置下划线
+        btn_look = (Button) v.findViewById(R.id.btn_look);
+        ck_box = (CheckBox) v.findViewById(R.id.ck_box);
+        dialog_tontent = (TextView) v.findViewById(R.id.dialog_tontent);
+       // dialog_tontent.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);//设置所以文本的下划线
         final Dialog dialog = builder.create();
         dialog.show();
         //dialog设置宽高
@@ -241,6 +247,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
          intent.putExtra("pkmerchantid", pkmerchantid);
          intent.putExtra("amount", itemAmount.stripTrailingZeros().toPlainString());
          intent.putExtra("paytype", paytype);
+         intent.putExtra("projectDetailDataBean",projectDetailDataBean);
          startActivityForResult(intent, request_pay_result_code);
 
 
@@ -274,11 +281,18 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
 
         tv_support_money.setText(resultBeanData.getItemAmount().stripTrailingZeros().toPlainString() + "元");
         tv_go_payfor.setText(" " + itemAmount.stripTrailingZeros().toPlainString() + "元");
-        //recevice_remind.setText(selectTip);//提示信息
-        recevice_remind.setText("\n"+Html.fromHtml(selectTip)+"");//提示信息
 
+        if (selectTip != null) {
+            recevice_remind.setText(Html.fromHtml(selectTip)+"");//提示信息
+        }else {
+            recevice_remind.setText("暂无信息");//提示信息
+         }
         String html = resultBeanData.getExplain();
-        tv_danger_instruc.setText("\n"+Html.fromHtml(html)+"");//风险说明
+        if (html !=null){
+         tv_danger_instruc.setText("\n"+Html.fromHtml(html)+"");//风险说明
+        }else {
+          tv_danger_instruc.setText("暂无信息");//风险说明
+        }
         is_Realname = resultBeanData.isCheckBankNo();
         if (is_Realname) {//是否实名认证
             real_name_remind.setVisibility(View.GONE);
@@ -301,10 +315,12 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == request_pay_result_code) {
             if (resultCode == RESULT_OK) {
-                boolean gotoMain = data.getBooleanExtra("gotoCfMain", false);
-                Intent intent = new Intent();
-                intent.putExtra("gotoCfMain", gotoMain);
-                setResult(RESULT_OK, intent);
+               // boolean gotoMain = data.getBooleanExtra("gotoCfMain", false);
+               // Intent intent = new Intent();
+               // intent.putExtra("gotoCfMain", gotoMain);
+              //  setResult(RESULT_OK, intent);
+                ck_box.setChecked(true);
+                btn_look.setText("去支付");
               //  finish();
             }else{
               //  finish();

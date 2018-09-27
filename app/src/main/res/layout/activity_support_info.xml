@@ -110,8 +110,9 @@
 
         <TextView
             android:id="@+id/tv_recevice_remind"
-            android:layout_marginTop="15dp"
             android:textColor="#999999"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="预计收益10元，使用期限3个月，每年返还利息。本金到期返还。如未先写信息则不显示此框"/>

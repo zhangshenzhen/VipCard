@@ -1,6 +1,8 @@
 package com.bjypt.vipcard.activity.crowdfunding.projectdetail.entity;
 
-public class HybAttachmentListBean {
+import java.io.Serializable;
+
+public class HybAttachmentListBean implements Serializable {
     /**
      * attach_type : 0
      * attachment : https://huiyuanbao.oss-cn-hangzhou.aliyuncs.com/f2742f94a6614274bda6212236ae3368.jpg
