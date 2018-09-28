@@ -1,11 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <fragment
-        android:id="@+id/crowdfunding_fragment"
-        android:name="com.bjypt.vipcard.fragment.crowdfunding.CrowdfundingFragment"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/id_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-         />
-</LinearLayout>
+        android:layout_marginBottom="55dp" />
+
+
+    <LinearLayout   android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/tab_crowdfunding_main"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_crowdfunding_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@mipmap/home_first"
+                android:text="首页"
+                android:textColor="@color/app_color"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_crowdfunding_my"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_crowdfunding_my"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@mipmap/cf_my_tab_unselect"
+                android:text="我的"
+                android:textColor="@color/text_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

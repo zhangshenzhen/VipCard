@@ -76,6 +76,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     private String selectTip;
 
     private static final int request_pay_result_code = 10001;
+    private static final int request_check_result_code = 10002;
     private CheckBox ck_box;
     private TextView dialog_tontent;
     private Button btn_look;
@@ -97,7 +98,8 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         selectTip = intent.getStringExtra("getSelectTipText"); //提示信息
     }
 
-   boolean reLoad = false;
+    boolean reLoad = false;
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -105,7 +107,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
          afterInitView();
         }
         reLoad = true;*/
-     }
+    }
 
     @Override
     public void initView() {
@@ -177,7 +179,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         btn_look = (Button) v.findViewById(R.id.btn_look);
         ck_box = (CheckBox) v.findViewById(R.id.ck_box);
         dialog_tontent = (TextView) v.findViewById(R.id.dialog_tontent);
-       // dialog_tontent.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);//设置所以文本的下划线
+        // dialog_tontent.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);//设置所以文本的下划线
         final Dialog dialog = builder.create();
         dialog.show();
         //dialog设置宽高
@@ -196,7 +198,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
             public void onClick(View widget) {
                 //dialog.dismiss();
                 Intent intent = new Intent(SupportInfoActivity.this, SupportAgreementActivity.class);
-                crowdStartActivity(intent);
+                crowdStartActivity(intent, request_check_result_code);
             }
 
             @Override
@@ -214,15 +216,14 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         ck_box.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ck_box.isChecked()){
+                if (ck_box.isChecked()) {
                     btn_look.setText("去支付");
-                }else {
+                } else {
                     btn_look.setText("点击查看");
                 }
 
             }
         });
-
 
 
         btn_look.setOnClickListener(new View.OnClickListener() {
@@ -231,27 +232,28 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
 
                 if (itemAmount != null && (!ck_box.isChecked())) {
                     Intent intent = new Intent(SupportInfoActivity.this, SupportAgreementActivity.class);
-                    crowdStartActivity(intent);
-                }else if(itemAmount != null && (ck_box.isChecked())) {
+                    crowdStartActivity(intent,request_check_result_code);
+                } else if (itemAmount != null && (ck_box.isChecked())) {
                     dialog.dismiss();
                     Intent intent = new Intent(SupportInfoActivity.this, CrowdfundingPayActivity.class);
-                    crowdStartActivity(intent);
+                    crowdStartActivity(intent, request_pay_result_code);
                 }
             }
         });
     }
 
 
-     public void crowdStartActivity(Intent intent){
-         intent.putExtra("pkprogressitemid", pkprogressitemid);
-         intent.putExtra("pkmerchantid", pkmerchantid);
-         intent.putExtra("amount", itemAmount.stripTrailingZeros().toPlainString());
-         intent.putExtra("paytype", paytype);
-         intent.putExtra("projectDetailDataBean",projectDetailDataBean);
-         startActivityForResult(intent, request_pay_result_code);
+    public void crowdStartActivity(Intent intent, int request_code) {
+        intent.putExtra("pkprogressitemid", pkprogressitemid);
+        intent.putExtra("pkmerchantid", pkmerchantid);
+        intent.putExtra("amount", itemAmount.stripTrailingZeros().toPlainString());
+        intent.putExtra("paytype", paytype);
+        intent.putExtra("projectDetailDataBean", projectDetailDataBean);
+        startActivityForResult(intent, request_code);
 
 
-     }
+    }
+
     @Override
     public void onSuccess(int reqcode, Object result) {
         LogUtil.debugPrint("SupportInfoActivity = onSuccess " + reqcode + " result " + result);
@@ -283,15 +285,15 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         tv_go_payfor.setText(" " + itemAmount.stripTrailingZeros().toPlainString() + "元");
 
         if (selectTip != null) {
-            recevice_remind.setText(Html.fromHtml(selectTip)+"");//提示信息
-        }else {
+            recevice_remind.setText(Html.fromHtml(selectTip) + "");//提示信息
+        } else {
             recevice_remind.setText("暂无信息");//提示信息
-         }
+        }
         String html = resultBeanData.getExplain();
-        if (html !=null){
-         tv_danger_instruc.setText("\n"+Html.fromHtml(html)+"");//风险说明
-        }else {
-          tv_danger_instruc.setText("暂无信息");//风险说明
+        if (html != null) {
+            tv_danger_instruc.setText("\n" + Html.fromHtml(html) + "");//风险说明
+        } else {
+            tv_danger_instruc.setText("暂无信息");//风险说明
         }
         is_Realname = resultBeanData.isCheckBankNo();
         if (is_Realname) {//是否实名认证
@@ -315,15 +317,16 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == request_pay_result_code) {
             if (resultCode == RESULT_OK) {
-               // boolean gotoMain = data.getBooleanExtra("gotoCfMain", false);
-               // Intent intent = new Intent();
-               // intent.putExtra("gotoCfMain", gotoMain);
-              //  setResult(RESULT_OK, intent);
+                boolean gotoMain = data.getBooleanExtra("gotoCfMain", false);
+                Intent intent = new Intent();
+                intent.putExtra("gotoCfMain", gotoMain);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        } else if (requestCode == request_check_result_code) {
+            if (resultCode == RESULT_OK) {
                 ck_box.setChecked(true);
                 btn_look.setText("去支付");
-              //  finish();
-            }else{
-              //  finish();
             }
         }
     }

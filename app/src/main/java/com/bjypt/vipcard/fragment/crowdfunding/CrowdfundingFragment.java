@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -66,7 +67,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
 
     private PullListLayout pullList = null;
     private AppBarLayout appBar = null;
-//    private CustomCollapsingNoToolbarLayout toolBar = null;
+    //    private CustomCollapsingNoToolbarLayout toolBar = null;
 //    private LinearLayout titleLayout = null;
     private SlidingTabLayout slidingTab = null;
     private ViewPager viewPager = null;
@@ -85,6 +86,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
     private RelativeLayout relate_notices;
 
     private ImageView iv_display_type;
+    private ImageButton ibtn_back;
 
     private boolean is_recomment_scroll = false;
 
@@ -107,6 +109,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
         ViewGroup.LayoutParams layoutParams = statusBarView.getLayoutParams();
         layoutParams.height = getStatusBarHeight();
 
+        ibtn_back = view.findViewById(R.id.ibtn_back);
         pullList = view.findViewById(R.id.pullList);
         appBar = view.findViewById(R.id.appBar);
 //        toolBar = view.findViewById(R.id.toolBar);
@@ -127,7 +130,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
         for (int i = 0; i < subCrowdfundingFragmentArray.length; i++) {
             CfTabData cfTabData = new CfTabData();
             cfTabData.setTabType(CfTabData.TYPE.Sort.getValue());
-            cfTabData.setTabValue(i+1);
+            cfTabData.setTabValue(i + 1);
             cfTabData.setGridDisplay(false);
             subCrowdfundingFragmentArray[i] = SubCrowdfundingFragment.newInstance(cfTabData);
         }
@@ -152,9 +155,9 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
         rv_recoment_projects.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     is_recomment_scroll = false;
-                }else{
+                } else {
                     is_recomment_scroll = true;
                 }
             }
@@ -165,7 +168,6 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
             }
         });
     }
-
 
 
     @Override
@@ -204,7 +206,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
     /**
      * 获取项目列表
      */
-    private void getNormalProjectList(){
+    private void getNormalProjectList() {
 
     }
 
@@ -221,6 +223,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
         tv_tuijian.setOnItemClickListener(this);
 
         iv_display_type.setOnClickListener(this);
+        ibtn_back.setOnClickListener(this);
     }
 
     @Override
@@ -229,14 +232,16 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
             case R.id.iv_display_type:
                 displayProjectAdapter();
                 break;
-
+            case R.id.ibtn_back:
+                getActivity().finish();
+                break;
         }
     }
 
 
     @Override
     public void onSuccess(int reqcode, Object result) {
-        LogUtil.debugPrint("CrowfunFragment : "+ result);
+        LogUtil.debugPrint("CrowfunFragment : " + result);
         if (reqcode == request_code_notices) {
             pullList.refreshComplete();
             handlerNotices(result);
@@ -302,7 +307,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
 
         @Override
         public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-            return !is_recomment_scroll &&   behavior.getCurrentVerticalOffset() == 0 && super.checkCanDoRefresh(frame, content, header);
+            return !is_recomment_scroll && behavior.getCurrentVerticalOffset() == 0 && super.checkCanDoRefresh(frame, content, header);
 //            return false;
         }
 

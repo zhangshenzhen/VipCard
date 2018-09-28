@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.utils.SystemBarUtil;
 
@@ -141,5 +142,9 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
             result = getResources().getDimensionPixelSize(resourceId);
         }
         return result;
+    }
+
+    public String getPkregister(){
+        return SharedPreferenceUtils.getFromSharedPreference(getContext(), Config.userConfig.pkregister);
     }
 }

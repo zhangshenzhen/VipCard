@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.crowdfunding.CrowdfundingMainActivity;
 import com.bjypt.vipcard.activity.shangfeng.common.LocateResultFields;
 import com.bjypt.vipcard.activity.shangfeng.util.SharedPreferencesUtils;
 import com.bjypt.vipcard.base.BaseFraActivity;
@@ -186,7 +187,6 @@ public class MainActivity extends BaseFraActivity {
         ly_life_sup.setOnClickListener(this);
         ly_my.setOnClickListener(this);
         rl_news.setOnClickListener(this);
-
     }
 
 
@@ -208,6 +208,8 @@ public class MainActivity extends BaseFraActivity {
                 break;
             case R.id.rl_news:
                 setTabSelection(3);
+//                Intent intent = new Intent(this, CrowdfundingMainActivity.class);
+//                startActivity(intent);
                 break;
 
         }
