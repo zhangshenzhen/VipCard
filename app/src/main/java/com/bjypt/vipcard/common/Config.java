@@ -287,6 +287,9 @@ public final class Config {
          public static final String h5_CFConsumeCollection = cf_url +"api/hybCfProjectCollectionHtml/findAllByPkregister";
        //绑定实体卡
        public static final String h5_Binder_card = app_h5_url+"#/bindentitycard?";
+        /*
+        * 商家权益*/
+       public static final String h5_seller_interests = app_h5_url+"#/powerinfor?";
 
         /*
          * 众筹界面首页的baner 地址*/

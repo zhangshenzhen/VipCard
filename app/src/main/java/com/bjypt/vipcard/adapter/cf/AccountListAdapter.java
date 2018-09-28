@@ -21,6 +21,7 @@ import com.bjypt.vipcard.utils.DensityUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sinia.orderlang.utils.StringUtil;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class AccountListAdapter  extends BaseAdapter{

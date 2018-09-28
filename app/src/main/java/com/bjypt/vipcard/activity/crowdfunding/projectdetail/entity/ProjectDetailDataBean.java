@@ -117,12 +117,21 @@ public class ProjectDetailDataBean  implements Serializable{
         private Object hybCfProjectProgressList;
         private Object hybCfProjectTagList;
         private boolean collection;
+        private String telephone;
+
         private List<HybAttachmentListBean> hybAttachmentList;
 
         private String merchantName;
         private String merchantLogo;
         private String merchantContent;
         private String oneContent;
+        public String getTelephone() {
+            return telephone;
+        }
+
+        public void setTelephone(String telephone) {
+            this.telephone = telephone;
+        }
 
         public String getOneContent() {
             return oneContent;

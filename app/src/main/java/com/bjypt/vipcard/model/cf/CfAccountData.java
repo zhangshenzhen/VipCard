@@ -1,8 +1,9 @@
 package com.bjypt.vipcard.model.cf;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class CfAccountData {
+public class CfAccountData implements Serializable {
 
     /**
      * pkuseraccountid : 8
@@ -52,6 +53,10 @@ public class CfAccountData {
     private BigDecimal expected_earnings;
     private BigDecimal amount_of_cash;
     private BigDecimal consumption_amount;
+
+
+
+    private String  rights_and_interests;
 
     public Integer getType_num() {
         return type_num;
@@ -235,5 +240,12 @@ public class CfAccountData {
 
     public void setConsumption_amount(BigDecimal consumption_amount) {
         this.consumption_amount = consumption_amount;
+    }
+    public String getRights_and_interests() {
+        return rights_and_interests;
+    }
+
+    public void setRights_and_interests(String rights_and_interests) {
+        this.rights_and_interests = rights_and_interests;
     }
 }

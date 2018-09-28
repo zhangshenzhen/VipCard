@@ -1,8 +1,9 @@
 package com.bjypt.vipcard.model.cf;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CfAccountListData {
+public class CfAccountListData implements Serializable {
 
     /**
      * resultStatus : 0
@@ -38,7 +39,7 @@ public class CfAccountListData {
         this.resultData = resultData;
     }
 
-    public static class ResultDataBean {
+    public static class ResultDataBean implements Serializable {
         /**
          * pageNum : 1
          * pageSize : 10

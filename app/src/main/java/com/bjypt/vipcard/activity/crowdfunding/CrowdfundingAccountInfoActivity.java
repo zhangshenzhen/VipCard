@@ -14,6 +14,7 @@ import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
+import com.bjypt.vipcard.model.cf.CfAccountData;
 import com.bjypt.vipcard.model.cf.CfAccountDetailData;
 import com.bjypt.vipcard.model.cf.CfAccountListData;
 import com.bjypt.vipcard.utils.LogUtil;
@@ -25,6 +26,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -66,6 +68,8 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
     private static final int request_code_account_data = 124;
     private LinearLayout linear_binder_card;
     private String phoneno;
+    private CfAccountData cfAccountData;
+    private TextView tv_interest;
 
 
     @Override
@@ -87,10 +91,12 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         phoneno = getIntent().getStringExtra("phoneno");
 
         show_amount_display_key = Config.userConfig.cf_display_amount_key + getPkregister() + pkmerchantid;
+        cfAccountData = (CfAccountData) getIntent().getSerializableExtra("rights_and_interests");
 
         if (pkuseraccountid == 0) {
             finish();
         }
+
 
     }
 
@@ -113,6 +119,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         linear_display_amount = (LinearLayout) findViewById(R.id.linear_display_amount);
         linear_binder_card = findViewById(R.id.linear_binder_card); //绑定实体卡
         iv_amount_display = (ImageView) findViewById(R.id.iv_amount_display);
+        tv_interest = findViewById(R.id.tv_interest);
         findViewById(R.id.ibtn_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,6 +173,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         linear_consume_record.setOnClickListener(this);
         linear_display_amount.setOnClickListener(this);
         linear_binder_card.setOnClickListener(this);
+        tv_interest.setOnClickListener(this);
 
     }
 
@@ -236,6 +244,12 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
                     SharedPreferenceUtils.saveToSharedPreference(this, show_amount_display_key, "close");
                 }
                 showAmount();
+                break;
+            case R.id.tv_interest:
+                CommonWebData interests = new CommonWebData();
+                interests.setTitle("商家权益");
+                interests.setUrl(Config.web.h5_seller_interests + "pkmerchantid="+pkmerchantid);
+                CommonWebActivity.callActivity(this, interests);
                 break;
         }
     }

@@ -87,6 +87,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
     private LinearLayout linear_collection;
 
     public static final int request_pay_result_code = 10001;
+    private String telephone;
 
     @Override
     public void setContentLayout() {
@@ -270,7 +271,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                         switch (which) {
                             case Dialog.BUTTON_POSITIVE:
 //                                requestPermission();
-                                PermissionUtils permissionUtils = new PermissionUtils(CrowdfundingDetailActivity.this, "4001808366");
+                                PermissionUtils permissionUtils = new PermissionUtils(CrowdfundingDetailActivity.this, telephone);
                                 permissionUtils.requestPermission();
                                 break;
                             case Dialog.BUTTON_NEGATIVE:
@@ -281,7 +282,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                     }
                 };
                 //弹窗让用户选择，是否允许申请权限
-                DialogUtil.showConfirm(this, "客服热线", "是否拨打客服热线4001808366(08:00-17:00)", dialogOnclicListener, dialogOnclicListener);
+                DialogUtil.showConfirm(this, "客服热线", "是否拨打客服热线"+telephone+"(08:00-17:00)", dialogOnclicListener, dialogOnclicListener);
 
                 break;
 
@@ -332,6 +333,9 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                 } else {
                     iv_project_favo.setSelected(false);
                 }
+                //客服电话
+                telephone = projectDetailDataBean.getResultData().getTelephone();
+
                 crowdfundingDetailBannerView.setDataSource(projectDetailDataBean.getResultData().getHybAttachmentList());
             }
 
