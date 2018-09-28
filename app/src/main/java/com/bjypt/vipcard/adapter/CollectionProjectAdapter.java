@@ -71,6 +71,7 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
         //   SellerProjectBean.SellBean sellBean = sellerBeans.get(position);
         CfProjectItem sellBean = sellerBeans.get(position);
 
+      if(sellBean.getStatus() != null){
        if(sellBean.getStatus() ==3){
             sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_end));
         }else{
@@ -80,6 +81,7 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
                 sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_start));
             }
         }
+       }
 
 
 
