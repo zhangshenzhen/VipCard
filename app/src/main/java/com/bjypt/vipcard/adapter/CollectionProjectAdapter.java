@@ -2,11 +2,7 @@ package com.bjypt.vipcard.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ClipDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +21,7 @@ import com.bumptech.glide.Glide;
 import com.sinia.orderlang.utils.AppInfoUtil;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class CollectionProjectAdapter extends RecyclerView.Adapter {
 
@@ -54,11 +48,13 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_crowdfuning_project_list_item,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.crowdfuning_collection_list_item_new,null);
         SellerViewHoldr mviewHoldr = new SellerViewHoldr(view);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(icon_width, icon_height);
+        //设置图片适配屏幕
+        int w = (icon_width*2)/5;
+        int h = (w*8)/9 ;
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(w, h);
         mviewHoldr.imageView.setLayoutParams(params);
-
 
 
         return mviewHoldr;
@@ -87,8 +83,9 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
 
         Glide.with(mcontext).load(sellBean.getHeadImg()).error(R.mipmap.more).into(sellerViewHoldr.imageView);
         sellerViewHoldr.tv_project_Name.setText(sellBean.getProjectName());//项目名称
-        sellerViewHoldr.tv_youhui_num.setText("起投金额："+sellBean.getOptimalMoney().stripTrailingZeros().toPlainString()+"");
-
+         if (sellBean.getOptimalMoney()!= null) {
+             sellerViewHoldr.tv_youhui_num.setText("起投金额：" + sellBean.getOptimalMoney().stripTrailingZeros().toPlainString() + "");
+         }
        /* ClipDrawable d = new ClipDrawable(new ColorDrawable(Color.parseColor("#00FF99")), Gravity.LEFT,ClipDrawable.HORIZONTAL);
         sellerViewHoldr.progressBar.setBackgroundColor(Color.parseColor("#BBFFFF"));
         sellerViewHoldr.progressBar.setProgressDrawable(d);*/
@@ -101,10 +98,14 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
             double rate = b.doubleValue()*100;
             sellerViewHoldr.progressBar.setProgress((int)rate);
             sellerViewHoldr.tv_precent.setText(progress.multiply(new BigDecimal(100)).intValue() +"%");
+            sellerViewHoldr.progressBar2.setProgress((int)rate);
+            sellerViewHoldr.tv_precent2.setText(progress.multiply(new BigDecimal(100)).intValue() +"%");
 
         }else{
             sellerViewHoldr.progressBar.setProgress(100);
             sellerViewHoldr.tv_precent.setText(sellBean.getProgressCfAmount().stripTrailingZeros().toPlainString()+"%");
+            sellerViewHoldr.progressBar2.setProgress(100);
+            sellerViewHoldr.tv_precent2.setText(sellBean.getProgressCfAmount().stripTrailingZeros().toPlainString()+"%");
        }
 
 
@@ -133,7 +134,9 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
         public final ImageView igv;
         public final TextView tv_project_Name;//项目名称
         public final ProgressBar progressBar;
+        public final ProgressBar progressBar2;
         public final TextView tv_precent;
+        public final TextView tv_precent2;
         public final TextView tv_youhui_num;//最优惠金额
         public final RelativeLayout re_item ;
 
@@ -153,6 +156,8 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
             tv_project_Name = itemView.findViewById(R.id.tev_name);
             progressBar = itemView.findViewById(R.id.pb_project_progress);
             tv_precent = itemView.findViewById(R.id.tev_progress_data);
+            progressBar2 = itemView.findViewById(R.id.pb_project_progress2);
+            tv_precent2 = itemView.findViewById(R.id.tev_progress_data2);
 
         }
     }

@@ -64,6 +64,7 @@ import com.bjypt.vipcard.model.SystemInfomationBean;
 import com.bjypt.vipcard.model.UpdataHeadBean;
 import com.bjypt.vipcard.receiver.RegisterReceiverUtils;
 import com.bjypt.vipcard.utils.DialogUtil;
+import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.PermissionUtils;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
@@ -482,7 +483,12 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
         //连续签到天数
         requestSignDays();
 
+        if(myWalletBeans != null &&myWalletBeans.size()<4){
+           getMyWallet();//刷新接口
+        }
     }
+
+
 
     private void getMyWallet() {
         final Map<String, String> maps = new HashMap<>();
@@ -492,6 +498,7 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
             @Override
             public void onSuccess(int reqcode, String result) {
                 Logger.json(result);
+                LogUtil.debugPrint("getMyWallet : "+ result);
                 if (result != null) {
                     try {
                         JSONObject jsonObject = new JSONObject(result);

@@ -118,6 +118,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="15dp"
+            android:visibility="gone"
             android:paddingRight="15dp">
 
             <ImageView
@@ -160,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="购买记录"
+                android:text="众筹购买记录"
                 android:textSize="15sp" />
 
             <ImageView
@@ -238,6 +239,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="15dp"
+            android:visibility="gone"
             android:paddingRight="15dp">
 
             <ImageView
@@ -280,7 +282,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="众筹申请"
+                android:text="我要发布的项目"
                 android:textSize="15sp" />
 
             <ImageView

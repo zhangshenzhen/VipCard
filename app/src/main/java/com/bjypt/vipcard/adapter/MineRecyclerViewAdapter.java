@@ -84,6 +84,8 @@ public class MineRecyclerViewAdapter extends RecyclerView.Adapter<MineRecyclerVi
         return viewHolder;
     }
 
+
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ViewHolder(View itemView) {

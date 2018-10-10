@@ -85,8 +85,9 @@ public class SellerProjectAdapter extends RecyclerView.Adapter{
 
             Glide.with(mcontext).load(sellBean.getHeadImg()).error(R.mipmap.more).into(sellerViewHoldr.imageView);
             sellerViewHoldr.tv_project_Name.setText(sellBean.getProjectName());//项目名称
-            sellerViewHoldr.tv_youhui_num.setText("起投金额："+sellBean.getOptimalMoney().stripTrailingZeros().toPlainString()+"");
-
+            if(sellBean.getOptimalMoney() != null) {
+             sellerViewHoldr.tv_youhui_num.setText("起投金额：" + sellBean.getOptimalMoney().stripTrailingZeros().toPlainString() + "");
+            }
 
       /*  ClipDrawable d = new ClipDrawable(new ColorDrawable(Color.parseColor("#00FF99")),Gravity.LEFT,ClipDrawable.HORIZONTAL);
         sellerViewHoldr.progressBar.setBackgroundColor(Color.parseColor("#BBFFFF"));

@@ -142,7 +142,7 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
                 break;
             case R.id.linear_item_request_online://众筹申请
                 CommonWebData request_crowd = new CommonWebData();
-                request_crowd.setTitle("众筹申请");
+                request_crowd.setTitle("我要发布的项目");
                 request_crowd.setUrl(Config.web.h5_CFConsumerequest_crowd);
                 CommonWebActivity.callActivity(this, request_crowd);
 

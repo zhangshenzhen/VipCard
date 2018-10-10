@@ -98,15 +98,12 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         selectTip = intent.getStringExtra("getSelectTipText"); //提示信息
     }
 
-    boolean reLoad = false;
+
 
     @Override
     protected void onResume() {
         super.onResume();
-        /*if(reLoad){
-         afterInitView();
-        }
-        reLoad = true;*/
+
     }
 
     @Override
@@ -123,6 +120,14 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         btn_real_name.setOnClickListener(this);
         igv_black.setOnClickListener(this);
         btn_go_payfor.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if(!is_Realname){
+          afterInitView();
+        }
     }
 
     @Override
@@ -145,7 +150,11 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     public void onClickEvent(View v) {
         switch (v.getId()) {
             case R.id.btn_go_payfor:
-                remindDialog();
+                if(is_Realname){
+                 remindDialog();
+                }else {
+                 Toast.makeText(this,"实名认证之后才能购买",Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.igv_back:
                 finish();
