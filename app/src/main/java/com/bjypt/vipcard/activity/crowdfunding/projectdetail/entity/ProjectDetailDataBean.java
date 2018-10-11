@@ -97,9 +97,9 @@ public class ProjectDetailDataBean  implements Serializable{
         private Integer personalMaxBuyCount;
         private BigDecimal interestRate;
         private String content;
-        private Integer settleType;
+        private int settleType;
         private Integer sortNum;
-        private Integer status;
+        private int status;
         private Integer payType;
         private Integer viewAuth;
         private Integer tags;
@@ -118,6 +118,17 @@ public class ProjectDetailDataBean  implements Serializable{
         private Object hybCfProjectTagList;
         private boolean collection;
         private String telephone;
+        private BigDecimal maximumIncome;//最高收益
+
+        public BigDecimal getMaximumIncome() {
+            return maximumIncome;
+        }
+
+        public void setMaximumIncome(BigDecimal maximumIncome) {
+            this.maximumIncome = maximumIncome;
+        }
+
+
 
         private List<HybAttachmentListBean> hybAttachmentList;
 
@@ -298,11 +309,11 @@ public class ProjectDetailDataBean  implements Serializable{
             this.content = content;
         }
 
-        public Integer getSettleType() {
+        public int getSettleType() {
             return settleType;
         }
 
-        public void setSettleType(Integer settleType) {
+        public void setSettleType(int settleType) {
             this.settleType = settleType;
         }
 
@@ -314,11 +325,11 @@ public class ProjectDetailDataBean  implements Serializable{
             this.sortNum = sortNum;
         }
 
-        public Integer getStatus() {
+        public int getStatus() {
             return status;
         }
 
-        public void setStatus(Integer status) {
+        public void setStatus(int status) {
             this.status = status;
         }
 

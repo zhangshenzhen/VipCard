@@ -22,7 +22,6 @@
         <ImageButton
             android:id="@+id/ibtn_back"
             android:layout_width="44dp"
-
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:background="@null"
@@ -36,7 +35,6 @@
             android:text="众筹帮"
             android:textColor="@color/black_3"
             android:textSize="16sp" />
-
     </RelativeLayout>
 
     <com.bjypt.vipcard.pulltorefresh.social.PullListLayout
@@ -163,7 +161,7 @@
                             android:layout_below="@id/slidingTab"
                             android:background="#dddddd" />
                     </LinearLayout>
-                    
+
                       <!--暂且隐藏-->
                     <ImageView android:id="@+id/iv_display_type"
                         android:visibility="gone"

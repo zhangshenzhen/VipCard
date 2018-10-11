@@ -11,14 +11,14 @@
         android:background="@color/transparent" />
 
     <!-- title -->
-    <RelativeLayout
+
+   <!-- <RelativeLayout
         android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_below="@id/statusBarView"
         android:background="@color/home_item_press"
         android:gravity="center_vertical">
-
 
         <TextView
             android:id="@+id/title"
@@ -39,11 +39,15 @@
             android:background="@null"
             android:src="@mipmap/icon_black_back" />
     </RelativeLayout>
+    -->
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_title">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBar"
@@ -60,21 +64,65 @@
                 android:minHeight="?attr/titleLayoutHeight"
                 app:layout_scrollFlags="scroll"
                 app:statusBarScrim="?attr/colorPrimaryDark">
-
+                 <!--可以滑出屏幕-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/home_item_press"
                     android:orientation="vertical">
-                    <!--banner-->
-                    <com.bjypt.vipcard.view.categoryview.CrowdfundingDetailBannerView
-                        android:id="@+id/crowdfundingDetailBannerView"
+
+                    <RelativeLayout
+                        android:id="@+id/rl_title"
                         android:layout_width="match_parent"
-                        android:layout_height="140dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/theme_color" />
+                        android:layout_height="45dp"
+                        android:layout_below="@id/statusBarView"
+                        android:background="@color/home_item_press"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_alignParentTop="true"
+                            android:background="@color/gallery_white"
+                            android:gravity="center"
+                            android:text="众筹帮详情"
+                            android:textColor="@color/black_3"
+                            android:textSize="16sp" />
+
+                        <ImageButton
+                            android:id="@+id/ibtn_back"
+                            android:layout_width="44dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerVertical="true"
+                            android:background="@null"
+                            android:src="@mipmap/icon_black_back" />
+                    </RelativeLayout>
+
+                    <!--banner-->
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.bjypt.vipcard.view.categoryview.CrowdfundingDetailBannerView
+                            android:id="@+id/crowdfundingDetailBannerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="1dp"
+                            android:background="@color/theme_color" />
+
+                        <ImageView
+                            android:id="@+id/igv_zhongchou_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@mipmap/cf_project_status_build" />
+
+                    </RelativeLayout>
 
                     <TextView
                         android:id="@+id/tv_project_name"
@@ -165,16 +213,120 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
+                                android:background="@drawable/crowdfuning_detail_shape_percent"
+                                android:gravity="center"
                                 android:text="200%"
-                                android:textColor="@color/black_3"
-                                android:textSize="14sp" />
+                                android:textColor="#52b9b8"
+                                android:textSize="12sp" />
                         </LinearLayout>
+                        <!--最高年化率-->
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="最高年化率: "
+                                    android:textColor="#333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_high_year_rate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="20%"
+                                    android:textColor="#ff0000"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="最高收益: "
+                                    android:textColor="#333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_hight_income"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2000元"
+                                    android:textColor="#ff0000"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <!--截止日期-->
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="众筹截止日期:"
+                                    android:textColor="#333333"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/tv_end_time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="2018-08-03"
+                                    android:textColor="#52b9b8"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tv_settle_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:text="每日返息"
+                                android:textColor="#333333"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
 
                             <TextView
                                 android:id="@+id/tv_remaining_count"
@@ -203,7 +355,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
                             android:layout_marginTop="8dp"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:visibility="gone">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -290,7 +443,7 @@
             </com.bjypt.vipcard.pulltorefresh.social.custom.CustomCollapsingNoToolbarLayout>
             <!-- SlidingTabLayout 在滑动到顶部时停靠在标题栏布局下边  -->
 
-             <!--   app:layout_scrollFlags="enterAlways"-->
+            <!--   app:layout_scrollFlags="enterAlways"-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

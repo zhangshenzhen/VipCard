@@ -36,6 +36,7 @@ import com.bjypt.vipcard.utils.DialogUtil;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.PermissionUtils;
+import com.bjypt.vipcard.utils.TimeFomartUtils;
 import com.bjypt.vipcard.view.CfProjectDetailAmountItemView;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.view.categoryview.CrowdfundingDetailBannerView;
@@ -79,7 +80,11 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
     ImageView iv_project_favo;
     ImageView iv_project_customer_service;
     Button btn_topay;
-
+    ImageView igv_zhongchou_status;//众筹状态
+    TextView tv_high_year_rate;//最高年化率
+    TextView tv_hight_income;//最高收益
+    TextView tv_end_time;//截止时间
+    TextView tv_settle_type;//返息类型
     private Integer pkprojectid;
     ProjectDetailDataBean projectDetailDataBean;
     CrowdfundingDetailBannerView crowdfundingDetailBannerView;
@@ -128,7 +133,11 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
         crowdfundingDetailBannerView = findViewById(R.id.crowdfundingDetailBannerView);
         cfProjectDetailAmountItemView = findViewById(R.id.cfProjectDetailAmountItemView);
         btn_topay = findViewById(R.id.btn_topay);
-
+        igv_zhongchou_status = findViewById(R.id.igv_zhongchou_status);
+        tv_high_year_rate = findViewById(R.id.tv_high_year_rate);
+        tv_hight_income = findViewById(R.id.tv_hight_income);
+        tv_end_time = findViewById(R.id.tv_end_time);
+        tv_settle_type = findViewById(R.id.tv_settle_type);
         ibtn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -324,6 +333,30 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                 tv_remaining_days.setText(projectDetailDataBean.getResultData().getDays() + "天");
                 tv_merchant_name.setText(projectDetailDataBean.getResultData().getMerchantName());
                 tv_merchant_desc.setText(projectDetailDataBean.getResultData().getOneContent());//修改了字段
+                //新增部分
+                  tv_high_year_rate.setText(projectDetailDataBean.getResultData().getInterestRate()+"%");
+                  tv_hight_income.setText(projectDetailDataBean.getResultData().getMaximumIncome()+"");
+                  tv_end_time.setText(projectDetailDataBean.getResultData().getSettleEndAt()>0 ?
+                    TimeFomartUtils.fomartDate(projectDetailDataBean.getResultData().getSettleEndAt()+""):"2018—08-08");
+
+               if (projectDetailDataBean.getResultData().getSettleType()==0){
+                  tv_settle_type.setText("每日返息");
+               }else if(projectDetailDataBean.getResultData().getSettleType()==1){
+                 tv_settle_type.setText("每日返本息");
+               }else {
+                   tv_settle_type.setText("到期返本息");
+               }
+
+               if (projectDetailDataBean.getResultData().getStatus()==0){
+                igv_zhongchou_status.setImageDrawable(this.getResources().getDrawable(R.mipmap.cf_project_status_build));
+               }else if (projectDetailDataBean.getResultData().getStatus()==1){
+                igv_zhongchou_status.setImageDrawable(this.getResources().getDrawable(R.mipmap.cf_project_status_start));
+               }else if (projectDetailDataBean.getResultData().getStatus()==2){
+                igv_zhongchou_status.setImageDrawable(this.getResources().getDrawable(R.mipmap.cf_project_status_end));
+               }else {
+
+               }
+
                 Picasso.with(this)
                         .load(projectDetailDataBean.getResultData().getMerchantLogo())
                         .error(R.mipmap.merchant_item_error)
