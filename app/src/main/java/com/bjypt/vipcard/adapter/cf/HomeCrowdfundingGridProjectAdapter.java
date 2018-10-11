@@ -5,11 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.adapter.cf.base.BaseHomeCrowdfundingGridNew;
 import com.bjypt.vipcard.adapter.cf.base.BaseHomeCrowdfundingProject;
 import com.bjypt.vipcard.utils.DensityUtil;
 import com.sinia.orderlang.utils.AppInfoUtil;
 
-public class HomeCrowdfundingGridProjectAdapter<T> extends BaseHomeCrowdfundingProject {
+public class HomeCrowdfundingGridProjectAdapter<T> extends BaseHomeCrowdfundingGridNew {
 
 
     public HomeCrowdfundingGridProjectAdapter(Context context) {
@@ -25,6 +26,7 @@ public class HomeCrowdfundingGridProjectAdapter<T> extends BaseHomeCrowdfundingP
 
     @Override
     public View getItemView(Context context) {
-        return LayoutInflater.from(context).inflate(R.layout.fragment_crowdfuning_project_grid_item, null);
+       // return LayoutInflater.from(context).inflate(R.layout.fragment_crowdfuning_project_grid_item, null);
+        return LayoutInflater.from(context).inflate(R.layout.fragment_crowdfuning_project_grid_item_new, null);
     }
 }

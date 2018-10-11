@@ -38,7 +38,7 @@ public class HomeCrowdfundingListProjectAdapter extends BaseRecycleViewAdapter<C
     public HomeCrowdfundingListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_crowdfuning_project_list_item, null);
         HomeCrowdfundingListViewHolder mViewHolder = new HomeCrowdfundingListViewHolder(view);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(icon_width, icon_height);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(icon_width, LinearLayout.LayoutParams.WRAP_CONTENT);
         mViewHolder.icon.setLayoutParams(params);
         return mViewHolder;
     }
@@ -79,6 +79,7 @@ public class HomeCrowdfundingListProjectAdapter extends BaseRecycleViewAdapter<C
                 context.startActivity(intent);
             }
         });
+
     }
 
     @Override

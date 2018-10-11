@@ -2,7 +2,7 @@ package com.bjypt.vipcard.fragment.crowdfunding.entity;
 
 import java.math.BigDecimal;
 
-public class CfProjectItem {
+public class CfProjectItemNew {
     private Integer pkprojectid;
     private Integer pkmerchantid;
     private String projectName;
@@ -11,16 +11,6 @@ public class CfProjectItem {
     private long settleEndAt;
     private Object sponsor;
     private String headImg;
-
-    private String merchantName;
-
-    public String getMerchantName() {
-        return merchantName;
-    }
-
-    public void setMerchantName(String merchantName) {
-        this.merchantName = merchantName;
-    }
 
     public String getProject_name() {
         return project_name;
@@ -49,22 +39,10 @@ public class CfProjectItem {
     private Integer payType;
     private Integer viewAuth;
     private String gridUrl;
+
     private BigDecimal optimalMoney;
 
     private boolean collection;
-
-    public boolean isLook() {
-        return look;
-    }
-
-    public void setLook(boolean look) {
-        this.look = look;
-    }
-
-    private boolean look;
-
-
-    private BigDecimal maxInterestRate;
 
     public BigDecimal getOptimalMoney() {
         return optimalMoney;
@@ -273,12 +251,4 @@ public class CfProjectItem {
     public void setProgress_cf_amount(BigDecimal progress_cf_amount) {
         this.progress_cf_amount = progress_cf_amount;
     }
-    public BigDecimal getMaxInterestRate() {
-        return maxInterestRate;
-    }
-
-    public void setMaxInterestRate(BigDecimal maxInterestRate) {
-        this.maxInterestRate = maxInterestRate;
-    }
-
 }

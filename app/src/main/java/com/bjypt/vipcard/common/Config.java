@@ -273,6 +273,8 @@ public final class Config {
         public static final String h5_CFProjectInterest = app_h5_url + "#zcprofitlist?";
         //购买记录
         public static final String h5_CFBuyRecord = app_h5_url + "#buyrecord?";
+        //众筹购买记录
+        public static final String h5_CrowdFBuyRecord = app_h5_url + "#/crowdbuyrecord?";
         //消费记录
         public static final String h5_CFConsumeRecord = app_h5_url + "#spendrecord?";
         //绑定银行卡

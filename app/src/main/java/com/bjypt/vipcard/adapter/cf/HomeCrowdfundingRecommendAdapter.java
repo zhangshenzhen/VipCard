@@ -6,10 +6,11 @@ import android.view.View;
 
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.adapter.cf.base.BaseHomeCrowdfundingProject;
+import com.bjypt.vipcard.adapter.cf.base.BaseHomeCrowdfundingRecomment;
 import com.bjypt.vipcard.utils.DensityUtil;
 import com.sinia.orderlang.utils.AppInfoUtil;
 
-public class HomeCrowdfundingRecommendAdapter extends BaseHomeCrowdfundingProject {
+public class HomeCrowdfundingRecommendAdapter extends BaseHomeCrowdfundingRecomment{
 
     public HomeCrowdfundingRecommendAdapter(Context context) {
         super(context);
@@ -24,7 +25,7 @@ public class HomeCrowdfundingRecommendAdapter extends BaseHomeCrowdfundingProjec
 
     @Override
     public View getItemView(Context context) {
-        return LayoutInflater.from(context).inflate(R.layout.fragment_crowdfuning_item_recommend, null);
+        return LayoutInflater.from(context).inflate(R.layout.fragment_crowdfuning_item_recommend_new, null);
     }
 
 

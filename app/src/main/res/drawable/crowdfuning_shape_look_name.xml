@@ -8,5 +8,5 @@
     <corners android:radius="6px"/>
 
     <!--设置颜色-->
-   <solid android:color="#cc5ebebd"/>
+   <solid android:color="#555ebebd"/>
 </shape>

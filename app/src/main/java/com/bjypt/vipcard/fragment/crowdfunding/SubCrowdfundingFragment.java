@@ -26,9 +26,10 @@ import com.bjypt.vipcard.fragment.crowdfunding.decoration.GridSpacingItemDecorat
 import com.bjypt.vipcard.fragment.crowdfunding.decoration.HorizontalSpaceItemDecoration;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItem;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectListDataBean;
-import com.bjypt.vipcard.fragment.crowdfunding.entity.CfRecommentProjectItemDataBean;
+
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfTabData;
 import com.bjypt.vipcard.utils.DensityUtil;
+import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -90,7 +91,8 @@ public class SubCrowdfundingFragment extends BaseFragment implements VolleyCallB
         gridSpacingItemDecoration = new GridSpacingItemDecoration(2, DensityUtil.dip2px(getContext(), 5));
         horizontalSpaceItemDecoration = new HorizontalSpaceItemDecoration(DensityUtil.dip2px(getContext(), 5), DensityUtil.dip2px(getContext(), 10));
 
-        listDisplayType();
+       // listDisplayType();
+       gridDisplayType();
     }
 
     private void changeAdapter(boolean isGrid) {
@@ -119,7 +121,7 @@ public class SubCrowdfundingFragment extends BaseFragment implements VolleyCallB
      * 网格的显示设置
      */
     private void gridDisplayType() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);//网格列变为1
         recyclerView.setLayoutManager(gridLayoutManager);
         GridLayoutAnimationController controller = new GridLayoutAnimationController(getContext(), null);
         controller.setColumnDelay(0.15f);
@@ -203,6 +205,7 @@ public class SubCrowdfundingFragment extends BaseFragment implements VolleyCallB
 
     @Override
     public void onSuccess(int reqcode, Object result) {
+        LogUtil.debugPrint("request_code_project_list  = "+result);
         if (reqcode == request_code_project_list) {
             try {
                 ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();
@@ -248,7 +251,7 @@ public class SubCrowdfundingFragment extends BaseFragment implements VolleyCallB
             page += 1;
             is_refresh = false;
         }
-
+        params.put("pkregister", getPkregister());
         params.put("pageNum", page + "");
         params.put("pageSize", pageLength + "");
         params.put("sortType", cfTabData.getTabValue() + "");

@@ -1,5 +1,7 @@
 package com.bjypt.vipcard.fragment.crowdfunding;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +23,7 @@ import android.widget.RelativeLayout;
 
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.crowdfunding.CrowdfundingMainActivity;
 import com.bjypt.vipcard.activity.crowdfunding.projectdetail.CrowdfundingDetailActivity;
 import com.bjypt.vipcard.activity.shangfeng.data.bean.BannerBean;
 import com.bjypt.vipcard.activity.shangfeng.util.ShangfengUriHelper;
@@ -32,7 +35,9 @@ import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.fragment.crowdfunding.decoration.HorizontalSpaceItemDecoration;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItem;
-import com.bjypt.vipcard.fragment.crowdfunding.entity.CfRecommentProjectItemDataBean;
+import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItemNew;
+
+import com.bjypt.vipcard.fragment.crowdfunding.entity.CfRecommentProjectItemDataBeanNew;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfTabData;
 import com.bjypt.vipcard.listener.RecycleViewItemListener;
 import com.bjypt.vipcard.model.cf.BannerBeanResultData;
@@ -82,13 +87,14 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
     private ZhongchouTextViewMult tv_tuijian;
     private RecyclerView rv_recoment_projects;
     private HomeCrowdfundingRecommendAdapter homeCrowdfundingRecommendAdapter;
-    private List<CfProjectItem> recommentProjectList;
+    private List<CfProjectItemNew> recommentProjectList;
     private RelativeLayout relate_notices;
 
     private ImageView iv_display_type;
     private ImageButton ibtn_back;
 
     private boolean is_recomment_scroll = false;
+    private String pkregister;
 
 
     @Nullable
@@ -193,6 +199,14 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
         }
     }
 
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        CrowdfundingMainActivity cfActivity = (CrowdfundingMainActivity) context;
+        pkregister = cfActivity.getPkregister();
+    }
+
     /**
      * 今日推荐
      */
@@ -215,6 +229,8 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
      * 推荐项目
      */
     public void getRecommendData() {
+        Map<String, String> params = new HashMap<>();
+        params.put("pkregister",pkregister);
         Wethod.httpPost(getActivity(), request_code_recoment_project, Config.web.zhongchou_recomend_url, new HashMap<String, String>(), this, View.GONE);
     }
 
@@ -230,7 +246,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
     public void onClickEvent(View v) {
         switch (v.getId()) {
             case R.id.iv_display_type:
-                displayProjectAdapter();
+               // displayProjectAdapter();//暂停切换
                 break;
             case R.id.ibtn_back:
                 getActivity().finish();
@@ -246,6 +262,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
             pullList.refreshComplete();
             handlerNotices(result);
         } else if (reqcode == request_code_recoment_project) {
+            LogUtil.debugPrint("CrowfunFragmentRecomment : " + result);
             handlerRecommentProject(result);
         } else if (reqcode == request_code_normal_project) {
 
@@ -255,7 +272,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
     private void handlerRecommentProject(Object result) {
         try {
             ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();
-            CfRecommentProjectItemDataBean cfRecommentProjectItemDataBean = objectMapper.readValue(result.toString(), CfRecommentProjectItemDataBean.class);
+            CfRecommentProjectItemDataBeanNew cfRecommentProjectItemDataBean = objectMapper.readValue(result.toString(), CfRecommentProjectItemDataBeanNew.class);
             homeCrowdfundingRecommendAdapter.getDatas().clear();
             if (cfRecommentProjectItemDataBean == null || cfRecommentProjectItemDataBean.getResultData() == null || cfRecommentProjectItemDataBean.getResultData().isEmpty()) {
                 relate_notices.setVisibility(View.GONE);

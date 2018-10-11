@@ -123,10 +123,10 @@ public class MyCrowdfundingFragment extends BaseFragment implements VolleyCallBa
                 intent.putExtra("phoneno",phoneno);
                 startActivity(intent);
                 break;
-            case R.id.linear_item_buy_record://购买记录
+            case R.id.linear_item_buy_record://众筹购买记录
                 CommonWebData buy_record = new CommonWebData();
-                buy_record.setTitle("购买记录");
-                buy_record.setUrl(Config.web.h5_CFBuyRecord + params+"&pkmerchantid=" );
+                buy_record.setTitle("众筹购买记录");
+                buy_record.setUrl(Config.web.h5_CrowdFBuyRecord + params+"&pkmerchantid=" );
                 CommonWebActivity.callActivity(getContext(), buy_record);
 
                 break;

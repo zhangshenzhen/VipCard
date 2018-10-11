@@ -115,8 +115,8 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
                 break;
             case R.id.linear_item_buy_record://购买记录
                 CommonWebData buy_record = new CommonWebData();
-                buy_record.setTitle("购买记录");
-                buy_record.setUrl(Config.web.h5_CFBuyRecord + params+"&pkmerchantid=" );
+                buy_record.setTitle("众筹购买记录");
+                buy_record.setUrl(Config.web.h5_CrowdFBuyRecord + params+"&pkmerchantid=" );
                 CommonWebActivity.callActivity(this, buy_record);
 
                 break;

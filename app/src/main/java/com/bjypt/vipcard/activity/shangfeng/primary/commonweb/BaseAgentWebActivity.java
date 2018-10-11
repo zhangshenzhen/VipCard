@@ -11,7 +11,9 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.webkit.DownloadListener;
+import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
@@ -96,6 +98,7 @@ public abstract class BaseAgentWebActivity extends BaseActivity {
                 .go(url);
         mAgentWeb.clearWebCache();
         mAgentWeb.getJsInterfaceHolder().addJavaObject("android", new AndroidInterface(mAgentWeb, this, BaseAgentWebActivity.this));
+
     }
 
 
@@ -173,6 +176,7 @@ public abstract class BaseAgentWebActivity extends BaseActivity {
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
+
 
 
     protected @Nullable

@@ -142,6 +142,43 @@ public class AndroidInterface {
         });
     }
 
+    /*
+    * 进入卡包详情*/
+     @JavascriptInterface
+      public void showCardbag(String json){
+         try {
+         JSONObject jsonObject = new JSONObject(json);
+             String pkmerchantid = jsonObject.optString("pkmerchantid");//商家ID
+             String cardno = jsonObject.optString("cardno");//卡号
+             String elec_cardno = jsonObject.optString("elec_cardno");// 电子卡号
+             String merchant_name = jsonObject.optString("merchant_name");// 商家名称
+             String vip_name = jsonObject.optString("vip_name");//    会员等级
+             String discount = jsonObject.optString("discount");//    折扣
+             String type_num = jsonObject.optString("type_num");//    级别类型： 1.黄金 2.铂金 3.钻石
+
+             Log.i("json", "Thread:" + json);
+
+         } catch (JSONException e) {
+             e.printStackTrace();
+         }
+
+     }
+
+    /*
+     * 进入扫码界面*/
+    @JavascriptInterface
+    public void showBuypage(String json){
+        try {
+         JSONObject jsonObject = new JSONObject(json);
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     /**
      * 显示 第三方地图应用
@@ -208,6 +245,8 @@ public class AndroidInterface {
         });
         dialog.show();
     }
+
+
 
 
 }
