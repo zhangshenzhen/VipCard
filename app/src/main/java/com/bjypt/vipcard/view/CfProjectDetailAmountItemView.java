@@ -88,6 +88,7 @@ public class CfProjectDetailAmountItemView extends LinearLayout implements Volle
                     if (projectDetailAmountItem.getResultData().size() % 3 > 0) {
                         rows = rows + 1;
                     }
+                    linear_table.removeAllViews();//清空之前的
                     LayoutInflater layoutInflater = LayoutInflater.from(getContext());
                     for (int i = 0; i < rows; i++) {
                         LinearLayout linearLayout = new LinearLayout(getContext());
@@ -135,7 +136,7 @@ public class CfProjectDetailAmountItemView extends LinearLayout implements Volle
                             childs.add(view);
                             linearLayout.addView(view);
                         }
-                        linear_table.removeAllViews();//清空之前的
+
                         linear_table.addView(linearLayout);
 
                         //默认选中第一个

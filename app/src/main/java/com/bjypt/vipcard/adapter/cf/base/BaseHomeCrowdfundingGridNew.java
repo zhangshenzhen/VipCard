@@ -30,7 +30,7 @@ public abstract class BaseHomeCrowdfundingGridNew extends BaseRecycleViewAdapter
         this.context = context;
         initSize(context);
         this.width = AppInfoUtil.getScreenWidth(context);
-        this.title_width = (width - DensityUtil.dip2px(context, 0));
+        this.title_width = (width - DensityUtil.dip2px(context, 20));
     }
 
     public abstract void initSize(Context context);
@@ -46,12 +46,9 @@ public abstract class BaseHomeCrowdfundingGridNew extends BaseRecycleViewAdapter
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(w, h);
         mViewHolder.icon.setLayoutParams(params);
 
-       // LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(icon_width, icon_height);
-       // mViewHolder.icon.setLayoutParams(params);
-
         //设置下方标题布局的宽高
-        LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(title_width, LinearLayout.LayoutParams.WRAP_CONTENT/*DensityUtil.dip2px(context, 50)*/);
-        mViewHolder.linear_title.setLayoutParams(params2);
+       // LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT/*DensityUtil.dip2px(context, 50)*/);
+      //  mViewHolder.linear_title.setLayoutParams(params2);
         return mViewHolder;
     }
 
@@ -76,7 +73,7 @@ public abstract class BaseHomeCrowdfundingGridNew extends BaseRecycleViewAdapter
         holder.tv_crowdfun_end.setText(cfProjectItem.getBuyEndAt()>0? FomartToolUtils.fomartDate(cfProjectItem.getBuyEndAt()+""):"2018-08-03");//截止日期
         holder.tv_crowdfun_comeout.setText(cfProjectItem.getSettleEndAt()>0? FomartToolUtils.fomartDate(cfProjectItem.getBuyEndAt()+""):"2018-08-04");
         holder.tv_enterprise_name.setText((""+cfProjectItem.getMerchantName()).isEmpty()? "*****国际旅游有限公司" :cfProjectItem.getMerchantName());
-        holder.tv_rate.setText(cfProjectItem.getMaxInterestRate()+"%" );//年化率
+        holder.tv_rate.setText(FomartToolUtils.fomartNum(cfProjectItem.getMaxInterestRate()+"")+"%" );//年化率
 
 
 

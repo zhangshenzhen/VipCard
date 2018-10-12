@@ -34,7 +34,7 @@ public class FomartToolUtils {
 
     /*
      * 格式化数字*/
-    public static   String fomartNum( double num){
+    public static   String fomartNum( String num){
         DecimalFormat df = new DecimalFormat("#.##");
         BigDecimal bd = new BigDecimal(num+"");
         double db = bd.doubleValue();

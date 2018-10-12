@@ -156,7 +156,7 @@ public class AndroidInterface {
              String discount = jsonObject.optString("discount");//    折扣
              String type_num = jsonObject.optString("type_num");//    级别类型： 1.黄金 2.铂金 3.钻石
 
-             Log.i("json", "Thread:" + json);
+             Log.i("jsonshowCardbag", "Thread:" + json);
 
          } catch (JSONException e) {
              e.printStackTrace();

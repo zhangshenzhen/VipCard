@@ -39,7 +39,7 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
         this.mcontext = context;
         this.sellerBeans= sellerBeans;
         int width = AppInfoUtil.getScreenWidth(context);
-        icon_width = width - DensityUtil.dip2px(context, 10);
+        icon_width = width - DensityUtil.dip2px(context, 20);
         icon_height = (int) (icon_width / 1.82);
 
     }

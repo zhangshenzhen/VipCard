@@ -120,6 +120,16 @@ public class ProjectDetailDataBean  implements Serializable{
         private String telephone;
         private BigDecimal maximumIncome;//最高收益
 
+        public BigDecimal getMaxInterestRate() {
+            return maxInterestRate;
+        }
+
+        public void setMaxInterestRate(BigDecimal maxInterestRate) {
+            this.maxInterestRate = maxInterestRate;
+        }
+
+        private BigDecimal maxInterestRate;
+
         public BigDecimal getMaximumIncome() {
             return maximumIncome;
         }

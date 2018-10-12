@@ -337,10 +337,10 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                 tv_merchant_name.setText(projectDetailDataBean.getResultData().getMerchantName());
                 tv_merchant_desc.setText(projectDetailDataBean.getResultData().getOneContent());//修改了字段
                 //新增部分
-                  tv_high_year_rate.setText(projectDetailDataBean.getResultData().getInterestRate()+"%");
+                  tv_high_year_rate.setText(FomartToolUtils.fomartNum(projectDetailDataBean.getResultData().getMaxInterestRate()+"")+"%");
                   tv_hight_income.setText(projectDetailDataBean.getResultData().getMaximumIncome()+"");
-                  tv_end_time.setText(projectDetailDataBean.getResultData().getSettleEndAt()>0 ?
-                    FomartToolUtils.fomartDate(projectDetailDataBean.getResultData().getSettleEndAt()+""):"2018—08-08");
+                  tv_end_time.setText(projectDetailDataBean.getResultData().getBuyEndAt()>0 ?
+                    FomartToolUtils.fomartDate(projectDetailDataBean.getResultData().getBuyEndAt()+""):"2018—08-08");//截止
 
                if (projectDetailDataBean.getResultData().getSettleType()==0){
                   tv_settle_type.setText("每日返息");

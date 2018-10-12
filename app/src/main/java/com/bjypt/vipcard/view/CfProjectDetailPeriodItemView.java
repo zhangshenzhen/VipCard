@@ -57,7 +57,7 @@ public class CfProjectDetailPeriodItemView extends LinearLayout implements Volle
     public void initView(Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.view_crowdfunding_project_period_item, this);
         //结算日期
-        tv_end_time = findViewById(R.id.tv_end_time);
+        tv_end_time = (TextView)findViewById(R.id.tv_end_time);
        //tv_project_item_desc = findViewById(R.id.tv_project_item_desc);
         linear_table = findViewById(R.id.linear_table);
        // relate_desc = findViewById(R.id.relate_desc);
@@ -104,7 +104,7 @@ public class CfProjectDetailPeriodItemView extends LinearLayout implements Volle
                             Button btn_item_period = view.findViewById(R.id.btn_item_period);
                             TextView tv_interestRate = view.findViewById(R.id.tv_interestRate);
 
-                            tv_interestRate.setText(FomartToolUtils.fomartNum(projectDetailPeriodItem.getResultData().get(j).getInterestRate())+"%");
+                            tv_interestRate.setText(FomartToolUtils.fomartNum(projectDetailPeriodItem.getResultData().get(j).getInterestRate()+"")+"%");
                             btn_item_period.setText(projectDetailPeriodItem.getResultData().get(j).getDurationTitle()+"");
 
                             RelativeLayout relativeLayout = view.findViewById(R.id.re_layout);
@@ -128,6 +128,7 @@ public class CfProjectDetailPeriodItemView extends LinearLayout implements Volle
                                     refreshSelectItem(resultDataBean);
                                 }
                             });
+
                             view.setLayoutParams(subLayoutParams);
                             btn_item_period.setTag(projectDetailPeriodItem.getResultData().get(j));
                             childs.add(view);
@@ -149,16 +150,15 @@ public class CfProjectDetailPeriodItemView extends LinearLayout implements Volle
 
     private void refreshSelectItem(ProjectDetailPeriodItem.ResultDataBean resultDataBean) {
 
-
         for (int i=0;i< childs.size();i++){
             Button btn_item_period = childs.get(i).findViewById(R.id.btn_item_period);
             ProjectDetailPeriodItem.ResultDataBean childBean = (ProjectDetailPeriodItem.ResultDataBean)  btn_item_period.getTag();
-            tv_end_time.setText(FomartToolUtils.fomartDate(childBean.getSettledAt()+""));
             if(resultDataBean.getPkprogressdurationid() == childBean.getPkprogressdurationid()){
                 btn_item_period.setSelected(true);
+                tv_end_time.setText(FomartToolUtils.fomartDate(childBean.getSettledAt()+""));
                 selectItemId = childBean.getPkprogressdurationid();//作为参数传递
-                cfProjectDetailAmountItemView.loadProjectAmountItem(selectItemId ,FomartToolUtils.fomartNum(childBean.getInterestRate()),"");
-                LogUtil.debugPrint("request_code_project_deatil_period_item:  - -  " + selectItemId);
+                cfProjectDetailAmountItemView.loadProjectAmountItem(selectItemId ,FomartToolUtils.fomartNum(childBean.getInterestRate()+""),"");
+
             }else{
                 btn_item_period.setSelected(false);
             }
@@ -167,7 +167,6 @@ public class CfProjectDetailPeriodItemView extends LinearLayout implements Volle
     public int getprogressdurationid(){
         return selectItemId;
     }
-
 
 
     @Override
