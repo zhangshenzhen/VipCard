@@ -2,7 +2,6 @@ package com.bjypt.vipcard.adapter.cf.base;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -14,7 +13,7 @@ import com.bjypt.vipcard.adapter.cf.holder.HomeCrowdfundingGridViewHolder;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItem;
 import com.bjypt.vipcard.utils.AmountDisplayUtil;
 import com.bjypt.vipcard.utils.DensityUtil;
-import com.bjypt.vipcard.utils.TimeFomartUtils;
+import com.bjypt.vipcard.utils.FomartToolUtils;
 import com.sinia.orderlang.utils.AppInfoUtil;
 import com.squareup.picasso.Picasso;
 
@@ -74,9 +73,9 @@ public abstract class BaseHomeCrowdfundingGridNew extends BaseRecycleViewAdapter
         holder.tvProgress_data.setText(progress.multiply(new BigDecimal(100)).intValue() + "%");
         holder.pb_project_progress.setProgress(progress.multiply(new BigDecimal(100)).intValue());//进度条
         holder.tv_target.setText(AmountDisplayUtil.displayChineseWan2(cfProjectItem.getCfAmount()));//目标金额
-        holder.tv_crowdfun_end.setText(cfProjectItem.getBuyEndAt()>0? TimeFomartUtils.fomartDate(cfProjectItem.getBuyEndAt()+""):"2018-08-03");//截止日期
-        holder.tv_crowdfun_comeout.setText(cfProjectItem.getSettleEndAt()>0? TimeFomartUtils.fomartDate(cfProjectItem.getBuyEndAt()+""):"2018-08-04");
-        holder.tv_enterprise_name.setText(cfProjectItem.getMerchantName().isEmpty()? "*****国际旅游有限公司" :cfProjectItem.getMerchantName());
+        holder.tv_crowdfun_end.setText(cfProjectItem.getBuyEndAt()>0? FomartToolUtils.fomartDate(cfProjectItem.getBuyEndAt()+""):"2018-08-03");//截止日期
+        holder.tv_crowdfun_comeout.setText(cfProjectItem.getSettleEndAt()>0? FomartToolUtils.fomartDate(cfProjectItem.getBuyEndAt()+""):"2018-08-04");
+        holder.tv_enterprise_name.setText((""+cfProjectItem.getMerchantName()).isEmpty()? "*****国际旅游有限公司" :cfProjectItem.getMerchantName());
         holder.tv_rate.setText(cfProjectItem.getMaxInterestRate()+"%" );//年化率
 
 

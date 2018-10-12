@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
-import com.bjypt.vipcard.activity.crowdfunding.CrowdfundingPayFinishActivity;
 import com.bjypt.vipcard.activity.crowdfunding.SupportInfoActivity;
 import com.bjypt.vipcard.activity.crowdfunding.projectdetail.entity.ProjectDetailDataBean;
 import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
@@ -36,12 +35,12 @@ import com.bjypt.vipcard.utils.DialogUtil;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.PermissionUtils;
-import com.bjypt.vipcard.utils.TimeFomartUtils;
+import com.bjypt.vipcard.utils.FomartToolUtils;
 import com.bjypt.vipcard.view.CfProjectDetailAmountItemView;
+import com.bjypt.vipcard.view.CfProjectDetailPeriodItemView;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.view.categoryview.CrowdfundingDetailBannerView;
 import com.bjypt.vipcard.widget.SucessTipAutoCloseDialog;
-import com.bjypt.vipcard.widget.SucessTipDialog;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.githang.statusbar.StatusBarCompat;
 import com.squareup.picasso.Picasso;
@@ -93,6 +92,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
 
     public static final int request_pay_result_code = 10001;
     private String telephone;
+    private CfProjectDetailPeriodItemView cfProjectDetailPeriodItemView;
 
     @Override
     public void setContentLayout() {
@@ -132,6 +132,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
         iv_project_customer_service = findViewById(R.id.iv_project_customer_service);
         crowdfundingDetailBannerView = findViewById(R.id.crowdfundingDetailBannerView);
         cfProjectDetailAmountItemView = findViewById(R.id.cfProjectDetailAmountItemView);
+        cfProjectDetailPeriodItemView = findViewById(R.id.cfProjectDetailPeriodItemView);
         btn_topay = findViewById(R.id.btn_topay);
         igv_zhongchou_status = findViewById(R.id.igv_zhongchou_status);
         tv_high_year_rate = findViewById(R.id.tv_high_year_rate);
@@ -163,8 +164,10 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
 
         getProjectDetail();
 
-        cfProjectDetailAmountItemView.loadProjectAmountItem(pkprojectid);
-
+        cfProjectDetailPeriodItemView.loadProjectPeroidItem(pkprojectid,cfProjectDetailAmountItemView);
+        //cfProjectDetailPeriodItemView.
+            //移动到 loadProjectPeroidItem 方法中
+       // cfProjectDetailAmountItemView.loadProjectAmountItem(cfProjectDetailPeriodItemView.getprogressdurationid());
     }
 
     private void getProjectDetail() {
@@ -337,7 +340,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                   tv_high_year_rate.setText(projectDetailDataBean.getResultData().getInterestRate()+"%");
                   tv_hight_income.setText(projectDetailDataBean.getResultData().getMaximumIncome()+"");
                   tv_end_time.setText(projectDetailDataBean.getResultData().getSettleEndAt()>0 ?
-                    TimeFomartUtils.fomartDate(projectDetailDataBean.getResultData().getSettleEndAt()+""):"2018—08-08");
+                    FomartToolUtils.fomartDate(projectDetailDataBean.getResultData().getSettleEndAt()+""):"2018—08-08");
 
                if (projectDetailDataBean.getResultData().getSettleType()==0){
                   tv_settle_type.setText("每日返息");

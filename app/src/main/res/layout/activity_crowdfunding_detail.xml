@@ -381,10 +381,16 @@
 
                     </LinearLayout>
 
-                    <com.bjypt.vipcard.view.CfProjectDetailAmountItemView
+                 <com.bjypt.vipcard.view.CfProjectDetailPeriodItemView
+                        android:id="@+id/cfProjectDetailPeriodItemView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                 <com.bjypt.vipcard.view.CfProjectDetailAmountItemView
                         android:id="@+id/cfProjectDetailAmountItemView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
+
 
                     <LinearLayout
                         android:id="@+id/linear_merchant_project"

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+
+  <!--   <View
+       android:visibility="gone"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="@drawable/cf_project_detail_item_amount"/>
+    >-->
+    <RelativeLayout
+        android:id="@+id/re_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+      <!--  android:background="@drawable/cf_project_detail_item_amount"-->
+    <Button
+        android:id="@+id/btn_item_period"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/peroid_item_bg"
+        android:text="1个月"
+        android:textColor="@drawable/cf_project_detail_item_amount"
+        android:textSize="16sp"
+        android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tv_interestRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="9sp"
+            android:gravity="center"
+            android:text="4.35%"
+            android:textColor="#ffffff"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="10dp"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
+
+
+

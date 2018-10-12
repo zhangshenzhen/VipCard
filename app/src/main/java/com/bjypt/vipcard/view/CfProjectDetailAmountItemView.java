@@ -40,6 +40,10 @@ public class CfProjectDetailAmountItemView extends LinearLayout implements Volle
     private List<View> childs;
 
     private int selectItemId =0;
+    private TextView tv_year_rate;
+    private TextView tv_income;
+    private String rate;
+    private String money;
 
     public CfProjectDetailAmountItemView(Context context) {
         super(context);
@@ -56,15 +60,20 @@ public class CfProjectDetailAmountItemView extends LinearLayout implements Volle
 
     public void initView(Context context, AttributeSet attrs) {
         LayoutInflater.from(context).inflate(R.layout.view_crowdfunding_project_amount_item, this);
+        tv_year_rate = findViewById(R.id.tv_year_rate);
+        tv_income = findViewById(R.id.tv_income);
+
         tv_project_item_desc = findViewById(R.id.tv_project_item_desc);
         linear_table = findViewById(R.id.linear_table);
         relate_desc = findViewById(R.id.relate_desc);
         childs = new ArrayList<>();
     }
 
-    public void loadProjectAmountItem(Integer pkprojectid) {
+    public void loadProjectAmountItem(int pkprogressdurationid ,String rate,String money) {
+        this.rate =rate;
+        this.money = money;
         Map<String, String> params = new HashMap<>();
-        params.put("pkprojectid", pkprojectid + "");
+        params.put("pkprogressdurationid", pkprogressdurationid+"");
         Wethod.httpPost(getContext(), request_code_project_deatil_amount_item, Config.web.cf_project_amount_item, params, this, View.GONE);
     }
 
@@ -126,6 +135,7 @@ public class CfProjectDetailAmountItemView extends LinearLayout implements Volle
                             childs.add(view);
                             linearLayout.addView(view);
                         }
+                        linear_table.removeAllViews();//清空之前的
                         linear_table.addView(linearLayout);
 
                         //默认选中第一个
@@ -145,9 +155,11 @@ public class CfProjectDetailAmountItemView extends LinearLayout implements Volle
 
     private void refreshSelectItem(ProjectDetailAmountItem.ResultDataBean resultDataBean) {
         for (int i=0;i< childs.size();i++){
-
             Button btn_item_amount = childs.get(i).findViewById(R.id.btn_item_amount);
             ProjectDetailAmountItem.ResultDataBean childBean = (ProjectDetailAmountItem.ResultDataBean)  btn_item_amount.getTag();
+
+            tv_year_rate.setText(rate+"%");
+            tv_income.setText("---");
             if(resultDataBean.getPkprogressitemid() == childBean.getPkprogressitemid()){
                 btn_item_amount.setSelected(true);
                 selectItemId = childBean.getPkprogressitemid();

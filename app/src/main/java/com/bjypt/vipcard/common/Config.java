@@ -353,6 +353,10 @@ public final class Config {
          *项目子项信息
          */
         public static final String cf_project_amount_item = cf_url + "api/hybCfMerchantCrowdfundingProjectItem/findAllByProjectId";
+        /*
+        * 项目获取周期*/
+        public static final String cf_project_period_item = cf_url + "api/hybCfMerchantCrowdfundingProjectDuration/findAllProDurationByPkprojectid";
+
         /**
          * 众筹购买支付--预下单
          */

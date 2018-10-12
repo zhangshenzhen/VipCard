@@ -15,7 +15,7 @@ public class CfProjectItem {
     private String merchantName;
 
     public String getMerchantName() {
-        return merchantName;
+        return merchantName+"";
     }
 
     public void setMerchantName(String merchantName) {
