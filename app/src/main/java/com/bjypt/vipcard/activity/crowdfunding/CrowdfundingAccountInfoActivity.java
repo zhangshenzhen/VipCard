@@ -35,7 +35,7 @@ import java.util.Map;
 public class CrowdfundingAccountInfoActivity extends BaseActivity implements VolleyCallBack {
 
     int pkuseraccountid;
-    String displaycardno;
+    String displaycardno ;
     String cardno;
     int pkmerchantid;
     String merchant_name;
@@ -81,7 +81,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
     @Override
     public void beforeInitView() {
 
-        pkuseraccountid = getIntent().getIntExtra("pkuseraccountid", 0);
+       // pkuseraccountid = getIntent().getIntExtra("pkuseraccountid", 0);
         displaycardno = getIntent().getStringExtra("displaycardno");
         cardno = getIntent().getStringExtra("cardno");
         merchant_name = getIntent().getStringExtra("merchant_name");
@@ -93,9 +93,9 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         show_amount_display_key = Config.userConfig.cf_display_amount_key + getPkregister() + pkmerchantid;
         cfAccountData = (CfAccountData) getIntent().getSerializableExtra("rights_and_interests");
 
-        if (pkuseraccountid == 0) {
+      /* if (pkuseraccountid == 0) {
             finish();
-        }
+        }*/
 
 
     }
@@ -266,6 +266,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
                 tv_totle_assets.setText(cfAccountDetailData.getResultData().getTotle_assets() + "");
                 tv_consumption_amount.setText(cfAccountDetailData.getResultData().getConsumption_amount() + "");
                 tv_expected_earnings.setText(cfAccountDetailData.getResultData().getExpected_earnings() + "");
+                pkuseraccountid = cfAccountDetailData.getResultData().getPkuseraccountid();
             }
         } else {
             iv_amount_display.setImageDrawable(getResources().getDrawable(R.mipmap.cf_amount_display_close));

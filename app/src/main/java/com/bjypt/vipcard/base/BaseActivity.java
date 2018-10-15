@@ -272,6 +272,10 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
         return SharedPreferenceUtils.getFromSharedPreference(this, Config.userConfig.pkregister);
     }
 
+    public String getPhene(){
+        return SharedPreferenceUtils.getFromSharedPreference(this, Config.userConfig.phoneno);
+    }
+
     @Override
     public boolean handleMessage(Message msg) {
 

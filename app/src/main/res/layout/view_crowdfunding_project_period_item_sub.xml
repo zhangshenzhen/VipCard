@@ -38,10 +38,11 @@
             android:textSize="9sp"
             android:gravity="center"
             android:text="4.35%"
+            android:singleLine="true"
             android:textColor="#ffffff"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="3dp"
             android:layout_marginRight="10dp"
             />
     </RelativeLayout>

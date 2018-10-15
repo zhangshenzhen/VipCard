@@ -21,10 +21,13 @@ import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
+import com.bjypt.vipcard.fragment.crowdfunding.decoration.GridSpacingItemDecoration;
+import com.bjypt.vipcard.fragment.crowdfunding.decoration.HorizontalSpaceItemDecoration;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItem;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectListDataBean;
 import com.bjypt.vipcard.pulltorefresh.PullToRefreshBase;
 import com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView;
+import com.bjypt.vipcard.utils.DensityUtil;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.view.RecyclerViewSpacesItemDecoration;
@@ -37,6 +40,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.bjypt.vipcard.base.MyApplication.getContext;
 
 public class CollectionProjectActivity  extends BaseActivity implements VolleyCallBack{
 
@@ -100,6 +105,12 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
         //设置布局管理器
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        GridSpacingItemDecoration  gridSpacingItemDecoration = new GridSpacingItemDecoration(1, DensityUtil.dip2px(getContext(), 5));
+        HorizontalSpaceItemDecoration horizontalSpaceItemDecoration = new HorizontalSpaceItemDecoration(DensityUtil.dip2px(getContext(), 5), DensityUtil.dip2px(getContext(), 10));
+        recyclerView.removeItemDecoration(horizontalSpaceItemDecoration);
+        recyclerView.addItemDecoration(gridSpacingItemDecoration);
+
         //设置适配器
         adapter = new CollectionProjectAdapter(this,SellerProjectBeans);
         loadMoreWrapper = new LoadMoreWrapper(adapter);

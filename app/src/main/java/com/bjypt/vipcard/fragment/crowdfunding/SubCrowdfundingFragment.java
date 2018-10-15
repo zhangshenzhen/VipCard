@@ -88,7 +88,7 @@ public class SubCrowdfundingFragment extends BaseFragment implements VolleyCallB
 
         homeCrowdfundingListProjectAdapter = new HomeCrowdfundingListProjectAdapter(mActivity);
         homeCrowdfundingListProjectAdapter.setDatas(projectList);
-        gridSpacingItemDecoration = new GridSpacingItemDecoration(2, DensityUtil.dip2px(getContext(), 5));
+        gridSpacingItemDecoration = new GridSpacingItemDecoration(1, DensityUtil.dip2px(getContext(), 5));
         horizontalSpaceItemDecoration = new HorizontalSpaceItemDecoration(DensityUtil.dip2px(getContext(), 5), DensityUtil.dip2px(getContext(), 10));
 
        // listDisplayType();

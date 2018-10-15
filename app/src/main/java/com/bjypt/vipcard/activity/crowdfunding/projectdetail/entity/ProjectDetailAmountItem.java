@@ -64,6 +64,16 @@ public class ProjectDetailAmountItem {
         private String explain;
         private boolean checkBankNo;
 
+        public BigDecimal getAmountOfIncome() {
+            return amountOfIncome;
+        }
+
+        public void setAmountOfIncome(BigDecimal amountOfIncome) {
+            this.amountOfIncome = amountOfIncome;
+        }
+
+        private BigDecimal amountOfIncome;
+
         public BigDecimal getItemAmount() {
             return itemAmount;
         }

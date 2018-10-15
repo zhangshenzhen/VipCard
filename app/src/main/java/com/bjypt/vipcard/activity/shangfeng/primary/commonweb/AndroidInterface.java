@@ -11,11 +11,13 @@ import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
 
+import com.bjypt.vipcard.activity.crowdfunding.CrowdfundingAccountInfoActivity;
 import com.bjypt.vipcard.activity.shangfeng.util.ApplicationUtils;
 import com.bjypt.vipcard.activity.shangfeng.util.IsJudgeUtils;
 import com.bjypt.vipcard.activity.shangfeng.util.ToastUtils;
 import com.bjypt.vipcard.activity.shangfeng.widget.dialog.BottomDialog;
 import com.bjypt.vipcard.base.MyApplication;
+import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.utils.AES;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.PhoneCpuId;
@@ -148,15 +150,28 @@ public class AndroidInterface {
       public void showCardbag(String json){
          try {
          JSONObject jsonObject = new JSONObject(json);
-             String pkmerchantid = jsonObject.optString("pkmerchantid");//商家ID
+             int pkmerchantid = jsonObject.optInt("pkmerchantid");//商家ID
              String cardno = jsonObject.optString("cardno");//卡号
              String elec_cardno = jsonObject.optString("elec_cardno");// 电子卡号
              String merchant_name = jsonObject.optString("merchant_name");// 商家名称
              String vip_name = jsonObject.optString("vip_name");//    会员等级
              String discount = jsonObject.optString("discount");//    折扣
-             String type_num = jsonObject.optString("type_num");//    级别类型： 1.黄金 2.铂金 3.钻石
+             int type_num = jsonObject.optInt("type_num");//    级别类型： 1.黄金 2.铂金 3.钻石
 
              Log.i("jsonshowCardbag", "Thread:" + json);
+
+             Intent intent = new Intent();
+            // intent.putExtra("pkuseraccountid", getPkuseraccountid());
+             intent.putExtra("cardno", cardno);
+             intent.putExtra("displaycardno", cardno);
+             intent.putExtra("pkmerchantid", pkmerchantid);
+             intent.putExtra("merchant_name", merchant_name);
+             intent.putExtra("vip_name", vip_name);
+             intent.putExtra("type_num", type_num);
+             intent.putExtra("phoneno", Config.userConfig.phoneno);
+             intent.setClass(context, CrowdfundingAccountInfoActivity.class);
+             context.startActivity(intent);
+
 
          } catch (JSONException e) {
              e.printStackTrace();

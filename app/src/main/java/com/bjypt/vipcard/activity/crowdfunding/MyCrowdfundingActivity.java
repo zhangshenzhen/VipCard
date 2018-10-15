@@ -166,6 +166,7 @@ public class MyCrowdfundingActivity extends BaseActivity implements VolleyCallBa
                 CfUserInfoData userInfoData = objectMapper.readValue(result.toString(), CfUserInfoData.class);
                 tv_nickname.setText(userInfoData.getResultData().getNickname());
                 phoneno = userInfoData.getResultData().getPhoneno();//获取phoneno
+
                 if (userInfoData != null && userInfoData.getResultData() != null && StringUtil.isNotEmpty(userInfoData.getResultData().getPosition())) {
                     ImageLoader.getInstance().displayImage(userInfoData.getResultData().getPosition(), iv_headpic, AppConfig.CF_HEADER_GRAY);
                 }

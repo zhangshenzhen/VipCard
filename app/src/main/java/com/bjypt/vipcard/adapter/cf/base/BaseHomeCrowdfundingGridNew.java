@@ -79,7 +79,9 @@ public abstract class BaseHomeCrowdfundingGridNew extends BaseRecycleViewAdapter
 
        if(cfProjectItem.isLook()==false){
            holder.btn_look.setVisibility(View.GONE);
-        }
+        }else {
+
+       }
 
         Picasso.with(context)
                 .load(cfProjectItem.getGridUrl())

@@ -19,6 +19,7 @@ import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.utils.DensityUtil;
+import com.bjypt.vipcard.utils.FomartToolUtils;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.widget.FlyBanner;
@@ -155,13 +156,12 @@ public class CfProjectDetailAmountItemView extends LinearLayout implements Volle
     }
 
     private void refreshSelectItem(ProjectDetailAmountItem.ResultDataBean resultDataBean) {
+          tv_year_rate.setText(rate+"%");//传递过来的
         for (int i=0;i< childs.size();i++){
             Button btn_item_amount = childs.get(i).findViewById(R.id.btn_item_amount);
             ProjectDetailAmountItem.ResultDataBean childBean = (ProjectDetailAmountItem.ResultDataBean)  btn_item_amount.getTag();
-
-            tv_year_rate.setText(rate+"%");
-            tv_income.setText("---");
             if(resultDataBean.getPkprogressitemid() == childBean.getPkprogressitemid()){
+              tv_income.setText(childBean.getAmountOfIncome()==null?childBean.getAmountOfIncome()+"":FomartToolUtils.fomartMoney(childBean.getAmountOfIncome()));//将获收益
                 btn_item_amount.setSelected(true);
                 selectItemId = childBean.getPkprogressitemid();
             }else{

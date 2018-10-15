@@ -95,7 +95,7 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
         sellerViewHoldr.progressBar.setProgressDrawable(d);*/
 
         sellerViewHoldr.tv_target.setText(AmountDisplayUtil.displayChineseWan2(sellBean.getCfAmount()));
-        sellerViewHoldr.tv_max_rate.setText(sellBean.getMaxInterestRate()+"%");
+        sellerViewHoldr.tv_max_rate.setText(sellBean.getInterestRate()+"%");
         sellerViewHoldr.tv_end_data.setText(sellBean.getBuyEndAt()>0? FomartToolUtils.fomartDate(sellBean.getBuyEndAt()+""):"2018-08-03");//截止
         sellerViewHoldr.tv_come_out.setText(sellBean.getSettleEndAt()>0? FomartToolUtils.fomartDate(sellBean.getBuyEndAt()+""):"2018-08-04");//结算
         sellerViewHoldr.tv_merchant_name.setText((sellBean.getMerchantName()).isEmpty()? "**.***国际旅游有限公司" :sellBean.getMerchantName());
