@@ -12,7 +12,34 @@ public class CfProjectItem {
     private Object sponsor;
     private String headImg;
 
-    private String merchantName;
+    private String merchantName; //商家名称
+    private String merchantHideName; //商家隐藏名称
+    private boolean look;//是否查看
+    private int examine_status = -1;//状态
+
+    public int getExamine_status() {
+
+        return examine_status;
+    }
+
+    public void setExamine_status(int examine_status) {
+        this.examine_status = examine_status;
+    }
+
+
+
+
+
+
+
+    public String getMerchantHideName() {
+        return merchantHideName;
+    }
+
+    public void setMerchantHideName(String merchantHideName) {
+        this.merchantHideName = merchantHideName;
+    }
+
 
     public String getMerchantName() {
         return merchantName+"";
@@ -61,7 +88,6 @@ public class CfProjectItem {
         this.look = look;
     }
 
-    private boolean look;
 
 
     private BigDecimal maxInterestRate;

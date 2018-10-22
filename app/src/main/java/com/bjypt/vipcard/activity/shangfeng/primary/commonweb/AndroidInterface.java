@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 
 import com.bjypt.vipcard.activity.crowdfunding.CrowdfundingAccountInfoActivity;
+import com.bjypt.vipcard.activity.crowdfunding.CrowdfundingQRPayActivity;
 import com.bjypt.vipcard.activity.shangfeng.util.ApplicationUtils;
 import com.bjypt.vipcard.activity.shangfeng.util.IsJudgeUtils;
 import com.bjypt.vipcard.activity.shangfeng.util.ToastUtils;
@@ -21,6 +22,7 @@ import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.utils.AES;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.PhoneCpuId;
+import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.just.agentweb.AgentWeb;
@@ -168,7 +170,7 @@ public class AndroidInterface {
              intent.putExtra("merchant_name", merchant_name);
              intent.putExtra("vip_name", vip_name);
              intent.putExtra("type_num", type_num);
-             intent.putExtra("phoneno", Config.userConfig.phoneno);
+             intent.putExtra("phoneno", SharedPreferenceUtils.getFromSharedPreference(context, Config.userConfig.phoneno));
              intent.setClass(context, CrowdfundingAccountInfoActivity.class);
              context.startActivity(intent);
 
@@ -184,10 +186,13 @@ public class AndroidInterface {
     @JavascriptInterface
     public void showBuypage(String json){
         try {
-         JSONObject jsonObject = new JSONObject(json);
-
-
-
+            JSONObject jsonObject = new JSONObject(json);
+            int pkmerchantid = jsonObject.optInt("pkmerchantid");//商家ID
+            Intent intent = new Intent(context, CrowdfundingQRPayActivity.class);
+            intent.putExtra("pkmerchantid", pkmerchantid);
+            intent.putExtra("pkregister",SharedPreferenceUtils.getFromSharedPreference(context, Config.userConfig.pkregister));
+            intent.putExtra("pkmuser","" );
+            context.startActivity(intent);
         } catch (JSONException e) {
             e.printStackTrace();
         }

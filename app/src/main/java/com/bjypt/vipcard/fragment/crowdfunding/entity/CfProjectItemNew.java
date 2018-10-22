@@ -11,6 +11,8 @@ public class CfProjectItemNew {
     private long settleEndAt;
     private Object sponsor;
     private String headImg;
+    private BigDecimal maxInterestRate;
+
 
     public String getProject_name() {
         return project_name;
@@ -42,7 +44,20 @@ public class CfProjectItemNew {
 
     private BigDecimal optimalMoney;
 
+    private BigDecimal maximumIncome;
+
+    public void setMaximumIncome(BigDecimal maximumIncome) {
+        this.maximumIncome = maximumIncome;
+    }
+
+
+    public BigDecimal getMaximumIncome() {
+        return maximumIncome;
+    }
+
+
     private boolean collection;
+
 
     public BigDecimal getOptimalMoney() {
         return optimalMoney;
@@ -251,4 +266,7 @@ public class CfProjectItemNew {
     public void setProgress_cf_amount(BigDecimal progress_cf_amount) {
         this.progress_cf_amount = progress_cf_amount;
     }
+
+    //--------------------------------------
+
 }

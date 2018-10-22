@@ -325,6 +325,11 @@ public final class Config {
          * 根据项目ID查询项目详情
          */
         public static final String get_crowdfunding_project_detail = cf_url + "api/hybCfProjectHtml/getProjectById";
+
+       /*
+       * 列表商家名查看*/
+       public static final String Btn_look_MerChant_name =cf_url+"api/hybCfUserApplicationRecord/insHybCfUserApplicationRecord";
+
         /**
          * 众筹帮详情 产品介绍
          */

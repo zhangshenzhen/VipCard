@@ -26,7 +26,7 @@ public class FomartToolUtils {
     /*
      * 格式化*/
     public  static   String fomartMoney( BigDecimal big){
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("#.###");
         BigDecimal bd = new BigDecimal(big+"");
         double db = bd.doubleValue();
         return df.format(db)+"元";

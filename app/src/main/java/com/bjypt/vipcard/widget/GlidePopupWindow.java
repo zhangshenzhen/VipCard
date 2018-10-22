@@ -82,5 +82,4 @@ public class GlidePopupWindow extends PopupWindow {
         ImageLoader.getInstance().displayImage(weatherBean.getImageUrl(), iv_weather);
     }
 
-
 }

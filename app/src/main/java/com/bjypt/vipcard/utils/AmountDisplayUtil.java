@@ -22,7 +22,7 @@ public class AmountDisplayUtil {
 
     public static final String displayChineseWan2(BigDecimal amount){
 
-        if (amount.compareTo(new BigDecimal(1))<=0){
+        if (amount.compareTo(new BigDecimal(0))<=0){
             return 0+"元";
           }
         if(amount.compareTo(new BigDecimal(1000))>=0){

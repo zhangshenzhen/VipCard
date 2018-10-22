@@ -205,7 +205,7 @@ public class SubCrowdfundingFragment extends BaseFragment implements VolleyCallB
 
     @Override
     public void onSuccess(int reqcode, Object result) {
-        LogUtil.debugPrint("request_code_project_list  = "+result);
+        LogUtil.debugPrint("request_code_project_listsr  = "+result);
         if (reqcode == request_code_project_list) {
             try {
                 ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();

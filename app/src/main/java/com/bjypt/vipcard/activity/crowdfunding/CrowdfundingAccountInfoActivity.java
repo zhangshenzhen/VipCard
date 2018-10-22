@@ -283,7 +283,9 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
             ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();
             try {
                 cfAccountDetailData = objectMapper.readValue(result.toString(), CfAccountDetailData.class);
-
+                 if (cfAccountDetailData !=null){
+                     pkuseraccountid = cfAccountDetailData.getResultData().getPkuseraccountid();
+                 }
                 showAmount();
             } catch (IOException e) {
                 e.printStackTrace();

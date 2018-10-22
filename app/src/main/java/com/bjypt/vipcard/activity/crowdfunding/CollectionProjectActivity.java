@@ -105,9 +105,9 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
         //设置布局管理器
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
+        //设置间距
         GridSpacingItemDecoration  gridSpacingItemDecoration = new GridSpacingItemDecoration(1, DensityUtil.dip2px(getContext(), 5));
-        HorizontalSpaceItemDecoration horizontalSpaceItemDecoration = new HorizontalSpaceItemDecoration(DensityUtil.dip2px(getContext(), 5), DensityUtil.dip2px(getContext(), 10));
+        HorizontalSpaceItemDecoration horizontalSpaceItemDecoration = new HorizontalSpaceItemDecoration(DensityUtil.dip2px(getContext(), 5), DensityUtil.dip2px(getContext(), 8));
         recyclerView.removeItemDecoration(horizontalSpaceItemDecoration);
         recyclerView.addItemDecoration(gridSpacingItemDecoration);
 

@@ -22,11 +22,14 @@ import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
+import com.bjypt.vipcard.fragment.crowdfunding.decoration.GridSpacingItemDecoration;
+import com.bjypt.vipcard.fragment.crowdfunding.decoration.HorizontalSpaceItemDecoration;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItem;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectListDataBean;
 import com.bjypt.vipcard.model.cf.CfProjectDetailItemDataBean;
 import com.bjypt.vipcard.pulltorefresh.PullToRefreshBase;
 import com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView;
+import com.bjypt.vipcard.utils.DensityUtil;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.view.RecyclerViewSpacesItemDecoration;
@@ -99,6 +102,13 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
         //设置布局管理器
         LinearLayoutManager layoutManager=new LinearLayoutManager(CrowdfundingSellerProjectActivity.this,LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
+
+        //设置间距
+        GridSpacingItemDecoration gridSpacingItemDecoration = new GridSpacingItemDecoration(1, DensityUtil.dip2px(getContext(), 5));
+        HorizontalSpaceItemDecoration horizontalSpaceItemDecoration = new HorizontalSpaceItemDecoration(DensityUtil.dip2px(getContext(), 5), DensityUtil.dip2px(getContext(), 8));
+        recyclerView.removeItemDecoration(horizontalSpaceItemDecoration);
+        recyclerView.addItemDecoration(gridSpacingItemDecoration);
+
         //设置适配器
         adapter = new SellerProjectAdapter(CrowdfundingSellerProjectActivity.this,SellerProjectBeans);
         loadMoreWrapper = new LoadMoreWrapper(adapter);
@@ -147,6 +157,7 @@ public class CrowdfundingSellerProjectActivity extends BaseActivity implements V
 
         Map<String,String> maps = new HashMap<>();
         maps.put("pkmerchantid",pkmerchantid+"");
+        maps.put("pkregister",getPkregister());
         maps.put("pageNum",page+"");
         maps.put("pageSize",pageLength+"");
         //String url = "http://123.57.232.188:19096/api/hybCfProject/getProjectByMerchantId";

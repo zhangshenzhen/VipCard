@@ -6,25 +6,35 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.amap.api.maps.model.Text;
+
+import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
 
 import com.bjypt.vipcard.activity.crowdfunding.projectdetail.CrowdfundingDetailActivity;
+
+import com.bjypt.vipcard.base.VolleyCallBack;
+import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItem;
 import com.bjypt.vipcard.utils.AmountDisplayUtil;
 import com.bjypt.vipcard.utils.DensityUtil;
 import com.bjypt.vipcard.utils.FomartToolUtils;
+import com.bjypt.vipcard.utils.LogUtil;
+import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bumptech.glide.Glide;
 import com.sinia.orderlang.utils.AppInfoUtil;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CollectionProjectAdapter extends RecyclerView.Adapter {
 
@@ -67,9 +77,9 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         SellerViewHoldr sellerViewHoldr = (SellerViewHoldr) holder;
-        //   SellerProjectBean.SellBean sellBean = sellerBeans.get(position);
         CfProjectItem sellBean = sellerBeans.get(position);
-
+        sellerViewHoldr.btn_look.setVisibility(View.GONE);
+       sellerViewHoldr.tv_project_Name.setText(sellBean.getProjectName());//项目名称
       if(sellBean.getStatus() != null){
        if(sellBean.getStatus() ==3){
             sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_end));
@@ -83,40 +93,26 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
        }
 
 
-
         Glide.with(mcontext).load(sellBean.getHeadImg()).error(R.mipmap.more).into(sellerViewHoldr.imageView);
-        sellerViewHoldr.tv_project_Name.setText(sellBean.getProjectName());//项目名称
-
          if (sellBean.getOptimalMoney()!= null) {
             // sellerViewHoldr.tv_youhui_num.setText("起投金额：" + sellBean.getOptimalMoney().stripTrailingZeros().toPlainString() + "");
          }
-       /* ClipDrawable d = new ClipDrawable(new ColorDrawable(Color.parseColor("#00FF99")), Gravity.LEFT,ClipDrawable.HORIZONTAL);
-        sellerViewHoldr.progressBar.setBackgroundColor(Color.parseColor("#BBFFFF"));
-        sellerViewHoldr.progressBar.setProgressDrawable(d);*/
 
         sellerViewHoldr.tv_target.setText(AmountDisplayUtil.displayChineseWan2(sellBean.getCfAmount()));
-        sellerViewHoldr.tv_max_rate.setText(sellBean.getInterestRate()+"%");
-        sellerViewHoldr.tv_end_data.setText(sellBean.getBuyEndAt()>0? FomartToolUtils.fomartDate(sellBean.getBuyEndAt()+""):"2018-08-03");//截止
-        sellerViewHoldr.tv_come_out.setText(sellBean.getSettleEndAt()>0? FomartToolUtils.fomartDate(sellBean.getBuyEndAt()+""):"2018-08-04");//结算
-        sellerViewHoldr.tv_merchant_name.setText((sellBean.getMerchantName()).isEmpty()? "**.***国际旅游有限公司" :sellBean.getMerchantName());
-
+        sellerViewHoldr.tv_max_rate.setText(FomartToolUtils.fomartNum(sellBean.getMaxInterestRate()+"")+"%");
+        sellerViewHoldr.tv_end_data.setText(sellBean.getBuyEndAt()>0? FomartToolUtils.fomartDate(sellBean.getBuyEndAt()+""):"0000-00-00");//截止
+        sellerViewHoldr.tv_come_out.setText(sellBean.getSettleEndAt()>0? FomartToolUtils.fomartDate(sellBean.getSettleEndAt()+""):"0000-00-00");//结算
+        sellerViewHoldr.tv_merchant_name.setText(sellBean.getMerchantName());
         if(sellBean.getCfAmount().compareTo(new BigDecimal(0))>0){
             BigDecimal progress = sellBean.getProgressCfAmount().divide(sellBean.getCfAmount(),2, BigDecimal.ROUND_HALF_UP);
-
             BigDecimal b=new BigDecimal(String.valueOf(progress));
             double rate = b.doubleValue()*100;
-           // sellerViewHoldr.progressBar.setProgress((int)rate);
-          //  sellerViewHoldr.tv_precent.setText(progress.multiply(new BigDecimal(100)).intValue() +"%");
             sellerViewHoldr.progressBar2.setProgress((int)rate);
             sellerViewHoldr.tv_precent2.setText(progress.multiply(new BigDecimal(100)).intValue() +"%");
-
         }else{
-          //  sellerViewHoldr.progressBar.setProgress(100);
-          //  sellerViewHoldr.tv_precent.setText(sellBean.getProgressCfAmount().stripTrailingZeros().toPlainString()+"%");
             sellerViewHoldr.progressBar2.setProgress(100);
             sellerViewHoldr.tv_precent2.setText(sellBean.getProgressCfAmount().stripTrailingZeros().toPlainString()+"%");
        }
-
 
         //图片条目的点击事件
         sellerViewHoldr.re_item.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +127,7 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
         });
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -153,17 +150,12 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
         public final TextView tv_end_data;//截止日
         public final TextView tv_come_out;//截止日
         public final TextView tv_merchant_name;
+        public final Button btn_look;
 
         public SellerViewHoldr(View itemView) {
 
             super(itemView);
-           // tv_project_des = itemView.findViewById(R.id.tv_project_des);
-           /* imageView = itemView.findViewById(R.id.igv_seller);
-            tv_project_Name = itemView.findViewById(R.id.tv_project_des);
-            progressBar = itemView.findViewById(R.id.progress_bar);
-            tv_precent = itemView.findViewById(R.id.tv_precent);
-            tv_youhui_num = itemView.findViewById(R.id.tv_youhui_num);
-            igv = itemView.findViewById(R.id.igv);*/
+
             re_item = itemView.findViewById(R.id.re_item);
             imageView = itemView.findViewById(R.id.igv_icon);
             igv = itemView.findViewById(R.id.igv_zhongchou);
@@ -178,7 +170,7 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
             tv_end_data = itemView.findViewById(R.id.tv_end_data);
             tv_come_out = itemView.findViewById(R.id.tv_come_out);
             tv_merchant_name = itemView.findViewById(R.id.tev_mcher_name);
-
+            btn_look = itemView.findViewById(R.id.btn_look);
         }
     }
 

@@ -221,7 +221,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
 
     @Override
     public void onFailed(int reqcode, Object result) {
-        Wethod.ToFailMsg(this, result);
+        Wethod.ToFailMsg(this, "DetailsonFailed"+result);
     }
 
     @Override
@@ -336,9 +336,11 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                 tv_remaining_days.setText(projectDetailDataBean.getResultData().getDays() + "天");
                 tv_merchant_name.setText(projectDetailDataBean.getResultData().getMerchantName());
                 tv_merchant_desc.setText(projectDetailDataBean.getResultData().getOneContent());//修改了字段
+
                 //新增部分
                   tv_high_year_rate.setText(FomartToolUtils.fomartNum(projectDetailDataBean.getResultData().getMaxInterestRate()+"")+"%");
-                  tv_hight_income.setText(projectDetailDataBean.getResultData().getMaximumIncome()+"");
+                  tv_hight_income.setText(projectDetailDataBean.getResultData().getMaximumIncome()==null ?projectDetailDataBean.getResultData().getMaximumIncome()+""
+                          :FomartToolUtils.fomartMoney(projectDetailDataBean.getResultData().getMaximumIncome()));
                   tv_end_time.setText(projectDetailDataBean.getResultData().getBuyEndAt()>0 ?
                     FomartToolUtils.fomartDate(projectDetailDataBean.getResultData().getBuyEndAt()+""):"2018—08-08");//截止
 

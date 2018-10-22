@@ -15,6 +15,8 @@ import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItem;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItemNew;
 import com.bjypt.vipcard.utils.AmountDisplayUtil;
 import com.bjypt.vipcard.utils.DensityUtil;
+import com.bjypt.vipcard.utils.FomartToolUtils;
+import com.bjypt.vipcard.utils.LogUtil;
 import com.squareup.picasso.Picasso;
 
 import java.math.BigDecimal;
@@ -56,12 +58,13 @@ public abstract class BaseHomeCrowdfundingRecomment extends BaseRecycleViewAdapt
             }
         }
 
+        LogUtil.debugPrint("maximumIncomecfProjectItem. : "+cfProjectItem.toString());
         BigDecimal progress = cfProjectItem.getProgressCfAmount().divide(cfProjectItem.getCfAmount(), 2, BigDecimal.ROUND_HALF_UP);
         holder.tvProgress_data.setText(progress.multiply(new BigDecimal(100)).intValue() + "%");
         holder.pb_project_progress.setProgress(progress.multiply(new BigDecimal(100)).intValue());//进度条
         holder.tv_target_money.setText(AmountDisplayUtil.displayChineseWan2(cfProjectItem.getCfAmount()));
-
-       // holder.tv_max_income.setText(AmountDisplayUtil.displayChineseWan2());//最高收益
+        holder.tv_max_income.setText(cfProjectItem.getMaximumIncome()!=null?FomartToolUtils.fomartMoney(cfProjectItem.getMaximumIncome()) : cfProjectItem.getMaximumIncome()+"元");
+       // holder.tv_max_income.setText(AmountDisplayUtil.displayChineseWan2(cfProjectItem.getMaximunIncome()));//最高收益
         Picasso.with(context)
                 .load(cfProjectItem.getGridUrl())
                 .error(R.mipmap.more)
@@ -76,13 +79,11 @@ public abstract class BaseHomeCrowdfundingRecomment extends BaseRecycleViewAdapt
         });
     }
 
-
     public abstract View getItemView(Context context);
 
     @Override
     public int getItemCount() {
         return datas.size();
     }
-
 
 }

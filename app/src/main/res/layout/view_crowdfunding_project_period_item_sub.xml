@@ -25,7 +25,7 @@
         android:layout_height="43dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:background="@mipmap/peroid_item_bg"
+        android:background="@drawable/selected_period_item_bg"
         android:text="1个月"
         android:textColor="@drawable/cf_project_detail_item_amount"
         android:textSize="16sp"
