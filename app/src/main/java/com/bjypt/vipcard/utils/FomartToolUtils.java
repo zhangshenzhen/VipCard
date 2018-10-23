@@ -40,4 +40,17 @@ public class FomartToolUtils {
         double db = bd.doubleValue();
         return df.format(db)+"";
     }
+
+    /*
+     * 格式化数字2*/
+    public static   String fomartPercentNum( String num){
+        DecimalFormat df = new DecimalFormat("#.##");
+        BigDecimal bd = new BigDecimal(num+"");
+        double db = bd.doubleValue();
+        String percent = df.format(db)+"";
+        if (percent.length()>4){
+          return percent.substring(0,3)+"..";
+        }
+        return percent;
+    }
 }

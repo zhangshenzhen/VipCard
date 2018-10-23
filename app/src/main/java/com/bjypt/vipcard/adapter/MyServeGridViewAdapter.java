@@ -56,7 +56,7 @@ public class MyServeGridViewAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-
+//隐藏这里的众筹按钮 if(position==6){ holder.iv_photo.setVisibility(View.GONE); holder.tv_name.setVisibility(View.GONE);}
         if ("Y".equals(getFromSharePreference(Config.userConfig.is_Login))) {
             if (position == getCount() - 1 && "0".equals(getFromSharePreference(Config.userConfig.is_card_sales))) {
                 holder.iv_photo.setVisibility(View.GONE);

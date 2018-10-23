@@ -13,11 +13,11 @@
        android:layout_height="wrap_content"
        android:background="@drawable/cf_project_detail_item_amount"/>
     >-->
-    <RelativeLayout
-        android:id="@+id/re_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-      <!--  android:background="@drawable/cf_project_detail_item_amount"-->
+  <RelativeLayout
+      android:id="@+id/re_layout"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+    <!--  android:background="@drawable/cf_project_detail_item_amount"-->
     <Button
         android:id="@+id/btn_item_period"
         style="?android:attr/borderlessButtonStyle"
@@ -31,21 +31,21 @@
         android:textSize="16sp"
         android:textStyle="normal" />
 
-        <TextView
-            android:id="@+id/tv_interestRate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="9sp"
-            android:gravity="center"
-            android:text="4.35%"
-            android:singleLine="true"
-            android:textColor="#ffffff"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="3dp"
-            android:layout_marginRight="10dp"
-            />
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_interestRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="3dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="4.35%"
+        android:textColor="#ffffff"
+        android:textSize="9sp" />
+  </RelativeLayout>
 
 </LinearLayout>
 

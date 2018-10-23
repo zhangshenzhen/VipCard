@@ -104,7 +104,7 @@ public class CfProjectDetailPeriodItemView extends LinearLayout implements Volle
                             Button btn_item_period = view.findViewById(R.id.btn_item_period);
                             TextView tv_interestRate = view.findViewById(R.id.tv_interestRate);
 
-                            tv_interestRate.setText(FomartToolUtils.fomartNum(projectDetailPeriodItem.getResultData().get(j).getInterestRate()+"")+"%");
+                            tv_interestRate.setText(FomartToolUtils.fomartPercentNum(projectDetailPeriodItem.getResultData().get(j).getInterestRate()+"")+"%");
                             btn_item_period.setText(projectDetailPeriodItem.getResultData().get(j).getDurationTitle()+"");
 
                             RelativeLayout relativeLayout = view.findViewById(R.id.re_layout);
