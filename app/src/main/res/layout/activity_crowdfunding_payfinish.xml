@@ -138,7 +138,7 @@
                 android:orientation="horizontal">
 
                 <Button android:id="@+id/btn_next_buy"
-                    android:layout_width="100dp"
+                    android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:background="@drawable/btn_cf_pay_finish"
                     android:text="继续购买"
@@ -146,11 +146,11 @@
                     android:textSize="17sp" />
 
                 <Button android:id="@+id/btn_main_page"
-                    android:layout_width="100dp"
+                    android:layout_width="120dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="45dp"
                     android:background="@drawable/btn_cf_pay_finish"
-                    android:text="返回众筹购买记录"
+                    android:text="返回购买记录"
                     android:textColor="@color/black_3"
                     android:textSize="17sp" />
             </LinearLayout>

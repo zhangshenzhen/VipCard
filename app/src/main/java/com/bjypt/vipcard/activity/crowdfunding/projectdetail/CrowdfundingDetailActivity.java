@@ -3,6 +3,7 @@ package com.bjypt.vipcard.activity.crowdfunding.projectdetail;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
@@ -235,7 +236,6 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
         linear_merchant_project.setOnClickListener(this);
         iv_project_customer_service.setOnClickListener(this);
         iv_project_favo.setOnClickListener(this);
-
     }
 
     @Override
@@ -322,7 +322,8 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
             if (projectDetailDataBean != null && projectDetailDataBean.getResultData() != null) {
                 tv_project_name.setText(projectDetailDataBean.getResultData().getProjectName());
                 tv_cf_amount.setText(AmountDisplayUtil.displayChineseWan(projectDetailDataBean.getResultData().getCfAmount()));
-                tv_progress_amount.setText(AmountDisplayUtil.displayChineseWan2(projectDetailDataBean.getResultData().getProgressCfAmount()));
+                tv_progress_amount.setText("¥"+FomartToolUtils.fomartMoney(projectDetailDataBean.getResultData().getProgressCfAmount()));
+               // tv_progress_amount.setText("¥"+projectDetailDataBean.getResultData().getProgressCfAmount()+"元");
                 if (projectDetailDataBean.getResultData().getCfAmount().compareTo(new BigDecimal(0)) > 0) {
                     BigDecimal progress = projectDetailDataBean.getResultData().getProgressCfAmount().divide(projectDetailDataBean.getResultData().getCfAmount(), 2, BigDecimal.ROUND_HALF_UP);
                     pb_project_progress.setProgress(progress.intValue() > 100 ? 100 : progress.intValue());
@@ -343,6 +344,15 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                           :FomartToolUtils.fomartMoney(projectDetailDataBean.getResultData().getMaximumIncome()));
                   tv_end_time.setText(projectDetailDataBean.getResultData().getBuyEndAt()>0 ?
                     FomartToolUtils.fomartDate(projectDetailDataBean.getResultData().getBuyEndAt()+""):"2018—08-08");//截止
+                   //先判断是否已经超额
+                 if (FomartToolUtils.isLimitMoney(projectDetailDataBean.getResultData().getCfAmount(),projectDetailDataBean.getResultData().getProgressCfAmount())){
+                     buyLimit(projectDetailDataBean);
+                 }
+                if (projectDetailDataBean.getResultData().getBuyEndAt()<System.currentTimeMillis()){
+                    btn_topay.setText("众筹已结束");
+                    btn_topay.setBackgroundColor(Color.parseColor("#cccccc"));
+                    btn_topay.setClickable(false);
+                }
 
                if (projectDetailDataBean.getResultData().getSettleType()==0){
                   tv_settle_type.setText("每日返息");
@@ -352,11 +362,12 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                    tv_settle_type.setText("到期返本息");
                }
 
-               if (projectDetailDataBean.getResultData().getStatus()==0){
+               int zhongchouStatus = projectDetailDataBean.getResultData().getStatus();
+               if (zhongchouStatus <=0){
                 igv_zhongchou_status.setImageDrawable(this.getResources().getDrawable(R.mipmap.cf_project_status_build));
-               }else if (projectDetailDataBean.getResultData().getStatus()==1){
+               }else if (zhongchouStatus ==1||zhongchouStatus==2){
                 igv_zhongchou_status.setImageDrawable(this.getResources().getDrawable(R.mipmap.cf_project_status_start));
-               }else if (projectDetailDataBean.getResultData().getStatus()==2){
+               }else if (zhongchouStatus==3){
                 igv_zhongchou_status.setImageDrawable(this.getResources().getDrawable(R.mipmap.cf_project_status_end));
                }else {
 
@@ -374,6 +385,8 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
                 //客服电话
                 telephone = projectDetailDataBean.getResultData().getTelephone();
 
+
+
                 crowdfundingDetailBannerView.setDataSource(projectDetailDataBean.getResultData().getHybAttachmentList());
             }
 
@@ -382,6 +395,20 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
         }
     }
 
+    /*期限限制
+    * */
+    public void buyLimit( ProjectDetailDataBean projectDetailDataBean){
+        //在判断超额情况按钮的颜色
+        if(projectDetailDataBean.getResultData().getIsTheLimit()==0){
+            btn_topay.setText("众筹已结束");
+            btn_topay.setBackgroundColor(Color.parseColor("#cccccc"));
+            btn_topay.setClickable(false);
+        }else {
+            btn_topay.setText("支持一下");
+            btn_topay.setBackgroundColor(Color.parseColor("#52b9b8"));
+            btn_topay.setClickable(false);
+        }
+    }
     @Override
     protected void onResume() {
         crowdfundingDetailBannerView.resumePlay();

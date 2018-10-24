@@ -107,38 +107,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-
         android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/linear_item_account_list"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="15dp"
-            android:visibility="gone"
-            android:paddingRight="15dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/cf_account_list_icon" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:text="众筹卡包"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/cf_next_icon" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linear_item_buy_record"
@@ -283,6 +252,35 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:text="我要发布的项目"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/cf_next_icon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_item_account_list"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/cf_account_list_icon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="众筹卡包"
                 android:textSize="15sp" />
 
             <ImageView

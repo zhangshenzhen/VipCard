@@ -119,6 +119,17 @@ public class ProjectDetailDataBean  implements Serializable{
         private boolean collection;
         private String telephone;
         private BigDecimal maximumIncome;//最高收益
+        private int isTheLimit;//是否允许超额 0：否 1：是
+
+        public int getIsTheLimit() {
+            return isTheLimit;
+        }
+
+        public void setIsTheLimit(int isTheLimit) {
+            this.isTheLimit = isTheLimit;
+        }
+
+
 
         public BigDecimal getMaxInterestRate() {
             return maxInterestRate;

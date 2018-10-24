@@ -120,7 +120,7 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
                     if(orderInfoDataBean.getResultData().getPayAway() == PayTypeEnum.Zhifubao.getCode()){
                         tv_pay_away.setText("支付方式：" + PayTypeEnum.Zhifubao.getPayName());
                     }else if(orderInfoDataBean.getResultData().getPayAway() == PayTypeEnum.Weixin.getCode()){
-                        tv_pay_away.setText("支付方式：" + PayTypeEnum.Wangyin.getPayName());
+                        tv_pay_away.setText("支付方式：" + PayTypeEnum.Weixin.getPayName());
                     }else{
                         tv_pay_away.setText("支付方式：其他");
                     }

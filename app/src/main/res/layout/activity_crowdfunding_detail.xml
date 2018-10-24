@@ -120,7 +120,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="20dp"
-                            android:src="@mipmap/cf_project_status_build" />
+                            android:src="@mipmap/cf_project_status_start" />
 
                     </RelativeLayout>
 
@@ -173,12 +173,12 @@
                                 android:textColor="@color/black_3"
                                 android:textSize="14sp" />
 
+                             <!--   android:drawableLeft="@mipmap/cf_project_detail_right"
+                                    android:drawablePadding="5dp"-->
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:drawableLeft="@mipmap/cf_project_detail_right"
-                                android:drawablePadding="5dp"
-                                android:text="已筹金额:"
+                                android:text="已筹:"
                                 android:textColor="@color/cf_default_text"
                                 android:textSize="14sp" />
 
