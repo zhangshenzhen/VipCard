@@ -138,7 +138,8 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
 
         showAmount();
 
-        tv_vipname.setText(vip_name);
+       // tv_vipname.setText(vip_name);
+        tv_vipname.setText("");//暂时不显示会员类别名称0
         if (type_num == 2) {
             tv_vipname.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.cf_vip_level_2), null, null, null);
         } else if (type_num == 3) {

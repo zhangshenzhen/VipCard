@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.amap.api.maps.model.Text;
 import com.android.volley.VolleyError;
 
 import com.bjypt.vipcard.R;
@@ -74,6 +75,7 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
     private Bitmap mQRCodeBitmap;
     private String deviceId;
     private String pkregister;
+    private TextView tv_vip_typle;
 
     @Override
     public void setContentLayout() {
@@ -95,11 +97,12 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
         ll_recharge2 = (LinearLayout) findViewById(R.id.ll_recharge2);
         ll_look_number2 = (LinearLayout) findViewById(R.id.ll_look_number2);
         back_card_management2 = (RelativeLayout) findViewById(R.id.back_card_management2);
+        tv_vip_typle = findViewById(R.id.tv_vip_typle);
     }
 
     @Override
     public void afterInitView() {
-
+        tv_vip_typle.setText("");//会员类别内容暂时不显示
     }
 
     @Override

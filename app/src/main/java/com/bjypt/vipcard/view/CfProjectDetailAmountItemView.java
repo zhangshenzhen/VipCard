@@ -121,7 +121,6 @@ public class CfProjectDetailAmountItemView extends LinearLayout implements Volle
                                 }
                             }
 
-
                             btn_item_amount.setText("￥"+projectDetailAmountItem.getResultData().get(j).getItemAmount().stripTrailingZeros().toPlainString()+"");
                             btn_item_amount.setOnClickListener(new View.OnClickListener(){
                                 @Override
