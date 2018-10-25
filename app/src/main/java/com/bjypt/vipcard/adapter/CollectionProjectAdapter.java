@@ -87,13 +87,12 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
             sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_build));
         }else {
             sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_end));
-        }
 
+        }
         Glide.with(mcontext).load(sellBean.getHeadImg()).error(R.mipmap.more).into(sellerViewHoldr.imageView);
          if (sellBean.getOptimalMoney()!= null) {
             // sellerViewHoldr.tv_youhui_num.setText("起投金额：" + sellBean.getOptimalMoney().stripTrailingZeros().toPlainString() + "");
          }
-
         sellerViewHoldr.tv_target.setText(AmountDisplayUtil.displayChineseWan2(sellBean.getCfAmount()));
         sellerViewHoldr.tv_max_rate.setText(FomartToolUtils.fomartNum(sellBean.getMaxInterestRate()+"")+"%");
         sellerViewHoldr.tv_end_data.setText(sellBean.getBuyEndAt()>0? FomartToolUtils.fomartDate(sellBean.getBuyEndAt()+""):"0000-00-00");//截止
@@ -167,6 +166,19 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
             tv_come_out = itemView.findViewById(R.id.tv_come_out);
             tv_merchant_name = itemView.findViewById(R.id.tev_mcher_name);
             btn_look = itemView.findViewById(R.id.btn_look);
+        }
+    }
+    public void setVisibility(boolean isVisible, SellerViewHoldr sellerViewHoldr) {
+        RecyclerView.LayoutParams param = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (isVisible) {
+            param.height = RelativeLayout.LayoutParams.WRAP_CONTENT;// 这里注意使用自己布局的根布局类型
+            param.width = RelativeLayout.LayoutParams.MATCH_PARENT;// 这里注意使用自己布局的根布局类型
+            sellerViewHoldr.itemView.setVisibility(View.VISIBLE);
+        } else {
+            param.height = 0;
+            param.width = 0;
+            sellerViewHoldr.itemView.setLayoutParams(param);
+            sellerViewHoldr.itemView.setVisibility(View.GONE);
         }
     }
 

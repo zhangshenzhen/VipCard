@@ -503,6 +503,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:clickable="true"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="@color/white">
@@ -533,6 +534,7 @@
 
         <Button
             android:id="@+id/btn_topay"
+            android:clickable="true"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"

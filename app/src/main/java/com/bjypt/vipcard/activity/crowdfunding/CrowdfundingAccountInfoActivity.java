@@ -20,6 +20,7 @@ import com.bjypt.vipcard.model.cf.CfAccountListData;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
+import com.bumptech.glide.Glide;
 import com.githang.statusbar.StatusBarCompat;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -70,6 +71,8 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
     private String phoneno;
     private CfAccountData cfAccountData;
     private TextView tv_interest;
+    private ImageView imgv_icon;
+    private String url_icon;
 
 
     @Override
@@ -89,6 +92,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         vip_name = getIntent().getStringExtra("vip_name");
         type_num = getIntent().getIntExtra("type_num", 1);
         phoneno = getIntent().getStringExtra("phoneno");
+        url_icon = getIntent().getStringExtra("icon_url");
 
         show_amount_display_key = Config.userConfig.cf_display_amount_key + getPkregister() + pkmerchantid;
         cfAccountData = (CfAccountData) getIntent().getSerializableExtra("rights_and_interests");
@@ -104,6 +108,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
     public void initView() {
         tv_cardnum = (TextView) findViewById(R.id.tv_cardnum);
         tv_vipname = (TextView) findViewById(R.id.tv_vipname);
+        imgv_icon = findViewById(R.id.imgv_icon);
         iv_qr = (ImageView) findViewById(R.id.iv_qr);
         tv_totle_assets = (TextView) findViewById(R.id.tv_totle_assets);
         tv_expected_earnings = (TextView) findViewById(R.id.tv_expected_earnings);
@@ -137,16 +142,15 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         tv_title.setText(merchant_name);
 
         showAmount();
-
-       // tv_vipname.setText(vip_name);
-        tv_vipname.setText("");//暂时不显示会员类别名称0
-        if (type_num == 2) {
+        tv_vipname.setText(vip_name);
+        Glide.with(this).load(url_icon).error(R.mipmap.cf_vip_level_2).into(imgv_icon);
+       /* if (type_num == 1) {
             tv_vipname.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.cf_vip_level_2), null, null, null);
-        } else if (type_num == 3) {
+        } else if (type_num == 2) {
             tv_vipname.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.cf_vip_level_3), null, null, null);
         } else {
             tv_vipname.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.cf_vip_level_1), null, null, null);
-        }
+        }*/
     }
 
     private void getAccountData() {
@@ -187,6 +191,9 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
                 intent.putExtra("pkmerchantid", pkmerchantid);
                 intent.putExtra("pkregister", getPkregister());
                 intent.putExtra("pkmuser","" );
+                intent.putExtra("vip_name",vip_name);
+                intent.putExtra("type_num",type_num);
+                intent.putExtra("url_icon",url_icon);
                 startActivity(intent);
                 break;
             case R.id.linear_withdraw:
@@ -281,6 +288,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
     @Override
     public void onSuccess(int reqcode, Object result) {
         if (reqcode == request_code_account_data) {
+            LogUtil.debugPrint("AccountInfo = "+result);
             ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();
             try {
                 cfAccountDetailData = objectMapper.readValue(result.toString(), CfAccountDetailData.class);

@@ -322,7 +322,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
             if (projectDetailDataBean != null && projectDetailDataBean.getResultData() != null) {
                 tv_project_name.setText(projectDetailDataBean.getResultData().getProjectName());
                 tv_cf_amount.setText(AmountDisplayUtil.displayChineseWan(projectDetailDataBean.getResultData().getCfAmount()));
-                tv_progress_amount.setText("¥"+FomartToolUtils.fomartMoney(projectDetailDataBean.getResultData().getProgressCfAmount()));
+                tv_progress_amount.setText(FomartToolUtils.fomartMoney(projectDetailDataBean.getResultData().getProgressCfAmount()));
                // tv_progress_amount.setText("¥"+projectDetailDataBean.getResultData().getProgressCfAmount()+"元");
                 if (projectDetailDataBean.getResultData().getCfAmount().compareTo(new BigDecimal(0)) > 0) {
                    // BigDecimal progress = projectDetailDataBean.getResultData().getProgressCfAmount().divide(projectDetailDataBean.getResultData().getCfAmount(), 1, BigDecimal.ROUND_DOWN);

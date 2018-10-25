@@ -97,10 +97,10 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
                // data.putExtra("gotoCfMain", true);
                // setResult(RESULT_OK, data);
                // finish();
-                String params = "pkregister=" + getPkregister() + "&pkmerchantid=" + pkmerchantid;
+                String params = "pkregister=" + getPkregister();
                 CommonWebData buy_record = new CommonWebData();
-                buy_record.setUrl(Config.web.h5_CFBuyRecord + params);
-                buy_record.setTitle("项目购买记录");
+                buy_record.setTitle("众筹购买记录");
+                buy_record.setUrl(Config.web.h5_CrowdFBuyRecord + params+"&pkmerchantid=" );
                 CommonWebActivity.callActivity(this, buy_record);
 
                 break;

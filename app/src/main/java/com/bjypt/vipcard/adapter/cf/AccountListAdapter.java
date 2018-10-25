@@ -101,6 +101,7 @@ public class AccountListAdapter  extends BaseAdapter{
                 intent.putExtra("vip_name", list.get(i).getVip_name());
                 intent.putExtra("type_num", list.get(i).getType_num());
                 intent.putExtra("phoneno",phoneno);
+                intent.putExtra("icon_url",list.get(i).getIcon_url());
                 intent.setClass(context, CrowdfundingAccountInfoActivity.class);
                 context.startActivity(intent);
             }
