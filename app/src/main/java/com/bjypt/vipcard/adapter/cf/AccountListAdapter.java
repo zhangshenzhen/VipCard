@@ -78,7 +78,7 @@ public class AccountListAdapter  extends BaseAdapter{
         if(list.get(i).getType_num() == null){
             holder.tv_vipname.setVisibility(View.GONE);
         }else{
-            holder.tv_vipname.setVisibility(View.VISIBLE);
+           //暂时隐藏 holder.tv_vipname.setVisibility(View.VISIBLE);
             if(list.get(i).getType_num() ==2){
                 holder.tv_vipname.setCompoundDrawablesWithIntrinsicBounds(context.getResources().getDrawable(R.mipmap.cf_vip_level_2), null, null, null);
             }else if(list.get(i).getType_num() == 3){
@@ -88,7 +88,7 @@ public class AccountListAdapter  extends BaseAdapter{
             }
             holder.tv_vipname.setCompoundDrawablePadding(DensityUtil.dip2px(context, 5));
         }
-
+        holder.tv_vipname.setVisibility(View.GONE);//安全隐藏
         holder.btn_enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

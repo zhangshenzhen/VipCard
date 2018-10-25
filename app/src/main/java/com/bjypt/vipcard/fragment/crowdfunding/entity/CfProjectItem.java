@@ -16,6 +16,16 @@ public class CfProjectItem {
     private String merchantHideName; //商家隐藏名称
     private boolean look;//是否查看
     private int examine_status = -1;//状态
+    private int typeImg;//判断状态
+
+    public int getTypeImg() {
+        return typeImg;
+    }
+
+    public void setTypeImg(int typeImg) {
+        this.typeImg = typeImg;
+    }
+
 
     public int getExamine_status() {
 

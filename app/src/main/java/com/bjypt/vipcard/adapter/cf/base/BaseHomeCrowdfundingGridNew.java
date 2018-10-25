@@ -66,14 +66,12 @@ public abstract class BaseHomeCrowdfundingGridNew extends BaseRecycleViewAdapter
     public void onBindViewHolder(HomeCrowdfundingGridViewHolder holder, int position) {
         CfProjectItem cfProjectItem = datas.get(position);
         holder.tvName.setText(cfProjectItem.getProjectName());
-        if (cfProjectItem.getStatus() == 3) {
+        if (cfProjectItem.getTypeImg() == 0) {
+            holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_start));
+        } else if(cfProjectItem.getTypeImg() == 1){
+            holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_build));
+        }else {
             holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_end));
-        } else {
-            if (cfProjectItem.getCfAmount().compareTo(cfProjectItem.getProgressCfAmount()) <= 0) {
-                holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_build));
-            } else {
-                holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_start));
-            }
         }
         BigDecimal progress = cfProjectItem.getProgressCfAmount().divide(cfProjectItem.getCfAmount(), 2, BigDecimal.ROUND_HALF_UP);
         holder.tvProgress_data.setText(progress.multiply(new BigDecimal(100)).intValue() + "%");
