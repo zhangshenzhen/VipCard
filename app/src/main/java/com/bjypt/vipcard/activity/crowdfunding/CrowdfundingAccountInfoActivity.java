@@ -10,6 +10,7 @@ import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
 import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.CommonWebActivity;
+import com.bjypt.vipcard.activity.shangfeng.util.StringUtils;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
@@ -22,6 +23,7 @@ import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bumptech.glide.Glide;
 import com.githang.statusbar.StatusBarCompat;
+import com.sinia.orderlang.utils.StringUtil;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -41,7 +43,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
     int pkmerchantid;
     String merchant_name;
     int type_num;//vip等级
-    String vip_name;//vip等级名称
+    String vip_name = null;//vip等级名称
 
     TextView tv_cardnum;
     TextView tv_vipname;
@@ -140,17 +142,23 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         tv_cardnum.setText(displaycardno);
         TextView tv_title = (TextView) findViewById(R.id.tv_title);
         tv_title.setText(merchant_name);
-
         showAmount();
-        tv_vipname.setText(vip_name);
-        Glide.with(this).load(url_icon).error(R.mipmap.cf_vip_level_2).into(imgv_icon);
+        //会员等级状态显示
+
+        if (StringUtil.isNotEmpty(vip_name)){
+            tv_vipname.setText(vip_name);
+        }else {
+            tv_vipname.setVisibility(View.INVISIBLE);
+        }
+        if (StringUtil.isNotEmpty(url_icon)){
+            Glide.with(this).load(url_icon).into(imgv_icon);
+        }else {
+           imgv_icon.setVisibility(View.INVISIBLE);
+        }
+
        /* if (type_num == 1) {
             tv_vipname.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.cf_vip_level_2), null, null, null);
-        } else if (type_num == 2) {
-            tv_vipname.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.cf_vip_level_3), null, null, null);
-        } else {
-            tv_vipname.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.cf_vip_level_1), null, null, null);
-        }*/
+        } */
     }
 
     private void getAccountData() {
@@ -193,7 +201,7 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
                 intent.putExtra("pkmuser","" );
                 intent.putExtra("vip_name",vip_name);
                 intent.putExtra("type_num",type_num);
-                intent.putExtra("url_icon",url_icon);
+                intent.putExtra("icon_url",url_icon);
                 startActivity(intent);
                 break;
             case R.id.linear_withdraw:

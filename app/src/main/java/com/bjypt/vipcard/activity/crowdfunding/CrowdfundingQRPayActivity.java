@@ -37,6 +37,7 @@ import com.bjypt.vipcard.model.MyRandomBean;
 import com.bjypt.vipcard.model.TwoCodeInfoBean;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
+import com.bjypt.vipcard.utils.StringUtils;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.zbar.encoding.EncodingUtils;
 import com.bumptech.glide.Glide;
@@ -109,13 +110,17 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
     @Override
     public void afterInitView() {
 
-       /* if (type_num == 1) {
-          tv_vip_typle.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.cf_vip_level_2), null, null, null);
-        } else if (type_num == 2) {
-          tv_vip_typle.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.cf_vip_level_3), null, null, null);
-        } else {
-          tv_vip_typle.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.mipmap.cf_vip_level_1), null, null, null);
-        }*/
+        //会员等级状态显示
+        if (StringUtil.isNotEmpty(vip_name)){
+            tv_vip_typle.setText(vip_name);
+        }else {
+            tv_vip_typle.setVisibility(View.INVISIBLE);
+        }
+        if (StringUtil.isNotEmpty(url_icon)){
+            Glide.with(this).load(url_icon).into(img_icon);
+        }else {
+            img_icon.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -125,8 +130,6 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
         ll_look_number2.setOnClickListener(this);
         back_card_management2.setOnClickListener(this);
 
-        tv_vip_typle.setText(vip_name);//会员类别内容暂时不显示
-        Glide.with(this).load(url_icon).error(R.mipmap.cf_vip_level_2).into(img_icon);
 
     }
 
@@ -148,7 +151,7 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
         pkmerchantid = intent.getIntExtra("pkmerchantid",0);
         vip_name = intent.getStringExtra("vip_name");
         type_num = intent.getIntExtra("type_num",1);
-        url_icon = intent.getStringExtra("url_icon");
+        url_icon = intent.getStringExtra("icon_url");
         LogUtil.debugPrint("商家id : "+ pkmerchantid);
     }
 

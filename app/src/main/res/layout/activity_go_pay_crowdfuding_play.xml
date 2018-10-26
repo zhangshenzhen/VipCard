@@ -69,14 +69,16 @@
 
                     <ImageView
                         android:id="@+id/img_icon"
+                        android:scaleType="fitXY"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:layout_marginBottom="6dp"
                         android:src="@mipmap/cf_vip_level_2"
                         />
 
                     <TextView
+                        android:layout_marginBottom="4dp"
                         android:id="@+id/tv_vip_typle"
-                        android:layout_gravity="center_horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"

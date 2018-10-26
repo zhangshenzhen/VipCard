@@ -91,7 +91,6 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
             begin += 1;
             is_refresh = false;
         }
-
         params.put("pageNum", begin + "");
         params.put("pageSize", pageLength + "");
         params.put("pkregister", getPkregister());

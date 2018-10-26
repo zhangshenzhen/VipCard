@@ -47,6 +47,7 @@
                         <ImageView
                             android:id="@+id/imgv_icon"
                             android:layout_marginLeft="20dp"
+                            android:scaleType="fitXY"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:src="@mipmap/cf_vip_level_2"/>
@@ -58,7 +59,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
                         android:layout_marginLeft="5dp"
-                        android:text="黄金会员"
+                        android:text="普通会员"
                         android:textColor="@color/white"
                         android:textSize="17sp" />
 

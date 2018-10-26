@@ -159,7 +159,7 @@ public class AndroidInterface {
              String vip_name = jsonObject.optString("vip_name");//    会员等级
              String discount = jsonObject.optString("discount");//    折扣
              int type_num = jsonObject.optInt("type_num");//    级别类型： 1.黄金 2.铂金 3.钻石
-
+             String icon_url = jsonObject.optString("icon_url");
              Log.i("jsonshowCardbag", "Thread:" + json);
 
              Intent intent = new Intent();
@@ -170,6 +170,7 @@ public class AndroidInterface {
              intent.putExtra("merchant_name", merchant_name);
              intent.putExtra("vip_name", vip_name);
              intent.putExtra("type_num", type_num);
+             intent.putExtra("icon_url",icon_url);
              intent.putExtra("phoneno", SharedPreferenceUtils.getFromSharedPreference(context, Config.userConfig.phoneno));
              intent.setClass(context, CrowdfundingAccountInfoActivity.class);
              context.startActivity(intent);
@@ -186,17 +187,21 @@ public class AndroidInterface {
     @JavascriptInterface
     public void showBuypage(String json){
         try {
+            Log.i("showBuypage", "Thread:" + json);
             JSONObject jsonObject = new JSONObject(json);
             int pkmerchantid = jsonObject.optInt("pkmerchantid");//商家ID
+            String icon_url = jsonObject.optString("icon_url");
+            String vip_name = jsonObject.optString("vip_name");
             Intent intent = new Intent(context, CrowdfundingQRPayActivity.class);
             intent.putExtra("pkmerchantid", pkmerchantid);
             intent.putExtra("pkregister",SharedPreferenceUtils.getFromSharedPreference(context, Config.userConfig.pkregister));
-            intent.putExtra("pkmuser","" );
+           // intent.putExtra("pkmuser","" );
+            intent.putExtra("vip_name",vip_name);
+            intent.putExtra("icon_url",icon_url);
             context.startActivity(intent);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
 
