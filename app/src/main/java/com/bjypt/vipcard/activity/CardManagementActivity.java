@@ -272,7 +272,7 @@ public class CardManagementActivity extends BaseActivity implements VolleyCallBa
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (cardMenusBean.getResultData().get(i).getId()) {
                     case 0:         //卡充值
-                        //   scope_type = 0   0: 全部商家 跳平台充值， 1:指定商家 跳商家充值
+                        //   scope_type = 0   0: 全部商家 跳平台充值， 1:指定商家 跳商家充值 2, 领域卡
                         if (scope_type == 0) {
                             Intent intents = new Intent(CardManagementActivity.this, NewTopupWayActivity.class);
                             intents.putExtra("FLAG", 2);

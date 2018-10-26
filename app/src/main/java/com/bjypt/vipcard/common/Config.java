@@ -492,6 +492,10 @@ public final class Config {
          */
         public static final String CANCEL_ORDER_URL = base + "shangfeng/order/v1/light/cancel";
         /**
+         * 扫码支付前分享信息接口
+         */
+        public static final String PayShareData = base + "api/share/getShare";
+        /**
          * 查询单个服务
          */
         public static String GETONEMENU = base + "shangfeng/applicationConfig/getOneMenu";

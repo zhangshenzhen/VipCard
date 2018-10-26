@@ -3,6 +3,7 @@ package com.bjypt.vipcard.activity.shangfeng.primary.merchant.contract;
 
 import com.bjypt.vipcard.activity.shangfeng.base.BaseContract;
 import com.bjypt.vipcard.activity.shangfeng.data.bean.MerchantListBean;
+import com.bjypt.vipcard.model.GetShareDataResultBean;
 
 /**
  * 商家详情 契约类
@@ -18,6 +19,8 @@ public interface MerchantDetailsContract {
         void initMerchantDetails(MerchantListBean merchantListBean);
 
         void updateView();
+
+        void payShareData(GetShareDataResultBean shareDataResultBean);
 
     }
 
@@ -35,7 +38,11 @@ public interface MerchantDetailsContract {
          * @param consume_amount  订单金额
          */
         void bookingOrder(String pkregister, String pkmuser, String consume_amount);
-
+        /**
+         * 扫码支付时分享提示信息
+         * @param pkregister
+         */
+        void getPayShareData(String pkregister);
     }
 
 }

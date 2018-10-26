@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -36,14 +37,17 @@ import com.bjypt.vipcard.activity.shangfeng.common.LocateResultFields;
 import com.bjypt.vipcard.activity.shangfeng.common.enums.UserInformationFields;
 import com.bjypt.vipcard.activity.shangfeng.data.bean.MerchantListBean;
 import com.bjypt.vipcard.activity.shangfeng.dialog.LoadingDialog;
+import com.bjypt.vipcard.activity.shangfeng.primary.capture.MyCaptureActivity;
 import com.bjypt.vipcard.activity.shangfeng.primary.merchant.contract.MerchantDetailsContract;
 import com.bjypt.vipcard.activity.shangfeng.primary.merchant.contract.impl.MerchantDetailsPresenterImpl;
 import com.bjypt.vipcard.activity.shangfeng.util.IsJudgeUtils;
+import com.bjypt.vipcard.activity.shangfeng.util.ShangfengUriHelper;
 import com.bjypt.vipcard.activity.shangfeng.util.SharedPreferencesUtils;
 import com.bjypt.vipcard.activity.shangfeng.util.StringUtils;
 import com.bjypt.vipcard.activity.shangfeng.util.ToastUtils;
 import com.bjypt.vipcard.activity.shangfeng.widget.dialog.BookingOrderDialog;
 import com.bjypt.vipcard.activity.shangfeng.widget.dialog.BottomDialog;
+import com.bjypt.vipcard.model.GetShareDataResultBean;
 import com.bjypt.vipcard.widget.DropZoomScrollView;
 import com.bumptech.glide.Glide;
 import com.orhanobut.logger.Logger;
@@ -51,6 +55,7 @@ import com.orhanobut.logger.Logger;
 import java.net.URISyntaxException;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -113,6 +118,11 @@ public class MerchantDetailsActivity extends BaseActivity implements MerchantDet
      */
     @BindView(R.id.btn_booking_order)
     Button btn_booking_order;
+    /**
+     * 扫码支付
+     */
+    @BindView(R.id.btn_scan_pay)
+    ImageButton btnScanPay;
 
     private MerchantDetailsPresenterImpl presenter;
     private String pkmuser;
@@ -122,7 +132,7 @@ public class MerchantDetailsActivity extends BaseActivity implements MerchantDet
     private String merchantPhone;
 
     private static final int REQUEST_CODE = 0; // 请求码
-
+    private static final int qcode_scan_code = 2;
     /**
      * 要申请的权限
      */
@@ -131,6 +141,11 @@ public class MerchantDetailsActivity extends BaseActivity implements MerchantDet
     private String price;
     private LoadingDialog loadingDialog;
     private String pkregister = "";
+
+    /**
+     * 扫码支付提示分享信息
+     */
+    private GetShareDataResultBean getShareDataResultBean;
 
 
     public static void callActivity(Context context, String pkmuser, String price) {
@@ -183,9 +198,7 @@ public class MerchantDetailsActivity extends BaseActivity implements MerchantDet
         Integer order_status = merchantListBean.getOrder_status();
 
         if (0 == order_status) {
-            btn_booking_order.setText("已预约下单");
-            btn_booking_order.setClickable(false);
-            btn_booking_order.setBackgroundColor(getResources().getColor(R.color.black_9));
+            updateView();
         }
         tv_merchant_activity.setText(merchantListBean.getActivity_content());
         tv_merchant_details.setText(merchantListBean.getMerdesc());
@@ -199,6 +212,8 @@ public class MerchantDetailsActivity extends BaseActivity implements MerchantDet
         btn_booking_order.setText("已预约下单");
         btn_booking_order.setClickable(false);
         btn_booking_order.setBackgroundColor(getResources().getColor(R.color.black_9));
+        btnScanPay.setVisibility(View.VISIBLE);
+
     }
 
     private void initMap(LatLng latLng) {
@@ -343,11 +358,11 @@ public class MerchantDetailsActivity extends BaseActivity implements MerchantDet
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//    }
 
     /**
      * 加载图片
@@ -459,6 +474,11 @@ public class MerchantDetailsActivity extends BaseActivity implements MerchantDet
     }
 
     @Override
+    public void payShareData(GetShareDataResultBean shareDataResultBean) {
+        this.getShareDataResultBean = shareDataResultBean;
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         mapView.onResume();
@@ -479,6 +499,42 @@ public class MerchantDetailsActivity extends BaseActivity implements MerchantDet
             loadingDialog = null;
         }
     }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.btn_scan_pay)
+    public void scanPayBtnClick(View v) {
+        toScanPay();
+    }
+
+
+    private void toScanPay() {
+        Intent qcode_intent = new Intent();
+        qcode_intent.putExtra("type", 1);
+        qcode_intent.setClass(MerchantDetailsActivity.this, MyCaptureActivity.class);
+        startActivityForResult(qcode_intent, qcode_scan_code);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case qcode_scan_code:
+                if (resultCode == RESULT_OK) {
+                    ShangfengUriHelper helper = new ShangfengUriHelper(this);
+                    helper.startSearch(data.getExtras().getString("result"), true);
+                    break;
+                }
+                break;
+        }
+    }
+
 
 
 }

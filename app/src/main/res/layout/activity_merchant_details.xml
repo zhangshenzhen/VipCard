@@ -126,17 +126,35 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btn_booking_order"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:text="@string/booking_order"
-        android:textSize="16sp"
-        android:textColor="@color/white_text"
-        android:background="@color/app_theme_color"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        />
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton android:id="@+id/btn_scan_pay"
+            android:src="@mipmap/scan_pay_to_merchant"
+            android:layout_width="wrap_content"
+            android:button="@null"
+            android:clickable="true"
+            android:visibility="gone"
+            android:background="@null"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/btn_booking_order"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/app_theme_color"
+            android:gravity="center"
+            android:text="@string/booking_order"
+            android:textColor="@color/white_text"
+            android:textSize="16sp"
+
+            />
+    </LinearLayout>
 
     <!--<RelativeLayout-->
         <!--android:layout_width="match_parent"-->

@@ -11,6 +11,7 @@ import com.bjypt.vipcard.activity.shangfeng.primary.merchant.contract.MerchantDe
 import com.bjypt.vipcard.activity.shangfeng.util.OkHttpUtil;
 import com.bjypt.vipcard.activity.shangfeng.util.ToastUtils;
 import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.model.GetShareDataResultBean;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
@@ -95,5 +96,23 @@ public class MerchantDetailsPresenterImpl extends BasePresenterImpl<MerchantDeta
         }, Config.web.BOOKING_ORDER_URL, map);
     }
 
+    @Override
+    public void getPayShareData(String pkregister) {
+        Map<String, String> map = new LinkedHashMap<>();
+        map.put("userId", pkregister);
+        OkHttpUtil.postUrl(new RequestCallBack<ResultDataBean>() {
+            @Override
+            public void success(int resultCode, ResultDataBean data) {
+                Gson gson = new Gson();
+                GetShareDataResultBean getShareDataResultBean = gson.fromJson(gson.toJson(data.getResultData()), GetShareDataResultBean.class);
+                mView.payShareData(getShareDataResultBean);
+            }
+
+            @Override
+            public void onError(int resultCode, String errorMsg) {
+
+            }
+        }, Config.web.PayShareData, map);
+    }
 
 }
