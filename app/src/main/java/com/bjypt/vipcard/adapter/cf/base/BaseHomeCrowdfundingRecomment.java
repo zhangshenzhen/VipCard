@@ -48,14 +48,13 @@ public abstract class BaseHomeCrowdfundingRecomment extends BaseRecycleViewAdapt
     public void onBindViewHolder(HomeCrowdfundingRecommentViewHolder holder, int position) {
         CfProjectItemNew cfProjectItem = datas.get(position);
         holder.tvName.setText(cfProjectItem.getProjectName());
-        if (cfProjectItem.getStatus() == 3) {
+        int typImg = cfProjectItem.getTypeImg();
+        if (typImg ==0){
+            holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_start));
+        }else if (typImg ==1){
+            holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_build));
+        }else {
             holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_end));
-        } else {
-            if (cfProjectItem.getCfAmount().compareTo(cfProjectItem.getProgressCfAmount()) <= 0) {
-                holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_build));
-            } else {
-                holder.igv_zhongchou.setImageDrawable(context.getResources().getDrawable(R.mipmap.cf_project_status_start));
-            }
         }
 
         LogUtil.debugPrint("maximumIncomecfProjectItem. : "+cfProjectItem.toString());

@@ -81,6 +81,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     private TextView dialog_tontent;
     private Button btn_look;
     private ProjectDetailDataBean projectDetailDataBean;
+    private int isTheLimit;
 
 
     @Override

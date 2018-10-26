@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.amap.api.maps.model.Text;
 import com.android.volley.VolleyError;
 
 import com.bjypt.vipcard.R;
@@ -36,8 +37,10 @@ import com.bjypt.vipcard.model.MyRandomBean;
 import com.bjypt.vipcard.model.TwoCodeInfoBean;
 import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
+import com.bjypt.vipcard.utils.StringUtils;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.zbar.encoding.EncodingUtils;
+import com.bumptech.glide.Glide;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -74,6 +77,11 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
     private Bitmap mQRCodeBitmap;
     private String deviceId;
     private String pkregister;
+    private TextView tv_vip_typle;
+    private String vip_name;
+    private int type_num;
+    private String url_icon;
+    private ImageView img_icon;
 
     @Override
     public void setContentLayout() {
@@ -89,17 +97,30 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
 
     @Override
     public void initView() {
+        img_icon = findViewById(R.id.img_icon);
         tv_code2 = (TextView) findViewById(R.id.tv_code2);
         iv_two_code2 = (ImageView) findViewById(R.id.iv_two_code2);
         iv_one_code2 = (ImageView) findViewById(R.id.iv_one_code2);
         ll_recharge2 = (LinearLayout) findViewById(R.id.ll_recharge2);
         ll_look_number2 = (LinearLayout) findViewById(R.id.ll_look_number2);
         back_card_management2 = (RelativeLayout) findViewById(R.id.back_card_management2);
+        tv_vip_typle = findViewById(R.id.tv_vip_typle);
     }
 
     @Override
     public void afterInitView() {
 
+        //会员等级状态显示
+        if (StringUtil.isNotEmpty(vip_name)){
+            tv_vip_typle.setText(vip_name);
+        }else {
+            tv_vip_typle.setVisibility(View.INVISIBLE);
+        }
+        if (StringUtil.isNotEmpty(url_icon)){
+            Glide.with(this).load(url_icon).into(img_icon);
+        }else {
+            img_icon.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -108,6 +129,8 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
         iv_two_code2.setOnClickListener(this);
         ll_look_number2.setOnClickListener(this);
         back_card_management2.setOnClickListener(this);
+
+
     }
 
 
@@ -126,6 +149,9 @@ public class CrowdfundingQRPayActivity extends BaseActivity implements VolleyCal
         Intent intent = getIntent();
         pkregister = intent.getStringExtra("pkregister");
         pkmerchantid = intent.getIntExtra("pkmerchantid",0);
+        vip_name = intent.getStringExtra("vip_name");
+        type_num = intent.getIntExtra("type_num",1);
+        url_icon = intent.getStringExtra("icon_url");
         LogUtil.debugPrint("商家id : "+ pkmerchantid);
     }
 

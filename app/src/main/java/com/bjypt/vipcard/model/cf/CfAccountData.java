@@ -53,10 +53,17 @@ public class CfAccountData implements Serializable {
     private BigDecimal expected_earnings;
     private BigDecimal amount_of_cash;
     private BigDecimal consumption_amount;
-
-
-
     private String  rights_and_interests;
+    private String icon_url;//登记图标地址
+
+    public String getIcon_url() {
+        return icon_url;
+    }
+
+    public void setIcon_url(String icon_url) {
+        this.icon_url = icon_url;
+    }
+
 
     public Integer getType_num() {
         return type_num;

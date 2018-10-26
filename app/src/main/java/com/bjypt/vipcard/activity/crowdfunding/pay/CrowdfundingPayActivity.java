@@ -97,6 +97,7 @@ public class CrowdfundingPayActivity extends BaseActivity implements Crowdfundin
 //        finish();
         Intent intent = new Intent(this, CrowdfundingPayFinishActivity.class);
         intent.putExtra("orderid", orderid);
+        intent.putExtra("pkmerchantid",pkmerchantid);
         startActivityForResult(intent,request_pay_result_code);
     }
 

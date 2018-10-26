@@ -100,12 +100,12 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
         recyclerView = findViewById(R.id.rec_view);
         //设置间距
         HashMap<String, Integer> stringIntegerHashMap = new HashMap<>();
-        stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.TOP_DECORATION,10);//top间距
+        stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.TOP_DECORATION,5);//top间距
         recyclerView.addItemDecoration(new RecyclerViewSpacesItemDecoration(stringIntegerHashMap));
         //设置布局管理器
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        //设置间距
+       //设置间距
         GridSpacingItemDecoration  gridSpacingItemDecoration = new GridSpacingItemDecoration(1, DensityUtil.dip2px(getContext(), 5));
         HorizontalSpaceItemDecoration horizontalSpaceItemDecoration = new HorizontalSpaceItemDecoration(DensityUtil.dip2px(getContext(), 5), DensityUtil.dip2px(getContext(), 8));
         recyclerView.removeItemDecoration(horizontalSpaceItemDecoration);
@@ -194,11 +194,17 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
         try {
             cfProjectListDataBean = objectMapper.readValue(result.toString(), CfProjectListDataBean.class);
             if(is_refresh){
-            SellerProjectBeans.clear();
+             SellerProjectBeans.clear();
               is_refresh = false;
             }
 
-        SellerProjectBeans.addAll(cfProjectListDataBean.getResultData().getList());
+         /* 根据调节隐藏某些Item   for (int i = 0; i < cfProjectListDataBean.getResultData().getList().size(); i++) {
+               if (cfProjectListDataBean.getResultData().getList().get(i).getTypeImg() != 2){
+                SellerProjectBeans.add(cfProjectListDataBean.getResultData().getList().get(i));
+               }
+            }*/
+         SellerProjectBeans.addAll(cfProjectListDataBean.getResultData().getList());
+
 
             if(cfProjectListDataBean.getResultData().getList().size()< pageLength){
                 loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);

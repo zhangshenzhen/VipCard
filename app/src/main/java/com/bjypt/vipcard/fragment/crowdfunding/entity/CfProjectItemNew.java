@@ -41,20 +41,26 @@ public class CfProjectItemNew {
     private Integer payType;
     private Integer viewAuth;
     private String gridUrl;
-
     private BigDecimal optimalMoney;
-
     private BigDecimal maximumIncome;
+    private  int typeImg;//判断状态
+
+    public int getTypeImg() {
+        return typeImg;
+    }
+
+    public void setTypeImg(int typeImg) {
+        this.typeImg = typeImg;
+    }
+
 
     public void setMaximumIncome(BigDecimal maximumIncome) {
         this.maximumIncome = maximumIncome;
     }
 
-
     public BigDecimal getMaximumIncome() {
         return maximumIncome;
     }
-
 
     private boolean collection;
 

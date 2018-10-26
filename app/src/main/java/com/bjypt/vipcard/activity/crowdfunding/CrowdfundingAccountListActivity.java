@@ -21,6 +21,7 @@ import com.bjypt.vipcard.model.cf.CfAccountData;
 import com.bjypt.vipcard.model.cf.CfAccountListData;
 import com.bjypt.vipcard.pulltorefresh.PullToRefreshBase;
 import com.bjypt.vipcard.pulltorefresh.PullToRefreshListView;
+import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -90,7 +91,6 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
             begin += 1;
             is_refresh = false;
         }
-
         params.put("pageNum", begin + "");
         params.put("pageSize", pageLength + "");
         params.put("pkregister", getPkregister());
@@ -140,10 +140,13 @@ public class CrowdfundingAccountListActivity extends BaseActivity implements Vol
         }
 
     }
-
+    /*"vip_name":"普通会员"
+    "type_num":1
+    * */
     @Override
     public void onSuccess(int reqcode, Object result) {
         lv_account_list.onRefreshComplete();
+        LogUtil.debugPrint("AccountList = "+result);
         switch (reqcode) {
             case request_code_account_list:
                 ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();

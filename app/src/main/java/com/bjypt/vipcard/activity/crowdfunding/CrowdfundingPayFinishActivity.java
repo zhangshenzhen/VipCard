@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.crowdfunding.projectdetail.entity.CfOrderInfoDataBean;
+import com.bjypt.vipcard.activity.shangfeng.data.bean.CommonWebData;
+import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.CommonWebActivity;
 import com.bjypt.vipcard.base.BaseActivity;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
@@ -16,6 +18,7 @@ import com.bjypt.vipcard.common.PayDealTypeEnum;
 import com.bjypt.vipcard.common.PayTypeEnum;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.model.PayAway;
+import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.githang.statusbar.StatusBarCompat;
 
@@ -37,6 +40,7 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
     private TextView tv_ordernum;
     private Button btn_next_buy;
     private Button btn_main_page;
+    private int pkmerchantid;
 
 
     @Override
@@ -47,7 +51,7 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
 
     @Override
     public void beforeInitView() {
-
+        pkmerchantid = getIntent().getIntExtra("pkmerchantid", 0);
     }
 
     @Override
@@ -88,11 +92,17 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
                 setResult(RESULT_OK,data1);
                 finish();
                 break;
-            case R.id.btn_main_page:
+            case R.id.btn_main_page://返回到购买记录
                 Intent data = new Intent();
-                data.putExtra("gotoCfMain", true);
-                setResult(RESULT_OK, data);
-                finish();
+               // data.putExtra("gotoCfMain", true);
+               // setResult(RESULT_OK, data);
+               // finish();
+                String params = "pkregister=" + getPkregister();
+                CommonWebData buy_record = new CommonWebData();
+                buy_record.setTitle("众筹购买记录");
+                buy_record.setUrl(Config.web.h5_CrowdFBuyRecord + params+"&pkmerchantid=" );
+                CommonWebActivity.callActivity(this, buy_record);
+
                 break;
         }
     }
@@ -101,6 +111,7 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
     public void onSuccess(int reqcode, String result) {
         if(reqcode == request_code_order_info){
             try {
+                LogUtil.debugPrint("支付信息 = "+ result);
                 CfOrderInfoDataBean orderInfoDataBean = ObjectMapperFactory.createObjectMapper().readValue(result, CfOrderInfoDataBean.class);
                 if(orderInfoDataBean != null && orderInfoDataBean.getResultData() != null){
                     tv_project_name.setText("项目名称："+orderInfoDataBean.getResultData().getProjectName());
@@ -109,13 +120,15 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
                     if(orderInfoDataBean.getResultData().getPayAway() == PayTypeEnum.Zhifubao.getCode()){
                         tv_pay_away.setText("支付方式：" + PayTypeEnum.Zhifubao.getPayName());
                     }else if(orderInfoDataBean.getResultData().getPayAway() == PayTypeEnum.Weixin.getCode()){
-                        tv_pay_away.setText("支付方式：" + PayTypeEnum.Wangyin.getPayName());
+                        tv_pay_away.setText("支付方式：" + PayTypeEnum.Weixin.getPayName());
                     }else{
                         tv_pay_away.setText("支付方式：其他");
                     }
                     tv_income_amount.setText("预计收益：" + orderInfoDataBean.getResultData().getIncomeAmount());
                     tv_end_at.setText("到期时间："+ orderInfoDataBean.getResultData().getSettleEndAt());
-                    tv_ordernum.setText("交易订单号："+ orderInfoDataBean.getResultData().getOutOrderId());
+                  //  tv_ordernum.setText("交易订单号："+ orderInfoDataBean.getResultData().getOutOrderId());
+                    tv_ordernum.setText("交易订单号："+ orderInfoDataBean.getResultData().getOrderid());
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -85,17 +85,15 @@ public class SellerProjectAdapter extends RecyclerView.Adapter{
          SellerViewHoldr sellerViewHoldr = (SellerViewHoldr) holder;
          CfProjectItem sellBean = sellerBeans.get(position);
 
-        if(sellBean.getStatus() != null) {
-            if (sellBean.getStatus() == 3) {
-                sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_end));
-            } else {
-                if (sellBean.getCfAmount().compareTo(sellBean.getProgressCfAmount()) <= 0) {
-                    sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_build));
-                } else {
-                    sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_start));
-                }
-            }
+        int typImg = sellBean.getTypeImg();
+        if (typImg ==0){
+         sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_start));
+        }else if (typImg ==1){
+            sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_build));
+        }else {
+            sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_end));
         }
+
             Glide.with(mcontext).load(sellBean.getHeadImg()).error(R.mipmap.more).into(sellerViewHoldr.imageView);
             sellerViewHoldr.tv_project_Name.setText(sellBean.getProjectName());//项目名称
             if(sellBean.getOptimalMoney() != null) {
