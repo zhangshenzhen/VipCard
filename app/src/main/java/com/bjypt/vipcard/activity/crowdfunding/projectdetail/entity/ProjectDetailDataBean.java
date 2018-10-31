@@ -122,6 +122,16 @@ public class ProjectDetailDataBean  implements Serializable{
         private int isTheLimit;//是否允许超额 0：否 1：是
         private  int typePurchase;//是否允许购买
         private int typeImg;//状态图标
+        private String explain ;
+
+        public String getExplain() {
+            return explain;
+        }
+
+        public void setExplain(String explain) {
+            this.explain = explain;
+        }
+
 
         public int getTypeImg() {
             return typeImg;

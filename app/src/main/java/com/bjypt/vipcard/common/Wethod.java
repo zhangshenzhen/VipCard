@@ -211,7 +211,7 @@ public class Wethod {
                 map.put("pkregister", SharedPreferenceUtils.getFromSharedPreference(context, Config.userConfig.pkregister));
                 map.put("versionInt", AES.encrypt(info.versionCode + "", AES.key));
                 if (getParams() != null && getParams().size() > 0) {
-                    map.put("sign", AES.createSign(new TreeMap<String, String>(getParams())));
+                      map.put("sign", AES.createSign(new TreeMap<String, String>(getParams())));
                 }
                 return map;
             }

@@ -19,8 +19,8 @@ import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 public class MyServeGridViewAdapter extends BaseAdapter {
 
     private int[] images = {R.mipmap.transaction_record, R.mipmap.withdraw_deposit_record,
-            R.mipmap.recharge_record, R.mipmap.shape, R.mipmap.attract_investment, R.mipmap.integral_shop, R.mipmap.generalize, R.mipmap.generalize};
-    private String[] images_info = {"交易记录", "提现记录", "充值记录", "推荐给朋友", "客服热线","积分商城", "众筹", "卡推广收益"};
+            R.mipmap.recharge_record, R.mipmap.shape, R.mipmap.attract_investment, R.mipmap.integral_shop, /*R.mipmap.generalize,*/ R.mipmap.generalize};
+    private String[] images_info = {"交易记录", "提现记录", "充值记录", "推荐给朋友", "客服热线","积分商城",/* "众筹",*/ "卡推广收益"};
     private final LayoutInflater inflater;
     private Context context;
 
@@ -56,9 +56,7 @@ public class MyServeGridViewAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-       //隐藏这里的众筹按钮
-     if(position==6){ holder.iv_photo.setVisibility(View.GONE); holder.tv_name.setVisibility(View.GONE);}
-        if ("Y".equals(getFromSharePreference(Config.userConfig.is_Login))) {
+      /*  if ("Y".equals(getFromSharePreference(Config.userConfig.is_Login))) {
             if (position == getCount() - 1 && "0".equals(getFromSharePreference(Config.userConfig.is_card_sales))) {
                 holder.iv_photo.setVisibility(View.GONE);
                 holder.tv_name.setVisibility(View.GONE);
@@ -74,7 +72,10 @@ public class MyServeGridViewAdapter extends BaseAdapter {
                 holder.iv_photo.setVisibility(View.GONE);
                 holder.tv_name.setVisibility(View.GONE);
             }
-        }
+        }  */
+          //全部都显示出来
+            holder.iv_photo.setImageResource(images[position]);
+            holder.tv_name.setText(images_info[position]);
 
         return view;
     }

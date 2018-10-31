@@ -411,15 +411,16 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
                     startLogin();
                 }
                 break;
-            case 6://众筹
+           /* case 6://众筹
                 if ("Y".equals(getFromSharePreference(Config.userConfig.is_Login))) {
                     Intent intent = new Intent(getActivity(), MyCrowdfundingActivity.class);
                     startActivity(intent);
                 } else {
                     startLogin();
                 }
-                break;
-            case 7:// 推广收益
+                break;*/
+           //修改序号
+            case 6:// 推广收益
                 if ("Y".equals(getFromSharePreference(Config.userConfig.is_Login))) {
                     Intent intentSignIn = new Intent(getActivity(), LifeServireH5Activity.class);
                     intentSignIn.putExtra("life_url", Config.web.cardSalesH5 + getFromSharePreference(Config.userConfig.pkregister));
@@ -432,7 +433,6 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
                 break;
         }
     }
-
     /**
      * 登录
      */
@@ -441,7 +441,6 @@ public class MineFragment extends BaseFrament implements AdapterView.OnItemClick
 //        intent.putExtra("loginsss", "Y");
         startActivity(intent);
     }
-
     @Override
     public void onResume() {
         super.onResume();

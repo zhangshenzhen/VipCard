@@ -40,6 +40,7 @@ import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.wxapi.Util;
 import com.google.gson.JsonObject;
 import com.sinia.orderlang.utils.AppInfoUtil;
+import com.sinia.orderlang.utils.StringUtil;
 import com.sinia.orderlang.utils.Utils;
 
 import org.json.JSONException;
@@ -82,6 +83,7 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
     private Button btn_look;
     private ProjectDetailDataBean projectDetailDataBean;
     private int isTheLimit;
+    private String explain;
 
 
     @Override
@@ -97,6 +99,9 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         pkmerchantid = intent.getIntExtra("pkmerchantid", 0);
         paytype = intent.getIntExtra("paytype", 0);
         selectTip = intent.getStringExtra("getSelectTipText"); //提示信息
+       if(projectDetailDataBean != null){
+           explain = projectDetailDataBean.getResultData().getExplain();
+       }
     }
 
 
@@ -299,12 +304,10 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         } else {
             recevice_remind.setText("暂无信息");//提示信息
         }
-        String html = resultBeanData.getExplain();
-        if (html != null) {
-            tv_danger_instruc.setText("\n" + Html.fromHtml(html) + "");//风险说明
-        } else {
-            tv_danger_instruc.setText("暂无信息");//风险说明
+        if(StringUtil.isNotEmpty(explain)){
+         tv_danger_instruc.setText("\n" + Html.fromHtml(explain) + "");//风险说明
         }
+
         is_Realname = resultBeanData.isCheckBankNo();
         if (is_Realname) {//是否实名认证
             real_name_remind.setVisibility(View.GONE);

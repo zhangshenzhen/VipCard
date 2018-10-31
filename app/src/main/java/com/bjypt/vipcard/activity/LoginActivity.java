@@ -171,6 +171,7 @@ public class LoginActivity extends BaseActivity implements VolleyCallBack {
         webView.requestFocus();
 
         TrackHelper.track().screen(TrackCommon.ViewTrackLogin).title(TrackCommon.ViewTrackLogin).with(getTracker());
+
     }
 
     @Override
@@ -243,7 +244,6 @@ public class LoginActivity extends BaseActivity implements VolleyCallBack {
                             e.printStackTrace();
                         }
                         Wethod.httpPost(LoginActivity.this, 1, Config.web.login_, params, this);
-
                         loadingPageDialog.show();
                         loadingPageDialog.setMsg("正在登陆...");
                     }
