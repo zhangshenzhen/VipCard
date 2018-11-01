@@ -22,6 +22,7 @@ import android.view.View;
 import android.webkit.GeolocationPermissions;
 import android.webkit.JavascriptInterface;
 import android.webkit.SslErrorHandler;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -32,7 +33,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.shangfeng.common.EventBusMessageEvent;
 import com.bjypt.vipcard.activity.shangfeng.common.LocateResultFields;
+import com.bjypt.vipcard.activity.shangfeng.common.enums.EventBusWhat;
 import com.bjypt.vipcard.activity.shangfeng.util.IsJudgeUtils;
 import com.bjypt.vipcard.activity.shangfeng.util.ShangfengUriHelper;
 import com.bjypt.vipcard.activity.shangfeng.util.SharedPreferencesUtils;
@@ -54,6 +57,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.sinia.orderlang.utils.StringUtil;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -112,6 +118,8 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
         serviceName = intent.getStringExtra("serviceName");
         isNews = intent.getStringExtra("isNews");
         setContentView(contentLayout());
+
+        EventBus.getDefault().register(this);
     }
 
     /**
@@ -659,6 +667,31 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
         super.onDestroy();
         if (utils != null) {
             utils.UnRegisterBroadCastReceiver(this, myBroadCastReceiver);
+        }
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusMessageEvent event) {
+        if (event.getWhat() == EventBusWhat.H5pay) {
+            LogUtil.debugPrint("pay_finish...");
+//            mAgentWeb.getJsAccessEntrace().quickCallJs("alertsuccess");
+            h5Web.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        h5Web.evaluateJavascript("javascript:alertsuccess()", new ValueCallback<String>() {
+                            @Override
+                            public void onReceiveValue(String value) {
+                                //此处为 js 返回的结果
+                            }
+                        });
+                    } else {
+                        h5Web.loadUrl("javascript:alertsuccess()");
+                    }
+                }
+            });
+
         }
     }
 }
