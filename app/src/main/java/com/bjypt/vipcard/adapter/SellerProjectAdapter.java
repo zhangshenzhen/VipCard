@@ -94,7 +94,7 @@ public class SellerProjectAdapter extends RecyclerView.Adapter{
             sellerViewHoldr.igv.setImageDrawable(mcontext.getResources().getDrawable(R.mipmap.cf_project_status_end));
         }
 
-            Glide.with(mcontext).load(sellBean.getHeadImg()).error(R.mipmap.more).into(sellerViewHoldr.imageView);
+            Glide.with(mcontext).load(sellBean.getGridUrl()).error(R.mipmap.more).into(sellerViewHoldr.imageView);
             sellerViewHoldr.tv_project_Name.setText(sellBean.getProjectName());//项目名称
             if(sellBean.getOptimalMoney() != null) {
              //sellerViewHoldr.tv_youhui_num.setText("起投金额：" + sellBean.getOptimalMoney().stripTrailingZeros().toPlainString() + "");

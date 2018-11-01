@@ -38,7 +38,7 @@ public final class Config {
 //        public static final String cf_url = "http://123.57.232.188:19096/api/";
 
 
-        //预上线服务器地址
+         //预上线服务器地址
 //        public static final String hyb_url = "http://47.93.79.174:9002/hyb/";
 //        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
 

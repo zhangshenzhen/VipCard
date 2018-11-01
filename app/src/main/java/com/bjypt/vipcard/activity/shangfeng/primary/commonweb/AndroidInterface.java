@@ -160,10 +160,9 @@ public class AndroidInterface {
              String discount = jsonObject.optString("discount");//    折扣
              int type_num = jsonObject.optInt("type_num");//    级别类型： 1.黄金 2.铂金 3.钻石
              String icon_url = jsonObject.optString("icon_url");
-             Log.i("jsonshowCardbag", "Thread:" + json);
-
+             Log.i("jsonshowCardbag", "Thread:"+json);
              Intent intent = new Intent();
-            // intent.putExtra("pkuseraccountid", getPkuseraccountid());
+             // intent.putExtra("pkuseraccountid", getPkuseraccountid());
              intent.putExtra("cardno", cardno);
              intent.putExtra("displaycardno", cardno);
              intent.putExtra("pkmerchantid", pkmerchantid);
@@ -210,7 +209,7 @@ public class AndroidInterface {
      */
     private void showDialog(final String address, final String lat, final String lon) {
 
-//        currentAddress = String.valueOf(SharedPreferencesUtils.get(LocateResultFields.CURRENT_ADDRESS, ""));
+  //   currentAddress = String.valueOf(SharedPreferencesUtils.get(LocateResultFields.CURRENT_ADDRESS, ""));
 
         BottomDialog dialog = new BottomDialog(context, "使用高德地图", "使用百度地图");
         dialog.setClickListener(new BottomDialog.BtnBottomListener() {

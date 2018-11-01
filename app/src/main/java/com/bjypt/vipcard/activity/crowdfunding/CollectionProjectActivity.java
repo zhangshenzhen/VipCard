@@ -234,7 +234,7 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
     @Override
     public void onFailed(int reqcode, Object result) {
         Pull_seller_view.onRefreshComplete();// 停止刷新
-        Log.i("TAG,","连接成功 reqcode = ........onFailed = "+ result);
+        LogUtil.debugPrint("连接成功 reqcode = ........onFailed = "+ result);
 
         handler.sendEmptyMessage(1);
     }
@@ -243,7 +243,7 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
     public void onError(VolleyError volleyError) {
         Pull_seller_view.onRefreshComplete();// 停止刷新
       //  LogUtil.debugPrint("连接成功 reqcode = ........onError = "+ volleyError.getMessage());
-        Log.i("TAG,","连接成功 reqcode = ........onError = "+ volleyError.getMessage());
+        LogUtil.debugPrint("连接成功 reqcode = ........onError = "+ volleyError.getMessage());
 
         handler.sendEmptyMessage(1);
     }

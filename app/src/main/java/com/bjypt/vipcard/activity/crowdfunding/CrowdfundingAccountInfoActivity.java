@@ -144,7 +144,6 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
         tv_title.setText(merchant_name);
         showAmount();
         //会员等级状态显示
-
         if (StringUtil.isNotEmpty(vip_name)){
             tv_vipname.setText(vip_name);
         }else {
@@ -269,7 +268,6 @@ public class CrowdfundingAccountInfoActivity extends BaseActivity implements Vol
                 break;
         }
     }
-
     private void showAmount() {
         String mash = "********";
         String is_show_display = SharedPreferenceUtils.getFromSharedPreference(this, show_amount_display_key);

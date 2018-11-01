@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="5dp"
-                        android:text="年化收益率"
+                        android:text="最高年化率"
                         android:textColor="#333333"
                         android:textSize="12sp" />
 
