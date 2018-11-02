@@ -13,6 +13,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.bjypt.vipcard.R;
+import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.AndroidInterface;
+import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.BaseAgentWebActivity;
+import com.bjypt.vipcard.activity.shangfeng.primary.commonweb.DefaultAndroidInterface;
 import com.bjypt.vipcard.base.BaseFragment;
 import com.bjypt.vipcard.fragment.crowdfunding.SubCrowdfundingFragment;
 import com.bjypt.vipcard.fragment.crowdfunding.entity.CfTabData;
@@ -57,6 +60,7 @@ public class ProjectContentFragment extends BaseFragment{
         }
 //        ws.setGeolocationDatabasePath(getFilesDir().getPath());
         webView.requestFocus();
+        webView.addJavascriptInterface( new DefaultAndroidInterface(this.getActivity(), this.getContext()),"android");
         webView.setWebViewClient(new WebViewClient() {
             //覆盖shouldOverrideUrlLoading 方法
             @Override
