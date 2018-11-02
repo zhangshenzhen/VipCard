@@ -2,10 +2,12 @@ package com.bjypt.vipcard.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.http.SslError;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -44,6 +46,10 @@ public class MerchantDetailsActivity extends BaseActivity{
         mBack = (RelativeLayout) findViewById(R.id.rl_financial_detail_back);
 
         deductionWeb.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed();
+            }
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);

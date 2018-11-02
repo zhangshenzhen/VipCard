@@ -56,6 +56,12 @@ public class BillDetailsActivity extends BaseActivity implements VolleyCallBack 
         rl_bill_detail_back = (RelativeLayout) findViewById(R.id.rl_bill_detail_back);
         feePointWeb = (WebView) findViewById(R.id.web_bill_detail);
         feePointWeb.setWebViewClient(new WebViewClient() {
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed();
+            }
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);

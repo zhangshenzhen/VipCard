@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.http.SslError;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
@@ -14,6 +15,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -382,6 +384,11 @@ public class LoginActivity extends BaseActivity implements VolleyCallBack {
                 }
             } else {
                 webView.setWebViewClient(new WebViewClient() {
+
+                    @Override
+                    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                        handler.proceed();
+                    }
                     @Override
                     public void onPageFinished(WebView view, String url) {
                         super.onPageFinished(view, url);

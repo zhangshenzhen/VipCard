@@ -621,8 +621,6 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
             dialog.show();
         }
 
-
-
     }
 
 

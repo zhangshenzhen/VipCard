@@ -2,6 +2,7 @@ package com.bjypt.vipcard.activity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.http.SslError;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -53,6 +55,12 @@ public class UserRecordActivity extends BaseActivity {
         back = (RelativeLayout) findViewById(R.id.user_record_back);
         webView = (WebView) findViewById(R.id.user_record_web);
         webView.setWebViewClient(new WebViewClient(){
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed();
+            }
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);

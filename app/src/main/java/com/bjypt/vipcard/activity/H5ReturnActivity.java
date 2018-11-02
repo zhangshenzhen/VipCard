@@ -3,8 +3,10 @@ package com.bjypt.vipcard.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.http.SslError;
 import android.view.View;
 import android.webkit.JavascriptInterface;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -94,6 +96,10 @@ public class H5ReturnActivity extends BaseActivity {
         }
     }
     private class webViewClient extends WebViewClient {
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+            handler.proceed();
+        }
         @Override
         public boolean shouldOverrideUrlLoading(WebView view,String url) {
             view.loadUrl(url);

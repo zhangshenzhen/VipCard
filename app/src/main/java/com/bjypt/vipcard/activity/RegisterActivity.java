@@ -2,6 +2,7 @@ package com.bjypt.vipcard.activity;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.http.SslError;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.InputType;
@@ -10,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -304,6 +306,10 @@ public class RegisterActivity extends BaseActivity implements VolleyCallBack {
                 }
 
                 webView.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                        handler.proceed();
+                    }
                     @Override
                     public void onPageFinished(WebView view, String url) {
                         super.onPageFinished(view, url);
