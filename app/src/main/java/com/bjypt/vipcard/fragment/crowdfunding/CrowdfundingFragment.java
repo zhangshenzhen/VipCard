@@ -257,7 +257,7 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
 
     @Override
     public void onSuccess(int reqcode, Object result) {
-        LogUtil.debugPrint("CrowfunFragment : " + result);
+        pullList.refreshComplete();
         if (reqcode == request_code_notices) {
             handlerNotices(result);
         } else if (reqcode == request_code_recoment_project) {
@@ -266,8 +266,10 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
         } else if (reqcode == request_code_normal_project) {
 
         }
-           pullList.refreshComplete();
+
     }
+
+
 
     private void handlerRecommentProject(Object result) {
         try {
@@ -298,7 +300,9 @@ public class CrowdfundingFragment extends BaseFrament implements VolleyCallBack,
 
     @Override
     public void onFailed(int reqcode, Object result) {
-
+        if(reqcode == request_code_recoment_project || reqcode == request_code_notices){
+            pullList.refreshComplete();
+        }
     }
 
     @Override
