@@ -43,7 +43,6 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
     private Button btn_next_buy;
     private Button btn_main_page;
     private int pkmerchantid;
-    private ScheduledThreadPoolExecutor executor;
 
 
     @Override
@@ -74,20 +73,15 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
     @Override
     public void afterInitView() {
 
-        timerTask();
+        getOrderInfo();
     }
 
-    public void timerTask(){
+    public void getOrderInfo(){
         //定时任务
-        executor = new ScheduledThreadPoolExecutor(1);
-        executor.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                Map<String,String> params = new HashMap<>();
-                params.put("orderid", getIntent().getStringExtra("orderid"));
-                Wethod.httpPost(CrowdfundingPayFinishActivity.this, request_code_order_info, Config.web.cf_order_info, params, CrowdfundingPayFinishActivity.this, View.GONE);
-            }
-        },0,3000, TimeUnit.MILLISECONDS);
+        Map<String,String> params = new HashMap<>();
+        params.put("orderid", getIntent().getStringExtra("orderid"));
+        Wethod.httpPost(CrowdfundingPayFinishActivity.this, request_code_order_info, Config.web.cf_order_info, params, CrowdfundingPayFinishActivity.this, View.GONE);
+
 
     }
 
@@ -126,12 +120,10 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
     @Override
     public void onSuccess(int reqcode, String result) {
         if(reqcode == request_code_order_info){
-            if (executor != null){
-              executor.shutdown();
-             }
             try {
                 LogUtil.debugPrint("支付信息 = "+ result);
                 CfOrderInfoDataBean orderInfoDataBean = ObjectMapperFactory.createObjectMapper().readValue(result, CfOrderInfoDataBean.class);
+                //状态等于3为成功的订单
                 if(orderInfoDataBean != null && orderInfoDataBean.getResultData() != null){
                     tv_project_name.setText("项目名称："+orderInfoDataBean.getResultData().getProjectName());
                     tv_pay_time.setText("支付时间：" + orderInfoDataBean.getResultData().getPayDate());
@@ -148,6 +140,14 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
                   //  tv_ordernum.setText("交易订单号："+ orderInfoDataBean.getResultData().getOutOrderId());
                     tv_ordernum.setText("交易订单号："+ orderInfoDataBean.getResultData().getOrderid());
 
+                }else{
+                    tv_project_name.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            getOrderInfo();
+                        }
+                    },2000);
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -157,7 +157,14 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
 
     @Override
     public void onFailed(int reqcode, String result) {
-
+        if(reqcode == request_code_order_info){
+            tv_project_name.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    getOrderInfo();
+                }
+            },2000);
+        }
     }
 
     @Override

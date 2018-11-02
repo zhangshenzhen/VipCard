@@ -57,6 +57,16 @@ public class CfOrderInfoDataBean {
         private String projectName;
         private String settleEndAt;
 
+        private Integer order_status;
+
+        public Integer getOrder_status() {
+            return order_status;
+        }
+
+        public void setOrder_status(Integer order_status) {
+            this.order_status = order_status;
+        }
+
         public String getIncomeAmount() {
             return incomeAmount;
         }

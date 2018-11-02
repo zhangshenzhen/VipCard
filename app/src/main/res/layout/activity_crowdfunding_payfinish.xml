@@ -54,7 +54,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="left|center_vertical"
                 android:minHeight="50dp"
-                android:text="项目名称：说啊当发生的发卡斯蒂略分阿斯顿反馈；拉萨的肌肤爱上；"
+                android:text="项目名称："
                 android:textColor="@color/black_3"
                 android:textSize="15sp" />
 
