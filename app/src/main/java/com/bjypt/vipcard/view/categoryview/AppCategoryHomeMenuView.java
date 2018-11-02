@@ -28,6 +28,7 @@ import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.view.RoundImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.sinia.orderlang.utils.StringUtil;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -253,13 +254,13 @@ public class AppCategoryHomeMenuView extends AppCategoryContextView {
 
         private Context context;
         private List<AppCategoryGroupBean> list;
-        private int flag;
+        private int page;
 
 
         public MyGridViewAdapter(Context context, List<AppCategoryGroupBean> list, int flag) {
             this.context = context;
             this.list = list;
-            this.flag = flag;
+            this.page = flag;
 
             ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(context);
             ImageLoader.getInstance().init(configuration);
@@ -267,12 +268,12 @@ public class AppCategoryHomeMenuView extends AppCategoryContextView {
 
         @Override
         public int getCount() {
-            return list.get(flag).getAppCategoryBeans().size();
+            return list.get(page).getAppCategoryBeans().size();
         }
 
         @Override
         public Object getItem(int position) {
-            return list.get(flag).getAppCategoryBeans().get(position);
+            return list.get(page).getAppCategoryBeans().get(position);
         }
 
         @Override
@@ -292,15 +293,16 @@ public class AppCategoryHomeMenuView extends AppCategoryContextView {
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
-            viewHolder.textView.setText(list.get(flag).getAppCategoryBeans().get(position).getApp_name());
+            viewHolder.textView.setText(list.get(page).getAppCategoryBeans().get(position).getApp_name());
             //AppConfig.DEFAULT_IMG_MERCHANT_BG 配置iamgeloader的显示参数
-            ImageLoader.getInstance().displayImage(list.get(flag).getAppCategoryBeans().get(position).getApp_icon(),
+            ImageLoader.getInstance().displayImage(list.get(page).getAppCategoryBeans().get(position).getApp_icon(),
                     viewHolder.iv_menu, AppConfig.DEFAULT_IMG_MERCHANT_BG);
-
+            convertView.setTag(R.id.news_data_id ,position);
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AppCategoryBean appCategoryBean = getItemBean(position);
+                    int p = StringUtil.getInt(v.getTag(R.id.news_data_id)+"",0);
+                    AppCategoryBean appCategoryBean = list.get(page).getAppCategoryBeans().get(position);
                     if(appCategoryBean != null){
                         postTracker(TrackCommon.ViewTrackCommonMenus , appCategoryBean.getApp_name());
                     }
