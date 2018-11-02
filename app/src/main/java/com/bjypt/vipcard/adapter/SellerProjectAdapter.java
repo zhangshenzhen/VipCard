@@ -96,9 +96,7 @@ public class SellerProjectAdapter extends RecyclerView.Adapter{
 
             Glide.with(mcontext).load(sellBean.getGridUrl()).error(R.mipmap.more).into(sellerViewHoldr.imageView);
             sellerViewHoldr.tv_project_Name.setText(sellBean.getProjectName());//项目名称
-            if(sellBean.getOptimalMoney() != null) {
-             //sellerViewHoldr.tv_youhui_num.setText("起投金额：" + sellBean.getOptimalMoney().stripTrailingZeros().toPlainString() + "");
-            }
+
         sellerViewHoldr.tv_target.setText(AmountDisplayUtil.displayChineseWan2(sellBean.getCfAmount()));
         sellerViewHoldr.tv_max_rate.setText(sellBean.getMaxInterestRate()!=null?FomartToolUtils.fomartNum(sellBean.getMaxInterestRate()+"")+"%":sellBean.getMaxInterestRate()+"%");
         sellerViewHoldr.tv_end_data.setText(sellBean.getBuyEndAt()>0? FomartToolUtils.fomartDate(sellBean.getBuyEndAt()+""):"0000-00-00");//截止
@@ -138,8 +136,7 @@ public class SellerProjectAdapter extends RecyclerView.Adapter{
         sellerViewHoldr.btn_look.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //保存点击后的商家项目id
-                //SharedPreferenceUtils.saveToSharedPreference(context,"list_pkprojectid",cfProjectItem.getPkprojectid()+"");
+
                 //发送审核请求；
                 sendApplicat(mcontext, sellBean,sellerViewHoldr);
             }
@@ -194,9 +191,9 @@ public class SellerProjectAdapter extends RecyclerView.Adapter{
        private final ImageView igv;
        private final TextView tv_project_Name;//项目名称
        private final ProgressBar progressBar;
-       private final ProgressBar progressBar2;
+       private final ProgressBar progressBar2;//进度条
        private final TextView tv_precent;
-       private final TextView tv_precent2;
+       private final TextView tv_precent2;//百分比
        private final TextView tv_youhui_num;//最优惠金额
        private final RelativeLayout re_item ;
        public final TextView tv_target;//目标金额

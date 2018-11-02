@@ -24,21 +24,24 @@ public final class Config {
 
 
         //测试服务器地址
-        public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
-        public static final String shangfengh5 = "http://123.57.232.188:19094/";
-        public static final String app_h5_url = "http://testsun.hybjiekou.com/hyb_ct_h5app/";
-        public static final String cf_url = "http://123.57.232.188:19096/";
+  //         public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
+  //         public static final String shangfengh5 = "http://123.57.232.188:19094/";
+  //         public static final String app_h5_url = "http://testsun.hybjiekou.com/hyb_ct_h5app/";
+  //        public static final String cf_url = "http://123.57.232.188:19096/";
+
 //        public static final String cf_h5_url = "";
-//        public stati
+
        // http://123.57.232.188:19096/api/hybCfMerchantCrowdfundingProjectItem/getProjectItemExplain";
+
         //正式服务器地址
-//        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
-//        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //207地址
-//        public static final String app_h5_url = "http://sun.hybjiekou.com/hyb_ct_h5app/";
-//        public static final String cf_url = "http://123.57.232.188:19096/api/";
+        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
+        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //207地址
+        public static final String app_h5_url = "http://sun.hybjiekou.com/hyb_ct_h5app/";
+        public static final String cf_url = "http://jk.zhihuisf.com:8687/";//新更换的地址
+       // public static final String cf_url = "http://123.57.232.188:19096/api/";
 
 
-         //预上线服务器地址
+        //预上线服务器地址
 //        public static final String hyb_url = "http://47.93.79.174:9002/hyb/";
 //        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
 

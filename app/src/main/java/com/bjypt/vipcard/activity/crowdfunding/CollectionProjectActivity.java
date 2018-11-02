@@ -198,9 +198,10 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
               is_refresh = false;
             }
 
-         /* 根据调节隐藏某些Item   for (int i = 0; i < cfProjectListDataBean.getResultData().getList().size(); i++) {
+         /* 根据条件过滤条目信息实现隐藏某些Item的功能
+           for (int i = 0; i < cfProjectListDataBean.getResultData().getList().size(); i++) {
                if (cfProjectListDataBean.getResultData().getList().get(i).getTypeImg() != 2){
-                SellerProjectBeans.add(cfProjectListDataBean.getResultData().getList().get(i));
+                 SellerProjectBeans.add(cfProjectListDataBean.getResultData().getList().get(i));
                }
             }*/
          SellerProjectBeans.addAll(cfProjectListDataBean.getResultData().getList());
@@ -235,16 +236,13 @@ public class CollectionProjectActivity  extends BaseActivity implements VolleyCa
     public void onFailed(int reqcode, Object result) {
         Pull_seller_view.onRefreshComplete();// 停止刷新
         LogUtil.debugPrint("连接成功 reqcode = ........onFailed = "+ result);
-
         handler.sendEmptyMessage(1);
     }
 
     @Override
     public void onError(VolleyError volleyError) {
         Pull_seller_view.onRefreshComplete();// 停止刷新
-      //  LogUtil.debugPrint("连接成功 reqcode = ........onError = "+ volleyError.getMessage());
         LogUtil.debugPrint("连接成功 reqcode = ........onError = "+ volleyError.getMessage());
-
         handler.sendEmptyMessage(1);
     }
 }

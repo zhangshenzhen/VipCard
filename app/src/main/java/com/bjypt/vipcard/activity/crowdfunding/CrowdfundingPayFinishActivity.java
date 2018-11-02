@@ -25,6 +25,8 @@ import com.githang.statusbar.StatusBarCompat;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class CrowdfundingPayFinishActivity extends BaseActivity implements VolleyCallBack<String> {
 
@@ -41,6 +43,7 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
     private Button btn_next_buy;
     private Button btn_main_page;
     private int pkmerchantid;
+    private ScheduledThreadPoolExecutor executor;
 
 
     @Override
@@ -70,9 +73,22 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
 
     @Override
     public void afterInitView() {
-        Map<String,String> params = new HashMap<>();
-        params.put("orderid", getIntent().getStringExtra("orderid"));
-        Wethod.httpPost(this, request_code_order_info, Config.web.cf_order_info, params, this, View.GONE);
+
+        timerTask();
+    }
+
+    public void timerTask(){
+        //定时任务
+        executor = new ScheduledThreadPoolExecutor(1);
+        executor.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                Map<String,String> params = new HashMap<>();
+                params.put("orderid", getIntent().getStringExtra("orderid"));
+                Wethod.httpPost(CrowdfundingPayFinishActivity.this, request_code_order_info, Config.web.cf_order_info, params, CrowdfundingPayFinishActivity.this, View.GONE);
+            }
+        },0,3000, TimeUnit.MILLISECONDS);
+
     }
 
     @Override
@@ -110,6 +126,9 @@ public class CrowdfundingPayFinishActivity extends BaseActivity implements Volle
     @Override
     public void onSuccess(int reqcode, String result) {
         if(reqcode == request_code_order_info){
+            if (executor != null){
+              executor.shutdown();
+             }
             try {
                 LogUtil.debugPrint("支付信息 = "+ result);
                 CfOrderInfoDataBean orderInfoDataBean = ObjectMapperFactory.createObjectMapper().readValue(result, CfOrderInfoDataBean.class);

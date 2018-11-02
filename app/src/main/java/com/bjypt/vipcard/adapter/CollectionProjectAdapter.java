@@ -120,7 +120,6 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
                 mcontext.startActivity(intent);
             }
         });
-
     }
 
 
@@ -168,18 +167,6 @@ public class CollectionProjectAdapter extends RecyclerView.Adapter {
             btn_look = itemView.findViewById(R.id.btn_look);
         }
     }
-    public void setVisibility(boolean isVisible, SellerViewHoldr sellerViewHoldr) {
-        RecyclerView.LayoutParams param = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-        if (isVisible) {
-            param.height = RelativeLayout.LayoutParams.WRAP_CONTENT;// 这里注意使用自己布局的根布局类型
-            param.width = RelativeLayout.LayoutParams.MATCH_PARENT;// 这里注意使用自己布局的根布局类型
-            sellerViewHoldr.itemView.setVisibility(View.VISIBLE);
-        } else {
-            param.height = 0;
-            param.width = 0;
-            sellerViewHoldr.itemView.setLayoutParams(param);
-            sellerViewHoldr.itemView.setVisibility(View.GONE);
-        }
-    }
+
 
 }

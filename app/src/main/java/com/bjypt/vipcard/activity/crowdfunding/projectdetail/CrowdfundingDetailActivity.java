@@ -167,7 +167,7 @@ public class CrowdfundingDetailActivity extends BaseFraActivity implements Volle
 
         cfProjectDetailPeriodItemView.loadProjectPeroidItem(pkprojectid,cfProjectDetailAmountItemView);
         //cfProjectDetailPeriodItemView.
-            //移动到 loadProjectPeroidItem 方法中
+        //移动到 loadProjectPeroidItem 方法中
        // cfProjectDetailAmountItemView.loadProjectAmountItem(cfProjectDetailPeriodItemView.getprogressdurationid());
     }
 

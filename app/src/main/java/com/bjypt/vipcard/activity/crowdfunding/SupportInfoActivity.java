@@ -143,7 +143,6 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         LogUtil.debugPrint("SupportInfoActivity = pkregister " + getPkregister());
         params.put("pkprogressitemid", pkprogressitemid + "");
         params.put("pkregister", getPkregister());
-        // String url = "http://123.57.232.188:19096/api/hybCfMerchantCrowdfundingProjectItem/getProjectItemExplain";
         Wethod.httpPost(this, resultCode, Config.web.zhongchou_supportInfo_url, params, this);
     }
 
