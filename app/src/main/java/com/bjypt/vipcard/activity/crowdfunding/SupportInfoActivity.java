@@ -305,6 +305,8 @@ public class SupportInfoActivity extends BaseActivity implements VolleyCallBack 
         }
         if(StringUtil.isNotEmpty(explain)){
          tv_danger_instruc.setText("\n" + Html.fromHtml(explain) + "");//风险说明
+        }else {
+            tv_danger_instruc.setText("");
         }
 
         is_Realname = resultBeanData.isCheckBankNo();

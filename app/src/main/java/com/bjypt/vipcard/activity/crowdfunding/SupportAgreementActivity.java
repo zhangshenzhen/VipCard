@@ -64,7 +64,7 @@ public class SupportAgreementActivity extends BaseActivity {
         if (html_agreement !=null) {
             tv_agreement.setText("\n" + Html.fromHtml(html_agreement));
         }else {
-            tv_agreement.setText("还没有文本数据");
+            tv_agreement.setText("");
         }
      }
 
