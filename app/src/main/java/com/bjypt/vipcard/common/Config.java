@@ -559,6 +559,7 @@ public final class Config {
         public static final String CURRENT_LNGU = "CURRENT_LNGU";//当前城市经度
 
 
+
         /*************
          * 供货区所需要的省市区
          ***************/

@@ -94,7 +94,7 @@ public class NewAlipay {
             public void run() {
                 // 构造PayTask 对象
                 PayTask alipay = new PayTask((Activity) context);
-                // 调用支付接口，获取支付结果
+                // 调用支付接口，获取支付结果  并打开支付对话框
                 String result = alipay.pay(content);
                 Log.e("NewAlipay", "payresult:"+result);
 
@@ -124,7 +124,7 @@ public class NewAlipay {
                 Log.e("NewAlipay","startAlipay");
                 // 构造PayTask 对象
                 PayTask payTask = new PayTask((Activity) context);
-                // 调用查询接口，获取查询结果
+                // 调用查询接口，获取查询结果 是否存在支付宝账户
                 boolean isExist = payTask.checkAccountIfExist();
 
                 if(!isExist){

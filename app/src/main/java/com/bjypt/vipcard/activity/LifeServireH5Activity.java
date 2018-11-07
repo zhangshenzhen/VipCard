@@ -352,6 +352,7 @@ public class LifeServireH5Activity extends BaseActivity implements EasyPermissio
         String lon = SharedPreferenceUtils.getFromSharedPreference(this,  Config.userConfig.CURRENT_LNGU);
         String citycode = String.valueOf(SharedPreferencesUtils.get(LocateResultFields.CITY_CODE, Config.DEFAULT_CITY_CODE));
         if (isLogin.equals("N")) {
+
             if(h5Url.endsWith("?") || h5Url.endsWith("&")){
                 h5Url = h5Url + "latitude=" + lat +"&longitude=" + lon +"&citycode=" + citycode;
             }else{

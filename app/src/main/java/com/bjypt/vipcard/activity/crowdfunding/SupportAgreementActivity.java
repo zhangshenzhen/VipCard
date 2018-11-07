@@ -72,7 +72,7 @@ public class SupportAgreementActivity extends BaseActivity {
     public void onClickEvent(View v) {
         switch (v.getId()) {
             case R.id.btn_cancel_agreement:
-                setResult(RESULT_OK);
+                setResult(2);
                 finish();
                 break;
             case R.id.btn_sure_agreement:

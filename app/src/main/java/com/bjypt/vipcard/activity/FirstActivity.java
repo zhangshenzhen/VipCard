@@ -28,6 +28,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.base.BaseActivity;
+import com.bjypt.vipcard.base.MyApplication;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
@@ -94,8 +95,9 @@ public class FirstActivity extends AppCompatActivity implements VolleyCallBack<S
                     gaoDeMapLocation.startLocation();
                 } else {
                     Log.e("ceshi", "3");
-                    gaoDeMapLocation = new GaoDeMapLocation(this);
+                    gaoDeMapLocation = new GaoDeMapLocation(MyApplication.getContext());
                     gaoDeMapLocation.startLocation();
+                   // gaoDeMapLocation.StartGaoDe();
                     mayRequestLocation();//android 6.0获取用户许可打开定位权限
                 }
             }

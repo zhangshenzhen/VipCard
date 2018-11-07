@@ -1,10 +1,15 @@
 package com.bjypt.vipcard.utils;
 
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -12,6 +17,12 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
+import com.amap.api.services.geocoder.GeocodeAddress;
+import com.amap.api.services.geocoder.GeocodeQuery;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.bjypt.vipcard.activity.shangfeng.common.LocateResultFields;
@@ -19,9 +30,23 @@ import com.bjypt.vipcard.activity.shangfeng.util.SharedPreferencesUtils;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.model.LocationDingweiBean;
+import com.sinia.orderlang.utils.MyApplication;
 import com.sinia.orderlang.utils.StringUtil;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Administrator on 2016/11/17.
@@ -55,13 +80,14 @@ public class GaoDeMapLocation implements AMapLocationListener, PoiSearch.OnPoiSe
         locationOption = new AMapLocationClientOption();
         locationOption.setNeedAddress(true);
         locationOption.setMockEnable(true);
-        locationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
+        locationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
         locationClient.setLocationListener(this);
     }
 
     /*在启动当前APP的时候启动定位功能*/
     public void startLocation() {
         Log.e("dingwei", "#########" + Build.VERSION.SDK_INT);
+        locationOption.setOnceLocation(true);
         locationClient.setLocationOption(locationOption);
         locationClient.startLocation();
         locationHandler.sendEmptyMessage(MSG_LOCATION_START);
@@ -84,10 +110,14 @@ public class GaoDeMapLocation implements AMapLocationListener, PoiSearch.OnPoiSe
         if (null != aMapLocation) {
             if(null != aMapLocation.getCity()) {
                 SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_CITY, aMapLocation.getCity().replace("市", ""));
-               LogUtil.debugPrint("定位回调:" + aMapLocation.getCity().replace("市", ""));
+                LogUtil.debugPrint("定位回调:" + aMapLocation.toString());
+                Log.i("context",aMapLocation.getCity()+"城市编码 = "+aMapLocation.getCityCode());
                 SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_LATU, aMapLocation.getLatitude() + "");
                 SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.CURRENT_LNGU, aMapLocation.getLongitude() + "");
-                LogUtil.debugPrint("经度 :" + aMapLocation.getLongitude() + " ; 纬度 :" + aMapLocation.getLatitude());
+                SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.citycode, aMapLocation.getCityCode() + "");
+                LogUtil.debugPrint("经度。 :" + aMapLocation.getLongitude() + " ; 纬度。 :" + aMapLocation.getLatitude());
+
+
             }
 
             Message msg = locationHandler.obtainMessage();
@@ -184,8 +214,7 @@ public class GaoDeMapLocation implements AMapLocationListener, PoiSearch.OnPoiSe
         if (location.getErrorCode() == 0) {
             locationDingweiBean.setmLng(location.getLongitude());
             locationDingweiBean.setmLat(location.getLatitude());
-            if (location.getProvider().equalsIgnoreCase(
-                    android.location.LocationManager.GPS_PROVIDER)) {
+            if (location.getProvider().equalsIgnoreCase(android.location.LocationManager.GPS_PROVIDER)) {
             } else {
                 SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.pname, location.getProvince());
                 SharedPreferenceUtils.saveToSharedPreference(context, Config.userConfig.adName, location.getDistrict());
@@ -289,6 +318,7 @@ public class GaoDeMapLocation implements AMapLocationListener, PoiSearch.OnPoiSe
     }
 
     private boolean isSave = false;
+//------------------------------------------------------------------------------------
 
 
 }
