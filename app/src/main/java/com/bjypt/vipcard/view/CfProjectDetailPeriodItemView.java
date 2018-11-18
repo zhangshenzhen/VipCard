@@ -110,16 +110,6 @@ public class CfProjectDetailPeriodItemView extends LinearLayout implements Volle
                             RelativeLayout relativeLayout = view.findViewById(R.id.re_layout);
                             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                             relativeLayout.setLayoutParams(params);
-                           /* ViewTreeObserver treeObserver = btn_item_period.getViewTreeObserver();
-                            treeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                                @Override
-                                public void onGlobalLayout() {
-                                    btn_item_period.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                                    int width = btn_item_period.getWidth();
-                                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                                    relativeLayout.setLayoutParams(params);
-                                }
-                            });*/
 
                             btn_item_period.setOnClickListener(new OnClickListener(){
                                 @Override

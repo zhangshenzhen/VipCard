@@ -47,7 +47,7 @@ android {
         variant ->
             variant.outputs.all {
                 output ->
-                    outputFileName = "繁城都市_v${defaultConfig.versionName}_${variant.buildType.name}.apk"
+                    outputFileName = "城市互联_v${defaultConfig.versionName}_${variant.buildType.name}.apk"
             }
     }
 

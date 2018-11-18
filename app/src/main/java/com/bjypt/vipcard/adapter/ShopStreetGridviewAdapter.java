@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +27,7 @@ public class ShopStreetGridviewAdapter extends BaseAdapter {
     public ShopStreetGridviewAdapter(Context mContext, List<String> listName) {
         this.mContext = mContext;
         this.listName = listName;
+
     }
 
     public void setSelection(int position) {

@@ -3,6 +3,10 @@ package com.bjypt.vipcard.fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -10,25 +14,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.bjypt.vipcard.Interface.OnRecycleItemClickListener;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.NewSubscribeDishesActivity;
 import com.bjypt.vipcard.adapter.ShopStreetGridviewAdapter;
+import com.bjypt.vipcard.adapter.interconnect.ShopStreetRecycleAdapter;
 import com.bjypt.vipcard.base.BaseFragment;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.config.AppConfig;
+import com.bjypt.vipcard.fragment.crowdfunding.decoration.GridSpacingItemDecoration;
+import com.bjypt.vipcard.fragment.crowdfunding.decoration.HorizontalSpaceItemDecoration;
 import com.bjypt.vipcard.model.NewHomeMerchantListBean;
 import com.bjypt.vipcard.model.NewMerchantListBean;
 import com.bjypt.vipcard.model.ShopStreetBean;
-import com.bjypt.vipcard.utils.LogUtil;
+import com.bjypt.vipcard.utils.DensityUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.view.NewsViewpager;
@@ -48,8 +54,9 @@ import java.util.regex.Pattern;
 
 public class ShopStreetViewpagerFragment extends BaseFragment implements VolleyCallBack<String> {
 
+    private static final String TAG ="StreetViewpagerFragment" ;
     private View view;
-    private GridView my_gridview_shopstreet;
+    private RecyclerView my_gridview_shopstreet;
     final int TWO_LEVEL_REQUEST = 110;
     final int MERCHANT_LIST_REQUEST = 111;
 
@@ -81,6 +88,9 @@ public class ShopStreetViewpagerFragment extends BaseFragment implements VolleyC
 
     final int QUERY_EXERCISE_MORE = 0x0101;
     final int QUERY_EXERCISE_REFERSH = 0x0110;
+    private ShopStreetRecycleAdapter adapter;
+    private int dposition = -1;
+
 
     public static ShopStreetViewpagerFragment getInstance(String mtlevel, String pkmertype, NewsViewpager viewpager, int index) {
         ShopStreetViewpagerFragment fragment = new ShopStreetViewpagerFragment();
@@ -116,23 +126,60 @@ public class ShopStreetViewpagerFragment extends BaseFragment implements VolleyC
     @Override
     public void initView() {
         layoutInflater = LayoutInflater.from(getActivity());
-        my_gridview_shopstreet = (GridView) view.findViewById(R.id.my_gridview_shopstreet);
+      //  my_gridview_shopstreet = (RecyclerView) view.findViewById(R.id.my_gridview_shopstreet);
         ll_merchantlist = (LinearLayout) view.findViewById(R.id.ll_merchantlist);
         linear_footer = (LinearLayout) view.findViewById(R.id.linear_footer);
         ll_data_null = (LinearLayout) view.findViewById(R.id.ll_data_null);
+        my_gridview_shopstreet = view.findViewById(R.id.my_gridview_shopstreet);
         View footerView = LayoutInflater.from(getActivity()).inflate(R.layout.item_news_footer_view, null);
         linear_footer.addView(footerView);
     }
 
     @Override
     public void afterInitView() {
-        myAdapter = new ShopStreetGridviewAdapter(getActivity(), listName);
+       /* myAdapter = new ShopStreetGridviewAdapter(getActivity(), listName);
         my_gridview_shopstreet.setAdapter(myAdapter);
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) my_gridview_shopstreet.getLayoutParams();
+        WindowManager wm = (WindowManager)getActivity().getSystemService(Context.WINDOW_SERVICE);
+        int width = wm.getDefaultDisplay().getWidth();
+        layoutParams.setMargins(- width*3/4, 0, 0, 0);*/
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        my_gridview_shopstreet.setLayoutManager(layoutManager);//设置布局管理器
+        //设置间距
+        GridSpacingItemDecoration gridSpacingItemDecoration = new GridSpacingItemDecoration(1, DensityUtil.dip2px(getContext(), 5));
+        HorizontalSpaceItemDecoration horizontalSpaceItemDecoration = new HorizontalSpaceItemDecoration(DensityUtil.dip2px(getContext(), 10), DensityUtil.dip2px(getContext(), 0));
+        my_gridview_shopstreet.removeItemDecoration(horizontalSpaceItemDecoration);
+        my_gridview_shopstreet.addItemDecoration(gridSpacingItemDecoration);
+
+
+        adapter = new ShopStreetRecycleAdapter(getActivity(),listName,handler);
+        my_gridview_shopstreet.setAdapter(adapter);
+
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    public Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+             dposition = msg.what;
+             isClick = true;
+             if (dposition != -1){
+             requestMerchantList(listall.get(dposition).getMtlevel() + "", listall.get(dposition).getPkmertype(), QUERY_EXERCISE_REFERSH);
+             }
+        }
+    };
+
+    @Override
     public void bindListener() {
-        my_gridview_shopstreet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //点击按钮
+     /*   my_gridview_shopstreet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 isClick = true;
@@ -141,13 +188,18 @@ public class ShopStreetViewpagerFragment extends BaseFragment implements VolleyC
                 myAdapter.notifyDataSetChanged();
                 requestMerchantList(listall.get(position).getMtlevel() + "", listall.get(position).getPkmertype(), QUERY_EXERCISE_REFERSH);
             }
-        });
+        });*/
 
         linear_footer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (gridviewPosition != -1) {
+               /* if (gridviewPosition != -1) {
                     requestMerchantList(listall.get(gridviewPosition).getMtlevel() + "", listall.get(gridviewPosition).getPkmertype(), QUERY_EXERCISE_MORE);
+                } else {
+                    requestMerchantList(mtlevel, pkmertype, QUERY_EXERCISE_MORE);
+                }*/
+                if (dposition != -1) {
+                    requestMerchantList(listall.get(dposition).getMtlevel() + "", listall.get(dposition).getPkmertype(), QUERY_EXERCISE_MORE);
                 } else {
                     requestMerchantList(mtlevel, pkmertype, QUERY_EXERCISE_MORE);
                 }
@@ -160,12 +212,21 @@ public class ShopStreetViewpagerFragment extends BaseFragment implements VolleyC
 
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+       Log.i(TAG,"可见了");
+        if(adapter !=null){
+            adapter.reFresh(listName,handler,-1);
+        }
+    }
+
     public void onRefresh() {
         isClick = true;
         //点击tab时GridView恢复初始状态
         gridviewPosition = -1;
-        myAdapter.setSelection(-1);
-        myAdapter.notifyDataSetChanged();
+      //  myAdapter.setSelection(-1);
+      //  myAdapter.notifyDataSetChanged();
         requestTwoLevel();
         requestMerchantList(mtlevel, pkmertype, QUERY_EXERCISE_REFERSH);
     }
@@ -195,8 +256,8 @@ public class ShopStreetViewpagerFragment extends BaseFragment implements VolleyC
                 for (int i = 0; i < listall.size(); i++) {
                     listName.add(listall.get(i).getMtname());
                 }
-
-                myAdapter.notifyDataSetChanged();
+                //myAdapter.notifyDataSetChanged();
+                adapter.reFresh(listName,handler,-1);
 
             } catch (IOException e) {
                 e.printStackTrace();

@@ -29,7 +29,7 @@ public class AppCategoryHomeBannerView extends AppCategoryContextView{
     private ArrayList<String> adv_list = new ArrayList<>();
     private FlyBanner viewpager_new_home;
 
-    AppCategroyResultDataBean appCategroyResultDataBean;
+   public AppCategroyResultDataBean appCategroyResultDataBean;
 
     private int bannerType;
 

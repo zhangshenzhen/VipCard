@@ -134,9 +134,18 @@
 
             <com.bjypt.vipcard.view.categoryview.AppCategoryHomeBannerView
                 android:id="@+id/appCategoryHomeMerchantBannerView"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="102dp"
                 app:bannerType="merchant_home_banner" />
+            <com.bjypt.vipcard.view.layoutbanner.BannerLayout
+                android:id="@+id/recyclerBanner"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:autoPlaying="true"
+                app:centerScale="1.3"
+                app:itemSpace="20"
+                app:moveSpeed="0.5"/>
 
             <com.flyco.tablayout.SlidingTabLayout
                 android:id="@+id/stl_store"

@@ -21,12 +21,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.SearchMerchantActivity;
+import com.bjypt.vipcard.adapter.interconnect.ReaycleBannerAdapter;
 import com.bjypt.vipcard.base.BaseFragment;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
+import com.bjypt.vipcard.model.AppCategroyResultDataBean;
 import com.bjypt.vipcard.model.HomeTest;
 import com.bjypt.vipcard.model.HomeTypeBean;
 import com.bjypt.vipcard.model.NewMerchantListBean;
@@ -40,6 +43,7 @@ import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.view.NewsViewpager;
 import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.view.categoryview.AppCategoryHomeBannerView;
+import com.bjypt.vipcard.view.layoutbanner.BannerLayout;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.sinia.orderlang.utils.StringUtil;
@@ -48,7 +52,9 @@ import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -73,9 +79,13 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
     private String cityCode;
     private BroadCastReceiverUtils utils;
     private MyBroadCastReceiver recei;
-    private GaoDeTimerLocation  gaoDeTimerLocation;
+    private GaoDeTimerLocation gaoDeTimerLocation;
     private Timer timer;
     private TimerTask timerTask;
+    private BannerLayout recyclerBanner;//新增的banner样式
+    private int request_code_data = 12;
+    private List<String> list_banner = new ArrayList<>();
+    public AppCategroyResultDataBean appCategroyResultDataBean;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,7 +96,6 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
 
     @Override
     public void beforeInitView() {
-
         View statusBar = view.findViewById(R.id.statusBarView);
         ViewGroup.LayoutParams layoutParams = statusBar.getLayoutParams();
         layoutParams.height = getStatusBarHeight();
@@ -110,9 +119,9 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
             }
         };
         timer = new Timer();
-        timer.schedule(timerTask, 5* 1000 * 60, 5* 1000 * 60);
+        timer.schedule(timerTask, 5 * 1000 * 60, 5 * 1000 * 60);
 
-        Wethod.httpPost(getActivity(), 1, Config.web.home_service, null, this,View.VISIBLE);
+        Wethod.httpPost(getActivity(), 1, Config.web.home_service, null, this, View.VISIBLE);
 
     }
 
@@ -124,12 +133,19 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
         vp_store = (NewsViewpager) view.findViewById(R.id.vp_store);
         home_now_city = (TextView) view.findViewById(R.id.home_now_city);
         mChangeCity = (LinearLayout) view.findViewById(R.id.change_city);
+        recyclerBanner = view.findViewById(R.id.recyclerBanner);
     }
 
     @Override
     public void afterInitView() {
         //开启banner页
-        appCategoryHomeMerchantBannerView.reload();
+        int bannerType = 9;
+        // appCategoryHomeMerchantBannerView.reload();
+        Map<String, String> params = new HashMap<>();
+        params.put("city_code", Config.web.cityCode);//SharedPreferenceUtils.getFromSharedPreference(getContext(), Config.userConfig.citycode, "1558")
+        params.put("app_type", bannerType + "");
+        startLoading(Config.web.application_ad, params);
+        //loadRecyclerBanner();//
         setCityName(SharedPreferenceUtils.getFromSharedPreference(getActivity(), Config.userConfig.cname));
 
         if (ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -151,6 +167,11 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
             }
         }
     }
+
+    public void startLoading(String method, Map<String, String> params) {
+        Wethod.httpPost(getActivity(), request_code_data, method, params, this, View.GONE);
+    }
+
 
     @Override
     public void bindListener() {
@@ -238,7 +259,51 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
 
                 e.printStackTrace();
             }
+        } else if (reqcode == request_code_data) {
+            try {
+                ObjectMapper objectMapper = ObjectMapperFactory.createObjectMapper();
+                if (list_banner.size() > 0) {
+                    list_banner.clear();
+                }
+                appCategroyResultDataBean = objectMapper.readValue(result.toString(), AppCategroyResultDataBean.class);
+                if (appCategroyResultDataBean != null && appCategroyResultDataBean.getResultData().size() > 0) {
+
+                    for (int i = 0; i < appCategroyResultDataBean.getResultData().size(); i++) {
+                        list_banner.add(appCategroyResultDataBean.getResultData().get(i).getApp_icon());
+                    }
+                    //轮播图个数要大于等于3个
+                    if (appCategroyResultDataBean.getResultData().size() == 1) {
+                        list_banner.add(appCategroyResultDataBean.getResultData().get(0).getApp_icon());
+                        list_banner.add(appCategroyResultDataBean.getResultData().get(0).getApp_icon());
+                    } else if (appCategroyResultDataBean.getResultData().size() == 2) {
+                        list_banner.add(appCategroyResultDataBean.getResultData().get(0).getApp_icon());
+                        list_banner.add(appCategroyResultDataBean.getResultData().get(1).getApp_icon());
+                    }
+                }
+
+                loadRecyclerBanner();//加载
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+    }
+
+    /*
+     * 加载banner*/
+    private void loadRecyclerBanner() {
+
+       /* if (list_banner.size()==0){ //添加默认的地址
+            list_banner.add("http://img3.imgtn.bdimg.com/it/u=2293177440,3125900197&fm=27&gp=0.jpg");
+            list_banner.add("http://img3.imgtn.bdimg.com/it/u=3967183915,4078698000&fm=27&gp=0.jpg");
+            list_banner.add("http://img0.imgtn.bdimg.com/it/u=3184221534,2238244948&fm=27&gp=0.jpg");
+            list_banner.add("http://img4.imgtn.bdimg.com/it/u=1794621527,1964098559&fm=27&gp=0.jpg");
+        }*/
+        ReaycleBannerAdapter webBannerAdapter = new ReaycleBannerAdapter(getActivity(), list_banner);
+        recyclerBanner.setShowIndicator(false);
+        recyclerBanner.setCenterScale(1.2f);
+        recyclerBanner.setMoveSpeed(0.8f);
+        recyclerBanner.setAdapter(webBannerAdapter);
+
     }
 
     @Override

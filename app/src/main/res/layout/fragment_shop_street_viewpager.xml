@@ -3,23 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context="com.bjypt.vipcard.fragment.ShopStreetViewpagerFragment">
 
-    <com.bjypt.vipcard.widget.MyGridView
+  <!--  <Gallery
         android:id="@+id/my_gridview_shopstreet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/gridview_bg"
         android:horizontalSpacing="12dp"
-        android:numColumns="4"
-        android:paddingBottom="12dp"
+        android:numColumns="1"
+        android:spacing="15dp"
+        android:fadeScrollbars="false"
+        android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingTop="12dp"
+        android:paddingTop="10dp"
         android:verticalSpacing="7dp">
+    </Gallery>
+-->
+    <LinearLayout
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
 
-    </com.bjypt.vipcard.widget.MyGridView>
+       <android.support.v7.widget.RecyclerView
+           android:layout_marginTop="10dp"
+           android:id="@+id/my_gridview_shopstreet"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+       </android.support.v7.widget.RecyclerView>
 
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_merchantlist"
