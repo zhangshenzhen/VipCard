@@ -176,11 +176,6 @@ public abstract class AppCategoryContextView extends LinearLayout implements Vol
                     CommonWebActivity.callActivity(getContext(), commonWebData );
                 }else {
                     Intent intent = new Intent(getContext(), LifeServireH5Activity.class);
-                    /* url = appCategoryBean.getLink_url();*/
-        //             url = url + "citycode=" +  SharedPreferenceUtils.getFromSharedPreference(MyApplication.getContext(), Config.userConfig.citycode);
-        //             url = url + "&latitude=" +  SharedPreferenceUtils.getFromSharedPreference(MyApplication.getContext(), Config.userConfig.CURRENT_LATU);
-        //             url = url + "&longitude=" +  SharedPreferenceUtils.getFromSharedPreference(MyApplication.getContext(), Config.userConfig.CURRENT_LNGU);
-                   //  url = url +"&pkregister="+SharedPreferenceUtils.getFromSharedPreference(getContext(), Config.userConfig.pkregister);
                     Log.i("连接", appCategoryBean.getApp_name()+"#########:" + url);
                     intent.putExtra("life_url", url);
                     intent.putExtra("isLogin", "N");

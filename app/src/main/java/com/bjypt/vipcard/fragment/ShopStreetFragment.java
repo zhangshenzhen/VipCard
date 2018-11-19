@@ -29,6 +29,7 @@ import com.bjypt.vipcard.base.BaseFragment;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
+import com.bjypt.vipcard.model.AppCategoryBean;
 import com.bjypt.vipcard.model.AppCategroyResultDataBean;
 import com.bjypt.vipcard.model.HomeTest;
 import com.bjypt.vipcard.model.HomeTypeBean;
@@ -140,7 +141,7 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
     public void afterInitView() {
         //开启banner页
         int bannerType = 9;
-        // appCategoryHomeMerchantBannerView.reload();
+        appCategoryHomeMerchantBannerView.reload();//布局中已经隐藏了;
         Map<String, String> params = new HashMap<>();
         params.put("city_code", Config.web.cityCode);//SharedPreferenceUtils.getFromSharedPreference(getContext(), Config.userConfig.citycode, "1558")
         params.put("app_type", bannerType + "");
@@ -168,6 +169,8 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
         }
     }
 
+    /*
+    * 获取店铺街banner数据*/
     public void startLoading(String method, Map<String, String> params) {
         Wethod.httpPost(getActivity(), request_code_data, method, params, this, View.GONE);
     }
@@ -286,6 +289,7 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
                 e.printStackTrace();
             }
         }
+
     }
 
     /*
@@ -304,11 +308,30 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
         recyclerBanner.setMoveSpeed(0.8f);
         recyclerBanner.setAdapter(webBannerAdapter);
 
+        //banner 点击事件
+        webBannerAdapter.setOnBannerItemClickListener(new BannerLayout.OnBannerItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                if(listName.size() > 0 ){
+                    //调用封装的工具
+                 appCategoryHomeMerchantBannerView.onAppCategoryItemClick(getItemBean(position));
+                }
+            }
+        });
+
+    }
+     /*
+     *  获取banner 点击参数*/
+    public AppCategoryBean getItemBean(int postion) {
+        if(appCategroyResultDataBean != null && appCategroyResultDataBean.getResultData().size() > postion){
+            return appCategroyResultDataBean.getResultData().get(postion);
+        }
+        return null;
     }
 
     @Override
     public void onFailed(int reqcode, String result) {
-
+        loadRecyclerBanner();//加载默认数据
     }
 
     @Override
