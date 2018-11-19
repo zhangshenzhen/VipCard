@@ -1,4 +1,4 @@
-package com.bjypt.vipcard.adapter.interconnect;
+package com.bjypt.vipcard.adapter.cityconnect;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,12 +11,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bjypt.vipcard.Interface.OnRecycleItemClickListener;
 import com.bjypt.vipcard.R;
-import com.bjypt.vipcard.adapter.RecyclerViewAdapter;
-import com.bjypt.vipcard.fragment.crowdfunding.entity.CfProjectItem;
-import com.bjypt.vipcard.model.RedPackageBean;
-import com.chanven.lib.cptr.loadmore.RecyclerViewHandler;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -147,6 +147,37 @@
                 app:itemSpace="20"
                 app:moveSpeed="0.5"/>
 
+            <LinearLayout
+                android:id="@+id/youhui_go_list"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:background="@mipmap/youhui_go_bg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="您有"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="22"
+                    android:textColor="#ff9900"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="张优惠券可使用"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
             <com.flyco.tablayout.SlidingTabLayout
                 android:id="@+id/stl_store"
                 android:layout_width="match_parent"

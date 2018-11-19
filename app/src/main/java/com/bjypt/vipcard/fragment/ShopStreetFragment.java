@@ -18,31 +18,27 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.SearchMerchantActivity;
-import com.bjypt.vipcard.adapter.interconnect.ReaycleBannerAdapter;
+import com.bjypt.vipcard.adapter.cityconnect.ReaycleBannerAdapter;
 import com.bjypt.vipcard.base.BaseFragment;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
+import com.bjypt.vipcard.dialog.GetYouHuiListDialog;
 import com.bjypt.vipcard.model.AppCategoryBean;
 import com.bjypt.vipcard.model.AppCategroyResultDataBean;
 import com.bjypt.vipcard.model.HomeTest;
 import com.bjypt.vipcard.model.HomeTypeBean;
-import com.bjypt.vipcard.model.NewMerchantListBean;
-import com.bjypt.vipcard.receiver.Logger;
 import com.bjypt.vipcard.utils.BroadCastReceiverUtils;
 import com.bjypt.vipcard.utils.GaoDeMapLocation;
 import com.bjypt.vipcard.utils.GaoDeTimerLocation;
-import com.bjypt.vipcard.utils.LogUtil;
 import com.bjypt.vipcard.utils.ObjectMapperFactory;
 import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.bjypt.vipcard.view.NewsViewpager;
-import com.bjypt.vipcard.view.ToastUtil;
 import com.bjypt.vipcard.view.categoryview.AppCategoryHomeBannerView;
 import com.bjypt.vipcard.view.layoutbanner.BannerLayout;
 import com.flyco.tablayout.SlidingTabLayout;
@@ -87,6 +83,7 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
     private int request_code_data = 12;
     private List<String> list_banner = new ArrayList<>();
     public AppCategroyResultDataBean appCategroyResultDataBean;
+    private LinearLayout youhui_go_list;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -135,6 +132,7 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
         home_now_city = (TextView) view.findViewById(R.id.home_now_city);
         mChangeCity = (LinearLayout) view.findViewById(R.id.change_city);
         recyclerBanner = view.findViewById(R.id.recyclerBanner);
+        youhui_go_list = view.findViewById(R.id.youhui_go_list);
     }
 
     @Override
@@ -180,6 +178,7 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
     public void bindListener() {
         mChangeCity.setOnClickListener(this);
         search_merchant.setOnClickListener(this);
+        youhui_go_list.setOnClickListener(this);
         vp_store.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -196,6 +195,8 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
 
             }
         });
+
+
     }
 
     @Override
@@ -207,6 +208,12 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
                 break;
             case R.id.change_city:
 //                startActivity(new Intent(getActivity(), CityActivity.class));
+                break;
+            case R.id.youhui_go_list://跳转到优惠券列表界面;
+                //这里测试其他程序
+                GetYouHuiListDialog getYouHuiListDialog = new GetYouHuiListDialog(getActivity());
+                getYouHuiListDialog.showDialog();
+
                 break;
         }
     }

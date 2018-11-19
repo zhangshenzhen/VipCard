@@ -1,4 +1,4 @@
-package com.bjypt.vipcard.adapter.interconnect;
+package com.bjypt.vipcard.adapter.cityconnect;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bjypt.vipcard.R;

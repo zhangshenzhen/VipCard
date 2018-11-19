@@ -19,11 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
-import com.bjypt.vipcard.Interface.OnRecycleItemClickListener;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.NewSubscribeDishesActivity;
 import com.bjypt.vipcard.adapter.ShopStreetGridviewAdapter;
-import com.bjypt.vipcard.adapter.interconnect.ShopStreetRecycleAdapter;
+import com.bjypt.vipcard.adapter.cityconnect.ShopStreetRecycleAdapter;
 import com.bjypt.vipcard.base.BaseFragment;
 import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.common.Config;

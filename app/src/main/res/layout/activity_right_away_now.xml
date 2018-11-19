@@ -393,45 +393,219 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
                 android:background="#d5d2d2" />
+            <!--修改-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
 
-            <RelativeLayout
+                <!--积分抵扣-->
+                <RelativeLayout
+                    android:id="@+id/huiyuanbi_rela"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="积分抵扣："
+                            android:textColor="#888888"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="¥"
+                            android:textColor="#FF7660" />
+
+                        <TextView
+                            android:id="@+id/huiyuanbi_money"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="2dp"
+                            android:text="0.00"
+                            android:textColor="#FF7660" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <!--优惠券-->
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="优惠券："
+                            android:textColor="#888888"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="满100减30"
+                            android:textColor="#FF7660" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/right_j" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+                <View
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#F3F3F3"
+                    />
+                <!--总优惠-->
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="总优惠："
+                            android:textColor="#888888"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_jump"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="计算中"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_dongtai_youhui"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="¥"
+                                android:textColor="#Fe4359"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/total_youhui"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="2dp"
+                                android:text="0.0"
+                                android:textColor="#fe4359"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+
+       <!--     <RelativeLayout
                 android:id="@+id/huiyuanbi_rela"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp">
+                &lt;!&ndash;  &lt;!&ndash;积分抵扣&ndash;&gt;
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_centerVertical="true"
+                      android:layout_marginTop="10dp"
+                      android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center"
+                          android:text="积分抵扣："
+                          android:textColor="#666666"
+                          android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="积分抵扣："
-                        android:textColor="#666666"
-                        android:textStyle="bold" />
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center"
+                          android:text="¥"
+                          android:textColor="#FF7660" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="¥"
-                        android:textColor="#FF7660" />
-
-                    <TextView
-                        android:id="@+id/huiyuanbi_money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="2dp"
-                        android:text="2.30"
-                        android:textColor="#FF7660" />
-                </LinearLayout>
+                      <TextView
+                          android:id="@+id/huiyuanbi_money"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center"
+                          android:layout_marginLeft="2dp"
+                          android:text="2.30"
+                          android:textColor="#FF7660" />
+                  </LinearLayout>&ndash;&gt;
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -476,16 +650,16 @@
                             android:layout_marginLeft="2dp"
                             android:text=""
                             android:textColor="#fe4359"
+
                             android:textSize="12sp" />
                     </LinearLayout>
 
                 </LinearLayout>
 
-
-            </RelativeLayout>
-
+            </RelativeLayout>-->
 
             <LinearLayout
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:background="#F3F3F3"
@@ -704,7 +878,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.3dp"
                     android:background="#d5d2d2" />
-
 
 
                 <LinearLayout
