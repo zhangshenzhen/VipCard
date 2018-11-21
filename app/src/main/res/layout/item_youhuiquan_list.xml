@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -9,13 +8,13 @@
     <LinearLayout
         android:layout_centerHorizontal="true"
         android:orientation="horizontal"
-        android:layout_width="260dp"
-        android:layout_height="73dp"
+        android:layout_width="350dp"
+        android:layout_height="90dp"
         android:background="@mipmap/juan_bg">
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="80dp"
+            android:layout_width="105dp"
             android:gravity="center_vertical"
             android:layout_height="match_parent">
             <LinearLayout
@@ -28,15 +27,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="¥"
-                    android:textColor="#88ff0000"
-                    android:textSize="16sp"/>
+                    android:textColor="#aa8B668B"
+                    android:textSize="20sp"/>
                 <TextView
                     android:id="@+id/tv_youhui_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10"
-                    android:textColor="#88ff0000"
-                    android:textSize="16sp"/>
+                    android:textColor="#aa8B668B"
+                    android:textSize="20sp"/>
             </LinearLayout>
             <!--使用条件-->
             <TextView
@@ -46,12 +45,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="满30元可用"
-                android:textColor="#55000000"
-                android:textSize="12sp"/>
+                android:textColor="#aa8B668B"
+                android:textSize="14sp"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="13dp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:weightSum="3"
@@ -69,7 +68,7 @@
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:text="生鲜水果超市"
                     android:singleLine="true"
                     android:textColor="#333333"
@@ -96,7 +95,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="果蔬生鲜"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:background="@drawable/lable_1"
                     />
                 <TextView
@@ -111,14 +110,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="商店超市"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:background="@drawable/lable_2"
                     />
 
                 <Button
                     android:layout_weight="4"
                     android:id="@+id/btn_now_use"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginRight="5dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -128,7 +127,6 @@
                     android:gravity="center"
                     android:text="立即使用"
                     />
-
 
             </LinearLayout>
 
@@ -140,18 +138,18 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <TextView
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="限"/>
                 <TextView
                     android:id="@+id/tv_time_limit"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2018.11.31"/>
                 <TextView
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="前"/>

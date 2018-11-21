@@ -16,11 +16,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
-import com.bjypt.vipcard.adapter.cityconnect.YouHuiAdapter;
+import com.bjypt.vipcard.adapter.cityconnect.YouHuiDialogAdapter;
+import com.bjypt.vipcard.bean.YouHuiQuanBean;
 import com.bjypt.vipcard.fragment.crowdfunding.decoration.GridSpacingItemDecoration;
 import com.bjypt.vipcard.fragment.crowdfunding.decoration.HorizontalSpaceItemDecoration;
 import com.bjypt.vipcard.utils.DensityUtil;
 import com.sinia.orderlang.utils.AppInfoUtil;
+
+import java.util.List;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 
@@ -36,12 +39,13 @@ public class GetYouHuiListDialog {
     private String[] stringArr;
     private RecyclerView youhui_recv;
     private final int width;
+    private List<YouHuiQuanBean.YouHuiQuanDataBean> youHuiQuanDataBeanlist;
 
 
-    public GetYouHuiListDialog(Context context) {
-       //  this.url = url;
+    public GetYouHuiListDialog(Context context,List<YouHuiQuanBean.YouHuiQuanDataBean> youHuiQuanDataBeanlist) {
+
          this.context = context;
-        // this.content = content;
+         this.youHuiQuanDataBeanlist = youHuiQuanDataBeanlist;
          width = AppInfoUtil.getScreenWidth(context);
     }
 
@@ -52,7 +56,7 @@ public class GetYouHuiListDialog {
         View v = inflater.inflate(R.layout.getyouhui_dialog, null);
         LinearLayout linyout = v.findViewById(R.id.linyout);
         youhui_recv = v.findViewById(R.id.youhui_recv);
-        int size = 3;//条目个数
+        int size = youHuiQuanDataBeanlist.size();//条目个数
 
         int dianog_contentHeght = size>2? DensityUtil.dip2px(context, 330):DensityUtil.dip2px(context, 250);
        //自适应图标距离顶部的位置
@@ -86,14 +90,12 @@ public class GetYouHuiListDialog {
         youhui_recv.addItemDecoration(gridSpacingItemDecoration);
 
 
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         youhui_recv.setLayoutManager(layoutManager);//设置布局管理器
 
-        YouHuiAdapter adapter = new YouHuiAdapter(context,size);
+        YouHuiDialogAdapter adapter = new YouHuiDialogAdapter(context,youHuiQuanDataBeanlist,dialog);
         youhui_recv.setAdapter(adapter);
-
 
 
         dialog_close.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +106,13 @@ public class GetYouHuiListDialog {
             }
         });
 
+      }
 
+      public void closeDialog(){
+         if(dialog != null && dialog.isShowing()){
+
+             dialog.dismiss();
+         }
       }
 
 }

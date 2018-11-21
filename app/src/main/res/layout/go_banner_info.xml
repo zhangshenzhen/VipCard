@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+
+    <RelativeLayout
+        android:id="@+id/relyout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@mipmap/youhui1_bg"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <LinearLayout
+            android:id="@+id/line_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_marginTop="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="共有"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_marginTop="9dp"
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="22"
+                android:textColor="#99ffff00"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_marginTop="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="张优惠券可用"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_binder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/tv_offLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="查看绑定线优惠券"
+                android:textSize="18sp"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <ImageView
+                android:layout_marginTop="9dp"
+                android:id="@+id/img_go"
+                android:layout_marginRight="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/go1" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+   <!-- <RelativeLayout
+        android:id="@+id/relyout"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@mipmap/youhui1_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:id="@+id/line_onLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical|center_horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="共有" />
+
+            <TextView
+
+                android:id="@+id/tv_num"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="22"
+                android:textColor="#99ffff00" />
+
+            <TextView
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="张优惠券可用" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            android:id="@+id/tv_offLine"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查看绑定线优惠券"
+            />
+        <ImageView
+            android:id="@+id/img_go"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/go1"/>
+
+    </RelativeLayout>
+-->
+</LinearLayout>

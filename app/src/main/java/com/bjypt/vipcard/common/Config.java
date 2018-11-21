@@ -24,20 +24,20 @@ public final class Config {
 
 
         //测试服务器地址
-  //         public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
-  //         public static final String shangfengh5 = "http://123.57.232.188:19094/";
-  //         public static final String app_h5_url = "http://testsun.hybjiekou.com/hyb_ct_h5app/";
-  //        public static final String cf_url = "http://123.57.232.188:19096/";
+           public static final String hyb_url = "http://123.57.232.188:8080/hyb/";  //测试服务器地址
+           public static final String shangfengh5 = "http://123.57.232.188:19094/";
+           public static final String app_h5_url = "http://testsun.hybjiekou.com/hyb_ct_h5app/";
+           public static final String cf_url = "http://123.57.232.188:19096/";
 
 //        public static final String cf_h5_url = "";
 
        // http://123.57.232.188:19096/api/hybCfMerchantCrowdfundingProjectItem/getProjectItemExplain";
 
         //正式服务器地址
-        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
-        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //207地址
-        public static final String app_h5_url = "http://sun.hybjiekou.com/hyb_ct_h5app/";
-        public static final String cf_url = "http://jk.zhihuisf.com:8687/";//新更换的地址
+//        public static final String shangfengh5= "http://jk.zhihuisf.com:9094/";
+//        public static final String hyb_url = "https://hybjiekou.com:8443/hyb/";    //207地址
+//        public static final String app_h5_url = "http://sun.hybjiekou.com/hyb_ct_h5app/";
+//        public static final String cf_url = "http://jk.zhihuisf.com:8687/";//新更换的地址
        // public static final String cf_url = "http://123.57.232.188:19096/api/";
 
 
@@ -382,6 +382,19 @@ public final class Config {
 
 
 
+       /*
+
+       城市互联
+       * */
+       //测试服务器  base = hyb_url
+       public static final String city_connectin_youhuiquann = hyb_url + "ws/coupon/user_coupon";
+       //http://123.57.232.188:8080/hyb/ws/coupon/count
+       public static final String city_connectin_Go_info = hyb_url + "ws/coupon/count";
+       /*优惠券列表*/
+       public static final String city_connectin_youhui_list = hyb_url + "ws/coupon/list";
+
+        //以上是城市互联
+     //-----------------------------------------------------------
 
 
 

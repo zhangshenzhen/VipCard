@@ -1077,6 +1077,8 @@
 
         <activity android:name=".activity.crowdfunding.CrowdfundingPayFinishActivity" />
         <!-- *********************************** shangfeng ui end **********************************-->
+        <!--城市互联-->
+        <activity android:name=".activity.cityconnect.YouHuiQuanListActivity"/>
     </application>
 
 </manifest>

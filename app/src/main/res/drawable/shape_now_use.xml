@@ -6,7 +6,7 @@
      android:height="90px"/>-->
 
     <!-- 填充 -->
-    <solid android:color="#aaff0000"
+    <solid android:color="#998B668B"
         />
     <!-- 圆角 -->
     <corners android:radius="50px" />

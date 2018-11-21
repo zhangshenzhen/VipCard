@@ -39,6 +39,18 @@ public class FomartToolUtils {
     }
 
     /*
+     * 格式化*/
+    public static  String fomartMoneyNoSymbol( BigDecimal big){
+        if (big==null){
+            return "";
+        }
+        DecimalFormat df = new DecimalFormat("#.###");
+        BigDecimal bd = new BigDecimal(big+"");
+        double db = bd.doubleValue();
+        return df.format(db)+"";
+    }
+
+    /*
      * 格式化数字*/
     public static   String fomartNum( String num){
         DecimalFormat df = new DecimalFormat("#.##");
