@@ -1,6 +1,7 @@
 package com.bjypt.vipcard.adapter.cityconnect;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bjypt.vipcard.R;
 
+import com.bjypt.vipcard.activity.cityconnect.YouHuiSellListActivity;
 import com.bjypt.vipcard.bean.YouHuiquanListBean;
 import com.bjypt.vipcard.utils.FomartToolUtils;
 import com.sinia.orderlang.utils.StringUtil;
@@ -80,7 +82,15 @@ public class YouHuiQuanListAdapter extends RecyclerView.Adapter {
         youHuiHolder.tv_title.setText(dataBean.getTitle());
         //期限
         youHuiHolder.tv_time_limit.setText(dataBean.getEnddate());
+        youHuiHolder.btn_now_use.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, YouHuiSellListActivity.class);
+                intent.putExtra("pkcoupon",dataBean.getPkcoupon());
+                context.startActivity(intent);
 
+            }
+        });
     }
 
     @Override

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.cityconnect.YouHuiQuanListActivity;
+import com.bjypt.vipcard.activity.cityconnect.YouHuiquanBinderActivity;
 import com.bjypt.vipcard.bean.YiuHuiCountGoBean;
 import com.bjypt.vipcard.utils.DensityUtil;
 
@@ -73,9 +74,10 @@ public class YouHuiQuanGoBannerPager extends PagerAdapter {
                 Log.d("TAG", "当前位置是 ：" + currentposition);
                if (currentposition==0){//到优惠券列表
                 mContext.startActivity(new Intent(mContext, YouHuiQuanListActivity.class));
-
                }else {//线下绑定
-
+                   Intent intent = new Intent(mContext, YouHuiquanBinderActivity.class);
+                   //intent.putExtra("pkcoupon",resultDataBean.get)
+                   mContext.startActivity(intent);
                }
             }
         });

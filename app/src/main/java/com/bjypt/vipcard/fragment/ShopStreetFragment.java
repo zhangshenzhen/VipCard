@@ -36,6 +36,7 @@ import com.bjypt.vipcard.bean.YouHuiQuanBean;
 import com.bjypt.vipcard.common.Config;
 import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.dialog.GetYouHuiListDialog;
+import com.bjypt.vipcard.dialog.GetYouHuiListDialog2;
 import com.bjypt.vipcard.model.AppCategoryBean;
 import com.bjypt.vipcard.model.AppCategroyResultDataBean;
 import com.bjypt.vipcard.model.HomeTest;
@@ -94,7 +95,7 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
     private List<String> list_banner = new ArrayList<>();
     public AppCategroyResultDataBean appCategroyResultDataBean;
     // private LinearLayout youhui_go_list;
-    private GetYouHuiListDialog getYouHuiListDialog;
+    private GetYouHuiListDialog2 getYouHuiListDialog;
     private int request_YouHui_code_data = 13;
     private int request_go_code_data = 14;
     private YouHuiQuanBean youHuiQuanBean;
@@ -369,7 +370,7 @@ public class ShopStreetFragment extends BaseFragment implements VolleyCallBack<S
                         YouHuiQuanDataBeanlist.add(youHuiQuanBean.getResultData().get(i));
                     }
                     //这里得到数据 传递给dialog zai 再有diaog 加载适配器
-                    getYouHuiListDialog = new GetYouHuiListDialog(getActivity(), YouHuiQuanDataBeanlist);
+                    getYouHuiListDialog = new GetYouHuiListDialog2(getActivity(), YouHuiQuanDataBeanlist);
                     getYouHuiListDialog.showDialog();
                 }
             } catch (IOException e) {

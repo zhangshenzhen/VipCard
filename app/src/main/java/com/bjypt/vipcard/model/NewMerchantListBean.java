@@ -8,6 +8,7 @@ import java.util.List;
 
 public class NewMerchantListBean {
 
+
     private String pkmuser;
     private String muname;
     private String logo;

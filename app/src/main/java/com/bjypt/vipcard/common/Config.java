@@ -392,6 +392,13 @@ public final class Config {
        public static final String city_connectin_Go_info = hyb_url + "ws/coupon/count";
        /*优惠券列表*/
        public static final String city_connectin_youhui_list = hyb_url + "ws/coupon/list";
+       /*领取优惠券*/
+       public static final String city_connectin_get_quan = hyb_url + "ws/coupon/recever_coupon";
+        /*绑定优惠券*/
+        public static final String city_connectin_bind_quan = hyb_url + "ws/coupon/bind_coupon";
+        /*优惠券支持的商家
+        * */
+        public static final String city_connectin_YouHui_sell = hyb_url + "ws/coupon/coupon_merchant";
 
         //以上是城市互联
      //-----------------------------------------------------------

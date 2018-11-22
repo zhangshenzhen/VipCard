@@ -14,14 +14,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.maps.model.Text;
+import com.android.volley.VolleyError;
 import com.bjypt.vipcard.R;
 import com.bjypt.vipcard.activity.cityconnect.YouHuiQuanListActivity;
+import com.bjypt.vipcard.activity.cityconnect.YouHuiSellListActivity;
+import com.bjypt.vipcard.base.VolleyCallBack;
 import com.bjypt.vipcard.bean.YouHuiQuanBean;
+import com.bjypt.vipcard.common.Config;
+import com.bjypt.vipcard.common.Wethod;
 import com.bjypt.vipcard.utils.FomartToolUtils;
+import com.bjypt.vipcard.utils.LogUtil;
+import com.bjypt.vipcard.utils.SharedPreferenceUtils;
 import com.sinia.orderlang.utils.StringUtil;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class YouHuiDialogAdapter extends RecyclerView.Adapter {
 
@@ -83,14 +92,43 @@ public class YouHuiDialogAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View v) {
                // Toast.makeText(context,"这事第 "+ position +" 个条目",Toast.LENGTH_SHORT).show();
-               Intent intent = new Intent(context, YouHuiQuanListActivity.class);
-               intent.putExtra("youHuiQuanDataBeanlist",  (Serializable)youHuiQuanDataBeanlist);
-                context.startActivity(intent);
-                 if (dialog != null && dialog.isShowing()){
-                    dialog.dismiss();
-                 }
+               //领取优惠券
+                getYouhuiQuan(youHuiQuanData);
+                //进入到可支持的商家列表
+
             }
         });
+    }
+
+    private void getYouhuiQuan(YouHuiQuanBean.YouHuiQuanDataBean youHuiQuanData) {
+        Map<String, String> params = new HashMap<>();
+        params.put("pkregister", SharedPreferenceUtils.getFromSharedPreference(context, Config.userConfig.pkregister));
+        params.put("activity_id",youHuiQuanData.getActivity_id()+"");
+        Wethod.httpPost(context, 16, Config.web.city_connectin_get_quan, params, new VolleyCallBack<String>() {
+            @Override
+            public void onSuccess(int reqcode, String result) {
+                LogUtil.debugPrint("领取优惠券 ："+result);
+
+                Intent intent = new Intent(context, YouHuiSellListActivity.class);
+                intent.putExtra("pkcoupon",  youHuiQuanData.getPkcoupon());
+                context.startActivity(intent);
+                if (dialog != null && dialog.isShowing()){
+                    dialog.dismiss();
+                }
+
+            }
+
+            @Override
+            public void onFailed(int reqcode, String result) {
+
+            }
+
+            @Override
+            public void onError(VolleyError volleyError) {
+
+            }
+        }, View.GONE);
+
     }
 
     @Override

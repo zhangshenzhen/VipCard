@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFAEf"
     android:orientation="vertical">
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -37,26 +37,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="优惠券"
-            android:textSize="16sp"></TextView>
+            android:text="商家列表"
+            android:textSize="16sp">
+
+        </TextView>
 
     </RelativeLayout>
 
     <com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView
-        android:id="@+id/Pull_list_view"
+        android:id="@+id/Pull_seller_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rl_title"
         android:background="@color/gray_a"
         android:scrollbars="none">
 
-        <RelativeLayout
+       <RelativeLayout
             android:id="@+id/liner_bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal">
-
 
             <ImageView
                 android:id="@+id/img_no_list"
@@ -66,7 +67,7 @@
                 android:src="@mipmap/none_list" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/youhuilist_recv"
+                android:id="@+id/recycleView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true">
@@ -75,9 +76,22 @@
 
 
         </RelativeLayout>
+       <!-- <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycleView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </LinearLayout>-->
 
     </com.bjypt.vipcard.pulltorefresh.PullToRefreshScrollView>
-
 
 
 </LinearLayout>

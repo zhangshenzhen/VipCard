@@ -107,7 +107,7 @@ public class YouHuiQuanListActivity extends BaseActivity implements VolleyCallBa
 
     private void getYouHuiQuanList(int refresh_type) {
         if(refresh_type ==QUERY_EXERCISE_REFERSH){
-            page = 1;
+            page = 0;
             is_refresh = true;
         }else {
             page += 1;
@@ -214,8 +214,7 @@ public class YouHuiQuanListActivity extends BaseActivity implements VolleyCallBa
                  }
 
                 if (ResultDataBeanlist.size() > 0) {
-                  Message msg = Message.obtain();
-                  msg.what = 1;
+
                   handler.sendEmptyMessage(1);//通知刷新
 
                 } else {//背景显示没有优惠券的图标

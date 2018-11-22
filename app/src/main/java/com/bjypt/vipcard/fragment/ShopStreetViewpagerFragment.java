@@ -115,9 +115,9 @@ public class ShopStreetViewpagerFragment extends BaseFragment implements VolleyC
         latitude = SharedPreferenceUtils.getFromSharedPreference(getActivity(), Config.userConfig.CURRENT_LATU);
         longitude = SharedPreferenceUtils.getFromSharedPreference(getActivity(), Config.userConfig.CURRENT_LNGU);
 
-        Logger.e("经度 :"+longitude+" ; 纬度 :"+latitude);
+        Logger.e("经度 >:"+longitude+" ; 纬度> :"+latitude);
 
-        Log.e("lat", "beforeInitView: " + SharedPreferenceUtils.getFromSharedPreference(getActivity(), Config.userConfig.CURRENT_LATU));
+        Log.e("lat", "beforeInitView...>: " + SharedPreferenceUtils.getFromSharedPreference(getActivity(), Config.userConfig.CURRENT_LATU));
         requestTwoLevel();
         requestMerchantList(mtlevel, pkmertype, QUERY_EXERCISE_REFERSH);
     }

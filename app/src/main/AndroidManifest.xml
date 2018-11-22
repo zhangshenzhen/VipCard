@@ -1079,6 +1079,8 @@
         <!-- *********************************** shangfeng ui end **********************************-->
         <!--城市互联-->
         <activity android:name=".activity.cityconnect.YouHuiQuanListActivity"/>
+        <activity android:name=".activity.cityconnect.YouHuiquanBinderActivity"/>
+        <activity android:name=".activity.cityconnect.YouHuiSellListActivity"/>
     </application>
 
 </manifest>
